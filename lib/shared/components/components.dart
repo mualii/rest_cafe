@@ -19,7 +19,8 @@ Widget defaultFormField({
   bool isClickable = true,
 }) =>
     Container(
-      height: 40,
+      height: 50.sp,
+      width: .9.sw,
       child: TextFormField(
         maxLines: maxLines,
         controller: controller,

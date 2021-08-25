@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/modules/complete_profile_screen/completeProfileScreen.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/PinCodeScreen/pin_code_Input.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/PinCodeScreen/text_sent_otp_again.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/PinCodeScreen/text_show_timer.dart';
@@ -134,14 +135,12 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                 Center(
                   child: Container(
                     width: .87.sw,
-                    height: .08.sh,
+                    height: 50.h,
                     margin: EdgeInsets.only(top: 10),
                     child: RaisedButton(
                       onPressed: () async {
                         _timer.cancel();
-                        // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        //   builder: (context) => (),
-                        // ));
+                        navigateAndFinish(context, CompleteProfileScreen());
                       },
                       elevation: 3,
                       child: Text(

@@ -32,7 +32,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   intl_phone_number_input: ^0.7.0+2
   intl_phone_field: ^2.0.1
-
+  image_picker: ^0.8.3+3
   pin_code_fields: ^7.2.0
   font_awesome_flutter: ^9.0.0
 

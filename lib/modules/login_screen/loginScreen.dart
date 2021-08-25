@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 20.h),
               InkWell(
                 child: mainBottom(
-                    title: "تسجيل دخول", width: .94.sw, height: 50.h),
+                    title: "تسجيل دخول", width: .90.sw, height: 50.h),
                 onTap: () => navigateAndFinish(
                     context,
                     PinCodePhoneScreen(
