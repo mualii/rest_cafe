@@ -8,6 +8,7 @@ Widget defaultFormField({
   Function(String)? onSubmit,
   Function(String)? onChange,
   String? hint,
+  Color? color,
   int? maxLines,
   VoidCallback? onTap,
   bool isPassword = false,
@@ -44,6 +45,7 @@ Widget defaultFormField({
           labelText: label,
           prefixIcon: Icon(
             prefix,
+            color: color,
           ),
           suffixIcon: suffix != null
               ? IconButton(
