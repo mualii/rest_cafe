@@ -70,106 +70,106 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0,
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            //    mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(bottom: 30.h),
-                child: Image.asset(
-                  "assets/images/otp.png",
-                  fit: BoxFit.fill,
-                  scale: .75,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              //    mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(bottom: 30.h),
+                  child: Image.asset(
+                    "assets/images/otp.png",
+                    fit: BoxFit.fill,
+                    scale: .75,
+                  ),
                 ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    width: .8.sw,
-                    child: myTitle(
-                        title: "الرجاء إدخال رمز التحقق للمتابعة", font: 18.sp),
-                  ),
-                  SizedBox(
-                    height: .03.sh,
-                  ),
-                  Container(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
                       alignment: Alignment.center,
                       width: .8.sw,
                       child: myTitle(
-                          title: "لقد أرسلنا رمز التحقق إلى رقم الجوال",
-                          font: 18.sp)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "(${widget.PhoneUser})",
-                        style: TextStyle(
-                            fontSize: 18.sp, color: Color(0xff555555)),
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      FaIcon(
-                        FontAwesomeIcons.pen,
-                        color: color1,
-                        size: 18.sp,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: .02.sh,
-              ),
-              PinCodeInput(
-                controllerPinText: controllerPinText,
-              ),
-              SizedBox(
-                height: .02.sh,
-              ),
-              Center(
-                child: Container(
-                  width: .87.sw,
-                  height: .08.sh,
-                  margin: EdgeInsets.only(top: 10),
-                  child: RaisedButton(
-                    onPressed: () async {
-                      _timer.cancel();
-                      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      //   builder: (context) => (),
-                      // ));
-                    },
-                    elevation: 3,
-                    child: Text(
-                      "تحقق",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
+                          title: "الرجاء إدخال رمز التحقق للمتابعة",
+                          font: 18.sp),
                     ),
-                    color: color1,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
+                    SizedBox(
+                      height: .03.sh,
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        width: .8.sw,
+                        child: myTitle(
+                            title: "لقد أرسلنا رمز التحقق إلى رقم الجوال",
+                            font: 18.sp)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "(${widget.PhoneUser})",
+                          style: TextStyle(
+                              fontSize: 18.sp, color: Color(0xff555555)),
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.pen,
+                          color: color1,
+                          size: 18.sp,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: .02.sh,
+                ),
+                PinCodeInput(
+                  controllerPinText: controllerPinText,
+                ),
+                SizedBox(
+                  height: .02.sh,
+                ),
+                Center(
+                  child: Container(
+                    width: .87.sw,
+                    height: .08.sh,
+                    margin: EdgeInsets.only(top: 10),
+                    child: RaisedButton(
+                      onPressed: () async {
+                        _timer.cancel();
+                        // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        //   builder: (context) => (),
+                        // ));
+                      },
+                      elevation: 3,
+                      child: Text(
+                        "تحقق",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      color: color1,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: .03.sh,
-              ),
-              (timerCount > 1)
-                  ? TextShowTimer(
-                      timerCount: timerCount,
-                    )
-                  : TextSentOtpAgain(
-                      FunctionSentSms: () => FunctionSentSms(),
-                    )
-            ],
+                SizedBox(
+                  height: .03.sh,
+                ),
+                (timerCount > 1)
+                    ? TextShowTimer(
+                        timerCount: timerCount,
+                      )
+                    : TextSentOtpAgain(
+                        FunctionSentSms: () => FunctionSentSms(),
+                      )
+              ],
+            ),
           ),
         ),
       ),
