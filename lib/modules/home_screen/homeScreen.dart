@@ -1,8 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/modules/home_screen/cubit/cubit.dart';
+import 'package:rest_cafe/modules/home_screen/cubit/states.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -10,70 +13,90 @@ class HomeScreen extends StatelessWidget {
   var _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20.0.sp),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    "التوصيل الى",
-                    style: TextStyle(color: Color(0xffAEAEAE), fontSize: 12.sp),
+    return BlocProvider(
+      create: (context) => HomeCubit(),
+      child: BlocConsumer<HomeCubit, HomeState>(
+        listener: (context, state) {
+          // TODO: implement listener
+        },
+        builder: (context, state) {
+          return Scaffold(
+            body: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.all(20.0.sp),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "التوصيل الى",
+                          style: TextStyle(
+                              color: Color(0xffAEAEAE), fontSize: 12.sp),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "1704 Diptul Glen",
+                            style: TextStyle(color: color1, fontSize: 16.sp),
+                          ),
+                          SizedBox(width: 10.w),
+                          Icon(Icons.keyboard_arrow_down_sharp,
+                              color: Color(0xffAEAEAE)),
+                          SizedBox(width: .43.sw),
+                          Icon(Icons.circle_notifications,
+                              color: Color(0xffAEAEAE)),
+                        ],
+                      ),
+                      SizedBox(height: 20.h),
+                      defaultFormField(
+                          controller: _searchController,
+                          type: TextInputType.name,
+                          hint: "بحث عن متجر او منتج",
+                          prefix: Icons.search,
+                          color: color1),
+                      SizedBox(height: 20.h),
+                      Container(
+                        height: 30.h,
+                        child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: false,
+                            itemBuilder: (context, index) => InkWell(
+                                  onTap: () {
+                                    HomeCubit.get(context)
+                                        .changeListItem(index);
+                                  },
+                                  child: labolOfFristListView(
+                                    index: index,
+                                    text: "المطاعم",
+                                    icon: FontAwesomeIcons.utensils,
+                                  ),
+                                ),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(width: 10.w),
+                            itemCount: 7),
+                      ),
+                      SizedBox(height: 10.h),
+                      // LabolOfSecondListView()
+                      Container(
+                        height: .6.sh,
+                        child: ListView.separated(
+                            shrinkWrap: false,
+                            itemBuilder: (context, index) =>
+                                LabolOfSecondListView(),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(width: 10.h),
+                            itemCount: 10),
+                      )
+                    ],
                   ),
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "1704 Diptul Glen",
-                      style: TextStyle(color: color1, fontSize: 16.sp),
-                    ),
-                    SizedBox(width: 10.w),
-                    Icon(Icons.keyboard_arrow_down_sharp,
-                        color: Color(0xffAEAEAE)),
-                    SizedBox(width: .43.sw),
-                    Icon(Icons.circle_notifications, color: Color(0xffAEAEAE)),
-                  ],
-                ),
-                SizedBox(height: 20.h),
-                defaultFormField(
-                    controller: _searchController,
-                    type: TextInputType.name,
-                    hint: "بحث عن متجر او منتج",
-                    prefix: Icons.search,
-                    color: color1),
-                SizedBox(height: 20.h),
-                Container(
-                  height: 30.h,
-                  child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: false,
-                      itemBuilder: (context, index) => labolOfFristListView(
-                            text: "المطاعم",
-                            icon: FontAwesomeIcons.utensils,
-                          ),
-                      separatorBuilder: (context, index) =>
-                          SizedBox(width: 10.w),
-                      itemCount: 7),
-                ),
-                SizedBox(height: 10.h),
-                // LabolOfSecondListView()
-                Container(
-                  height: .6.sh,
-                  child: ListView.separated(
-                      shrinkWrap: false,
-                      itemBuilder: (context, index) => LabolOfSecondListView(),
-                      separatorBuilder: (context, index) =>
-                          SizedBox(width: 10.h),
-                      itemCount: 10),
-                )
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
@@ -170,29 +193,50 @@ class LabolOfSecondListView extends StatelessWidget {
 class labolOfFristListView extends StatelessWidget {
   final IconData? icon;
   final String text;
+  final int index;
 
-  const labolOfFristListView({Key? key, this.icon, required this.text})
+  const labolOfFristListView(
+      {Key? key, this.icon, required this.text, required this.index})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40.h,
-      width: 90.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.sp),
-        color: color1,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: Colors.white),
-          SizedBox(width: 10.w),
-          Text(
-            text,
-            style: TextStyle(color: Colors.white),
+    return index == HomeCubit.get(context).currentIndex
+        ? Container(
+            height: 40.h,
+            width: 90.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.sp),
+              color: color1,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, color: Colors.white),
+                SizedBox(width: 10.w),
+                Text(
+                  text,
+                  style: TextStyle(color: Colors.white),
+                )
+              ],
+            ),
           )
-        ],
-      ),
-    );
+        : Container(
+            height: 40.h,
+            width: 90.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.sp),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, color: color1),
+                SizedBox(width: 10.w),
+                Text(
+                  text,
+                  style: TextStyle(color: Colors.black),
+                )
+              ],
+            ),
+          );
   }
 }
