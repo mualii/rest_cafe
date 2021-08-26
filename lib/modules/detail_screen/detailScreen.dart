@@ -230,7 +230,7 @@ class LabolOfSecondListView extends StatelessWidget {
                       ? IconButton(
                           onPressed: () {
                             DetailCubit.get(context)
-                                .changeFavorites(false, index!);
+                                .changeFavorites(true, index!);
                           },
                           icon: Icon(Icons.favorite, color: color1),
                         )
