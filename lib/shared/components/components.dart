@@ -16,11 +16,12 @@ Widget defaultFormField({
   String? label,
   IconData? prefix,
   IconData? suffix,
+  double? height = 50,
   VoidCallback? suffixPressed,
   bool isClickable = true,
 }) =>
     Container(
-      height: 50.sp,
+      height: height,
       width: .9.sw,
       child: TextFormField(
         maxLines: maxLines,
