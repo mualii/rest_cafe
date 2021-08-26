@@ -200,43 +200,34 @@ class labolOfFristListView extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return index == HomeCubit.get(context).currentIndex
-        ? Container(
-            height: 40.h,
-            width: 90.w,
-            decoration: BoxDecoration(
+    return Container(
+      height: 40.h,
+      width: 90.w,
+      decoration: index == HomeCubit.get(context).currentIndex
+          ? BoxDecoration(
               borderRadius: BorderRadius.circular(10.sp),
               color: color1,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: Colors.white),
-                SizedBox(width: 10.w),
-                Text(
-                  text,
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
-            ),
-          )
-        : Container(
-            height: 40.h,
-            width: 90.w,
-            decoration: BoxDecoration(
+            )
+          : BoxDecoration(
               borderRadius: BorderRadius.circular(10.sp),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: color1),
-                SizedBox(width: 10.w),
-                Text(
-                  text,
-                  style: TextStyle(color: Colors.black),
-                )
-              ],
-            ),
-          );
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon,
+              color: index == HomeCubit.get(context).currentIndex
+                  ? Colors.white
+                  : color1),
+          SizedBox(width: 10.w),
+          Text(
+            text,
+            style: TextStyle(
+                color: index == HomeCubit.get(context).currentIndex
+                    ? Colors.white
+                    : Colors.black),
+          )
+        ],
+      ),
+    );
   }
 }
