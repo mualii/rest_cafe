@@ -155,7 +155,7 @@ class DetailScreen extends StatelessWidget {
                                     child: AddScreen(),
                                   ), //AddScreen()
                                   barrierDismissible: false,
-                                );
+                                ).then((value) => Navigator.pop(context));
                               },
                               child: LabolOfSecondListView(index: index)),
                           separatorBuilder: (context, index) =>

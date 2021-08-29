@@ -19,7 +19,7 @@ class AddCubit extends Cubit<AddState> {
   }
 
   int MinusOneItemFromCard(int count) {
-    count--;
+    if (count > 1) count--;
     emit(MinusOneItem());
     return count;
   }

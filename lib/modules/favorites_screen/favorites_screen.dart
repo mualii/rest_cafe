@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rest_cafe/shared/components/components.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rest_cafe/shared/components/components.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({Key? key}) : super(key: key);

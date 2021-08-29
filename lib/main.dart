@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rest_cafe/modules/Payment_screens/first_payment_screen.dart';
 import 'package:rest_cafe/modules/favorites_screen/favorites_screen.dart';
 
 void main() async {
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: FirstPaymentScreen(),
+        home: FavoritesScreen(),
       ),
     );
   }

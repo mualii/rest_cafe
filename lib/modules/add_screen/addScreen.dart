@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/states.dart';
+import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
+import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -25,18 +27,18 @@ class AddScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(10.sp),
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Icon(Icons.favorite_border_outlined),
+                      SizedBox(width: .65.sw),
                       IconButton(
                         icon: Icon(Icons.arrow_forward_ios),
                         onPressed: () {
-                          Navigator.pop(context);
+                          navigateAndFinish(context, DetailScreen());
                         },
                       )
                     ],
@@ -134,8 +136,27 @@ class AddScreen extends StatelessWidget {
                   // SizedBox(height: 15.h),
                   Row(
                     children: [
-                      mainBottom(
-                          title: "اضافة  35ريال", height: 50.h, width: 140.w),
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                insetPadding: EdgeInsets.all(20),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: CardScreen(),
+                              );
+                            },
+                            barrierColor: Colors.white10, //AddScreen()
+                          );
+
+                          // navigateAndFinish(context, CardScreen());
+                        },
+                        child: mainBottom(
+                            title: "اضافة  35ريال", height: 50.h, width: 140.w),
+                      ),
                       SizedBox(width: 20.w),
                       InkWell(
                         onTap: () {

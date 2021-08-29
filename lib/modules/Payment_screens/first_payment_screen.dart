@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/modules/Payment_screens/second_payment_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FirstPaymentScreen extends StatelessWidget {
-  const FirstPaymentScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
