@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
+import 'package:rest_cafe/modules/Payment_screens/first_payment_screen.dart';
+import 'package:rest_cafe/modules/favorites_screen/favorites_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,11 +33,12 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(392.72727272727275, 781.0909090909091),
       builder: () => MaterialApp(
+        theme: ThemeData(canvasColor: Colors.grey.shade100),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: DetailScreen(),
+        home: FirstPaymentScreen(),
       ),
     );
   }

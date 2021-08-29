@@ -100,3 +100,41 @@ Widget mainBottom({double? width, double? height, String? title}) {
     ),
   );
 }
+
+class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
+  final String? title;
+  final List<Widget> actions;
+
+  CustomisedAppBar({required this.title, required this.actions});
+
+  @override
+  Size get preferredSize => Size.fromHeight(0.11.sh);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(
+        title!,
+        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
+      ),
+      // toolbarHeight: 0.12.sh,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(12),
+        ),
+      ),
+      centerTitle: true,
+      leading: IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.grey,
+        ),
+      ),
+      actions: actions,
+      backgroundColor: Colors.white,
+    );
+  }
+}
