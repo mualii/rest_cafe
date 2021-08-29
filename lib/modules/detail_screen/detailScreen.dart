@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/modules/add_screen/addScreen.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/states.dart';
 import 'package:rest_cafe/shared/components/components.dart';
@@ -141,8 +142,22 @@ class DetailScreen extends StatelessWidget {
                       height: .52.sh,
                       child: ListView.separated(
                           shrinkWrap: false,
-                          itemBuilder: (context, index) =>
-                              LabolOfSecondListView(index: index),
+                          itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                print(index);
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => Dialog(
+                                    insetPadding: EdgeInsets.all(20),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: AddScreen(),
+                                  ), //AddScreen()
+                                  barrierDismissible: false,
+                                );
+                              },
+                              child: LabolOfSecondListView(index: index)),
                           separatorBuilder: (context, index) =>
                               SizedBox(height: 10.h),
                           itemCount: 10),
