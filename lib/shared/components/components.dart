@@ -90,8 +90,8 @@ Widget mainBottom({double? width, double? height, String? title}) {
   return Container(
     height: height,
     width: width,
-    decoration:
-        BoxDecoration(borderRadius: BorderRadius.circular(10), color: color1),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.sp), color: color1),
     child: Center(
       child: Text(
         title!,

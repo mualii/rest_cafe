@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/add_screen/addScreen.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/states.dart';
+import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -50,13 +51,66 @@ class CardScreen extends StatelessWidget {
             Center(child: Image.asset("assets/images/cart1.png")),
             SizedBox(height: 10.h),
             Container(
-              height: .8.sh,
+              height: .6.sh,
               child: ListView.separated(
                   itemBuilder: (BuildContext context, int index) =>
                       ListViewCont(),
                   separatorBuilder: (BuildContext context, int index) =>
                       SizedBox(height: 10.h),
                   itemCount: 3),
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                    onTap: () {
+                      showDialog(
+                        barrierColor: Colors.white10, //AddScreen()
+
+                        context: context,
+                        builder: (_) => Dialog(
+                          insetPadding: EdgeInsets.all(20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: CardScreen2(),
+                        ), //AddScreen()
+                        barrierDismissible: false,
+                      );
+                    },
+                    child: mainBottom(
+                        title: "التالي", width: 150.w, height: 60.h)),
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      barrierColor: Colors.white10, //AddScreen()
+
+                      context: context,
+                      builder: (_) => Dialog(
+                        insetPadding: EdgeInsets.all(20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.sp)),
+                        child: AddScreen(),
+                      ), //AddScreen()
+                      barrierDismissible: false,
+                    );
+                  },
+                  child: Container(
+                    height: 60.h,
+                    width: 150.w,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(15.sp),
+                        color: Colors.white10),
+                    child: Center(
+                      child: Text(
+                        "تراجع",
+                        style: TextStyle(fontSize: 16.sp, color: color1),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             // SizedBox(height: 15.h),
           ],
@@ -74,8 +128,7 @@ class ListViewCont extends StatelessWidget {
     return BlocProvider(
       create: (context) => AddCubit(),
       child: BlocConsumer<AddCubit, AddState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return Container(
             height: 90.h,
