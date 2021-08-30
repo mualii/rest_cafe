@@ -195,8 +195,8 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
         builder: (_) => new AlertDialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
-              title: new Text(
-                "انت ادخلت رقم خطا",
+              title: Text(
+                "لقد ادخلت رقم خطا",
                 style: TextStyle(),
                 textAlign: TextAlign.center,
               ),
