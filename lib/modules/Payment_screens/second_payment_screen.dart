@@ -68,38 +68,3 @@ class SecondPaymentScreen extends StatelessWidget {
     );
   }
 }
-
-class DetailsField extends StatelessWidget {
-  final String title;
-  final IconData iconData;
-  DetailsField({required this.title, required this.iconData});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: TextField(
-        decoration: InputDecoration(
-            isDense: true,
-            contentPadding: EdgeInsets.symmetric(vertical: 12),
-            filled: true,
-            fillColor: Colors.white,
-            hintText: title,
-            hintStyle: TextStyle(color: Colors.grey),
-            prefixIcon: Icon(
-              iconData,
-              color: Color(0xff4CB379),
-              size: 25,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(width: 0.8, color: Colors.grey.shade200),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(width: 0.8, color: Colors.grey.shade300),
-            )),
-      ),
-    );
-  }
-}

@@ -49,8 +49,8 @@ class FavoriteItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
               'assets/images/Bourger.png',
-              height: 100.w,
-              width: 100.w,
+              height: 230.w,
+              width: 230.w,
             ),
           ),
           SizedBox(

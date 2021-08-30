@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/modules/Payment_screens/first_payment_screen.dart';
+import 'package:rest_cafe/modules/Payment_screens/second_payment_screen.dart';
+import 'package:rest_cafe/modules/edit_profile/edit_profile.dart';
 import 'package:rest_cafe/modules/favorites_screen/favorites_screen.dart';
+import 'package:rest_cafe/modules/notifications_screen/notifications_screen.dart';
+import 'package:rest_cafe/modules/settings_screen/profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,14 +35,15 @@ class MyApp extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarDividerColor: Colors.black));
     return ScreenUtilInit(
-      designSize: Size(392.72727272727275, 781.0909090909091),
+      // designSize: Size(392.72727272727275, 781.0909090909091),
+      designSize: Size(1080, 1920),
       builder: () => MaterialApp(
         theme: ThemeData(canvasColor: Colors.grey.shade100),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: FirstPaymentScreen(),
+        home: EditProfile(),
       ),
     );
   }
