@@ -29,7 +29,10 @@ class CardScreen extends StatelessWidget {
                     child: myTitle(
                         title: "المنتجات", font: 16.sp, color: Colors.black)),
                 IconButton(
-                  icon: Icon(Icons.arrow_forward_ios),
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.grey,
+                  ),
                   onPressed: () {
                     showDialog(
                       barrierColor: Colors.white10, //AddScreen()
@@ -59,7 +62,7 @@ class CardScreen extends StatelessWidget {
                       SizedBox(height: 10.h),
                   itemCount: 3),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 45.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -104,7 +107,7 @@ class CardScreen extends StatelessWidget {
                         color: Colors.white10),
                     child: Center(
                       child: Text(
-                        "تراجع",
+                        "السابق",
                         style: TextStyle(fontSize: 16.sp, color: color1),
                       ),
                     ),
@@ -250,7 +253,7 @@ class ListViewCont extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xffE7E7E7),
                           ),
-                          child: Icon(FontAwesomeIcons.minus),
+                          child: Icon(FontAwesomeIcons.minus, size: 20.sp),
                         ),
                       ),
                       SizedBox(width: 5.w),

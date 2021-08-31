@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/modules/Payment_screens/first_payment_screen.dart';
 import 'package:rest_cafe/modules/edit_profile/edit_profile.dart';
 import 'package:rest_cafe/shared/components/components.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -31,7 +33,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SettingsOption(
               title: 'وسائل الدفع',
               iconData: Icons.payment,
-              function: () {},
+              function: () {
+                navigateTo(context, PaymentScreen1());
+              },
             ),
             SettingsOption(
               title: 'اللغة',
@@ -59,12 +63,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Divider(),
             SettingsOption(
               title: 'تريد مساعدة',
-              iconData: Icons.person,
+              iconData: FontAwesomeIcons.lifeRing,
               function: () {},
             ),
             SettingsOption(
               title: 'تسجيل خروج',
-              iconData: Icons.person,
+              iconData: FontAwesomeIcons.signOutAlt,
               function: () {
                 showDialog<String>(
                   context: context,

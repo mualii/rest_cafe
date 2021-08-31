@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/states.dart';
+import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -23,6 +25,17 @@ class BranchesScreen extends StatelessWidget {
                 "اختر الفرع",
                 style: TextStyle(color: Colors.black54),
               ),
+              actions: [
+                InkWell(
+                  onTap: () {
+                    navigateAndFinish(context, LayoutScreen());
+                  },
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
               centerTitle: true,
               backgroundColor: Colors.white,
               elevation: 1,
@@ -53,7 +66,9 @@ class BranchesScreen extends StatelessWidget {
                             Text("57"),
                             SizedBox(width: .49.sw),
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  navigateAndFinish(context, DetailScreen());
+                                },
                                 icon: Icon(
                                   Icons.arrow_drop_down_circle_sharp,
                                   size: 30.sp,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rest_cafe/shared/components/components.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rest_cafe/shared/components/components.dart';
 
-class SecondPaymentScreen extends StatelessWidget {
-  const SecondPaymentScreen({Key? key}) : super(key: key);
+class PaymentScreen2 extends StatelessWidget {
+  const PaymentScreen2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

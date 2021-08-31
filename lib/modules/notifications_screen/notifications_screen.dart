@@ -35,7 +35,7 @@ class NotificationItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.2,
+        height: MediaQuery.of(context).size.height * 0.15,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.grey.shade300)),
@@ -44,7 +44,7 @@ class NotificationItem extends StatelessWidget {
           child: ListTile(
             leading: CircleAvatar(
               child: Icon(
-                Icons.check,
+                Icons.add_alarm_outlined,
                 color: Colors.black,
               ),
               backgroundColor: Colors.grey.shade200,

@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/states.dart';
+import 'package:rest_cafe/modules/save_location_screen/saveLocationScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -38,25 +40,33 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text(
-                            "1704 Diptul Glen",
-                            style: TextStyle(color: color1, fontSize: 16.sp),
+                          InkWell(
+                            onTap: () {
+                              navigateTo(context, SaveLocationScreen());
+                            },
+                            child: Text(
+                              "1704 Diptul Glen",
+                              style: TextStyle(color: color1, fontSize: 16.sp),
+                            ),
                           ),
                           SizedBox(width: 10.w),
                           Icon(Icons.keyboard_arrow_down_sharp,
                               color: Color(0xffAEAEAE)),
-                          SizedBox(width: .43.sw),
+                          SizedBox(width: .404.sw),
                           Icon(Icons.circle_notifications,
-                              color: Color(0xffAEAEAE)),
+                              size: 40.sp, color: Color(0xffAEAEAE)),
                         ],
                       ),
                       SizedBox(height: 20.h),
-                      defaultFormField(
-                          controller: _searchController,
-                          type: TextInputType.name,
-                          hint: "بحث عن متجر او منتج",
-                          prefix: Icons.search,
-                          color: color1),
+                      Container(
+                        height: 40.h,
+                        child: defaultFormField(
+                            controller: _searchController,
+                            type: TextInputType.name,
+                            hint: "بحث عن متجر او منتج",
+                            prefix: Icons.search,
+                            color: color1),
+                      ),
                       SizedBox(height: 20.h),
                       Container(
                         height: 30.h,
@@ -84,10 +94,13 @@ class HomeScreen extends StatelessWidget {
                         height: .6.sh,
                         child: ListView.separated(
                             shrinkWrap: false,
-                            itemBuilder: (context, index) =>
-                                LabolOfSecondListView(),
+                            itemBuilder: (context, index) => InkWell(
+                                onTap: () {
+                                  navigateTo(context, DetailScreen());
+                                },
+                                child: LabolOfSecondListView()),
                             separatorBuilder: (context, index) =>
-                                SizedBox(width: 10.h),
+                                SizedBox(height: 10.h),
                             itemCount: 10),
                       )
                     ],
@@ -118,7 +131,7 @@ class LabolOfSecondListView extends StatelessWidget {
               height: 100.h,
               width: 90.w,
               decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffDADADA)),
+                  // border: Border.all(color: Color(0xffDADADA)),
                   borderRadius: BorderRadius.circular(20.sp)),
               child: Image.asset("assets/images/mac.png"),
             ),
@@ -130,14 +143,18 @@ class LabolOfSecondListView extends StatelessWidget {
                     style: TextStyle(color: Colors.black, fontSize: 14.sp)),
                 SizedBox(height: 10.h),
                 Row(children: [
-                  Icon(FontAwesomeIcons.utensils),
+                  Icon(
+                    FontAwesomeIcons.utensils,
+                    color: color1,
+                    size: 15.sp,
+                  ),
                   Text("ياباني",
                       style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
                 ]),
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    Icon(Icons.location_on_rounded),
+                    Icon(Icons.location_on_rounded, color: color1),
                     Text("ياباني",
                         style:
                             TextStyle(color: Colors.black54, fontSize: 12.sp)),
@@ -147,8 +164,10 @@ class LabolOfSecondListView extends StatelessWidget {
             ),
             SizedBox(width: 20.w),
             Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              // mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                // SizedBox(height: 10.h),
+                Spacer(),
                 Row(
                   children: [
                     Icon(Icons.access_time_outlined, color: color1),
@@ -156,7 +175,7 @@ class LabolOfSecondListView extends StatelessWidget {
                         style: TextStyle(color: Colors.black, fontSize: 14.sp)),
                   ],
                 ),
-                SizedBox(height: 11.h)
+                SizedBox(height: 1.h)
               ],
             ),
             Spacer(),
@@ -166,7 +185,11 @@ class LabolOfSecondListView extends StatelessWidget {
                 Row(children: [
                   Text("مفتوح",
                       style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
-                  Icon(Icons.circle, color: color1),
+                  Icon(
+                    Icons.circle,
+                    color: color1,
+                    size: 20.sp,
+                  ),
                 ]),
                 Spacer(),
                 Container(
@@ -215,6 +238,7 @@ class labolOfFristListView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon,
+              size: 15.sp,
               color: index == HomeCubit.get(context).currentIndex
                   ? Colors.white
                   : color1),

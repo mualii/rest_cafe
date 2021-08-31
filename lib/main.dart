@@ -3,10 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rest_cafe/modules/popular_questions_screen/popular_questions_screen.dart';
-import 'package:rest_cafe/modules/profile_screen/profile_screen.dart';
-import 'package:rest_cafe/modules/settings_screen/settings_screen.dart';
-import 'modules/Payment_screens/second_payment_screen.dart';
+import 'package:rest_cafe/modules/splash_screen/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,15 +30,14 @@ class MyApp extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarDividerColor: Colors.black));
     return ScreenUtilInit(
-      // designSize: Size(392.72727272727275, 781.0909090909091),
-      designSize: Size(1080, 1920),
+      designSize: Size(392.72727272727275, 781.0909090909091),
       builder: () => MaterialApp(
-        theme: ThemeData(canvasColor: Colors.grey.shade100),
+        // theme: ThemeData(canvasColor: Colors.grey.shade100),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: PopularQuestionsScreen(),
+        home: SplashScreen(),
       ),
     );
   }

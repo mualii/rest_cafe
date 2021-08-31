@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/modules/Payment_screens/second_payment_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
-class FirstPaymentScreen extends StatelessWidget {
+class PaymentScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +13,7 @@ class FirstPaymentScreen extends StatelessWidget {
           IconButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => SecondPaymentScreen()),
+                  MaterialPageRoute(builder: (context) => PaymentScreen2()),
                 );
               },
               icon: Icon(
@@ -27,10 +27,10 @@ class FirstPaymentScreen extends StatelessWidget {
         shrinkWrap: true,
         padding: EdgeInsets.symmetric(horizontal: 0.08.sw, vertical: 0.02.sh),
         children: [
-          PaymentMethod(title: 'سداد', image: 'assets/images/pay (1).jpg'),
-          PaymentMethod(title: 'Paypal', image: 'assets/images/pay (1).png'),
+          PaymentMethod(title: 'سداد', image: 'assets/images/pay (1).png'),
+          PaymentMethod(title: "Paypal", image: 'assets/images/pay (2).png'),
           PaymentMethod(
-              title: 'فيزا 5689****', image: 'assets/images/pay (2).png'),
+              title: 'فيزا 5689****', image: 'assets/images/pay (1).jpg'),
         ],
       ),
     );

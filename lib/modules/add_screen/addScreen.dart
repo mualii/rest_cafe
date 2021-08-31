@@ -16,6 +16,8 @@ class AddScreen extends StatelessWidget {
   bool ischange4 = false;
   bool ischange5 = false;
   bool ischange6 = false;
+  bool ischange7 = false;
+
   int count = 1;
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,10 @@ class AddScreen extends StatelessWidget {
                       Icon(Icons.favorite_border_outlined),
                       SizedBox(width: .65.sw),
                       IconButton(
-                        icon: Icon(Icons.arrow_forward_ios),
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                        ),
                         onPressed: () {
                           navigateAndFinish(context, DetailScreen());
                         },
@@ -155,7 +160,9 @@ class AddScreen extends StatelessWidget {
                           // navigateAndFinish(context, CardScreen());
                         },
                         child: mainBottom(
-                            title: "اضافة  35ريال", height: 50.h, width: 140.w),
+                            title: "اضافة  35  ريال",
+                            height: 50.h,
+                            width: 140.w),
                       ),
                       SizedBox(width: 20.w),
                       InkWell(
@@ -195,7 +202,7 @@ class AddScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xffE7E7E7),
                           ),
-                          child: Icon(FontAwesomeIcons.minus),
+                          child: Icon(FontAwesomeIcons.minus, size: 20.sp),
                         ),
                       ),
                     ],

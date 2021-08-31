@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/add_screen/addScreen.dart';
+import 'package:rest_cafe/modules/branches_screen/BranchesScreen.dart';
+import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/states.dart';
 import 'package:rest_cafe/shared/components/components.dart';
@@ -29,8 +32,23 @@ class DetailScreen extends StatelessWidget {
                     Row(
                       children: [
                         SizedBox(width: .03.sw),
-                        Icon(
-                          FontAwesomeIcons.cartPlus,
+                        IconButton(
+                          onPressed: () {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                return Dialog(
+                                  insetPadding: EdgeInsets.all(20),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: CardScreen(),
+                                );
+                              },
+                              barrierColor: Colors.white10, //AddScreen()
+                            );
+                          },
+                          icon: Icon(FontAwesomeIcons.cartPlus),
                           color: Colors.grey,
                         ),
                         SizedBox(width: .29.sw),
@@ -51,6 +69,7 @@ class DetailScreen extends StatelessWidget {
                               Icon(
                                 FontAwesomeIcons.utensils,
                                 color: color1,
+                                size: 20.sp,
                               ),
                               Text("امريكي",
                                   style: TextStyle(
@@ -58,7 +77,16 @@ class DetailScreen extends StatelessWidget {
                             ]),
                           ],
                         ),
-                        Container(),
+                        SizedBox(width: .29.sw),
+                        InkWell(
+                          onTap: () {
+                            navigateAndFinish(context, LayoutScreen());
+                          },
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(height: 20.h),
@@ -97,10 +125,7 @@ class DetailScreen extends StatelessWidget {
                         SizedBox(width: 90.w),
                         Row(
                           children: [
-                            myTitle(
-                                color: Color(0xff717171),
-                                font: 12.sp,
-                                title: "45 دقيقة"),
+                            myTitle(color: color1, font: 12.sp, title: "مفتوح"),
                             Icon(Icons.circle, color: color1, size: 15.sp),
                           ],
                         ),
@@ -186,8 +211,10 @@ class DetailScreen extends StatelessWidget {
                     Text("57"),
                     SizedBox(width: .45.sw),
                     IconButton(
-                        onPressed: () {},
-                        icon: Icon(FontAwesomeIcons.arrowAltCircleUp))
+                        onPressed: () {
+                          navigateTo(context, BranchesScreen());
+                        },
+                        icon: Icon(Icons.arrow_circle_up))
                   ],
                 ),
               ),

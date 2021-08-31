@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
 class CompleteProfileScreen extends StatelessWidget {
@@ -60,6 +61,9 @@ class CompleteProfileScreen extends StatelessWidget {
                 prefix: (Icons.email)),
             Spacer(),
             InkWell(
+              onTap: () {
+                navigateAndFinish(context, LayoutScreen());
+              },
               child:
                   mainBottom(title: "تسجيل دخول", width: .90.sw, height: 50.h),
             ),
