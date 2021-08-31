@@ -142,13 +142,16 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
 class DetailsField extends StatelessWidget {
   final String title;
   final IconData iconData;
-  DetailsField({required this.title, required this.iconData});
+  final bool? isNumeric;
+  DetailsField(
+      {required this.title, required this.iconData, this.isNumeric = false});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
+        keyboardType: isNumeric! ? TextInputType.number : TextInputType.text,
         decoration: InputDecoration(
             isDense: true,
             contentPadding: EdgeInsets.symmetric(vertical: 12),
@@ -170,6 +173,41 @@ class DetailsField extends StatelessWidget {
               borderSide: BorderSide(width: 0.8, color: Colors.grey.shade300),
             )),
       ),
+    );
+  }
+}
+
+class SettingsOption extends StatelessWidget {
+  final String title;
+  final Function function;
+  final IconData iconData;
+  const SettingsOption(
+      {Key? key,
+      required this.title,
+      required this.function,
+      required this.iconData});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          leading: Icon(
+            iconData,
+            size: 25,
+            color: Color(0xff4CB379),
+          ),
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 16),
+          ),
+          trailing: Icon(Icons.arrow_forward_ios),
+          onTap: () {
+            return function();
+          },
+        ),
+        Divider()
+      ],
     );
   }
 }

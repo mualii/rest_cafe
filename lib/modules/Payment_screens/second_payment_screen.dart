@@ -34,16 +34,19 @@ class SecondPaymentScreen extends StatelessWidget {
               DetailsField(
                 title: 'رقم الكارت',
                 iconData: Icons.payment,
+                isNumeric: true,
               ),
               DetailsField(
                 title: 'شهر/ سنة',
                 iconData: Icons.calendar_today_outlined,
+                isNumeric: true,
               ),
               SizedBox(
                 width: 0.4.sw,
                 child: DetailsField(
                   title: 'CVV',
                   iconData: Icons.payment,
+                  isNumeric: true,
                 ),
               ),
               SizedBox(

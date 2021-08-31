@@ -1,0 +1,101 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/shared/components/components.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class SettingsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomisedAppBar(
+        title: 'الاعدادات',
+        actions: [],
+      ),
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        children: [
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 15),
+            height: 0.15.sh,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Color(0xff4CB379)),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 0.06.sw),
+                  height: 0.16.sw,
+                  width: 0.16.sw,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: Icon(
+                    Icons.person_outline,
+                    color: Color(0xff4CB379),
+                    size: 30,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'البروفايل',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      'محمد عبد الله',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
+          ),
+          SettingsOption(
+            title: 'اتصل بنا',
+            iconData: Icons.call_outlined,
+            function: () {},
+          ),
+          SettingsOption(
+            title: 'عن التطبيق',
+            iconData: Icons.post_add,
+            function: () {},
+          ),
+          SettingsOption(
+            title: 'مشاركة التطبيق',
+            iconData: Icons.share_outlined,
+            function: () {},
+          ),
+          SettingsOption(
+            title: 'قيم التطبيق',
+            iconData: FontAwesomeIcons.thumbsUp,
+            function: () {},
+          ),
+          SettingsOption(
+            title: 'الاشتراكات',
+            iconData: Icons.share_outlined,
+            function: () {},
+          ),
+          SettingsOption(
+            title: 'الاسئلة الشائعة',
+            iconData: Icons.book,
+            function: () {},
+          ),
+          SettingsOption(
+            title: 'الشروط و الاحكام',
+            iconData: Icons.book,
+            function: () {},
+          ),
+        ],
+      ),
+    );
+  }
+}
