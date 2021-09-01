@@ -126,9 +126,8 @@ class LabolOfSecondListView extends StatelessWidget {
             Container(
               height: 60.h,
               width: 60.w,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffDADADA)),
-                  borderRadius: BorderRadius.circular(20.sp)),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(20.sp)),
               child: Image.asset("assets/images/mac.png"),
             ),
             SizedBox(width: 20.w),
@@ -139,7 +138,10 @@ class LabolOfSecondListView extends StatelessWidget {
                     style: TextStyle(color: Colors.black, fontSize: 14.sp)),
                 SizedBox(height: 10.h),
                 Row(children: [
-                  Icon(FontAwesomeIcons.utensils),
+                  Icon(
+                    FontAwesomeIcons.utensils,
+                    color: color1,
+                  ),
                   Text("5 km",
                       style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
                 ]),

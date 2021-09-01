@@ -151,7 +151,7 @@ class LabolOfSecondListView extends StatelessWidget {
                   Text("ياباني",
                       style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
                 ]),
-                SizedBox(height: 10.h),
+                SizedBox(height: 20.h),
                 Row(
                   children: [
                     Icon(Icons.location_on_rounded, color: color1),

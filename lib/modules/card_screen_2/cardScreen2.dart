@@ -242,8 +242,9 @@ class CardScreen2 extends StatelessWidget {
                                   color: Colors.black38,
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(width: 40.w),
+                                    // SizedBox(width: 40.w),
                                     myTitle(
                                         title:
                                             "5 افراد | 22 Apr 2021 | 02:41AM",
@@ -267,7 +268,10 @@ class CardScreen2 extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: .437.sh),
+              hasTabol == true || hasCar == true
+                  ? SizedBox(height: .355.sh)
+                  : SizedBox(height: .423.sh),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -439,11 +443,11 @@ class DeliveryScreen extends StatelessWidget {
                   title: "اضافة سيارة جديدة", color: Colors.black, font: 16.sp),
               SizedBox(height: 10.h),
               defaultFormField(
-                type: TextInputType.name,
-                controller: carModelController,
-                label: "نوع السيارة",
-                prefix: FontAwesomeIcons.car,
-              ),
+                  type: TextInputType.name,
+                  controller: carModelController,
+                  label: "نوع السيارة",
+                  prefix: FontAwesomeIcons.car,
+                  color: color1),
               SizedBox(height: 10.h),
               Row(
                 children: [
@@ -451,21 +455,21 @@ class DeliveryScreen extends StatelessWidget {
                   Container(
                     width: 140.w,
                     child: defaultFormField(
-                      type: TextInputType.name,
-                      controller: carModelController,
-                      label: "رقم اللوحة",
-                      prefix: FontAwesomeIcons.listOl,
-                    ),
+                        type: TextInputType.name,
+                        controller: carModelController,
+                        label: "رقم اللوحة",
+                        prefix: FontAwesomeIcons.listOl,
+                        color: color1),
                   ),
                   SizedBox(width: 20.w),
                   Container(
                     width: 140.w,
                     child: defaultFormField(
-                      type: TextInputType.name,
-                      controller: carModelController,
-                      label: "للون السيارة",
-                      prefix: FontAwesomeIcons.swatchbook,
-                    ),
+                        type: TextInputType.name,
+                        controller: carModelController,
+                        label: "للون السيارة",
+                        prefix: FontAwesomeIcons.swatchbook,
+                        color: color1),
                   ),
                 ],
               )
@@ -570,11 +574,11 @@ class BookingScreen extends StatelessWidget {
             builder: (BuildContext ctx, StateSetter setState) => Column(
               children: [
                 defaultFormField(
-                  type: TextInputType.name,
-                  controller: numberOfPersonController,
-                  label: "نوع عدد الافراد",
-                  prefix: FontAwesomeIcons.userFriends,
-                ),
+                    type: TextInputType.name,
+                    controller: numberOfPersonController,
+                    label: "نوع عدد الافراد",
+                    prefix: FontAwesomeIcons.userFriends,
+                    color: color1),
                 SizedBox(height: 10.h),
                 Row(
                   children: [
@@ -600,7 +604,7 @@ class BookingScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(width: 10.w),
-                              Icon(FontAwesomeIcons.calendar),
+                              Icon(FontAwesomeIcons.calendar, color: color1),
                               SizedBox(width: 10.w),
                               Text(
                                   (value == null) ? "اليوم" : value.toString()),
@@ -629,7 +633,7 @@ class BookingScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(width: 10.w),
-                              Icon(FontAwesomeIcons.clock),
+                              Icon(FontAwesomeIcons.clock, color: color1),
                               SizedBox(width: 10.w),
                               Text((value2 == null)
                                   ? "الساعة"

@@ -14,6 +14,10 @@ class TextShowTimer extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            myTitle(
+              title: "لم تتلق الرسائل القصيرة؟",
+              font: 18.sp,
+            ),
             Text(
               "أرسل رمز التحقق مرة أخرى",
               style: TextStyle(
@@ -22,13 +26,6 @@ class TextShowTimer extends StatelessWidget {
                 textBaseline: TextBaseline.alphabetic,
               ),
             ),
-            SizedBox(
-              width: 5.w,
-            ),
-            myTitle(
-              title: "لم تتلق الرسائل القصيرة؟",
-              font: 18.sp,
-            )
           ],
         ),
         Padding(

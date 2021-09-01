@@ -125,8 +125,7 @@ class DetailScreen extends StatelessWidget {
                         SizedBox(width: 20.w),
                         Row(
                           children: [
-                            Icon(Icons.location_on,
-                                color: Colors.black, size: 20.sp),
+                            Icon(Icons.location_on, color: color1, size: 20.sp),
                             myTitle(
                                 color: Color(0xff717171),
                                 font: 12.sp,
@@ -136,7 +135,7 @@ class DetailScreen extends StatelessWidget {
                         SizedBox(width: 30.w),
                         Row(
                           children: [
-                            Icon(Icons.access_time_outlined,
+                            Icon(Icons.access_time_filled,
                                 color: color1, size: 20.sp),
                             myTitle(
                                 color: Color(0xff717171),

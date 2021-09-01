@@ -31,7 +31,12 @@ class SaveLocationScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
       ),
-      body: Image.asset("assets/images/location.png"),
+      body: Container(
+        child: Image.asset(
+          "assets/images/location.png",
+          fit: BoxFit.fill,
+        ),
+      ),
       bottomSheet: Container(
         decoration: BoxDecoration(
             color: Colors.white10,

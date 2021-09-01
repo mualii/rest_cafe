@@ -106,18 +106,18 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "(${widget.PhoneUser})",
-                          style: TextStyle(
-                              fontSize: 18.sp, color: Color(0xff555555)),
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
                         FaIcon(
                           FontAwesomeIcons.pen,
                           color: color1,
                           size: 18.sp,
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Text(
+                          "(${widget.PhoneUser})",
+                          style: TextStyle(
+                              fontSize: 18.sp, color: Color(0xff555555)),
                         ),
                       ],
                     ),

@@ -77,6 +77,7 @@ class AddScreen extends StatelessWidget {
                         title: "2 ريال", color: Colors.black, font: 14.sp),
                     leading: Checkbox(
                         value: ischange,
+                        activeColor: color1,
                         onChanged: (bool? value) {
                           bool i =
                               AddCubit.get(context).onChangedCheckBox(ischange);
@@ -90,6 +91,7 @@ class AddScreen extends StatelessWidget {
                     trailing: myTitle(
                         title: "2 ريال", color: Colors.black, font: 14.sp),
                     leading: Checkbox(
+                        activeColor: color1,
                         value: ischange2,
                         onChanged: (bool? value) {
                           bool i = AddCubit.get(context)
@@ -104,6 +106,7 @@ class AddScreen extends StatelessWidget {
                     trailing: myTitle(
                         title: "2 ريال", color: Colors.black, font: 14.sp),
                     leading: Checkbox(
+                        activeColor: color1,
                         value: ischange3,
                         onChanged: (bool? value) {
                           bool i = AddCubit.get(context)
@@ -118,6 +121,7 @@ class AddScreen extends StatelessWidget {
                     trailing: myTitle(
                         title: "2 ريال", color: Colors.black, font: 14.sp),
                     leading: Checkbox(
+                        activeColor: color1,
                         value: ischange4,
                         onChanged: (bool? value) {
                           bool i = AddCubit.get(context)
@@ -132,6 +136,7 @@ class AddScreen extends StatelessWidget {
                     trailing: myTitle(
                         title: "2 ريال", color: Colors.black, font: 14.sp),
                     leading: Checkbox(
+                        activeColor: color1,
                         value: ischange5,
                         onChanged: (bool? value) {
                           bool i = AddCubit.get(context)
@@ -146,6 +151,7 @@ class AddScreen extends StatelessWidget {
                     trailing: myTitle(
                         title: "2 ريال", color: Colors.black, font: 14.sp),
                     leading: Checkbox(
+                        activeColor: color1,
                         value: ischange6,
                         onChanged: (bool? value) {
                           bool i = AddCubit.get(context)
@@ -193,7 +199,10 @@ class AddScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xff494861),
                           ),
-                          child: Icon(Icons.add),
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       Container(
@@ -218,7 +227,8 @@ class AddScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xffE7E7E7),
                           ),
-                          child: Icon(FontAwesomeIcons.minus, size: 20.sp),
+                          child: Icon(FontAwesomeIcons.minus,
+                              color: Colors.black38, size: 17.sp),
                         ),
                       ),
                     ],

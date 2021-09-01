@@ -154,11 +154,30 @@ class ListViewCont extends StatelessWidget {
                           builder: (_) => CupertinoAlertDialog(
                             title: myTitle(
                                 font: 20.sp, color: color1, title: "حذف منتج"),
-                            content: myTitle(
-                                title:
-                                    "  هل أنت متأكد من حذف سموكي باربكيو من قائمة المنتجات",
-                                color: Colors.black,
-                                font: 18.sp),
+                            content: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "هل أنت متأكد من حذف ",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 16.sp),
+                                    ),
+                                    Text(
+                                      "سموكي باربكيو",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                myTitle(
+                                    title: " من قائمة المنتجات",
+                                    color: Colors.black,
+                                    font: 16.sp),
+                              ],
+                            ),
                             actions: [
                               CupertinoDialogAction(
                                 child: Padding(
@@ -228,7 +247,10 @@ class ListViewCont extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xff494861),
                           ),
-                          child: Icon(Icons.add),
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       Container(
@@ -253,7 +275,11 @@ class ListViewCont extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xffE7E7E7),
                           ),
-                          child: Icon(FontAwesomeIcons.minus, size: 20.sp),
+                          child: Icon(
+                            FontAwesomeIcons.minus,
+                            size: 17.sp,
+                            color: Colors.black38,
+                          ),
                         ),
                       ),
                       SizedBox(width: 5.w),
