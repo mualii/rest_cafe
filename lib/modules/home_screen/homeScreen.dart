@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
-import 'package:rest_cafe/modules/home_screen/cubit/cubit.dart';
-import 'package:rest_cafe/modules/home_screen/cubit/states.dart';
+import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
+import 'package:rest_cafe/modules/home_screen/cubit/HomeState.dart';
 import 'package:rest_cafe/modules/save_location_screen/saveLocationScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
@@ -53,28 +53,27 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(width: 10.w),
                           Icon(Icons.keyboard_arrow_down_sharp,
                               color: Color(0xffAEAEAE)),
-                          Spacer(),
+                          SizedBox(width: .404.sw),
                           Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
+                          padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
                             decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0xffF1F1F3),
-                            ),
+                                shape: BoxShape.circle,
+                              color: Color(0xffF1F1F3),),
                             child: Badge(
                               animationType: BadgeAnimationType.scale,
                               badgeContent: Container(
-                                alignment: Alignment.center,
+                                  alignment: Alignment.center,
 
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 5),
-                                //  padding:EdgeInsets.symmetric(vertical: 2,horizontal: 10) ,
-                              ),
+
+                                  margin: EdgeInsets.symmetric(vertical: 2,horizontal: 0) ,
+                                   padding:EdgeInsets.symmetric(vertical: 2,horizontal: 3) ,
+                                  ),
                               badgeColor: Colors.blue,
-                              child: Icon(Icons.notifications_none,
-                                  size: 40.sp, color: Colors.black),
+                              child:  Icon(Icons.notifications_none,
+                                  size: 20.sp, color: Colors.black),
                             ),
                           )
+
                         ],
                       ),
                       SizedBox(height: 20.h),

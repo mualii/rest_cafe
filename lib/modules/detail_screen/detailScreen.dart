@@ -327,6 +327,7 @@ class LabolOfFristListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 90.w,
+
       decoration: BoxDecoration(
         // border:,
         borderRadius: BorderRadius.circular(10.sp),
@@ -343,7 +344,7 @@ class LabolOfFristListView extends StatelessWidget {
             ],
           ),
           index == DetailCubit.get(context).currentIndex
-              ? Divider(color: color1, height: 20.h)
+              ? Divider(color: color1, height: 10.h,thickness: 2,)
               : Container()
         ],
       ),

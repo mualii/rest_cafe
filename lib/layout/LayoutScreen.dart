@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/OrderCurrnentAndEnd/OrderCurrentAndEnd.dart';
+import 'package:rest_cafe/modules/QuestionsScreen/QuestionsScreen.dart';
 import 'package:rest_cafe/modules/favorites_screen/favorites_screen.dart';
 import 'package:rest_cafe/modules/home_screen/homeScreen.dart';
+import 'package:rest_cafe/modules/notifications_screen/notifications_screen.dart';
+import 'package:rest_cafe/modules/profile_screen/profile_screen.dart';
 import 'package:rest_cafe/modules/settings_screen/settings_screen.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -25,7 +28,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
         'page': FavoritesScreen(),
       },
       {
-        'page': OrderCurrentAndEnd(), // NotificationsScreen()
+        'page': OrderCurrentAndEnd(),// NotificationsScreen()
       },
       {
         'page': SettingsScreen(),
