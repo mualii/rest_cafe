@@ -17,6 +17,7 @@ class AddScreen extends StatelessWidget {
   bool ischange5 = false;
   bool ischange6 = false;
   bool ischange7 = false;
+  bool isFav = false;
 
   int count = 1;
   @override
@@ -33,20 +34,35 @@ class AddScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Icon(Icons.favorite_border_outlined),
-                      SizedBox(width: .65.sw),
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.grey,
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setState) =>
+                        Row(
+                      children: [
+                        IconButton(
+                          icon: isFav
+                              ? Icon(Icons.favorite_border_outlined)
+                              : Icon(
+                                  Icons.favorite,
+                                  color: color1,
+                                ),
+                          onPressed: () {
+                            setState(() {
+                              isFav = !isFav;
+                            });
+                          },
                         ),
-                        onPressed: () {
-                          navigateAndFinish(context, DetailScreen());
-                        },
-                      )
-                    ],
+                        SizedBox(width: .6.sw),
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.grey,
+                          ),
+                          onPressed: () {
+                            navigateAndFinish(context, DetailScreen());
+                          },
+                        )
+                      ],
+                    ),
                   ),
                   Center(child: Image.asset("assets/images/Bourger.png")),
                   Center(

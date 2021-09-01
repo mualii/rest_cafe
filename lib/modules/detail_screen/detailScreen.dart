@@ -32,25 +32,47 @@ class DetailScreen extends StatelessWidget {
                     Row(
                       children: [
                         SizedBox(width: .03.sw),
-                        IconButton(
-                          onPressed: () {
-                            showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (context) {
-                                return Dialog(
-                                  insetPadding: EdgeInsets.all(20),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: CardScreen(),
+                        Container(
+                          height: 40.h,
+                          width: 40.w,
+                          child: InkWell(
+                              onTap: () {
+                                showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return Dialog(
+                                      insetPadding: EdgeInsets.all(20),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: CardScreen(),
+                                    );
+                                  },
+                                  barrierColor: Colors.white10, //AddScreen()
                                 );
                               },
-                              barrierColor: Colors.white10, //AddScreen()
-                            );
-                          },
-                          icon: Icon(FontAwesomeIcons.cartPlus),
-                          color: Colors.grey,
+                              child: Image.asset("assets/images/order.png")),
                         ),
+                        // IconButton(
+                        //   onPressed: () {
+                        //     showDialog(
+                        //       barrierDismissible: false,
+                        //       context: context,
+                        //       builder: (context) {
+                        //         return Dialog(
+                        //           insetPadding: EdgeInsets.all(20),
+                        //           shape: RoundedRectangleBorder(
+                        //               borderRadius: BorderRadius.circular(20)),
+                        //           child: CardScreen(),
+                        //         );
+                        //       },
+                        //       barrierColor: Colors.white10, //AddScreen()
+                        //     );
+                        //   },
+                        //   icon: Icon(FontAwesomeIcons.cartPlus),
+                        //   color: Colors.grey,
+                        // ),
                         SizedBox(width: .29.sw),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
