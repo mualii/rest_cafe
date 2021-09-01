@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,8 +54,26 @@ class HomeScreen extends StatelessWidget {
                           Icon(Icons.keyboard_arrow_down_sharp,
                               color: Color(0xffAEAEAE)),
                           SizedBox(width: .404.sw),
-                          Icon(Icons.circle_notifications,
-                              size: 40.sp, color: Color(0xffAEAEAE)),
+                          Container(
+padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              color: Color(0xffF1F1F3),),
+                            child: Badge(
+                              animationType: BadgeAnimationType.scale,
+                              badgeContent: Container(
+                                  alignment: Alignment.center,
+
+
+                                  margin: EdgeInsets.symmetric(vertical: 5,horizontal: 5) ,
+                                 //  padding:EdgeInsets.symmetric(vertical: 2,horizontal: 10) ,
+                                  ),
+                              badgeColor: Colors.blue,
+                              child:  Icon(Icons.notifications_none,
+                                  size: 40.sp, color: Colors.black),
+                            ),
+                          )
+
                         ],
                       ),
                       SizedBox(height: 20.h),
