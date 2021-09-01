@@ -38,7 +38,7 @@ Widget defaultFormField({
           validator: validate,
           textAlign: TextAlign.right,
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 0.0),
+            contentPadding: EdgeInsets.symmetric(vertical: 0.0),
             hintText: hint,
             hintStyle: TextStyle(
               color: Color(0xffAAAAAA),
@@ -157,8 +157,15 @@ class DetailsField extends StatelessWidget {
   final String title;
   final IconData iconData;
   final bool? isNumeric;
-  DetailsField(
-      {required this.title, required this.iconData, this.isNumeric = false});
+  final bool? isIcon;
+  final bool? isBorder;
+  DetailsField({
+    required this.title,
+    required this.iconData,
+    this.isNumeric = false,
+    this.isBorder = false,
+    this.isIcon = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -170,21 +177,21 @@ class DetailsField extends StatelessWidget {
             isDense: true,
             contentPadding: EdgeInsets.symmetric(vertical: 12),
             filled: true,
-            fillColor: Colors.white,
+            fillColor: Colors.white10,
             hintText: title,
             hintStyle: TextStyle(color: Colors.grey),
             prefixIcon: Icon(
               iconData,
               color: Color(0xff4CB379),
-              size: 25,
+              size: isIcon == true ? 25 : 0,
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(width: 0.8, color: Colors.grey.shade200),
+              borderSide: BorderSide(width: 0.8, color: Colors.grey),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(width: 0.8, color: Colors.grey.shade300),
+              borderSide: BorderSide(width: 0.8, color: Colors.grey),
             )),
       ),
     );

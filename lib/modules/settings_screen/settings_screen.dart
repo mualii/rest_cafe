@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/modules/contact_screen/contactScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -62,7 +63,9 @@ class SettingsScreen extends StatelessWidget {
           SettingsOption(
             title: 'اتصل بنا',
             iconData: Icons.call_outlined,
-            function: () {},
+            function: () {
+              navigateTo(context, ContactScreen());
+            },
           ),
           SettingsOption(
             title: 'عن التطبيق',

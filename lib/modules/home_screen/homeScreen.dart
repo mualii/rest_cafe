@@ -53,27 +53,28 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(width: 10.w),
                           Icon(Icons.keyboard_arrow_down_sharp,
                               color: Color(0xffAEAEAE)),
-                          SizedBox(width: .404.sw),
+                          Spacer(),
                           Container(
-padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              color: Color(0xffF1F1F3),),
+                              shape: BoxShape.circle,
+                              color: Color(0xffF1F1F3),
+                            ),
                             child: Badge(
                               animationType: BadgeAnimationType.scale,
                               badgeContent: Container(
-                                  alignment: Alignment.center,
+                                alignment: Alignment.center,
 
-
-                                  margin: EdgeInsets.symmetric(vertical: 5,horizontal: 5) ,
-                                 //  padding:EdgeInsets.symmetric(vertical: 2,horizontal: 10) ,
-                                  ),
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 5),
+                                //  padding:EdgeInsets.symmetric(vertical: 2,horizontal: 10) ,
+                              ),
                               badgeColor: Colors.blue,
-                              child:  Icon(Icons.notifications_none,
+                              child: Icon(Icons.notifications_none,
                                   size: 40.sp, color: Colors.black),
                             ),
                           )
-
                         ],
                       ),
                       SizedBox(height: 20.h),

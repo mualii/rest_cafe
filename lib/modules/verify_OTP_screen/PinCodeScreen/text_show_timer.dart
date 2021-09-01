@@ -16,12 +16,12 @@ class TextShowTimer extends StatelessWidget {
           children: [
             myTitle(
               title: "لم تتلق الرسائل القصيرة؟",
-              font: 18.sp,
+              font: 16.sp,
             ),
             Text(
               "أرسل رمز التحقق مرة أخرى",
               style: TextStyle(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
                 textBaseline: TextBaseline.alphabetic,
               ),

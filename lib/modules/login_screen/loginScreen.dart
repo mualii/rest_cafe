@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: .1.sh),
               Container(
                 height: 49.h,
-                width: .94.sw,
+                width: .91.sw,
                 child: InternationalPhoneNumberInput(
                   textAlign: TextAlign.right,
                   inputDecoration: InputDecoration(
