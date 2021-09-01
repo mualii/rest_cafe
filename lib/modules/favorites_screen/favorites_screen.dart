@@ -35,7 +35,7 @@ class FavoriteItem extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-      height: 0.14.sh,
+    //  height: 0.16.sh,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,

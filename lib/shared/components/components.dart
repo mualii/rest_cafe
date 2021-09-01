@@ -108,31 +108,36 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
   CustomisedAppBar({required this.title, required this.actions});
 
   @override
-  Size get preferredSize => Size.fromHeight(0.11.sh);
+  Size get preferredSize => Size.fromHeight(0.06.sh);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        title!,
-        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
+      title: Column(
+        children: [
+          Text(
+            title!,
+            style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
+          ),
+          SizedBox(height: 20.h,)
+        ],
       ),
       // toolbarHeight: 0.12.sh,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(12),
+          bottom: Radius.circular(20.r),
         ),
       ),
       centerTitle: true,
-      leading: IconButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        icon: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.grey,
-        ),
-      ),
+      // leading: IconButton(
+      //   onPressed: () {
+      //     Navigator.of(context).pop();
+      //   },
+      //   icon: Icon(
+      //     Icons.arrow_back_ios,
+      //     color: Colors.grey,
+      //   ),
+      // ),
       actions: actions,
       backgroundColor: Colors.white,
     );
