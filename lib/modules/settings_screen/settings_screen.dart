@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/shared/components/components.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -18,7 +18,7 @@ class SettingsScreen extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 15),
             height: 0.15.sh,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
                 color: Color(0xff4CB379)),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
                   child: Icon(
                     Icons.person_outline,
                     color: Color(0xff4CB379),
-                    size: 30,
+                    size: 30.sp,
                   ),
                 ),
                 Column(
@@ -40,11 +40,11 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     Text(
                       'البروفايل',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20.sp),
                     ),
                     Text(
                       'محمد عبد الله',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(fontSize: 18.sp, color: Colors.white),
                     ),
                   ],
                 ),
@@ -86,7 +86,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           SettingsOption(
             title: 'الاسئلة الشائعة',
-            iconData: Icons.book,
+            iconData: FontAwesomeIcons.fileInvoice,
             function: () {},
           ),
           SettingsOption(

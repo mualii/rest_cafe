@@ -20,44 +20,50 @@ Widget defaultFormField({
   VoidCallback? suffixPressed,
   bool isClickable = true,
 }) =>
-    Container(
-      height: height,
-      width: .9.sw,
-      child: TextFormField(
-        maxLines: maxLines,
-        controller: controller,
-        keyboardType: type,
-        obscureText: isPassword,
-        enabled: isClickable,
-        onFieldSubmitted: onSubmit,
-        onChanged: onChange,
-        onTap: onTap,
-        validator: validate,
-        textAlign: TextAlign.right,
-        decoration: InputDecoration(
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: Color(0xffAAAAAA),
-            fontSize: 16,
-          ),
-          labelStyle: TextStyle(
-            color: Color(0xffAAAAAA),
-          ),
-          labelText: label,
-          prefixIcon: Icon(
-            prefix,
-            color: color,
-          ),
-          suffixIcon: suffix != null
-              ? IconButton(
-                  onPressed: suffixPressed,
-                  icon: Icon(
-                    suffix,
-                  ),
-                )
-              : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+    Center(
+      child: Container(
+        // padding: EdgeInsets.zero,
+
+        height: height,
+        width: .9.sw,
+        child: TextFormField(
+          maxLines: maxLines,
+          controller: controller,
+          keyboardType: type,
+          obscureText: isPassword,
+          enabled: isClickable,
+          onFieldSubmitted: onSubmit,
+          onChanged: onChange,
+          onTap: onTap,
+          validator: validate,
+          textAlign: TextAlign.right,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 0.0),
+            hintText: hint,
+            hintStyle: TextStyle(
+              color: Color(0xffAAAAAA),
+              fontSize: 16,
+            ),
+            labelStyle: TextStyle(
+              fontSize: 12,
+              color: Color(0xffAAAAAA),
+            ),
+            labelText: label,
+            prefixIcon: Icon(
+              prefix,
+              color: color,
+            ),
+            suffixIcon: suffix != null
+                ? IconButton(
+                    onPressed: suffixPressed,
+                    icon: Icon(
+                      suffix,
+                    ),
+                  )
+                : null,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         ),
       ),
@@ -117,9 +123,12 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
         children: [
           Text(
             title!,
-            style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
+            style:
+                TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
           ),
-          SizedBox(height: 20.h,)
+          SizedBox(
+            height: 20.h,
+          )
         ],
       ),
       // toolbarHeight: 0.12.sh,

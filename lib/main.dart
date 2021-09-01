@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rest_cafe/modules/splash_screen/splashScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rest_cafe/modules/splash_screen/splashScreencreen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -34,59 +35,61 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         //     theme: ThemeData(unselectedWidgetColor: Colors.red,tabBarTheme:TabBarTheme(unselectedLabelColor: Colors.red ) ),
 
-        theme:ThemeData(textTheme: GoogleFonts.scheherazadeTextTheme(
-          Theme.of(context).textTheme.copyWith(
-            headline6: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w800,
-              color: Color(0xFFA9B2D2),
-            ),
-            button: TextStyle(
-              fontSize: 18.0.sp,
-            ),
-            caption: TextStyle(
-              fontSize: 18.0.sp,
-            ),
-            bodyText2: TextStyle(
-              fontSize: 18.sp,
-            ),
-            headline1: TextStyle(
-              fontSize: 18.sp,
-            ),
-            headline2: TextStyle(
-              fontSize: 18.sp,
-            ),
-            headline3: TextStyle(
-              fontSize: 18.sp,
-            ),
-            headline5: TextStyle(
-              fontSize: 18.sp,
-            ),
-            overline: TextStyle(
-              fontSize: 18.sp,
-            ),
-            subtitle1: TextStyle(
-              fontSize: 18.sp,
-            ),
-            subtitle2: TextStyle(
-              fontSize: 18.sp,
-            ),
-            bodyText1: TextStyle(
-              fontSize: 18.sp,
-            ),
-            headline4: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w800,
-              color: Color(0xFFA9B2D2),
-            ),
+        theme: ThemeData(
+          textTheme: GoogleFonts.cairoTextTheme(
+            Theme.of(context).textTheme.copyWith(
+                  headline6: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFFA9B2D2),
+                  ),
+                  button: TextStyle(
+                    fontSize: 18.0.sp,
+                  ),
+                  caption: TextStyle(
+                    fontSize: 18.0.sp,
+                  ),
+                  bodyText2: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  headline1: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  headline2: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  headline3: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  headline5: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  overline: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  subtitle1: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  subtitle2: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  bodyText1: TextStyle(
+                    fontSize: 18.sp,
+                  ),
+                  headline4: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFFA9B2D2),
+                  ),
+                ),
           ),
-        ),),
+        ),
 
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: SplashScreen(),
+        home: SettingsScreen(),
       ),
     );
   }
