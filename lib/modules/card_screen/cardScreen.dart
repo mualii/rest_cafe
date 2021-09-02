@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -147,77 +148,72 @@ class ListViewCont extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                        showDialog(
-                          barrierColor: Colors.white10, //AddScreen()
-                          barrierDismissible: false,
+                        AwesomeDialog(
                           context: context,
-                          builder: (_) => CupertinoAlertDialog(
-                            title: myTitle(
-                                font: 20.sp, color: color1, title: "حذف منتج"),
-                            content: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "هل أنت متأكد من حذف ",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 16.sp),
-                                    ),
-                                    Text(
-                                      "سموكي باربكيو",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                myTitle(
-                                    title: " من قائمة المنتجات",
-                                    color: Colors.black,
-                                    font: 16.sp),
-                              ],
+                          //dialogType: DialogType.INFO,
+                          customHeader: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.black54,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Icon(
+                              Icons.delete_forever_outlined,
+                              size: 60,
+                              color: color1,
                             ),
-                            actions: [
-                              CupertinoDialogAction(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: 50.h,
-                                    width: 100.w,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.white10),
-                                    child: Center(
-                                      child: Text(
-                                        "تراجع",
-                                        style: TextStyle(
-                                            fontSize: 16, color: color1),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              CupertinoDialogAction(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: mainBottom(
-                                    title: "حذف",
-                                    height: 50.h,
-                                    width: 100.w,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          ), //AddScreen()
-                        );
+                          ),
+                          animType: AnimType.BOTTOMSLIDE,
+                          title: "حذف منتج",
+                          desc:
+                              "هل أنت متأكد من حذف سموكي باربكيو من قائمة المنتجات",
+
+                          btnOk: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            style: ButtonStyle(
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 5)),
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.white),
+                                elevation: MaterialStateProperty.all(0),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        side: BorderSide(
+                                            color: Color(0xffC3C6D1))))),
+                            child: Text(
+                              "تراجع",
+                              style: TextStyle(color: Color(0xff4CB379)),
+                            ),
+                          ),
+
+                          btnCancel: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            style: ButtonStyle(
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 5)),
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color(0xff4CB379)),
+                                elevation: MaterialStateProperty.all(0),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        side: BorderSide(
+                                            color: Color(0xffC3C6D1))))),
+                            child: Text(
+                              "حزف",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        )..show(); //AddScreen()
                       },
                       icon: Icon(Icons.delete_forever_sharp)),
                 ],

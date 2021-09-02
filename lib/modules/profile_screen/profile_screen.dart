@@ -24,7 +24,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             SettingsOption(
               title: 'تعديل الملف الشخصي',
-              iconData: Icons.person,
+              iconData: Icon(
+                Icons.person,
+                color: Color(0xff4CB379),
+                size: 30,
+              ),
               function: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (_) => EditProfile()));
@@ -32,14 +36,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             SettingsOption(
               title: 'وسائل الدفع',
-              iconData: Icons.payment,
+              iconData: Icon(
+                Icons.payment,
+                color: Color(0xff4CB379),
+                size: 30,
+              ),
               function: () {
                 navigateTo(context, PaymentScreen1());
               },
             ),
             SettingsOption(
               title: 'اللغة',
-              iconData: Icons.language,
+              iconData: Icon(
+                Icons.language,
+                color: Color(0xff4CB379),
+                size: 30,
+              ),
               function: () {
                 return showCupertinoModalPopup(
                     context: context,
@@ -58,17 +70,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
               secondary: Icon(
                 Icons.notifications_none,
                 color: Color(0xff4CB379),
+                size: 30,
               ),
             ),
             Divider(),
             SettingsOption(
               title: 'تريد مساعدة',
-              iconData: FontAwesomeIcons.lifeRing,
+              iconData: Icon(
+                FontAwesomeIcons.lifeRing,
+                color: Color(0xff4CB379),
+                size: 30,
+              ),
               function: () {},
             ),
             SettingsOption(
               title: 'تسجيل خروج',
-              iconData: FontAwesomeIcons.signOutAlt,
+              iconData: Icon(
+                FontAwesomeIcons.signOutAlt,
+                color: Color(0xff4CB379),
+                size: 30,
+              ),
               function: () {
                 showDialog<String>(
                   context: context,

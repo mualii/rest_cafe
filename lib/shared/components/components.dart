@@ -15,7 +15,7 @@ Widget defaultFormField({
   String? Function(String?)? validate,
   String? label,
   IconData? prefix,
-  IconData? suffix,
+  Widget? suffix,
   double? height = 50,
   VoidCallback? suffixPressed,
   bool isClickable = true,
@@ -56,9 +56,7 @@ Widget defaultFormField({
             suffixIcon: suffix != null
                 ? IconButton(
                     onPressed: suffixPressed,
-                    icon: Icon(
-                      suffix,
-                    ),
+                    icon: suffix,
                   )
                 : null,
             border: OutlineInputBorder(
@@ -119,13 +117,12 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(
-        color: Colors.black,size: 25 //change your color here
-      ),
+      iconTheme:
+          IconThemeData(color: Colors.black, size: 25 //change your color here
+              ),
       title: Text(
         title!,
-        style:
-            TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
+        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
       ),
       // toolbarHeight: 0.12.sh,
       shape: RoundedRectangleBorder(
@@ -197,7 +194,7 @@ class DetailsField extends StatelessWidget {
 class SettingsOption extends StatelessWidget {
   final String title;
   final Function function;
-  final IconData iconData;
+  final Widget iconData;
   const SettingsOption(
       {Key? key,
       required this.title,
@@ -209,11 +206,7 @@ class SettingsOption extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          leading: Icon(
-            iconData,
-            size: 25,
-            color: Color(0xff4CB379),
-          ),
+          leading: iconData,
           title: Text(
             title,
             style: TextStyle(fontSize: 16),

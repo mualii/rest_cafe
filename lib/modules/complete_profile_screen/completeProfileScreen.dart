@@ -16,6 +16,10 @@ class CompleteProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xffF7F7F7),
       appBar: AppBar(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(20.r),
+        )),
         title: myTitle(
             color: Colors.black, title: "اكمل الملف الشخصي", font: 18.sp),
         centerTitle: true,

@@ -30,6 +30,10 @@ class SaveLocationScreen extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(20.r),
+        )),
       ),
       body: Container(
         width: double.infinity,

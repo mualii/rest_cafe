@@ -52,7 +52,7 @@ class DetailScreen extends StatelessWidget {
                                   barrierColor: Colors.white10, //AddScreen()
                                 );
                               },
-                              child: Image.asset("assets/images/order.png")),
+                              child: Image.asset("assets/images/ic_cart.png")),
                         ),
                         // IconButton(
                         //   onPressed: () {
@@ -219,7 +219,7 @@ class DetailScreen extends StatelessWidget {
                       topRight: Radius.circular(30.sp),
                       topLeft: Radius.circular(30.sp))),
               width: double.infinity,
-              height: 70.h,
+              height: 90.h,
               child: Padding(
                 padding: EdgeInsets.all(10.sp),
                 child: Row(
@@ -235,7 +235,7 @@ class DetailScreen extends StatelessWidget {
                         onPressed: () {
                           navigateTo(context, BranchesScreen());
                         },
-                        icon: Icon(Icons.arrow_circle_up))
+                        icon: Image.asset("assets/images/ic_expand.png"))
                   ],
                 ),
               ),
@@ -327,7 +327,6 @@ class LabolOfFristListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 90.w,
-
       decoration: BoxDecoration(
         // border:,
         borderRadius: BorderRadius.circular(10.sp),
@@ -344,7 +343,11 @@ class LabolOfFristListView extends StatelessWidget {
             ],
           ),
           index == DetailCubit.get(context).currentIndex
-              ? Divider(color: color1, height: 10.h,thickness: 2,)
+              ? Divider(
+                  color: color1,
+                  height: 10.h,
+                  thickness: 2,
+                )
               : Container()
         ],
       ),

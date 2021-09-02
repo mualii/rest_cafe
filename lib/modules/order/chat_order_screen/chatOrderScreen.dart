@@ -21,7 +21,7 @@ class ChatOrderScreen extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(width: 20.w),
+              SizedBox(width: 40.w),
               Container(
                 height: 40.h,
                 decoration:
@@ -145,7 +145,8 @@ class ChatOrderScreen extends StatelessWidget {
                 controller: massegeController,
                 type: TextInputType.text,
                 hint: "اكتب رسالتك هنا",
-                prefix: Icons.attach_file_sharp),
+                prefix: Icons.attach_file_sharp,
+                suffix: Image.asset("assets/images/ic_send.png")),
           )
         ],
       ),
@@ -210,6 +211,7 @@ showBottomSheet(BuildContext context) {
                           controller: massegeController2,
                           type: TextInputType.text,
                           hint: "اكتب تقييمك",
+                          maxLines: 20,
                           height: 180.h),
                     ),
                     mainBottom(height: 50, width: double.infinity, title: "قيم")

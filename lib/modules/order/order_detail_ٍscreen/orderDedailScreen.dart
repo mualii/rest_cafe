@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/modules/order/chat_order_screen/chatOrderScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -20,7 +22,11 @@ class OrderDetailScreen extends StatelessWidget {
                     width: 40.w,
                     child: InkWell(
                         onTap: () {},
-                        child: Image.asset("assets/images/order.png")),
+                        child: IconButton(
+                            onPressed: () {
+                              navigateTo(context, ChatOrderScreen());
+                            },
+                            icon: Icon(FontAwesomeIcons.commentAlt))),
                   ),
                   SizedBox(width: .29.sw),
                   Column(
@@ -41,7 +47,7 @@ class OrderDetailScreen extends StatelessWidget {
                   SizedBox(width: .29.sw),
                   InkWell(
                     onTap: () {
-                      // navigateAndFinish(context, LayoutScreen());
+                      Navigator.of(context).pop();
                     },
                     child: Icon(
                       Icons.arrow_forward_ios,

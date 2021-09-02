@@ -17,9 +17,8 @@ class SettingsScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               navigateTo(context, ProfileScreen());
-
             },
             child: Container(
               margin: EdgeInsets.symmetric(vertical: 15),
@@ -69,39 +68,61 @@ class SettingsScreen extends StatelessWidget {
           ),
           SettingsOption(
             title: 'اتصل بنا',
-            iconData: Icons.call_outlined,
+            iconData: Icon(
+              Icons.call_outlined,
+              color: Color(0xff4CB379),
+              size: 30,
+            ),
             function: () {},
           ),
           SettingsOption(
             title: 'عن التطبيق',
-            iconData: Icons.post_add,
+            iconData: Container(
+                height: 30,
+                child: Image.asset("assets/images/ic_about_app.png")),
             function: () {},
           ),
           SettingsOption(
             title: 'مشاركة التطبيق',
-            iconData: Icons.share_outlined,
+            iconData: Icon(
+              Icons.share_outlined,
+              color: Color(0xff4CB379),
+              size: 30,
+            ),
             function: () {},
           ),
           SettingsOption(
             title: 'قيم التطبيق',
-            iconData: FontAwesomeIcons.thumbsUp,
+            iconData: Icon(
+              FontAwesomeIcons.thumbsUp,
+              color: Color(0xff4CB379),
+              size: 30,
+            ),
             function: () {},
           ),
           SettingsOption(
             title: 'الاشتراكات',
-            iconData: Icons.share_outlined,
+            iconData: Icon(
+              Icons.share_outlined,
+              color: Color(0xff4CB379),
+              size: 30,
+            ),
             function: () {},
           ),
           SettingsOption(
             title: 'الاسئلة الشائعة',
-            iconData: FontAwesomeIcons.fileInvoice,
+            iconData: Container(
+                height: 30, child: Image.asset("assets/images/ic_faq.png")),
             function: () {
               navigateTo(context, QuestionsScreen());
             },
           ),
           SettingsOption(
             title: 'الشروط و الاحكام',
-            iconData: Icons.book,
+            iconData: Container(
+              height: 30,
+              child: Image.asset("assets/images/ic_faq.png"),
+            ),
             function: () {},
           ),
         ],

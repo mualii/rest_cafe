@@ -21,6 +21,10 @@ class BranchesScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(20.r),
+              )),
               title: Text(
                 "اختر الفرع",
                 style: TextStyle(color: Colors.black54),
@@ -155,9 +159,14 @@ class LabolOfSecondListView extends StatelessWidget {
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: false,
-                  itemBuilder: (context, index) =>
-                      Image.asset("assets/images/Type1Rest.png"),
-                  separatorBuilder: (context, index) => SizedBox(width: 3.w),
+                  itemBuilder: (context, index) => Row(
+                        children: [
+                          Image.asset("assets/images/ic_delivery_cafe.png"),
+                          SizedBox(width: 5.w),
+                          Image.asset("assets/images/ic_delivery_car.png"),
+                        ],
+                      ),
+                  separatorBuilder: (context, index) => SizedBox(width: 1.w),
                   itemCount: 3),
             )
           ],
