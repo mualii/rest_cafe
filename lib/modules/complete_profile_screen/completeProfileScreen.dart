@@ -31,45 +31,48 @@ class CompleteProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 20.h),
-            Stack(
-              children: [
-                CircleAvatar(
-                  backgroundColor: Color(0xff4CB379),
-                  maxRadius: 40.sp,
-                  child: SizedBox(
-                    child: Image.asset("assets/images/Mask.png"),
-                  ),
-                ),
-                Positioned(
-                  child: Icon(
-                    Icons.camera_alt,
-                    size: 18.sp,
-                    color: Colors.white,
-                  ),
-                  right: 30.w,
-                  bottom: 5.h,
-                )
-              ],
-            ),
+            Image.asset("assets/images/logoTakeImage.png",),
+            // Stack(
+            //   children: [
+            //    // Container(color: Color(0xff4CB379) ,),
+            //     CircleAvatar(
+            //       backgroundColor: Color(0xff4CB379),
+            //       maxRadius: 40.sp,
+            //       child: SizedBox(
+            //         child: Image.asset("assets/images/Mask.png"),
+            //       ),
+            //     ),
+            //     Positioned(
+            //       child: Icon(
+            //         Icons.camera_alt,
+            //         size: 18.sp,
+            //         color: Colors.white,
+            //       ),
+            //       right: 30.w,
+            //       bottom: 5.h,
+            //     ),
+            //     //Container(color: Color(0xff4CB379) ,),
+            //   ],
+            // ),
             SizedBox(height: 20.h),
             defaultFormField(
                 controller: _nameController,
                 type: TextInputType.name,
-                hint: "الاسم",
-                prefix: (Icons.person_sharp)),
+                hint: "الاسم",color: Color(0xff4CB379),
+                prefix: (Icons.person_outline)),
             SizedBox(height: 15.h),
             defaultFormField(
                 controller: _mailController,
                 type: TextInputType.emailAddress,
-                hint: "الايميل",
-                prefix: (Icons.email)),
+                hint: "الايميل  اختيارى",color: Color(0xff4CB379),
+                prefix: (Icons.email_outlined)),
             Spacer(),
             InkWell(
               onTap: () {
                 navigateAndFinish(context, LayoutScreen());
               },
               child:
-                  mainBottom(title: "تسجيل دخول", width: .90.sw, height: 50.h),
+                  mainBottom(title: "اكمل الملف", width: .90.sw, height: 50.h),
             ),
             SizedBox(height: 25.h),
           ],

@@ -77,7 +77,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
               //    mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.only(bottom: 30.h),
+                  margin: EdgeInsets.only(bottom: 5.h),
                   child: Image.asset(
                     "assets/images/otp.png",
                     fit: BoxFit.fill,
@@ -95,7 +95,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                           font: 18.sp),
                     ),
                     SizedBox(
-                      height: .03.sh,
+                      height: .13.sh,
                     ),
                     Container(
                         alignment: Alignment.center,

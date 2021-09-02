@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/verify_OTP_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
@@ -19,7 +20,16 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              myTitle(title: "RESTCAFE", font: 50.sp, color: color1),
+              Text(
+                "RESTCAFE",
+                style: GoogleFonts.prata(
+                  color: Color(0xff4CB278),
+                  fontSize: 48,
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
+           //   myTitle(title: "RESTCAFE", font: 50.sp, color: color1,),
               SizedBox(height: .1.sh),
               Container(
                 height: 49.h,
@@ -86,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 10.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -94,7 +104,9 @@ class LoginScreen extends StatelessWidget {
                       title: "ليس لديك حساب؟",
                       font: 18.sp,
                       color: Colors.black),
-                  myTitle(title: "انشاء حساب", font: 18.sp, color: color1),
+
+                  Text("انشاء حساب",style: TextStyle(fontSize: 18.sp,color:color1,decoration: TextDecoration.underline, ),)
+                 // myTitle(title: "انشاء حساب", font: 18.sp, color: color1),
                 ],
               )
             ],

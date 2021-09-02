@@ -117,12 +117,13 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme:
-          IconThemeData(color: Colors.black, size: 25 //change your color here
-              ),
+      iconTheme: IconThemeData(
+        color: Colors.black,size: 25 //change your color here
+      ),
       title: Text(
         title!,
-        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
+        style:
+            TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
       ),
       // toolbarHeight: 0.12.sh,
       shape: RoundedRectangleBorder(
@@ -194,8 +195,8 @@ class DetailsField extends StatelessWidget {
 class SettingsOption extends StatelessWidget {
   final String title;
   final Function function;
-  final Widget iconData;
-  const SettingsOption(
+   var iconData;
+   SettingsOption(
       {Key? key,
       required this.title,
       required this.function,
@@ -218,6 +219,59 @@ class SettingsOption extends StatelessWidget {
         ),
         Divider()
       ],
+    );
+  }
+}
+
+class CircleCheckBox extends StatelessWidget {
+  bool select ;
+  ValueChanged<bool> onValueChanged;
+  Color changeColor;
+  CircleCheckBox({ required this.select  ,required  this.onValueChanged , this.changeColor = const Color(0xff2FB3CA)});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+
+        select = !select;
+
+          onValueChanged(select);
+
+
+        print(select);
+
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 0, vertical: 5.h),
+        child: Row(
+          children: [
+            Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color:select? changeColor:Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child:
+                    select? Icon(
+                      Icons.check,
+                      size: 22.0.sp,
+                      color: Colors.white,
+                    )
+                        : Icon(
+                      Icons.check_box_outline_blank,
+                      size: 22.0.sp,
+                      color:select?  Color(0xff2FB3CA):Colors.white,
+                    ),
+                  ),
+                )),
+
+
+          ],
+        ),
+      ),
     );
   }
 }

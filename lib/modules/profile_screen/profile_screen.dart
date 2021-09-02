@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -91,10 +92,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 size: 30,
               ),
               function: () {
-                showDialog<String>(
+                AwesomeDialog(
                   context: context,
-                  builder: (BuildContext context) => AlertDialogWidget(),
-                );
+                  //dialogType: DialogType.INFO,
+                  customHeader:
+                Container(child:Icon(Icons.info,size: 100,color: Color(0xffF96D7E),) ,),
+                  animType: AnimType.BOTTOMSLIDE,
+                  title: "تسجيل خروج",
+                  desc: "هل أنت متأكد من تسجيل خروجك بالتطبيق",
+
+                  btnOk: ElevatedButton(
+
+                    onPressed: (){Navigator.pop(context);},
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 10,horizontal: 5)),
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
+                        elevation:MaterialStateProperty.all(0) ,
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                side: BorderSide(color: Color(0xffC3C6D1))
+                            )
+                        )
+                    ),
+                    child: Text("تراجع",style: TextStyle(color:Color(0xff4CB379) ),),
+                  ),
+
+                  btnCancel: ElevatedButton(
+
+                    onPressed: (){Navigator.pop(context);},
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 10,horizontal: 5)),
+                        backgroundColor: MaterialStateProperty.all(Color(0xff4CB379)),
+                        elevation:MaterialStateProperty.all(0) ,
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                side: BorderSide(color: Color(0xffC3C6D1))
+                            )
+                        )
+                    ),
+                    child: Text("خروج",style: TextStyle(color:Colors.white ),),
+                  ),
+
+                )..show();
+
+
+                // showDialog<String>(
+                //   context: context,
+                //   builder: (BuildContext context) => AlertDialogWidget(),
+                // );
               },
             ),
           ],

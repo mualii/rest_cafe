@@ -45,7 +45,6 @@ dependencies:
   awesome_dialog: ^2.1.1
   flutter_rating_bar: ^4.0.0
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

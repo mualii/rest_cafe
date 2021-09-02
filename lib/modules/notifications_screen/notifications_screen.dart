@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NotificationsScreen extends StatelessWidget {
   @override
@@ -36,11 +37,12 @@ class NotificationItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 6),
-        height: MediaQuery.of(context).size.height * 0.15,
+       // height: MediaQuery.of(context).size.height * 0.15,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.grey.shade300)),
         child: ListTile(
+          contentPadding: EdgeInsets.only(right: 10),
           leading: CircleAvatar(
             child: Icon(
               Icons.add_alarm_outlined,
@@ -74,11 +76,10 @@ class NotificationItem extends StatelessWidget {
               )
             ],
           ),
-          trailing: Container(
-            height: MediaQuery.of(context).size.height * 0.12,
-            width: 4,
-            decoration: BoxDecoration(color: Color(0xff4CB379)),
-          ),
+          trailing:
+
+          VerticalDivider(thickness: 4.38,width: 0,color:Color(0xff4CB379) ,indent: 0,endIndent: 0,)
+
         ),
       ),
     );
