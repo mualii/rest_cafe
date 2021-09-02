@@ -117,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 10.h),
                       // LabolOfSecondListView()
                       Container(
-                        height: .6.sh,
+                        height: .56.sh,
                         child: ListView.separated(
                             shrinkWrap: false,
                             itemBuilder: (context, index) => InkWell(
