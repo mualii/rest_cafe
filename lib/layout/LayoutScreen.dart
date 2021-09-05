@@ -18,23 +18,21 @@ class _LayoutScreenState extends State<LayoutScreen> {
   setBottomBarIndex(index) {
     setState(() {
       currentIndex = index;
+      print(currentIndex);
+
     });
   }
 
-  List<Map<String, Widget>> _pages = [];
+  List<Widget> _pages = [];
   int _selectedPageIndex = 0;
   void initState() {
     _pages = [
-      {'page': HomeScreen()},
-      {
-        'page': FavoritesScreen(),
-      },
-      {
-        'page': OrderCurrentAndEnd(), // NotificationsScreen()
-      },
-      {
-        'page': SettingsScreen(),
-      },
+      HomeScreen(),
+      FavoritesScreen(),
+      OrderCurrentAndEnd(),
+      SettingsScreen()
+
+
     ];
     super.initState();
   }
@@ -44,115 +42,400 @@ class _LayoutScreenState extends State<LayoutScreen> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       // body: HomeScreen(),
-      body: _pages[_selectedPageIndex]['page'],
-      bottomNavigationBar: Container(
-        color: Color(0x00ffffff),
-        width: size.width,
-        height: 100,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            CustomPaint(
-              size: Size(size.width, 100),
-              painter: BNBCustomPainter(),
-            ),
-            Container(
-              color: Colors.transparent,
-              width: size.width,
-              height: 120,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      extendBody: true, // very important as noted
+      body: Stack(
+        children: [
+          //_pages[_selectedPageIndex]['page'],
+          _pages.elementAt(_selectedPageIndex),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Theme(
+                  data: Theme.of(context)
+                      .copyWith(canvasColor: Colors.red),
+                  child: Container(
+                    //   color: Colors.white,
+
+                    width: size.width,
+                    height: 100,
+                    child: Stack(
+                      clipBehavior: Clip.none,
                       children: [
-                        IconButton(
-                          onPressed: () {
-                            setBottomBarIndex(0);
-                            _selectedPageIndex = 0;
-                          },
-                          splashColor: Colors.white,
-                          icon: Image.asset("assets/images/home.png"),
+                        CustomPaint(
+                          size: Size(size.width, 100),
+                          painter: BNBCustomPainter(),
                         ),
-                        IconButton(
-                            icon: Image.asset("assets/images/fav.png"),
-                            onPressed: () {
-                              setBottomBarIndex(1);
-                              _selectedPageIndex = 1;
-                              // _selectPage;
-                            }),
-                        // Container(
-                        //   width: size.width * 0.10,
-                        // ),
-                        IconButton(
-                            icon: Image.asset("assets/images/orders.png"),
-                            onPressed: () {
-                              setBottomBarIndex(2);
-                              _selectedPageIndex = 2;
 
-                              // _selectPage;
-                            }),
-                        IconButton(
-                            icon: Image.asset("assets/images/settings.png"),
-                            onPressed: () {
-                              setBottomBarIndex(3);
-                              _selectedPageIndex = 3;
 
-                              // _selectPage;
-                            }),
+                        CustomPaint(
+                          size: Size(size.width, 100),
+                          painter: BNBCustomPainter2(),
+                        ),
+
+                        Positioned(
+                          bottom: 30,
+                          right: 40,
+                          child: Column(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  setBottomBarIndex(0);
+                                  _selectedPageIndex = 0;
+                                },
+                                splashColor: Colors.white,
+                                padding:   currentIndex == 0? EdgeInsets.only(bottom:5, ):EdgeInsets.only(bottom:7, ),
+
+
+                                alignment:
+                                Alignment.bottomCenter,
+                                icon: Image.asset("assets/images/home.png",fit: BoxFit.fill,),
+                              ),
+                              currentIndex == 0?
+                              RotationTransition(
+                                  turns:  AlwaysStoppedAnimation(10 / 360),
+                                  child: Container(width: 40,height: 5,margin: EdgeInsets.only(right: 5 ) ,
+                                    decoration:BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ) ,)):Container()
+                            ],
+                          ),
+                        ),
+
+                        Positioned(
+                          bottom: 35,
+                          right: 125,
+                          child: Column(
+                            children: [
+                              // GestureDetector(onTap: (){
+                              //   setBottomBarIndex(1);
+                              //   _selectedPageIndex = 1;
+                              // },child: Image.asset("assets/images/fav.png",fit: BoxFit.fill,),),
+                              IconButton(
+
+                                onPressed: () {
+                                  setBottomBarIndex(1);
+                                  _selectedPageIndex = 1;
+                                } ,splashColor: Colors.white,
+                                padding:   currentIndex == 1? EdgeInsets.only(bottom:5, ):EdgeInsets.only(bottom:7, ),
+
+                                alignment:
+                                Alignment.bottomCenter,
+                                icon: Image.asset("assets/images/fav.png",fit: BoxFit.fill,),
+                              ),
+                              currentIndex == 1?
+
+                              RotationTransition(
+                                  turns:  AlwaysStoppedAnimation(0 / 360),
+                                  child: Container(width: 40,height: 5,margin: EdgeInsets.only(left: 0 ) ,
+                                    decoration:BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ) ,)):Container()
+                            ],
+                          ),
+                        ),
+
+                        Positioned(
+                          bottom: 35,
+                          left: 125,
+                          child: Column(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  setBottomBarIndex(2);
+                                  _selectedPageIndex = 2;
+                                },
+                                splashColor: Colors.white,
+
+                                padding:   currentIndex == 2? EdgeInsets.only(bottom:5, ):EdgeInsets.only(bottom:7, ),
+
+                                alignment:
+                                Alignment.bottomCenter,
+                                icon: Image.asset("assets/images/orders.png",fit: BoxFit.fill),
+                              ),
+                              currentIndex == 2?
+
+                              RotationTransition(
+                                  turns:  AlwaysStoppedAnimation(0 / 360),
+                                  child: Container(width: 40,height: 5,margin: EdgeInsets.only(left: 0 ) ,
+                                    decoration:BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ) ,)):Container()
+                            ],
+                          ),
+                        ),
+
+                        Positioned(
+                          bottom: 30,
+                          left: 40,
+                          child: Column(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  setBottomBarIndex(3);
+                                  _selectedPageIndex = 3;
+                                },
+                                splashColor: Colors.white,
+
+                                padding:   currentIndex == 3? EdgeInsets.only(bottom:5, ):EdgeInsets.only(bottom:7, ),
+
+
+                                alignment:
+                                Alignment.bottomCenter,
+                                icon: Image.asset("assets/images/settings.png",fit: BoxFit.fill),
+                              ),
+                              currentIndex == 3?
+
+                              RotationTransition(
+                                  turns:  AlwaysStoppedAnimation(-10 / 360),
+                                  child: Container(width: 40,height: 5,margin: EdgeInsets.only(left: 8 ) ,
+                                    decoration:BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ) ,)):Container()
+                            ],
+                          ),
+                        ),
+
+
+
+
+
+
                       ],
                     ),
-                  ),
-                  Stack(
-                    children: [
-                      CustomPaint(
-                        size: Size(size.width, 25),
-                        painter: BNBCustomPainter2(),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+                  ))),
+
+        ],
       ),
+     //  bottomNavigationBar: Container(
+     // //   color: Colors.white,
+     //
+     //    width: size.width,
+     //    height: 100,
+     //    child: Stack(
+     //      clipBehavior: Clip.none,
+     //      children: [
+     //        CustomPaint(
+     //          size: Size(size.width, 100),
+     //          painter: BNBCustomPainter(),
+     //        ),
+     //
+     //
+     //        CustomPaint(
+     //          size: Size(size.width, 100),
+     //          painter: BNBCustomPainter2(),
+     //        ),
+     //
+     //        Positioned(
+     //          bottom: 30,
+     //          right: 40,
+     //          child: Column(
+     //            children: [
+     //              IconButton(
+     //                onPressed: () {
+     //                  setBottomBarIndex(0);
+     //                  _selectedPageIndex = 0;
+     //                },
+     //                splashColor: Colors.white,
+     //                padding:   currentIndex == 0? EdgeInsets.only(bottom:5, ):EdgeInsets.only(bottom:7, ),
+     //
+     //
+     //                alignment:
+     //                 Alignment.bottomCenter,
+     //                icon: Image.asset("assets/images/home.png",fit: BoxFit.fill,),
+     //              ),
+     //              currentIndex == 0?
+     //              RotationTransition(
+     //                  turns:  AlwaysStoppedAnimation(10 / 360),
+     //                  child: Container(width: 40,height: 5,margin: EdgeInsets.only(right: 5 ) ,
+     //                    decoration:BoxDecoration(
+     //                      color: Colors.white,
+     //                      borderRadius: BorderRadius.circular(10),
+     //                    ) ,)):Container()
+     //            ],
+     //          ),
+     //        ),
+     //
+     //        Positioned(
+     //          bottom: 35,
+     //          right: 125,
+     //          child: Column(
+     //            children: [
+     //              // GestureDetector(onTap: (){
+     //              //   setBottomBarIndex(1);
+     //              //   _selectedPageIndex = 1;
+     //              // },child: Image.asset("assets/images/fav.png",fit: BoxFit.fill,),),
+     //              IconButton(
+     //
+     //                onPressed: () {
+     //                  setBottomBarIndex(1);
+     //                  _selectedPageIndex = 1;
+     //                } ,splashColor: Colors.white,
+     //                padding:   currentIndex == 1? EdgeInsets.only(bottom:5, ):EdgeInsets.only(bottom:7, ),
+     //
+     //                alignment:
+     //              Alignment.bottomCenter,
+     //                icon: Image.asset("assets/images/fav.png",fit: BoxFit.fill,),
+     //              ),
+     //              currentIndex == 1?
+     //
+     //              RotationTransition(
+     //                  turns:  AlwaysStoppedAnimation(0 / 360),
+     //                  child: Container(width: 40,height: 5,margin: EdgeInsets.only(left: 0 ) ,
+     //                    decoration:BoxDecoration(
+     //                      color: Colors.white,
+     //                      borderRadius: BorderRadius.circular(10),
+     //                    ) ,)):Container()
+     //            ],
+     //          ),
+     //        ),
+     //
+     //        Positioned(
+     //          bottom: 35,
+     //          left: 125,
+     //          child: Column(
+     //            children: [
+     //              IconButton(
+     //                onPressed: () {
+     //                  setBottomBarIndex(2);
+     //                  _selectedPageIndex = 2;
+     //                },
+     //                splashColor: Colors.white,
+     //
+     //                padding:   currentIndex == 2? EdgeInsets.only(bottom:5, ):EdgeInsets.only(bottom:7, ),
+     //
+     //                alignment:
+     //              Alignment.bottomCenter,
+     //                icon: Image.asset("assets/images/orders.png",fit: BoxFit.fill),
+     //              ),
+     //              currentIndex == 2?
+     //
+     //              RotationTransition(
+     //                  turns:  AlwaysStoppedAnimation(0 / 360),
+     //                  child: Container(width: 40,height: 5,margin: EdgeInsets.only(left: 0 ) ,
+     //                    decoration:BoxDecoration(
+     //                      color: Colors.white,
+     //                      borderRadius: BorderRadius.circular(10),
+     //                    ) ,)):Container()
+     //            ],
+     //          ),
+     //        ),
+     //
+     //        Positioned(
+     //          bottom: 30,
+     //          left: 40,
+     //          child: Column(
+     //            children: [
+     //              IconButton(
+     //                onPressed: () {
+     //                  setBottomBarIndex(3);
+     //                  _selectedPageIndex = 3;
+     //                },
+     //                splashColor: Colors.white,
+     //
+     //                padding:   currentIndex == 3? EdgeInsets.only(bottom:5, ):EdgeInsets.only(bottom:7, ),
+     //
+     //
+     //                alignment:
+     //              Alignment.bottomCenter,
+     //                icon: Image.asset("assets/images/settings.png",fit: BoxFit.fill),
+     //              ),
+     //              currentIndex == 3?
+     //
+     //              RotationTransition(
+     //                turns:  AlwaysStoppedAnimation(-10 / 360),
+     //              child: Container(width: 40,height: 5,margin: EdgeInsets.only(left: 8 ) ,
+     //                decoration:BoxDecoration(
+     //                  color: Colors.white,
+     //                  borderRadius: BorderRadius.circular(10),
+     //                ) ,)):Container()
+     //            ],
+     //          ),
+     //        ),
+     //
+     //
+     //
+     //
+     //
+     //
+     //      ],
+     //    ),
+     //  ),
     );
   }
 }
+
+
+
 
 ///first half circle paint
 class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = new Paint()
-      ..color = Color(0xff53BC80)
+      ..color = Color(0xff4CB379).withOpacity(.90)
 
-      /// fill color
+    /// fill color
       ..style = PaintingStyle.fill;
 
     Path path = Path();
-    path.moveTo(0, 30);
 
-    /// Start
-    path.quadraticBezierTo(size.width * 0.15, 0, size.width * 0.50, 0);
+    print(size.height );
+    path.moveTo(0,35  );
+    // دية بداية اول نقطة فى الانحناء
+    path.quadraticBezierTo(
+        size.width / 2,
+        -12,
+        size.width, 35
+    );
 
-    path.quadraticBezierTo(size.width * 0.50, 0, size.width * 0.50, 0);
+    //اول نقطتين يمثلوا مركز الانحناء
+    // اخر نقطتين يمثلوا اخر نقطة فى الانحناء
 
-    path.arcToPoint(Offset(size.width * 0.50, 0),
-        radius: Radius.circular(20.0), clockwise: false);
-    path.quadraticBezierTo(size.width * 0.50, 0, size.width * 0.55, 0);
-    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 30);
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
-    path.lineTo(0, 40);
-    canvas.drawShadow(path, Colors.black, 5, true);
+
+
+
+
+
+
     canvas.drawPath(path, paint);
+
+    // path.moveTo(0, 30);
+    //
+    // /// Start
+    // path.quadraticBezierTo(size.width * 0.15, 0, size.width * 0.50, 0);
+    //
+    // path.quadraticBezierTo(size.width * 0.50, 0, size.width * 0.50, 0);
+    //
+    // path.arcToPoint(Offset(size.width * 0.50, 0),
+    //     radius: Radius.circular(20.0), clockwise: false);
+    // path.quadraticBezierTo(size.width * 0.50, 0, size.width * 0.55, 0);
+    // path.quadraticBezierTo(size.width * 0.80, 0, size.width, 30);
+    // path.lineTo(size.width, size.height);
+    // path.lineTo(0, size.height);
+    // path.lineTo(0, 40);
+    // canvas.drawShadow(path, Colors.black, 5, true);
+    // canvas.drawPath(path, paint);
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
@@ -169,22 +452,35 @@ class BNBCustomPainter2 extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     Path path = Path();
-    path.moveTo(-50, 27); // Start
 
-    path.quadraticBezierTo(size.width * 0.15, -10, size.width * 0.50, -10);
-    path.quadraticBezierTo(size.width * 0.50, -10, size.width * 0.50, -10);
-    path.arcToPoint(Offset(size.width * 0.5, -10),
-        radius: Radius.circular(10.0), clockwise: false);
-    path.quadraticBezierTo(size.width * 0.65, -10, size.width * 0.4, -10);
-    path.quadraticBezierTo(size.width * 0.80, -10, size.width + 50, 27);
 
-    path.lineTo(size.width + 60, size.height);
-
+    path.moveTo(0,80  );
+    // دية بداية اول نقطة فى الانحناء
+    path.quadraticBezierTo(
+        size.width / 2,
+        40,
+        size.width, 80
+    );
+    path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
-
-    path.lineTo(0, 40);
-    canvas.drawShadow(path, Colors.black, 5, true);
     canvas.drawPath(path, paint);
+
+    // path.moveTo(-50, 27); // Start
+    //
+    // path.quadraticBezierTo(size.width * 0.15, -10, size.width * 0.50, -10);
+    // path.quadraticBezierTo(size.width * 0.50, -10, size.width * 0.50, -10);
+    // path.arcToPoint(Offset(size.width * 0.5, -10),
+    //     radius: Radius.circular(10.0), clockwise: false);
+    // path.quadraticBezierTo(size.width * 0.65, -10, size.width * 0.4, -10);
+    // path.quadraticBezierTo(size.width * 0.80, -10, size.width + 50, 27);
+    //
+    // path.lineTo(size.width + 60, size.height);
+    //
+    // path.lineTo(0, size.height);
+    //
+    // path.lineTo(0, 40);
+    // canvas.drawShadow(path, Colors.black, 5, true);
+    // canvas.drawPath(path, paint);
   }
 
   @override

@@ -25,8 +25,10 @@ class HomeScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
+              extendBody: true,
+         //   backgroundColor: Colors.white,
             body: SafeArea(
-              child: Padding(
+              child: Container(
                 padding: EdgeInsets.all(20.0.sp),
                 child: SingleChildScrollView(
                   child: Column(
@@ -117,9 +119,9 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 10.h),
                       // LabolOfSecondListView()
                       Container(
-                        height: .6.sh,
+                      //  height: .6.sh,
                         child: ListView.separated(
-                            shrinkWrap: true,
+                            shrinkWrap: true,physics: BouncingScrollPhysics(),
                             itemBuilder: (context, index) => InkWell(
                                 onTap: () {
                                   navigateTo(context, DetailScreen());
