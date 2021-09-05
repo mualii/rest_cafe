@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
 class FavoritesScreen extends StatelessWidget {
@@ -11,6 +12,7 @@ class FavoritesScreen extends StatelessWidget {
         actions: [],
       ),
       body: ListView(
+        controller: scrollController,
         shrinkWrap: true,
         padding: EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         children: [

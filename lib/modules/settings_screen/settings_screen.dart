@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
 import 'package:rest_cafe/modules/QuestionsScreen/QuestionsScreen.dart';
 import 'package:rest_cafe/modules/profile_screen/profile_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
@@ -14,7 +15,8 @@ class SettingsScreen extends StatelessWidget {
         actions: [],
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        controller: scrollController,
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         children: [
           GestureDetector(
             onTap: () {
@@ -125,6 +127,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             function: () {},
           ),
+          SizedBox(height: 30.h,)
         ],
       ),
     );

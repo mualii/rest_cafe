@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
 import 'package:rest_cafe/modules/OrderCurrnentAndEnd/Widgets/OrderCard.dart';
 import 'package:rest_cafe/shared/Model/OrderCurrentAndEnd.dart';
 
@@ -29,6 +30,7 @@ class OrderCurrent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        controller: scrollController,
         itemCount: listOrder.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
@@ -61,6 +63,7 @@ class OrderEnd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        controller: scrollController,
         itemCount: listOrder.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {

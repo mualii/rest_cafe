@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
+import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeState.dart';
@@ -31,6 +33,7 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(20.0.sp),
                 child: SingleChildScrollView(
+                  controller: scrollController,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
