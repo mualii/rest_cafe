@@ -23,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
               navigateTo(context, ProfileScreen());
             },
             child: Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
+              margin: EdgeInsets.symmetric(vertical: 15.h),
               height: 0.15.sh,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -80,7 +80,7 @@ class SettingsScreen extends StatelessWidget {
           SettingsOption(
             title: 'عن التطبيق',
             iconData: Container(
-                height: 30,
+                height: 30.h,
                 child: Image.asset("assets/images/ic_about_app.png")),
             function: () {},
           ),
@@ -114,7 +114,7 @@ class SettingsScreen extends StatelessWidget {
           SettingsOption(
             title: 'الاسئلة الشائعة',
             iconData: Container(
-                height: 30, child: Image.asset("assets/images/ic_faq.png")),
+                height: 30.h, child: Image.asset("assets/images/ic_faq.png")),
             function: () {
               navigateTo(context, QuestionsScreen());
             },
@@ -122,12 +122,12 @@ class SettingsScreen extends StatelessWidget {
           SettingsOption(
             title: 'الشروط و الاحكام',
             iconData: Container(
-              height: 30,
+              height: 30.h,
               child: Image.asset("assets/images/ic_faq.png"),
             ),
             function: () {},
           ),
-          SizedBox(height: 30.h,)
+          SizedBox(height: 50.h,)
         ],
       ),
     );

@@ -1,5 +1,7 @@
-// تم عملة جلوبل حتى يسمع فى جميع الصفحات
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+// تم عملة جلوبل حتى يسمع فى جميع الصفحات
 
 ScrollController scrollController = ScrollController();
 
