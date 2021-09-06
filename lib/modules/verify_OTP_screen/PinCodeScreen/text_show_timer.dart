@@ -23,7 +23,6 @@ class TextShowTimer extends StatelessWidget {
               style: TextStyle(
                 fontFamily: "FrutigerLTArabic",
                 fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
                 textBaseline: TextBaseline.alphabetic,
               ),
             ),

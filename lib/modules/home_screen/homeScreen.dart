@@ -36,13 +36,16 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Text(
-                          "التوصيل الى",
-                          style: TextStyle(
-                              color: Color(0xffAEAEAE), fontSize: 12.sp),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "التوصيل الى",
+                            style: TextStyle(
+                                color: Color(0xffAEAEAE), fontSize: 12.sp),
+                          ),
+                        ],
                       ),
                       Row(
                         children: [
@@ -51,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                               navigateTo(context, SaveLocationScreen());
                             },
                             child: Text(
-                              "1704 Diptul Glen",
+                              "Diptul Glen 1704 ",
                               style: TextStyle(color: color1, fontSize: 16.sp),
                             ),
                           ),
@@ -82,13 +85,13 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 badgeColor: Color(0xff4CB379),
                                 child: Icon(Icons.notifications_none,
-                                    size: 20.sp, color: Colors.black),
+                                    size: 25.sp, color: Color(0xff2C3E50)),
                               ),
                             ),
                           )
                         ],
                       ),
-                      SizedBox(height: 20.h),
+                      SizedBox(height: 5.h),
                       Container(
                         height: 40.h,
                         child: defaultFormField(
@@ -252,7 +255,7 @@ class LabolOfSecondListView extends StatelessWidget {
                   Icon(
                     Icons.circle,
                     color: color1,
-                    size: 15.sp,
+                    size: 10.sp,
                   ),
                 ]),
                 Spacer(),

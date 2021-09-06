@@ -95,7 +95,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                           font: 18.sp),
                     ),
                     SizedBox(
-                      height: .13.sh,
+                      height: .06.sh,
                     ),
                     Container(
                         alignment: Alignment.center,

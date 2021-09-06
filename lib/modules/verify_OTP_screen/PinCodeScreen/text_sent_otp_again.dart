@@ -26,7 +26,6 @@ class TextSentOtpAgain extends StatelessWidget {
             style: TextStyle(
                 fontFamily: "FrutigerLTArabic",
                 fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
                 textBaseline: TextBaseline.alphabetic,
                 decoration: TextDecoration.underline),
           ),

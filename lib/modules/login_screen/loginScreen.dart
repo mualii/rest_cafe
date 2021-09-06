@@ -24,13 +24,13 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "Superclarendon",
                   color: Color(0xff4CB278),
-                  fontSize: 48,
+                  fontSize: 40.sp,
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.normal,
                 ),
               ),
               //   myTitle(title: "RESTCAFE", font: 50.sp, color: color1,),
-              SizedBox(height: .1.sh),
+              SizedBox(height: .15.sh),
               Container(
                 height: 49.h,
                 width: .91.sw,
@@ -79,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                         PhoneUser: _userPhoneController.text.toString(),
                         timerStart: 20)),
               ),
-              SizedBox(height: 70.h),
+              SizedBox(height: 80.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/modules/login_screen/loginScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
@@ -37,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
           style: TextStyle(
             fontFamily: "Superclarendon",
             color: Color(0xff4CB278),
-            fontSize: 48,
+            fontSize: 40.sp,
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.normal,
           ),

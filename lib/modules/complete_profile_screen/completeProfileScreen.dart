@@ -35,26 +35,32 @@ class CompleteProfileScreen extends StatelessWidget {
               "assets/images/logoTakeImage.png",
             ),
             SizedBox(height: 20.h),
-            defaultFormField(
-                controller: _nameController,
-                type: TextInputType.name,
-                hint: "الاسم",
-                color: Color(0xff4CB379),
-                prefix: (Icons.person_outline)),
+            Container(
+              width: .8.sw,
+              child: defaultFormField(
+                  controller: _nameController,
+                  type: TextInputType.name,
+                  hint: "الاسم",
+                  color: Color(0xff4CB379),
+                  prefix: (Icons.person_outline)),
+            ),
             SizedBox(height: 15.h),
-            defaultFormField(
-                controller: _mailController,
-                type: TextInputType.emailAddress,
-                hint: "الايميل  اختيارى",
-                color: Color(0xff4CB379),
-                prefix: (Icons.email_outlined)),
+            Container(
+              width: .8.sw,
+              child: defaultFormField(
+                  controller: _mailController,
+                  type: TextInputType.emailAddress,
+                  hint: "الايميل  اختيارى",
+                  color: Color(0xff4CB379),
+                  prefix: (Icons.email_outlined)),
+            ),
             Spacer(),
             InkWell(
               onTap: () {
                 navigateAndFinish(context, LayoutScreen());
               },
               child:
-                  mainBottom(title: "اكمل الملف", width: .90.sw, height: 50.h),
+                  mainBottom(title: "اكمل الملف", width: .8.sw, height: 50.h),
             ),
             SizedBox(height: 25.h),
           ],
