@@ -85,7 +85,8 @@ Widget myTitle({String? title, double? font, Color? color}) {
     padding: EdgeInsets.symmetric(horizontal: 8.w),
     child: Text(
       title!,
-      style: TextStyle(fontSize: font!, color: color),
+      style: TextStyle(
+          fontSize: font!, color: color, fontFamily: "FrutigerLTArabic"),
     ),
   );
 }
@@ -99,7 +100,11 @@ Widget mainBottom({double? width, double? height, String? title}) {
     child: Center(
       child: Text(
         title!,
-        style: TextStyle(fontSize: 16, color: Colors.white),
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.white,
+          fontFamily: "FrutigerLTArabic",
+        ),
       ),
     ),
   );
@@ -117,13 +122,15 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(
-        color: Colors.black,size: 25 //change your color here
-      ),
+      iconTheme:
+          IconThemeData(color: Colors.black, size: 25 //change your color here
+              ),
       title: Text(
         title!,
-        style:
-            TextStyle(color: Colors.black87, fontWeight: FontWeight.w100),
+        style: TextStyle(
+            fontFamily: "FrutigerLTArabic",
+            color: Colors.black87,
+            fontWeight: FontWeight.w100),
       ),
       // toolbarHeight: 0.12.sh,
       shape: RoundedRectangleBorder(
@@ -195,8 +202,8 @@ class DetailsField extends StatelessWidget {
 class SettingsOption extends StatelessWidget {
   final String title;
   final Function function;
-   var iconData;
-   SettingsOption(
+  var iconData;
+  SettingsOption(
       {Key? key,
       required this.title,
       required this.function,
@@ -210,7 +217,7 @@ class SettingsOption extends StatelessWidget {
           leading: iconData,
           title: Text(
             title,
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontFamily: "FrutigerLTArabic", fontSize: 16),
           ),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () {
@@ -224,23 +231,23 @@ class SettingsOption extends StatelessWidget {
 }
 
 class CircleCheckBox extends StatelessWidget {
-  bool select ;
+  bool select;
   ValueChanged<bool> onValueChanged;
   Color changeColor;
-  CircleCheckBox({ required this.select  ,required  this.onValueChanged , this.changeColor = const Color(0xff2FB3CA)});
+  CircleCheckBox(
+      {required this.select,
+      required this.onValueChanged,
+      this.changeColor = const Color(0xff2FB3CA)});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-
         select = !select;
 
-          onValueChanged(select);
-
+        onValueChanged(select);
 
         print(select);
-
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 0, vertical: 5.h),
@@ -248,27 +255,25 @@ class CircleCheckBox extends StatelessWidget {
           children: [
             Center(
                 child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color:select? changeColor:Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child:
-                    select? Icon(
-                      Icons.check,
-                      size: 22.0.sp,
-                      color: Colors.white,
-                    )
-                        : Icon(
-                      Icons.check_box_outline_blank,
-                      size: 22.0.sp,
-                      color:select?  Color(0xff2FB3CA):Colors.white,
-                    ),
-                  ),
-                )),
-
-
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: select ? changeColor : Colors.white,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: select
+                    ? Icon(
+                        Icons.check,
+                        size: 22.0.sp,
+                        color: Colors.white,
+                      )
+                    : Icon(
+                        Icons.check_box_outline_blank,
+                        size: 22.0.sp,
+                        color: select ? Color(0xff2FB3CA) : Colors.white,
+                      ),
+              ),
+            )),
           ],
         ),
       ),

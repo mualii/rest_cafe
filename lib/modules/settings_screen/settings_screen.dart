@@ -48,11 +48,15 @@ class SettingsScreen extends StatelessWidget {
                     children: [
                       Text(
                         'البروفايل',
-                        style: TextStyle(fontSize: 20.sp),
+                        style: TextStyle(
+                            fontFamily: "FrutigerLTArabic", fontSize: 20.sp),
                       ),
                       Text(
                         'محمد عبد الله',
-                        style: TextStyle(fontSize: 18.sp, color: Colors.white),
+                        style: TextStyle(
+                            fontFamily: "FrutigerLTArabic",
+                            fontSize: 18.sp,
+                            color: Colors.white),
                       ),
                     ],
                   ),
@@ -127,7 +131,9 @@ class SettingsScreen extends StatelessWidget {
             ),
             function: () {},
           ),
-          SizedBox(height: 50.h,)
+          SizedBox(
+            height: 50.h,
+          )
         ],
       ),
     );

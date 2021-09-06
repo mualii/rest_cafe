@@ -151,7 +151,7 @@ class LabolOfSecondListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 125.h,
+      height: 107.5.h,
       decoration: BoxDecoration(
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
@@ -167,22 +167,30 @@ class LabolOfSecondListView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.sp)),
               child: Image.asset("assets/images/mac.png"),
             ),
-            SizedBox(width: 20.w),
+            SizedBox(width: 10.w),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("هارديز",
-                    style: TextStyle(color: Colors.black, fontSize: 16.sp)),
-                SizedBox(height: 10.h),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.sp,
+                      fontFamily: "FrutigerLTArabic",
+                    )),
+                SizedBox(height: 5.h),
                 Row(children: [
                   Container(
                       height: 20,
                       child: Image.asset("assets/images/ic_restaurant.png")),
                   SizedBox(width: 5.w),
                   Text("ياباني",
-                      style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 12.sp,
+                        fontFamily: "FrutigerLTArabic",
+                      )),
                 ]),
-                SizedBox(height: 20.h),
+                SizedBox(height: 7.h),
                 Row(
                   children: [
                     Container(
@@ -193,10 +201,14 @@ class LabolOfSecondListView extends StatelessWidget {
                       children: [
                         Text("Km",
                             style: TextStyle(
-                                color: Colors.black54, fontSize: 12.sp)),
+                                fontFamily: "FrutigerLTArabic",
+                                color: Colors.black54,
+                                fontSize: 12.sp)),
                         Text(" 5",
                             style: TextStyle(
-                                color: Colors.black54, fontSize: 12.sp)),
+                                fontFamily: "FrutigerLTArabic",
+                                color: Colors.black54,
+                                fontSize: 12.sp)),
                       ],
                     ),
                   ],
@@ -217,11 +229,13 @@ class LabolOfSecondListView extends StatelessWidget {
                       size: 15.sp,
                     ),
                     Text("45 دقيقة",
-                        style:
-                            TextStyle(color: Colors.black38, fontSize: 12.sp)),
+                        style: TextStyle(
+                          color: Colors.black38,
+                          fontSize: 12.sp,
+                          fontFamily: "FrutigerLTArabic",
+                        )),
                   ],
                 ),
-                SizedBox(height: 1.h)
               ],
             ),
             Spacer(),
@@ -230,7 +244,11 @@ class LabolOfSecondListView extends StatelessWidget {
               children: [
                 Row(children: [
                   Text("مفتوح",
-                      style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 12.sp,
+                        fontFamily: "FrutigerLTArabic",
+                      )),
                   Icon(
                     Icons.circle,
                     color: color1,
@@ -239,9 +257,9 @@ class LabolOfSecondListView extends StatelessWidget {
                 ]),
                 Spacer(),
                 Container(
-                  height: 30.h,
-                  width: 60.w,
-                  child: Image.asset("assets/images/Type1Rest.png"),
+                  height: 25.h,
+                  width: 40.w,
+                  child: Image.asset("assets/images/ic_delivery_car.png"),
                 )
               ],
             ),
@@ -276,15 +294,16 @@ class labolOfFristListView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon,
-              size: 15.sp,
-              color: index == HomeCubit.get(context).currentIndex
-                  ? Colors.white
-                  : color1),
+          Container(
+              height: 20,
+              child: index == HomeCubit.get(context).currentIndex
+                  ? Image.asset("assets/images/ic_restaurant_white.png")
+                  : Image.asset("assets/images/ic_restaurant.png")),
           SizedBox(width: 10.w),
           Text(
             text,
             style: TextStyle(
+                fontFamily: "FrutigerLTArabic",
                 color: index == HomeCubit.get(context).currentIndex
                     ? Colors.white
                     : Colors.black),
@@ -294,3 +313,5 @@ class labolOfFristListView extends StatelessWidget {
     );
   }
 }
+
+//

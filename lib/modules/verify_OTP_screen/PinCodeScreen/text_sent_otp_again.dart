@@ -11,7 +11,11 @@ class TextSentOtpAgain extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("لم أتلق الرمز !", style: TextStyle(fontSize: 16.sp)),
+        Text("لم أتلق الرمز !",
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontFamily: "FrutigerLTArabic",
+            )),
         SizedBox(
           width: 10.w,
         ),
@@ -20,6 +24,7 @@ class TextSentOtpAgain extends StatelessWidget {
           child: Text(
             "ارسالها مجددا",
             style: TextStyle(
+                fontFamily: "FrutigerLTArabic",
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
                 textBaseline: TextBaseline.alphabetic,

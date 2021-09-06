@@ -83,6 +83,10 @@ flutter:
      - family: Superclarendon
        fonts:
          - asset: fonts/Superclarendon-Regular.ttf
+     - family: FrutigerLTArabic
+       fonts:
+         - asset: fonts/FrutigerLTArabic-55Roman.ttf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -108,6 +108,7 @@ class LoginScreen extends StatelessWidget {
                   Text(
                     "انشاء حساب",
                     style: TextStyle(
+                      fontFamily: "FrutigerLTArabic",
                       fontSize: 18.sp,
                       color: color1,
                       decoration: TextDecoration.underline,

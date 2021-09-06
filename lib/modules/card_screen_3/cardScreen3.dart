@@ -127,7 +127,7 @@ class CardScreen3 extends StatelessWidget {
                         SizedBox(width: 15.w),
                         myTitle(
                             title: "Paypal", font: 16.sp, color: Colors.black),
-                        SizedBox(width: .33.sw),
+                        SizedBox(width: .38.sw),
                         Container(
                             height: 20.h,
                             child: Image.asset("assets/images/pay (2).png")),
@@ -174,7 +174,7 @@ class CardScreen3 extends StatelessWidget {
                             title: "5689****",
                             font: 16.sp,
                             color: Colors.black38),
-                        SizedBox(width: .21.sw),
+                        SizedBox(width: .25.sw),
                         Container(
                             height: 20.h,
                             child: Image.asset("assets/images/pay (1).jpg")),
@@ -254,7 +254,10 @@ class CardScreen3 extends StatelessWidget {
                       child: Center(
                         child: Text(
                           "السابق",
-                          style: TextStyle(fontSize: 16, color: color1),
+                          style: TextStyle(
+                              fontFamily: "FrutigerLTArabic",
+                              fontSize: 16,
+                              color: color1),
                         ),
                       ),
                     ),

@@ -95,7 +95,9 @@ class DetailScreen extends StatelessWidget {
                               ),
                               Text("امريكي",
                                   style: TextStyle(
-                                      color: Colors.black54, fontSize: 12.sp)),
+                                      fontFamily: "FrutigerLTArabic",
+                                      color: Colors.black54,
+                                      fontSize: 12.sp)),
                             ]),
                           ],
                         ),
@@ -125,7 +127,10 @@ class DetailScreen extends StatelessWidget {
                         SizedBox(width: 20.w),
                         Row(
                           children: [
-                            Icon(Icons.location_on, color: color1, size: 20.sp),
+                            Container(
+                                height: 20,
+                                child: Image.asset(
+                                    "assets/images/ic_location.png")),
                             myTitle(
                                 color: Color(0xff717171),
                                 font: 12.sp,
@@ -229,7 +234,12 @@ class DetailScreen extends StatelessWidget {
                         font: 14.sp,
                         color: Color(0xff3D3D3D)),
                     SizedBox(width: 20.w),
-                    Text("57"),
+                    Text(
+                      "57",
+                      style: TextStyle(
+                        fontFamily: "FrutigerLTArabic",
+                      ),
+                    ),
                     SizedBox(width: .45.sw),
                     IconButton(
                         onPressed: () {
@@ -275,11 +285,18 @@ class LabolOfSecondListView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("سموكي باربكيو",
-                    style: TextStyle(color: Colors.black, fontSize: 14.sp)),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14.sp,
+                      fontFamily: "FrutigerLTArabic",
+                    )),
                 SizedBox(height: 10.h),
                 Row(children: [
                   Text("15 ريال",
-                      style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
+                      style: TextStyle(
+                          fontFamily: "FrutigerLTArabic",
+                          color: Colors.black54,
+                          fontSize: 12.sp)),
                 ]),
               ],
             ),

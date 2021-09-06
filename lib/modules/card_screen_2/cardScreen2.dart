@@ -111,7 +111,7 @@ class CardScreen2 extends StatelessWidget {
                               title: "2 ريال",
                               color: Colors.black45,
                               font: 12.sp),
-                          SizedBox(width: .35.sw),
+                          SizedBox(width: .32.sw),
                           Image.asset("assets/images/m1.png")
                         ],
                       ),
@@ -128,7 +128,7 @@ class CardScreen2 extends StatelessWidget {
                                     title: "نيسان | 213123 | ازرق",
                                     color: Colors.black38,
                                     font: 16.sp),
-                                SizedBox(width: .25.sw),
+                                SizedBox(width: .23.sw),
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.black38,
@@ -175,7 +175,7 @@ class CardScreen2 extends StatelessWidget {
                         title: "الذهاب للمطعم",
                         color: Colors.black,
                         font: 16.sp),
-                    SizedBox(width: .4.sw),
+                    SizedBox(width: .33.sw),
                     Image.asset("assets/images/m2.png")
                   ],
                 ),

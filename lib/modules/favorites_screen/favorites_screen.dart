@@ -63,10 +63,19 @@ class FavoriteItem extends StatelessWidget {
             children: [
               Text(
                 title!,
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 17),
+                style: TextStyle(
+                    fontFamily: "FrutigerLTArabic",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 17),
               ),
-              Text('ماكدونالد', style: TextStyle(color: Colors.grey.shade600)),
-              Text('15 ريال', style: TextStyle(color: Colors.grey.shade600)),
+              Text('ماكدونالد',
+                  style: TextStyle(
+                      fontFamily: "FrutigerLTArabic",
+                      color: Colors.grey.shade600)),
+              Text('15 ريال',
+                  style: TextStyle(
+                      fontFamily: "FrutigerLTArabic",
+                      color: Colors.grey.shade600)),
             ],
           ),
           Spacer(),

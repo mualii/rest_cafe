@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rest_cafe/shared/Model/OrderCurrentAndEnd.dart';
-import 'package:rest_cafe/shared/components/components.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/shared/components/components.dart';
 
 import 'Screens/Tabar_Screen.dart';
-import 'Widgets/OrderCard.dart';
 
 class OrderCurrentAndEnd extends StatelessWidget {
   @override
@@ -21,7 +18,6 @@ class OrderCurrentAndEnd extends StatelessWidget {
         body: DefaultTabController(
           length: 2,
           child: Column(
-
             children: <Widget>[
               Container(
                 width: .85.sw,
@@ -42,12 +38,16 @@ class OrderCurrentAndEnd extends StatelessWidget {
                     Tab(
                       child: Text(
                         "الحالية",
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(
+                            fontFamily: "FrutigerLTArabic",
+                            color: Colors.black),
                       ),
                     ),
                     Tab(
                       child: Text("المنتهية",
-                          style: TextStyle(color: Colors.black)),
+                          style: TextStyle(
+                              fontFamily: "FrutigerLTArabic",
+                              color: Colors.black)),
                     ),
                   ],
                 ),
@@ -67,4 +67,3 @@ class OrderCurrentAndEnd extends StatelessWidget {
     );
   }
 }
-

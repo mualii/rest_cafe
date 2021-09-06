@@ -21,6 +21,7 @@ class TextShowTimer extends StatelessWidget {
             Text(
               "أرسل رمز التحقق مرة أخرى",
               style: TextStyle(
+                fontFamily: "FrutigerLTArabic",
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
                 textBaseline: TextBaseline.alphabetic,

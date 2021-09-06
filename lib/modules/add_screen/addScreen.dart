@@ -213,7 +213,7 @@ class AddScreen extends StatelessWidget {
                           ),
                           child: Center(
                             child: myTitle(
-                                color: color1, title: "$count", font: 30.sp),
+                                color: color1, title: "$count", font: 25.sp),
                           )),
                       InkWell(
                         onTap: () {

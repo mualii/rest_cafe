@@ -67,8 +67,13 @@ class BranchesScreen extends StatelessWidget {
                                 font: 14.sp,
                                 color: Color(0xff3D3D3D)),
                             SizedBox(width: 20.w),
-                            Text("57"),
-                            SizedBox(width: .49.sw),
+                            Text(
+                              "57",
+                              style: TextStyle(
+                                fontFamily: "FrutigerLTArabic",
+                              ),
+                            ),
+                            Spacer(),
                             IconButton(
                                 onPressed: () {
                                   navigateAndFinish(context, DetailScreen());
@@ -139,15 +144,21 @@ class LabolOfSecondListView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("1160 Ejani Center",
-                    style: TextStyle(color: Colors.black, fontSize: 14.sp)),
-                SizedBox(height: 10.h),
+                    style: TextStyle(
+                        fontFamily: "FrutigerLTArabic",
+                        color: Colors.black,
+                        fontSize: 14.sp)),
+                // SizedBox(height: 5.h),
                 Row(children: [
                   Icon(
                     FontAwesomeIcons.utensils,
                     color: color1,
                   ),
                   Text("5 km",
-                      style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
+                      style: TextStyle(
+                          fontFamily: "FrutigerLTArabic",
+                          color: Colors.black54,
+                          fontSize: 12.sp)),
                 ]),
               ],
             ),

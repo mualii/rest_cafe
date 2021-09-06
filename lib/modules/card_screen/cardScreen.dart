@@ -109,7 +109,10 @@ class CardScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         "السابق",
-                        style: TextStyle(fontSize: 16.sp, color: color1),
+                        style: TextStyle(
+                            fontFamily: "FrutigerLTArabic",
+                            fontSize: 16.sp,
+                            color: color1),
                       ),
                     ),
                   ),
@@ -257,7 +260,7 @@ class ListViewCont extends StatelessWidget {
                           ),
                           child: Center(
                             child: myTitle(
-                                color: color1, title: "$count", font: 30.sp),
+                                color: color1, title: "$count", font: 18.sp),
                           )),
                       InkWell(
                         onTap: () {
