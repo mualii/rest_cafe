@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rest_cafe/layout/LayoutScreen.dart';
+import 'package:rest_cafe/modules/splash_screen/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         //     theme: ThemeData(unselectedWidgetColor: Colors.red,tabBarTheme:TabBarTheme(unselectedLabelColor: Colors.red ) ),
 
         // theme: ThemeData(
-        //   textTheme: GoogleFonts.cairoTextTheme(
+        //   textTheme: GoogleFonts.Superclarendon(
         //     Theme.of(context).textTheme.copyWith(
         //           headline6: TextStyle(
         //             fontSize: 18.sp,
@@ -88,12 +88,11 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: LayoutScreen(),
+        home: SplashScreen(),
       ),
     );
   }
 }
-
 
 class MyPage extends StatefulWidget {
   @override

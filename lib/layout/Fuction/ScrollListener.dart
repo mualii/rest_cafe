@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // تم عملة جلوبل حتى يسمع فى جميع الصفحات
 
 ScrollController scrollController = ScrollController();
 
-
 class ScrollListener extends ChangeNotifier {
   double bottom = 0;
   double _last = 0;
 
-  ScrollListener.initialise(ScrollController controller, [double height = 100]) {
+  ScrollListener.initialise(ScrollController controller,
+      [double height = 100]) {
     controller.addListener(() {
       final current = controller.offset;
       bottom += _last - current;

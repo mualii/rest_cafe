@@ -4,6 +4,8 @@ import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
 class FavoritesScreen extends StatelessWidget {
+  ScrollController controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +39,7 @@ class FavoriteItem extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-    //  height: 0.16.sh,
+      //  height: 0.16.sh,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,

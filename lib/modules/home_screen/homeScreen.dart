@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
-import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeState.dart';
@@ -27,8 +26,8 @@ class HomeScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-              extendBody: true,
-         //   backgroundColor: Colors.white,
+            extendBody: true,
+            //   backgroundColor: Colors.white,
             body: SafeArea(
               child: Container(
                 padding: EdgeInsets.all(20.0.sp),
@@ -62,30 +61,31 @@ class HomeScreen extends StatelessWidget {
                           Spacer(),
                           //   SizedBox(width: .404.sw),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               navigateTo(context, NotificationsScreen());
                             },
                             child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 15),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xffF1F1F3),),
+                                color: Color(0xffF1F1F3),
+                              ),
                               child: Badge(
                                 animationType: BadgeAnimationType.scale,
                                 badgeContent: Container(
                                   alignment: Alignment.center,
-
-
-                                  margin: EdgeInsets.symmetric(vertical: 1,horizontal: 0) ,
-                                  padding:EdgeInsets.symmetric(vertical: 1,horizontal: 1) ,
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 1, horizontal: 0),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 1, horizontal: 1),
                                 ),
                                 badgeColor: Color(0xff4CB379),
-                                child:  Icon(Icons.notifications_none,
+                                child: Icon(Icons.notifications_none,
                                     size: 20.sp, color: Colors.black),
                               ),
                             ),
                           )
-
                         ],
                       ),
                       SizedBox(height: 20.h),
@@ -105,16 +105,16 @@ class HomeScreen extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: false,
                             itemBuilder: (context, index) => InkWell(
-                              onTap: () {
-                                HomeCubit.get(context)
-                                    .changeListItem(index);
-                              },
-                              child: labolOfFristListView(
-                                index: index,
-                                text: "المطاعم",
-                                icon: FontAwesomeIcons.utensils,
-                              ),
-                            ),
+                                  onTap: () {
+                                    HomeCubit.get(context)
+                                        .changeListItem(index);
+                                  },
+                                  child: labolOfFristListView(
+                                    index: index,
+                                    text: "المطاعم",
+                                    icon: FontAwesomeIcons.utensils,
+                                  ),
+                                ),
                             separatorBuilder: (context, index) =>
                                 SizedBox(width: 10.w),
                             itemCount: 7),
@@ -122,9 +122,10 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 10.h),
                       // LabolOfSecondListView()
                       Container(
-                      //  height: .6.sh,
+                        //  height: .6.sh,
                         child: ListView.separated(
-                            shrinkWrap: true,physics: BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            physics: BouncingScrollPhysics(),
                             itemBuilder: (context, index) => InkWell(
                                 onTap: () {
                                   navigateTo(context, DetailScreen());
@@ -134,7 +135,6 @@ class HomeScreen extends StatelessWidget {
                                 SizedBox(height: 10.h),
                             itemCount: 10),
                       ),
-
                     ],
                   ),
                 ),
@@ -163,7 +163,7 @@ class LabolOfSecondListView extends StatelessWidget {
               height: 100.h,
               width: 90.w,
               decoration: BoxDecoration(
-                // border: Border.all(color: Color(0xffDADADA)),
+                  // border: Border.all(color: Color(0xffDADADA)),
                   borderRadius: BorderRadius.circular(20.sp)),
               child: Image.asset("assets/images/mac.png"),
             ),
@@ -175,21 +175,30 @@ class LabolOfSecondListView extends StatelessWidget {
                     style: TextStyle(color: Colors.black, fontSize: 16.sp)),
                 SizedBox(height: 10.h),
                 Row(children: [
-                  Icon(
-                    FontAwesomeIcons.utensils,
-                    color: color1,
-                    size: 15.sp,
-                  ),
+                  Container(
+                      height: 20,
+                      child: Image.asset("assets/images/ic_restaurant.png")),
+                  SizedBox(width: 5.w),
                   Text("ياباني",
                       style: TextStyle(color: Colors.black54, fontSize: 12.sp)),
                 ]),
                 SizedBox(height: 20.h),
                 Row(
                   children: [
-                    Icon(Icons.location_on_rounded, color: color1),
-                    Text("ياباني",
-                        style:
-                        TextStyle(color: Colors.black54, fontSize: 12.sp)),
+                    Container(
+                        height: 20,
+                        child: Image.asset("assets/images/ic_location.png")),
+                    SizedBox(width: 5.w),
+                    Row(
+                      children: [
+                        Text("Km",
+                            style: TextStyle(
+                                color: Colors.black54, fontSize: 12.sp)),
+                        Text(" 5",
+                            style: TextStyle(
+                                color: Colors.black54, fontSize: 12.sp)),
+                      ],
+                    ),
                   ],
                 ),
               ],
@@ -202,9 +211,14 @@ class LabolOfSecondListView extends StatelessWidget {
                 Spacer(),
                 Row(
                   children: [
-                    Icon(Icons.access_time_filled, color: color1,size: 15.sp,),
+                    Icon(
+                      Icons.access_time_filled,
+                      color: color1,
+                      size: 15.sp,
+                    ),
                     Text("45 دقيقة",
-                        style: TextStyle(color: Colors.black38, fontSize: 12.sp)),
+                        style:
+                            TextStyle(color: Colors.black38, fontSize: 12.sp)),
                   ],
                 ),
                 SizedBox(height: 1.h)
@@ -253,12 +267,12 @@ class labolOfFristListView extends StatelessWidget {
       width: 90.w,
       decoration: index == HomeCubit.get(context).currentIndex
           ? BoxDecoration(
-        borderRadius: BorderRadius.circular(10.sp),
-        color: color1,
-      )
+              borderRadius: BorderRadius.circular(10.sp),
+              color: color1,
+            )
           : BoxDecoration(
-        borderRadius: BorderRadius.circular(10.sp),
-      ),
+              borderRadius: BorderRadius.circular(10.sp),
+            ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
