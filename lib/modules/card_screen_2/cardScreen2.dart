@@ -317,7 +317,10 @@ class CardScreen2 extends StatelessWidget {
                       child: Center(
                         child: Text(
                           "السابق",
-                          style: TextStyle(fontSize: 16, color: color1),
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontFamily: "FrutigerLTArabic"),
                         ),
                       ),
                     ),

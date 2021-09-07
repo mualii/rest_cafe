@@ -29,7 +29,9 @@ class DetailScreen extends StatelessWidget {
               flexibleSpace: SafeArea(
                 child: Column(
                   children: [
+                    SizedBox(height: 20),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(width: .03.sw),
                         Container(
@@ -54,25 +56,6 @@ class DetailScreen extends StatelessWidget {
                               },
                               child: Image.asset("assets/images/ic_cart.png")),
                         ),
-                        // IconButton(
-                        //   onPressed: () {
-                        //     showDialog(
-                        //       barrierDismissible: false,
-                        //       context: context,
-                        //       builder: (context) {
-                        //         return Dialog(
-                        //           insetPadding: EdgeInsets.all(20),
-                        //           shape: RoundedRectangleBorder(
-                        //               borderRadius: BorderRadius.circular(20)),
-                        //           child: CardScreen(),
-                        //         );
-                        //       },
-                        //       barrierColor: Colors.white10, //AddScreen()
-                        //     );
-                        //   },
-                        //   icon: Icon(FontAwesomeIcons.cartPlus),
-                        //   color: Colors.grey,
-                        // ),
                         SizedBox(width: .29.sw),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -88,11 +71,10 @@ class DetailScreen extends StatelessWidget {
                                 font: 16.sp,
                                 color: Colors.black),
                             Row(children: [
-                              Icon(
-                                FontAwesomeIcons.utensils,
-                                color: color1,
-                                size: 20.sp,
-                              ),
+                              Container(
+                                  height: 20,
+                                  child: Image.asset(
+                                      "assets/images/ic_restaurant.png")),
                               Text("امريكي",
                                   style: TextStyle(
                                       fontFamily: "FrutigerLTArabic",
@@ -113,15 +95,15 @@ class DetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 5.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Divider(
-                        height: 3.h,
+                        height: 2.h,
                         color: Color(0xffD8D8D8),
                       ),
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 5.h),
                     Row(
                       children: [
                         SizedBox(width: 20.w),
@@ -134,7 +116,14 @@ class DetailScreen extends StatelessWidget {
                             myTitle(
                                 color: Color(0xff717171),
                                 font: 12.sp,
-                                title: "5 km")
+                                title: "km"),
+                            Text(
+                              "5",
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Color(0xff717171),
+                              ),
+                            )
                           ],
                         ),
                         SizedBox(width: 30.w),
@@ -217,6 +206,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
             ),
+            backgroundColor: Color(0xffF7F7F7),
             bottomSheet: Container(
               decoration: BoxDecoration(
                   color: Colors.white10,
@@ -266,6 +256,7 @@ class LabolOfSecondListView extends StatelessWidget {
     return Container(
       height: 80.h,
       decoration: BoxDecoration(
+          color: Colors.white,
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
       child: Padding(

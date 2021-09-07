@@ -40,7 +40,10 @@ class AddScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: isFav
-                              ? Icon(Icons.favorite_border_outlined)
+                              ? Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: Colors.grey,
+                                )
                               : Icon(
                                   Icons.favorite,
                                   color: color1,

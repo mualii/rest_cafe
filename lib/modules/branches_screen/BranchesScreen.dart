@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/states.dart';
@@ -150,10 +149,10 @@ class LabolOfSecondListView extends StatelessWidget {
                         fontSize: 14.sp)),
                 // SizedBox(height: 5.h),
                 Row(children: [
-                  Icon(
-                    FontAwesomeIcons.utensils,
-                    color: color1,
-                  ),
+                  Container(
+                      height: 20,
+                      child: Image.asset("assets/images/ic_location.png")),
+                  SizedBox(width: 10),
                   Text("5 km",
                       style: TextStyle(
                           fontFamily: "FrutigerLTArabic",

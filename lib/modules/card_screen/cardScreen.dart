@@ -112,7 +112,7 @@ class CardScreen extends StatelessWidget {
                         style: TextStyle(
                             fontFamily: "FrutigerLTArabic",
                             fontSize: 16.sp,
-                            color: color1),
+                            color: Colors.black),
                       ),
                     ),
                   ),
@@ -165,9 +165,43 @@ class ListViewCont extends StatelessWidget {
                             ),
                           ),
                           animType: AnimType.BOTTOMSLIDE,
-                          title: "حذف منتج",
-                          desc:
-                              "هل أنت متأكد من حذف سموكي باربكيو من قائمة المنتجات",
+                          // title: "حذف منتج",
+                          // desc: "هل أنت متأكد من حذف "
+                          //     "سموكي باربكيو"
+                          //     " من قائمة المنتجات",
+                          body: Column(
+                            children: [
+                              Text(
+                                "حذف منتج",
+                                style: TextStyle(
+                                  color: color1,
+                                  fontFamily: "FrutigerLTArabic",
+                                ),
+                              ),
+                              Text(
+                                "هل أنت متأكد من حذف",
+                                style: TextStyle(
+                                  fontFamily: "FrutigerLTArabic",
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "سموكي باربكيو ",
+                                    style: TextStyle(
+                                        fontFamily: "FrutigerLTArabic",
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "من قائمة المنتجات",
+                                    style: TextStyle(
+                                        fontFamily: "FrutigerLTArabic"),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
 
                           btnOk: ElevatedButton(
                             onPressed: () {
@@ -212,7 +246,7 @@ class ListViewCont extends StatelessWidget {
                                         side: BorderSide(
                                             color: Color(0xffC3C6D1))))),
                             child: Text(
-                              "حزف",
+                              "حذف",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),

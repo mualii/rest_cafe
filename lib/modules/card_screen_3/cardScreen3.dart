@@ -257,7 +257,7 @@ class CardScreen3 extends StatelessWidget {
                           style: TextStyle(
                               fontFamily: "FrutigerLTArabic",
                               fontSize: 16,
-                              color: color1),
+                              color: Colors.black),
                         ),
                       ),
                     ),
