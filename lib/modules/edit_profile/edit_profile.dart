@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rest_cafe/shared/components/components.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rest_cafe/shared/components/components.dart';
 
 class EditProfile extends StatelessWidget {
   @override
@@ -37,7 +37,7 @@ class EditProfile extends StatelessWidget {
                       color: Colors.white),
                   child: Center(
                       child: Text(
-                    '+966',
+                    '966+',
                     style: TextStyle(fontSize: 18),
                   )),
                 ),
@@ -47,6 +47,7 @@ class EditProfile extends StatelessWidget {
                   child: DetailsField(
                     title: 'رقم الهاتف',
                     iconData: Icons.call,
+                    isIcon: false,
                   ),
                 ),
               ],

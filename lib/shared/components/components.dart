@@ -14,7 +14,7 @@ Widget defaultFormField({
   bool isPassword = false,
   String? Function(String?)? validate,
   String? label,
-  IconData? prefix,
+  Widget? prefix,
   Widget? suffix,
   double? height = 50,
   VoidCallback? suffixPressed,
@@ -49,10 +49,9 @@ Widget defaultFormField({
               color: Color(0xffAAAAAA),
             ),
             labelText: label,
-            prefixIcon: Icon(
-              prefix,
-              color: color,
-            ),
+            prefixIcon: prefix,
+            // color: color,
+
             suffixIcon: suffix != null
                 ? IconButton(
                     onPressed: suffixPressed,
@@ -233,11 +232,11 @@ class SettingsOption extends StatelessWidget {
 class CircleCheckBox extends StatelessWidget {
   bool select;
   ValueChanged<bool> onValueChanged;
-  Color changeColor;
-  CircleCheckBox(
-      {required this.select,
-      required this.onValueChanged,
-      this.changeColor = const Color(0xff2FB3CA)});
+
+  CircleCheckBox({
+    required this.select,
+    required this.onValueChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +256,7 @@ class CircleCheckBox extends StatelessWidget {
                 child: Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: select ? changeColor : Colors.white,
+                color: select ? color1 : Colors.white,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
@@ -270,7 +269,7 @@ class CircleCheckBox extends StatelessWidget {
                     : Icon(
                         Icons.check_box_outline_blank,
                         size: 22.0.sp,
-                        color: select ? Color(0xff2FB3CA) : Colors.white,
+                        color: select ? color1 : Colors.white,
                       ),
               ),
             )),

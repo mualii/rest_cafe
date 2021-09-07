@@ -13,7 +13,7 @@ import 'package:rest_cafe/shared/styles/colors.dart';
 
 class CardScreen extends StatelessWidget {
   int count = 1;
-
+  bool isFav = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +25,25 @@ class CardScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: .15.sw),
+                StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setState) =>
+                      IconButton(
+                    icon: isFav
+                        ? Icon(
+                            Icons.favorite_border_outlined,
+                            color: Colors.grey,
+                          )
+                        : Icon(
+                            Icons.favorite,
+                            color: color1,
+                          ),
+                    onPressed: () {
+                      setState(() {
+                        isFav = !isFav;
+                      });
+                    },
+                  ),
+                ),
                 Center(
                     child: myTitle(
                         title: "المنتجات", font: 16.sp, color: Colors.black)),
@@ -48,7 +66,7 @@ class CardScreen extends StatelessWidget {
                       barrierDismissible: false,
                     );
                   },
-                )
+                ),
               ],
             ),
             SizedBox(height: 10.h),
@@ -317,7 +335,7 @@ class ListViewCont extends StatelessWidget {
                       ),
                       SizedBox(width: 5.w),
                       myTitle(
-                          color: Colors.black, font: 12.sp, title: "34 ريال"),
+                          color: Colors.black38, font: 12.sp, title: "34 ريال"),
                       // myTitle()
                     ],
                   )

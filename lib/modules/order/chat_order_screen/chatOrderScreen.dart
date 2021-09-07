@@ -68,10 +68,15 @@ class ChatOrderScreen extends StatelessWidget {
                                 bottomLeft: Radius.circular(20.sp))),
                         child: Padding(
                           padding: EdgeInsets.all(10.0.sp),
-                          child: myTitle(
-                              title: "السلام عليكم و رحمة الله و بركاته",
-                              font: 14.sp,
-                              color: Colors.white),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              myTitle(
+                                  title: "السلام عليكم و رحمة الله و بركاته",
+                                  font: 14.sp,
+                                  color: Colors.white),
+                            ],
+                          ),
                         ),
                       ),
                       myTitle(
@@ -79,7 +84,8 @@ class ChatOrderScreen extends StatelessWidget {
                           font: 12.sp,
                           color: Color(0xff767676))
                     ],
-                  ),
+                  ), // title: "السلام عليكم و رحمة الله و بركاته",
+
                   SizedBox(height: 20.h),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -120,10 +126,15 @@ class ChatOrderScreen extends StatelessWidget {
                                 bottomLeft: Radius.circular(20.sp))),
                         child: Padding(
                           padding: EdgeInsets.all(10.0.sp),
-                          child: myTitle(
-                              title: "اين الطعام",
-                              font: 14.sp,
-                              color: Colors.white),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              myTitle(
+                                  title: "اين الطعام",
+                                  font: 14.sp,
+                                  color: Colors.white),
+                            ],
+                          ),
                         ),
                       ),
                       myTitle(
@@ -145,8 +156,11 @@ class ChatOrderScreen extends StatelessWidget {
                 controller: massegeController,
                 type: TextInputType.text,
                 hint: "اكتب رسالتك هنا",
-                prefix: Icons.attach_file_sharp,
-                suffix: Image.asset("assets/images/ic_send.png")),
+                suffix: Icon(Icons.attach_file_sharp),
+                prefix: Container(
+                    height: 5.h,
+                    width: 5.w,
+                    child: Image.asset("assets/images/ic_send.png"))),
           )
         ],
       ),

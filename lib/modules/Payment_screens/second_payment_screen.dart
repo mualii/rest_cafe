@@ -52,14 +52,10 @@ class PaymentScreen2 extends StatelessWidget {
               SizedBox(
                 height: 0.1.sh,
               ),
-              SizedBox(
-                width: 0.95.sw,
-                height: 0.06.sh,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('اضف'),
-                  style: ElevatedButton.styleFrom(primary: Color(0xff4CB379)),
-                ),
+              mainBottom(
+                title: "اضف",
+                width: .9.sw,
+                height: 45.h,
               ),
               SizedBox(
                 height: 0.02.sh,

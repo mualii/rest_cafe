@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
 import 'package:rest_cafe/shared/components/components.dart';
@@ -230,8 +229,8 @@ class CardScreen2 extends StatelessWidget {
                                   title: "حجز طاولة",
                                   color: Colors.black,
                                   font: 16.sp),
-                              SizedBox(width: .4.sw),
-                              Image.asset("assets/images/m3.png")
+                              SizedBox(width: .41.sw),
+                              Image.asset("assets/images/3.png")
                             ],
                           ),
                           SizedBox(height: 10),
@@ -346,7 +345,7 @@ class DeliveryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: .6.sh,
+      height: .57.sh,
       padding: EdgeInsets.all(10.sp),
       child: Column(
         children: [
@@ -445,12 +444,20 @@ class DeliveryScreen extends StatelessWidget {
               myTitle(
                   title: "اضافة سيارة جديدة", color: Colors.black, font: 16.sp),
               SizedBox(height: 10.h),
-              defaultFormField(
-                  type: TextInputType.name,
-                  controller: carModelController,
-                  label: "نوع السيارة",
-                  prefix: FontAwesomeIcons.car,
-                  color: color1),
+              Row(
+                children: [
+                  SizedBox(width: 10.w),
+                  Container(
+                    width: .76.sw,
+                    child: defaultFormField(
+                        type: TextInputType.name,
+                        controller: carModelController,
+                        label: "نوع السيارة",
+                        prefix: Image.asset("assets/images/4.png"),
+                        color: color1),
+                  ),
+                ],
+              ),
               SizedBox(height: 10.h),
               Row(
                 children: [
@@ -461,7 +468,7 @@ class DeliveryScreen extends StatelessWidget {
                         type: TextInputType.name,
                         controller: carModelController,
                         label: "رقم اللوحة",
-                        prefix: FontAwesomeIcons.listOl,
+                        prefix: Image.asset("assets/images/5.png"),
                         color: color1),
                   ),
                   SizedBox(width: 20.w),
@@ -471,7 +478,7 @@ class DeliveryScreen extends StatelessWidget {
                         type: TextInputType.name,
                         controller: carModelController,
                         label: "للون السيارة",
-                        prefix: FontAwesomeIcons.swatchbook,
+                        prefix: Image.asset("assets/images/6.png"),
                         color: color1),
                   ),
                 ],
@@ -500,7 +507,7 @@ class DeliveryScreen extends StatelessWidget {
                       barrierDismissible: false,
                     );
                   },
-                  child: mainBottom(title: "اضف", width: 150.w, height: 60)),
+                  child: mainBottom(title: "اضف", width: 140.w, height: 50)),
             ],
           ),
         ],
@@ -537,7 +544,7 @@ class BookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: .4.sh,
+      height: .35.sh,
       padding: EdgeInsets.all(10.sp),
       child: Column(
         children: [
@@ -576,12 +583,20 @@ class BookingScreen extends StatelessWidget {
           StatefulBuilder(
             builder: (BuildContext ctx, StateSetter setState) => Column(
               children: [
-                defaultFormField(
-                    type: TextInputType.name,
-                    controller: numberOfPersonController,
-                    label: "نوع عدد الافراد",
-                    prefix: FontAwesomeIcons.userFriends,
-                    color: color1),
+                Row(
+                  children: [
+                    SizedBox(width: 10.w),
+                    Container(
+                      width: .77.sw,
+                      child: defaultFormField(
+                          type: TextInputType.name,
+                          controller: numberOfPersonController,
+                          label: "عدد الافراد",
+                          prefix: Image.asset("assets/images/7.png"),
+                          color: color1),
+                    ),
+                  ],
+                ),
                 SizedBox(height: 10.h),
                 Row(
                   children: [
@@ -607,7 +622,7 @@ class BookingScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(width: 10.w),
-                              Icon(FontAwesomeIcons.calendar, color: color1),
+                              Image.asset("assets/images/8.png"),
                               SizedBox(width: 10.w),
                               Text(
                                   (value == null) ? "اليوم" : value.toString()),
@@ -636,7 +651,7 @@ class BookingScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(width: 10.w),
-                              Icon(FontAwesomeIcons.clock, color: color1),
+                              Image.asset("assets/images/9.png"),
                               SizedBox(width: 10.w),
                               Text((value2 == null)
                                   ? "الساعة"
@@ -671,7 +686,7 @@ class BookingScreen extends StatelessWidget {
                       barrierDismissible: false,
                     );
                   },
-                  child: mainBottom(title: "اضف", width: 150.w, height: 60)),
+                  child: mainBottom(title: "اضف", width: 140.w, height: 50.h)),
             ],
           ),
         ],

@@ -28,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               iconData: Icon(
                 Icons.person,
                 color: Color(0xff4CB379),
-                size: 30,
+                size: 25,
               ),
               function: () {
                 Navigator.of(context)
@@ -40,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               iconData: Icon(
                 Icons.payment,
                 color: Color(0xff4CB379),
-                size: 30,
+                size: 25,
               ),
               function: () {
                 navigateTo(context, PaymentScreen1());
@@ -51,7 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               iconData: Icon(
                 Icons.language,
                 color: Color(0xff4CB379),
-                size: 30,
+                size: 25,
               ),
               function: () {
                 return showCupertinoModalPopup(
@@ -71,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               secondary: Icon(
                 Icons.notifications_none,
                 color: Color(0xff4CB379),
-                size: 30,
+                size: 25,
               ),
             ),
             Divider(),
@@ -80,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               iconData: Icon(
                 FontAwesomeIcons.lifeRing,
                 color: Color(0xff4CB379),
-                size: 30,
+                size: 25,
               ),
               function: () {},
             ),
@@ -89,54 +89,67 @@ class _ProfileScreenState extends State<ProfileScreen> {
               iconData: Icon(
                 FontAwesomeIcons.signOutAlt,
                 color: Color(0xff4CB379),
-                size: 30,
+                size: 25,
               ),
               function: () {
                 AwesomeDialog(
                   context: context,
                   //dialogType: DialogType.INFO,
-                  customHeader:
-                Container(child:Icon(Icons.info,size: 100,color: Color(0xffF96D7E),) ,),
+                  customHeader: Container(
+                    child: Icon(
+                      Icons.info,
+                      size: 100,
+                      color: Color(0xffF96D7E),
+                    ),
+                  ),
                   animType: AnimType.BOTTOMSLIDE,
                   title: "تسجيل خروج",
                   desc: "هل أنت متأكد من تسجيل خروجك بالتطبيق",
 
                   btnOk: ElevatedButton(
-
-                    onPressed: (){Navigator.pop(context);},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 10,horizontal: 5)),
-                        backgroundColor: MaterialStateProperty.all(Colors.white),
-                        elevation:MaterialStateProperty.all(0) ,
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                side: BorderSide(color: Color(0xffC3C6D1))
-                            )
-                        )
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 5)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        elevation: MaterialStateProperty.all(0),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side:
+                                        BorderSide(color: Color(0xffC3C6D1))))),
+                    child: Text(
+                      "تراجع",
+                      style: TextStyle(color: Color(0xff4CB379)),
                     ),
-                    child: Text("تراجع",style: TextStyle(color:Color(0xff4CB379) ),),
                   ),
 
                   btnCancel: ElevatedButton(
-
-                    onPressed: (){Navigator.pop(context);},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 10,horizontal: 5)),
-                        backgroundColor: MaterialStateProperty.all(Color(0xff4CB379)),
-                        elevation:MaterialStateProperty.all(0) ,
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                side: BorderSide(color: Color(0xffC3C6D1))
-                            )
-                        )
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 5)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xff4CB379)),
+                        elevation: MaterialStateProperty.all(0),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side:
+                                        BorderSide(color: Color(0xffC3C6D1))))),
+                    child: Text(
+                      "خروج",
+                      style: TextStyle(color: Colors.white),
                     ),
-                    child: Text("خروج",style: TextStyle(color:Colors.white ),),
                   ),
-
                 )..show();
-
 
                 // showDialog<String>(
                 //   context: context,

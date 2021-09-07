@@ -7,7 +7,8 @@ part 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
   PaymentCubit() : super(PaymentInitial());
-  static PaymentCubit getObject(context) => BlocProvider.of<PaymentCubit>(context);
+  static PaymentCubit getObject(context) =>
+      BlocProvider.of<PaymentCubit>(context);
 
   List<PaymentModel> listPaymentModel = [
     PaymentModel(
@@ -22,26 +23,21 @@ class PaymentCubit extends Cubit<PaymentState> {
         isSelect: false),
     PaymentModel(
         title: "فيزا 5689****",
-        image: "assets/images/pay (1).png",
+        image: "assets/images/pay (1).jpg",
         id: "3333",
         isSelect: false)
   ];
 
-  void changeSelect({required int index}){
-    listPaymentModel[index].isSelect = !  listPaymentModel[index].isSelect;
+  void changeSelect({required int index}) {
+    listPaymentModel[index].isSelect = !listPaymentModel[index].isSelect;
 
-
-    for(int i=0 ; i<listPaymentModel.length ; i++){
-      if(i ==index){
-      }
-      else{
+    for (int i = 0; i < listPaymentModel.length; i++) {
+      if (i == index) {
+      } else {
         listPaymentModel[i].isSelect = false;
       }
-
     }
 
     emit(PaymentChangeSelect());
   }
-
-
 }

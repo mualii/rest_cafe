@@ -43,7 +43,10 @@ class BranchesScreen extends StatelessWidget {
               backgroundColor: Colors.white,
               elevation: 1,
             ),
-            body: Image.asset("assets/images/location.png"),
+            body: Image.asset(
+              "assets/images/google-location-history-screenshot-1.jpg",
+              fit: BoxFit.cover,
+            ),
             bottomSheet: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -140,6 +143,7 @@ class LabolOfSecondListView extends StatelessWidget {
             ),
             SizedBox(width: 20.w),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("1160 Ejani Center",

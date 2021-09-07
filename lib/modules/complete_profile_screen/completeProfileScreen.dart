@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/styles/colors.dart';
 
 class CompleteProfileScreen extends StatelessWidget {
   var _nameController = TextEditingController();
@@ -42,7 +43,10 @@ class CompleteProfileScreen extends StatelessWidget {
                   type: TextInputType.name,
                   hint: "الاسم",
                   color: Color(0xff4CB379),
-                  prefix: (Icons.person_outline)),
+                  prefix: Icon(
+                    Icons.person_outline,
+                    color: color1,
+                  )),
             ),
             SizedBox(height: 15.h),
             Container(
@@ -52,7 +56,10 @@ class CompleteProfileScreen extends StatelessWidget {
                   type: TextInputType.emailAddress,
                   hint: "الايميل  اختيارى",
                   color: Color(0xff4CB379),
-                  prefix: (Icons.email_outlined)),
+                  prefix: Icon(
+                    Icons.email_outlined,
+                    color: color1,
+                  )),
             ),
             Spacer(),
             InkWell(

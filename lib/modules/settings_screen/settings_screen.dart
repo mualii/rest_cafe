@@ -98,7 +98,7 @@ class SettingsScreen extends StatelessWidget {
             function: () {},
           ),
           SettingsOption(
-            title: 'تقيم التطبيق',
+            title: 'تقييم التطبيق',
             iconData: Icon(
               FontAwesomeIcons.thumbsUp,
               color: Color(0xff4CB379),

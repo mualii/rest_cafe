@@ -25,7 +25,7 @@ class SaveLocationScreen extends StatelessWidget {
                 controller: _searchController,
                 type: TextInputType.name,
                 label: "بحث",
-                prefix: Icons.search),
+                prefix: Icon(Icons.search)),
           ],
         ),
         automaticallyImplyLeading: false,
@@ -38,57 +38,55 @@ class SaveLocationScreen extends StatelessWidget {
       body: Column(
         children: [
           Stack(
+            alignment: AlignmentDirectional.bottomCenter,
             children: [
               Container(
                 height: .79.sh,
                 width: double.infinity,
                 child: Image.asset(
                   "assets/images/google-location-history-screenshot-1.jpg",
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
-              Positioned(
-                bottom: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                      // color: Colors.white10,
-                      color: Colors.grey[100],
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30.sp),
-                          topLeft: Radius.circular(30.sp))),
-                  width: double.infinity,
-                  height: 120.h,
-                  child: Padding(
-                    padding: EdgeInsets.all(10.sp),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Row(
-                            children: [
-                              myTitle(
-                                  title: "Vamajo Loop",
-                                  font: 18.sp,
-                                  color: Color(0xff727272)),
-                              myTitle(
-                                  title: "43242",
-                                  font: 18.sp,
-                                  color: Color(0xff727272)),
-                            ],
-                          ),
+              Container(
+                decoration: BoxDecoration(
+                    // color: Colors.white10,
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30.sp),
+                        topLeft: Radius.circular(30.sp))),
+                width: double.infinity,
+                // height: 120.h,
+                child: Padding(
+                  padding: EdgeInsets.all(10.sp),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Row(
+                          children: [
+                            myTitle(
+                                title: "Vamajo Loop",
+                                font: 18.sp,
+                                color: Color(0xff727272)),
+                            myTitle(
+                                title: "43242",
+                                font: 18.sp,
+                                color: Color(0xff727272)),
+                          ],
                         ),
-                        SizedBox(height: 10.h),
-                        InkWell(
-                          onTap: () {
-                            navigateTo(context, LayoutScreen());
-                          },
-                          child: mainBottom(
-                              title: "تاكيد وحفظ العنوان",
-                              height: 50.h,
-                              width: .8.sw),
-                        ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 10.h),
+                      InkWell(
+                        onTap: () {
+                          navigateTo(context, LayoutScreen());
+                        },
+                        child: mainBottom(
+                            title: "تاكيد وحفظ العنوان",
+                            height: 50.h,
+                            width: .8.sw),
+                      ),
+                    ],
                   ),
                 ),
               ),

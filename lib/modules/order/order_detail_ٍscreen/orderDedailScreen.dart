@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/order/chat_order_screen/chatOrderScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
@@ -17,16 +16,14 @@ class OrderDetailScreen extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(width: .03.sw),
-                  Container(
-                    height: 40.h,
-                    width: 40.w,
-                    child: InkWell(
-                        onTap: () {},
-                        child: IconButton(
-                            onPressed: () {
-                              navigateTo(context, ChatOrderScreen());
-                            },
-                            icon: Icon(FontAwesomeIcons.commentAlt))),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.grey,
+                    ),
                   ),
                   SizedBox(width: .29.sw),
                   Column(
@@ -45,13 +42,13 @@ class OrderDetailScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(width: .29.sw),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey,
+                  Container(
+                    height: 40.h,
+                    child: InkWell(
+                      onTap: () {
+                        navigateTo(context, ChatOrderScreen());
+                      },
+                      child: Image.asset("assets/images/11.png"),
                     ),
                   ),
                 ],
@@ -146,12 +143,12 @@ class OrderDetailScreen extends StatelessWidget {
                 topLeft: Radius.circular(40.sp))),
         child: Row(
           children: [
-            Text("95 ريال"),
-            SizedBox(width: .03.sw),
+            mainBottom(title: "انهاء الطلب", height: 50.h, width: .4.sw),
+            SizedBox(width: .2.sw),
             Container(
                 height: 30, child: Image.asset("assets/images/pay (1).jpg")),
-            SizedBox(width: .2.sw),
-            mainBottom(title: "انهاء الطلب", height: 50.h, width: .4.sw)
+            SizedBox(width: .03.sw),
+            Text("95 ريال"),
           ],
         ),
       ),
@@ -168,10 +165,36 @@ class ListModle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+          color: Colors.white,
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Column(
+            children: [
+              SizedBox(height: 25.h),
+              Row(
+                children: [
+                  Icon(Icons.arrow_back_ios, color: Colors.black54),
+                  myTitle(
+                      color: Colors.black54, font: 14.sp, title: "الاضافات"),
+                ],
+              )
+            ],
+          ),
+          SizedBox(width: 50.w),
+          Column(
+            children: [
+              myTitle(title: "سموكي باربكيو", font: 14.sp, color: Colors.black),
+              Row(
+                children: [
+                  myTitle(title: "2x", font: 14.sp, color: color1),
+                  myTitle(title: "34 ريال", font: 14.sp, color: Colors.black54),
+                ],
+              ),
+            ],
+          ),
           InkWell(
             onTap: () {
               showModalBottomSheet(
@@ -204,59 +227,59 @@ class ListModle extends StatelessWidget {
                               Row(
                                 children: [
                                   myTitle(
-                                      title: "مشروم",
-                                      font: 14.sp,
-                                      color: Colors.black),
-                                  Spacer(),
-                                  myTitle(
                                       title: "2 ريال",
                                       font: 14.sp,
                                       color: Colors.black54),
+                                  Spacer(),
+                                  myTitle(
+                                      title: "مشروم",
+                                      font: 14.sp,
+                                      color: Colors.black),
                                 ],
                               ),
                               Divider(color: Colors.grey),
                               SizedBox(height: 5),
                               Row(
                                 children: [
+                                  myTitle(
+                                      title: "2 ريال",
+                                      font: 14.sp,
+                                      color: Colors.black54),
+                                  Spacer(),
                                   myTitle(
                                       title: "بصل",
                                       font: 14.sp,
                                       color: Colors.black),
-                                  Spacer(),
-                                  myTitle(
-                                      title: "2 ريال",
-                                      font: 14.sp,
-                                      color: Colors.black54),
                                 ],
                               ),
                               Divider(color: Colors.grey),
                               SizedBox(height: 5),
                               Row(
                                 children: [
+                                  myTitle(
+                                      title: "2 ريال",
+                                      font: 14.sp,
+                                      color: Colors.black54),
+                                  Spacer(),
                                   myTitle(
                                       title: "حار",
                                       font: 14.sp,
                                       color: Colors.black),
-                                  Spacer(),
-                                  myTitle(
-                                      title: "",
-                                      font: 14.sp,
-                                      color: Colors.black54),
                                 ],
                               ),
                               Divider(color: Colors.grey),
                               SizedBox(height: 5),
                               Row(
                                 children: [
+                                  myTitle(
+                                      title: "2 ريال",
+                                      font: 14.sp,
+                                      color: Colors.black54),
+                                  Spacer(),
                                   myTitle(
                                       title: "بيض",
                                       font: 14.sp,
                                       color: Colors.black),
-                                  Spacer(),
-                                  myTitle(
-                                      title: "2 ريال",
-                                      font: 14.sp,
-                                      color: Colors.black54),
                                 ],
                               ),
                               Divider(color: Colors.grey),
@@ -264,14 +287,14 @@ class ListModle extends StatelessWidget {
                               Row(
                                 children: [
                                   myTitle(
-                                      title: "الجبن",
-                                      font: 14.sp,
-                                      color: Colors.black),
-                                  Spacer(),
-                                  myTitle(
                                       title: "2 ريال",
                                       font: 14.sp,
                                       color: Colors.black54),
+                                  Spacer(),
+                                  myTitle(
+                                      title: "الجبن",
+                                      font: 14.sp,
+                                      color: Colors.black),
                                 ],
                               ),
                             ],
@@ -280,32 +303,10 @@ class ListModle extends StatelessWidget {
                       ));
             },
             child: Container(
-                height: 80.h, child: Image.asset("assets/images/Bourger.png")),
+                height: 80.h,
+                width: 70.w,
+                child: Image.asset("assets/images/Bourger.png")),
           ),
-          Column(
-            children: [
-              myTitle(title: "سموكي باربكيو", font: 14.sp, color: Colors.black),
-              Row(
-                children: [
-                  myTitle(title: "2x", font: 14.sp, color: color1),
-                  myTitle(title: "34 ريال", font: 14.sp, color: Colors.black54),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(width: 35.w),
-          Column(
-            children: [
-              SizedBox(height: 25.h),
-              Row(
-                children: [
-                  myTitle(
-                      color: Colors.black54, font: 14.sp, title: "الاضافات"),
-                  Icon(Icons.arrow_forward_ios, color: Colors.black54)
-                ],
-              )
-            ],
-          )
         ],
       ),
     );

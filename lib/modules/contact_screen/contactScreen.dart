@@ -55,13 +55,19 @@ class ContactScreen extends StatelessWidget {
               defaultFormField(
                   controller: nameController,
                   type: TextInputType.name,
-                  prefix: Icons.person,
+                  prefix: Icon(
+                    Icons.person,
+                    color: color1,
+                  ),
                   hint: "الاسم"),
               SizedBox(height: 10.h),
               defaultFormField(
                   controller: mailController,
                   type: TextInputType.emailAddress,
-                  prefix: Icons.email,
+                  prefix: Icon(
+                    Icons.email,
+                    color: color1,
+                  ),
                   hint: "الايميل"),
               Row(
                 children: [

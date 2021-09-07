@@ -36,6 +36,12 @@ class OrderCurrentAndEnd extends StatelessWidget {
 
                   tabs: [
                     Tab(
+                      child: Text("المنتهية",
+                          style: TextStyle(
+                              fontFamily: "FrutigerLTArabic",
+                              color: Colors.black)),
+                    ),
+                    Tab(
                       child: Text(
                         "الحالية",
                         style: TextStyle(
@@ -43,20 +49,14 @@ class OrderCurrentAndEnd extends StatelessWidget {
                             color: Colors.black),
                       ),
                     ),
-                    Tab(
-                      child: Text("المنتهية",
-                          style: TextStyle(
-                              fontFamily: "FrutigerLTArabic",
-                              color: Colors.black)),
-                    ),
                   ],
                 ),
               ),
               Expanded(
                 child: TabBarView(
                   children: [
-                    OrderCurrent(),
                     OrderEnd(),
+                    OrderCurrent(),
                   ],
                 ),
               ),

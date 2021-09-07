@@ -84,9 +84,9 @@ class CardScreen3 extends StatelessWidget {
                             title: "دفع بسداد",
                             font: 16.sp,
                             color: Colors.black),
-                        SizedBox(width: .3.sw),
+                        SizedBox(width: .32.sw),
                         Container(
-                            height: 20.h,
+                            height: 15.h,
                             child: Image.asset("assets/images/pay (1).png")),
                       ],
                     ),
@@ -171,7 +171,7 @@ class CardScreen3 extends StatelessWidget {
                         myTitle(
                             title: "فيزا", font: 16.sp, color: Colors.black),
                         myTitle(
-                            title: "5689****",
+                            title: "****5689",
                             font: 16.sp,
                             color: Colors.black38),
                         SizedBox(width: .25.sw),
@@ -228,7 +228,7 @@ class CardScreen3 extends StatelessWidget {
                       child: mainBottom(
                           title: "اكمل عملية الشراء",
                           width: 150.w,
-                          height: 60)),
+                          height: 50.h)),
                   InkWell(
                     onTap: () {
                       showDialog(
@@ -248,7 +248,7 @@ class CardScreen3 extends StatelessWidget {
                       height: 60.h,
                       width: 150.w,
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
+                          // border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(15.sp),
                           color: Colors.white10),
                       child: Center(

@@ -12,7 +12,7 @@ class OrderCard extends StatelessWidget {
   bool haveRate;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         navigateTo(context, OrderDetailScreen());
       },

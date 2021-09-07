@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/Payment_screens/second_payment_screen.dart';
-import 'package:rest_cafe/shared/Model/PaymentModel.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
 import 'Cubit/payment_cubit.dart';
@@ -14,10 +12,8 @@ class PaymentScreen1 extends StatefulWidget {
 }
 
 class _PaymentScreen1State extends State<PaymentScreen1> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: CustomisedAppBar(
         title: 'وسائل الدفع',
@@ -46,8 +42,8 @@ class _PaymentScreen1State extends State<PaymentScreen1> {
 
             return ListView.builder(
               shrinkWrap: true,
-              padding: EdgeInsets.symmetric(
-                  horizontal: 0.08.sw, vertical: 0.02.sh),
+              padding:
+                  EdgeInsets.symmetric(horizontal: 0.08.sw, vertical: 0.02.sh),
               itemCount: 3,
               itemBuilder: (context, index) {
                 return PaymentMethod(
@@ -93,9 +89,9 @@ class _PaymentScreen1State extends State<PaymentScreen1> {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40),
-              topRight: Radius.circular(40),
-            )),
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+        )),
         context: context,
         builder: (builder) {
           return new Container(
@@ -111,14 +107,11 @@ class _PaymentScreen1State extends State<PaymentScreen1> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.trash,
-                        color: Color(0xff4CB379),
-                      ),
+                      Image.asset("assets/images/22.png"),
                       SizedBox(
                         height: 5,
                       ),
-                      Text("حذف")
+                      Text("تعديل")
                     ],
                   ),
                   VerticalDivider(
@@ -128,10 +121,7 @@ class _PaymentScreen1State extends State<PaymentScreen1> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.checkSquare,
-                        color: Color(0xff4CB379),
-                      ),
+                      Image.asset("assets/images/21.png"),
                       SizedBox(
                         height: 5,
                       ),
@@ -145,14 +135,11 @@ class _PaymentScreen1State extends State<PaymentScreen1> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.pen,
-                        color: Color(0xff4CB379),
-                      ),
+                      Image.asset("assets/images/20.png"),
                       SizedBox(
                         height: 5,
                       ),
-                      Text("تعديل")
+                      Text("حذف")
                     ],
                   ),
                 ],
@@ -162,7 +149,6 @@ class _PaymentScreen1State extends State<PaymentScreen1> {
         });
   }
 }
-
 
 class PaymentMethod extends StatelessWidget {
   final String image;
@@ -174,7 +160,6 @@ class PaymentMethod extends StatelessWidget {
 
   PaymentMethod({
     required this.paymentCubit,
-
     required this.title,
     required this.index,
     required this.select,
