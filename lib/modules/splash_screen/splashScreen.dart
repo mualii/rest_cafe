@@ -38,9 +38,8 @@ class _SplashScreenState extends State<SplashScreen> {
           style: TextStyle(
             fontFamily: "Superclarendon",
             color: Color(0xff4CB278),
-            fontSize: 40.sp,
-            fontWeight: FontWeight.w700,
-            fontStyle: FontStyle.normal,
+            fontSize: 50.sp,
+            // fontStyle: FontStyle.normal,
           ),
         ),
       ),

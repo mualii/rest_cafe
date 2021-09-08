@@ -24,9 +24,9 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "Superclarendon",
                   color: Color(0xff4CB278),
-                  fontSize: 40.sp,
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.normal,
+                  fontSize: 45.sp,
+                  // fontWeight: FontWeight.w700,
+                  // fontStyle: FontStyle.normal,
                 ),
               ),
               //   myTitle(title: "RESTCAFE", font: 50.sp, color: color1,),
