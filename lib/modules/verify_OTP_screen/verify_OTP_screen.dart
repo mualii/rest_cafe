@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/complete_profile_screen/completeProfileScreen.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/PinCodeScreen/pin_code_Input.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/PinCodeScreen/text_sent_otp_again.dart';
@@ -106,11 +105,10 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        FaIcon(
-                          FontAwesomeIcons.pen,
-                          color: color1,
-                          size: 18.sp,
-                        ),
+                        Container(
+                            height: 20,
+                            child: Image.asset(
+                                "assets/images/ic_action_edit.png")),
                         SizedBox(
                           width: 5.w,
                         ),
