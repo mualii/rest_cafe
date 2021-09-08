@@ -30,7 +30,7 @@ class AddScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Container(
-            padding: EdgeInsets.all(10.sp),
+            padding: EdgeInsets.all(8.sp),
             child: SingleChildScrollView(
               child: Column(
                 children: [

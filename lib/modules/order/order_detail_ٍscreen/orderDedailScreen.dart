@@ -11,7 +11,7 @@ class OrderDetailScreen extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 170.h,
+          toolbarHeight: 185.h,
           flexibleSpace: SafeArea(
             child: Column(
               children: [
@@ -156,7 +156,7 @@ class OrderDetailScreen extends StatelessWidget {
               Container(
                   height: 30, child: Image.asset("assets/images/pay (1).jpg")),
               SizedBox(width: .03.sw),
-              Text("ريال" + "95"),
+              Text("ريال " + "95"),
             ],
           ),
         ),
@@ -192,7 +192,7 @@ class ListModle extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(width: 50.w),
+          SizedBox(width: 65.w),
           Column(
             children: [
               myTitle(title: "سموكي باربكيو", font: 14.sp, color: Colors.black),
@@ -223,96 +223,98 @@ class ListModle extends StatelessWidget {
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: Image.asset(
-                                        "assets/images/Bourger.png"),
-                                    height: 70.h,
-                                  ),
-                                  myTitle(
-                                      title: "سموكي باربكيو",
-                                      font: 14.sp,
-                                      color: Colors.black),
-                                  // SizedBox(height: 5.h),
-                                  myTitle(
-                                      title: "الاضافات",
-                                      font: 14.sp,
-                                      color: Colors.black),
-                                  Row(
-                                    children: [
-                                      myTitle(
-                                          title: "2 ريال",
-                                          font: 14.sp,
-                                          color: Colors.black54),
-                                      Spacer(),
-                                      myTitle(
-                                          title: "مشروم",
-                                          font: 14.sp,
-                                          color: Colors.black),
-                                    ],
-                                  ),
-                                  Divider(color: Colors.grey),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      myTitle(
-                                          title: "2 ريال",
-                                          font: 14.sp,
-                                          color: Colors.black54),
-                                      Spacer(),
-                                      myTitle(
-                                          title: "بصل",
-                                          font: 14.sp,
-                                          color: Colors.black),
-                                    ],
-                                  ),
-                                  Divider(color: Colors.grey),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      myTitle(
-                                          title: "2 ريال",
-                                          font: 14.sp,
-                                          color: Colors.black54),
-                                      Spacer(),
-                                      myTitle(
-                                          title: "حار",
-                                          font: 14.sp,
-                                          color: Colors.black),
-                                    ],
-                                  ),
-                                  Divider(color: Colors.grey),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      myTitle(
-                                          title: "2 ريال",
-                                          font: 14.sp,
-                                          color: Colors.black54),
-                                      Spacer(),
-                                      myTitle(
-                                          title: "بيض",
-                                          font: 14.sp,
-                                          color: Colors.black),
-                                    ],
-                                  ),
-                                  Divider(color: Colors.grey),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      myTitle(
-                                          title: "2 ريال",
-                                          font: 14.sp,
-                                          color: Colors.black54),
-                                      Spacer(),
-                                      myTitle(
-                                          title: "الجبن",
-                                          font: 14.sp,
-                                          color: Colors.black),
-                                    ],
-                                  ),
-                                ],
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Image.asset(
+                                          "assets/images/Bourger.png"),
+                                      height: 70.h,
+                                    ),
+                                    myTitle(
+                                        title: "سموكي باربكيو",
+                                        font: 14.sp,
+                                        color: Colors.black),
+                                    // SizedBox(height: 5.h),
+                                    myTitle(
+                                        title: "الاضافات",
+                                        font: 14.sp,
+                                        color: Colors.black),
+                                    Row(
+                                      children: [
+                                        myTitle(
+                                            title: "2 ريال",
+                                            font: 14.sp,
+                                            color: Colors.black54),
+                                        Spacer(),
+                                        myTitle(
+                                            title: "مشروم",
+                                            font: 14.sp,
+                                            color: Colors.black),
+                                      ],
+                                    ),
+                                    Divider(color: Colors.grey),
+                                    SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        myTitle(
+                                            title: "2 ريال",
+                                            font: 14.sp,
+                                            color: Colors.black54),
+                                        Spacer(),
+                                        myTitle(
+                                            title: "بصل",
+                                            font: 14.sp,
+                                            color: Colors.black),
+                                      ],
+                                    ),
+                                    Divider(color: Colors.grey),
+                                    SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        myTitle(
+                                            title: "2 ريال",
+                                            font: 14.sp,
+                                            color: Colors.black54),
+                                        Spacer(),
+                                        myTitle(
+                                            title: "حار",
+                                            font: 14.sp,
+                                            color: Colors.black),
+                                      ],
+                                    ),
+                                    Divider(color: Colors.grey),
+                                    SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        myTitle(
+                                            title: "2 ريال",
+                                            font: 14.sp,
+                                            color: Colors.black54),
+                                        Spacer(),
+                                        myTitle(
+                                            title: "بيض",
+                                            font: 14.sp,
+                                            color: Colors.black),
+                                      ],
+                                    ),
+                                    Divider(color: Colors.grey),
+                                    SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        myTitle(
+                                            title: "2 ريال",
+                                            font: 14.sp,
+                                            color: Colors.black54),
+                                        Spacer(),
+                                        myTitle(
+                                            title: "الجبن",
+                                            font: 14.sp,
+                                            color: Colors.black),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

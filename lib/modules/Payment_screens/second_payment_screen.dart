@@ -30,8 +30,8 @@ class PaymentScreen2 extends StatelessWidget {
               DetailsField(
                 title: 'الاسم بالكامل',
                 iconData: Container(
-                    height: 20,
-                    child: Image.asset("assets/images/ic_input_user.png")),
+                    height: 10,
+                    child: Image.asset("assets/images/ic_input_user.png",)),
               ),
               DetailsField(
                 title: 'رقم الكارت',

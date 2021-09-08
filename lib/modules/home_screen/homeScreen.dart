@@ -165,7 +165,7 @@ class LabolOfSecondListView extends StatelessWidget {
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
       child: Padding(
-        padding: EdgeInsets.all(8.0.sp),
+        padding: EdgeInsets.all(6.0.sp),
         child: Row(
           children: [
             Container(

@@ -32,12 +32,13 @@ class LoginScreen extends StatelessWidget {
               //   myTitle(title: "RESTCAFE", font: 50.sp, color: color1,),
               SizedBox(height: .15.sh),
               Container(
-                height: 49.h,
+                height: 57.h,
                 width: .91.sw,
                 child: InternationalPhoneNumberInput(
                   textAlign: TextAlign.right,
                   inputDecoration: InputDecoration(
                     hintText: "رقم الهاتف",
+
                     hintStyle: TextStyle(
                       color: Color(0xffAAAAAA),
                       fontSize: 16.sp,

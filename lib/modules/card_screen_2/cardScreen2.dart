@@ -131,7 +131,7 @@ class CardScreen2 extends StatelessWidget {
                                     title: "نيسان | 213123 | ازرق",
                                     color: Colors.black38,
                                     font: 16.sp),
-                                SizedBox(width: .23.sw),
+                                SizedBox(width: .25.sw),
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.black38,
@@ -253,7 +253,7 @@ class CardScreen2 extends StatelessWidget {
                                             "5 افراد | 22 Apr 2021 | 02:41AM",
                                         color: Colors.black38,
                                         font: 16.sp),
-                                    SizedBox(width: .05.sw),
+                                    SizedBox(width: .09.sw),
                                     Icon(
                                       Icons.arrow_forward_ios,
                                       color: Colors.black38,
@@ -348,7 +348,7 @@ class DeliveryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: .57.sh,
+      height: .60.sh,
       padding: EdgeInsets.all(10.sp),
       child: Column(
         children: [
@@ -547,7 +547,7 @@ class BookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: .35.sh,
+      height: .40.sh,
       padding: EdgeInsets.all(10.sp),
       child: Column(
         children: [
