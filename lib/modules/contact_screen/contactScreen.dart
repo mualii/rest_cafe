@@ -41,7 +41,9 @@ class ContactScreen extends StatelessWidget {
                       title: "543-649-3478",
                       color: Colors.black38,
                       font: 15.sp),
-                  Icon(Icons.circle, color: color1)
+                  Container(
+                      height: 20,
+                      child: Image.asset("assets/images/ic_call.png")),
                 ],
               ),
               Divider(color: Colors.grey),
@@ -57,6 +59,7 @@ class ContactScreen extends StatelessWidget {
                   type: TextInputType.name,
                   prefix: Icon(
                     Icons.person_outline_sharp,
+                    color: color1,
                   ),
                   hint: "الاسم"),
               SizedBox(height: 10.h),
@@ -65,6 +68,7 @@ class ContactScreen extends StatelessWidget {
                   type: TextInputType.emailAddress,
                   prefix: Icon(
                     Icons.email_outlined,
+                    color: color1,
                   ),
                   hint: "الايميل"),
               Row(
@@ -87,7 +91,10 @@ class ContactScreen extends StatelessWidget {
                     width: 0.65.sw,
                     child: DetailsField(
                       title: 'رقم الهاتف',
-                      iconData: Icons.call,
+                      iconData: Icon(
+                        Icons.call,
+                        color: color1,
+                      ),
                       isIcon: false,
                     ),
                   ),

@@ -23,7 +23,9 @@ Widget defaultFormField({
     Center(
       child: Container(
         // padding: EdgeInsets.zero,
-
+        // decoration: BoxDecoration(
+        //     border: Border.all(color: Colors.grey),
+        //     borderRadius: BorderRadius.circular(10)),
         height: height,
         width: .9.sw,
         child: TextFormField(
@@ -38,6 +40,11 @@ Widget defaultFormField({
           validator: validate,
           textAlign: TextAlign.right,
           decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: Colors.grey,
+                )),
             contentPadding: EdgeInsets.symmetric(vertical: 0.0),
             hintText: hint,
             hintStyle: TextStyle(
@@ -158,7 +165,7 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
 
 class DetailsField extends StatelessWidget {
   final String title;
-  final IconData iconData;
+  final Widget iconData;
   final bool? isNumeric;
   final bool? isIcon;
   final bool? isBorder;
@@ -183,11 +190,13 @@ class DetailsField extends StatelessWidget {
             fillColor: Colors.white10,
             hintText: title,
             hintStyle: TextStyle(color: Colors.grey),
-            prefixIcon: Icon(
-              iconData,
-              color: Color(0xff4CB379),
-              size: isIcon == true ? 25 : 0,
-            ),
+            prefixIcon: isIcon == true
+                ? iconData
+                : Container(
+                    width: 1,
+                  ),
+            // color: Color(0xff4CB379),
+            // size: isIcon == true ? 25 : 0,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
               borderSide: BorderSide(width: 0.8, color: Colors.grey),

@@ -63,7 +63,7 @@ class OrderDetailScreen extends StatelessWidget {
                     color: Color(0xffD8D8D8),
                   ),
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 5.h),
                 Row(
                   children: [
                     SizedBox(width: 20.w),

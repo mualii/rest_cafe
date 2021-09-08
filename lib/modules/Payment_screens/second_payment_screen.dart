@@ -29,23 +29,32 @@ class PaymentScreen2 extends StatelessWidget {
               ),
               DetailsField(
                 title: 'الاسم بالكامل',
-                iconData: Icons.person_outlined,
+                iconData: Container(
+                    height: 20,
+                    child: Image.asset("assets/images/ic_input_user.png")),
               ),
               DetailsField(
                 title: 'رقم الكارت',
-                iconData: Icons.payment,
+                iconData: Container(
+                    height: 1,
+                    width: 5,
+                    child: Image.asset("assets/images/ic_input_card.png")),
                 isNumeric: true,
               ),
               DetailsField(
                 title: 'شهر/ سنة',
-                iconData: Icons.calendar_today_outlined,
+                iconData: Container(
+                    height: 10,
+                    child: Image.asset("assets/images/ic_input_calendar.png")),
                 isNumeric: true,
               ),
               SizedBox(
                 width: 0.4.sw,
                 child: DetailsField(
                   title: 'CVV',
-                  iconData: Icons.payment,
+                  iconData: Container(
+                      height: 20,
+                      child: Image.asset("assets/images/ic_input_card.png")),
                   isNumeric: true,
                 ),
               ),

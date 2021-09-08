@@ -256,7 +256,9 @@ class ListViewCont extends StatelessWidget {
                         ),
                       )..show(); //AddScreen()
                     },
-                    icon: Image.asset("assets/images/ic_delete_item.png"),
+                    icon: Container(
+                        height: 25,
+                        child: Image.asset("assets/images/ic_delete_item.png")),
                   )
                 ],
               ),

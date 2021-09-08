@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/styles/colors.dart';
 
 class EditProfile extends StatelessWidget {
   @override
@@ -21,11 +22,11 @@ class EditProfile extends StatelessWidget {
             )),
             DetailsField(
               title: 'الاسم',
-              iconData: Icons.person_outline,
+              iconData: Icon(Icons.person_outline, size: 25, color: color1),
             ),
             DetailsField(
               title: 'الايميل',
-              iconData: Icons.email_outlined,
+              iconData: Icon(Icons.email_outlined, size: 25, color: color1),
             ),
             Row(
               children: [
@@ -46,7 +47,7 @@ class EditProfile extends StatelessWidget {
                   width: 0.65.sw,
                   child: DetailsField(
                     title: 'رقم الهاتف',
-                    iconData: Icons.call,
+                    iconData: Icon(Icons.call, size: 25, color: color1),
                     isIcon: false,
                   ),
                 ),
