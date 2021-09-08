@@ -8,60 +8,57 @@ import 'Screens/Tabar_Screen.dart';
 class OrderCurrentAndEnd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Color(0xffF7F7F7),
-        appBar: CustomisedAppBar(
-          title: 'الطلبات',
-          actions: [],
-        ),
-        body: DefaultTabController(
-          length: 2,
-          child: Column(
-            children: <Widget>[
-              Container(
-                width: .85.sw,
-                //  padding:EdgeInsets.symmetric(horizontal: 10) ,
-                decoration: BoxDecoration(
-                    //This is for background color
-                    color: Color(0xffF7F7F7),
+    return Scaffold(
+      backgroundColor: Color(0xffF7F7F7),
+      appBar: CustomisedAppBar(
+        title: 'الطلبات',
+        actions: [],
+      ),
+      body: DefaultTabController(
+        length: 2,
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: .85.sw,
+              //  padding:EdgeInsets.symmetric(horizontal: 10) ,
+              decoration: BoxDecoration(
+                  //This is for background color
+                  color: Color(0xffF7F7F7),
 
-                    //This is for bottom border that is needed
-                    border: Border(
-                        bottom: BorderSide(color: Colors.grey, width: 1))),
-                // constraints: BoxConstraints(maxHeight: 150.0),
-                child: TabBar(
-                  indicatorColor: Color(0xff4CB379),
-                  //  unselectedLabelColor:  Colors.cyan,
+                  //This is for bottom border that is needed
+                  border:
+                      Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+              // constraints: BoxConstraints(maxHeight: 150.0),
+              child: TabBar(
+                indicatorColor: Color(0xff4CB379),
+                //  unselectedLabelColor:  Colors.cyan,
 
-                  tabs: [
-                    Tab(
-                      child: Text("المنتهية",
-                          style: TextStyle(
-                              fontFamily: "FrutigerLTArabic",
-                              color: Colors.black)),
+                tabs: [
+                  Tab(
+                    child: Text(
+                      "الحالية",
+                      style: TextStyle(
+                          fontFamily: "FrutigerLTArabic", color: Colors.black),
                     ),
-                    Tab(
-                      child: Text(
-                        "الحالية",
+                  ),
+                  Tab(
+                    child: Text("المنتهية",
                         style: TextStyle(
                             fontFamily: "FrutigerLTArabic",
-                            color: Colors.black),
-                      ),
-                    ),
-                  ],
-                ),
+                            color: Colors.black)),
+                  ),
+                ],
               ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    OrderEnd(),
-                    OrderCurrent(),
-                  ],
-                ),
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  OrderCurrent(),
+                  OrderEnd(),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

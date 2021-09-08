@@ -34,7 +34,9 @@ class ChatOrderScreen extends StatelessWidget {
               myTitle(title: "ماكدونالد", color: Colors.black, font: 16.sp),
               Spacer(),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   icon: Icon(
                     Icons.clear,
                     color: Colors.grey,
@@ -69,7 +71,7 @@ class ChatOrderScreen extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(10.0.sp),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               myTitle(
                                   title: "السلام عليكم و رحمة الله و بركاته",
@@ -100,10 +102,15 @@ class ChatOrderScreen extends StatelessWidget {
                                 bottomRight: Radius.circular(20.sp))),
                         child: Padding(
                           padding: EdgeInsets.all(10.0.sp),
-                          child: myTitle(
-                              title: " عليكم  السلام و رحمة الله و بركاته",
-                              font: 14.sp,
-                              color: Colors.black),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              myTitle(
+                                  title: " عليكم  السلام و رحمة الله و بركاته",
+                                  font: 14.sp,
+                                  color: Colors.black),
+                            ],
+                          ),
                         ),
                       ),
                       myTitle(
@@ -127,7 +134,7 @@ class ChatOrderScreen extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(10.0.sp),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               myTitle(
                                   title: "اين الطعام",
@@ -149,19 +156,19 @@ class ChatOrderScreen extends StatelessWidget {
           ),
           Spacer(),
           Container(
-            // height: .1475.sh,
-            padding: EdgeInsets.all(30.sp),
-            child: defaultFormField(
+              // height: .1475.sh,
+              padding: EdgeInsets.all(30.sp),
+              child: defaultFormField(
                 height: 80.h,
                 controller: massegeController,
                 type: TextInputType.text,
                 hint: "اكتب رسالتك هنا",
-                suffix: Icon(Icons.attach_file_sharp),
-                prefix: Container(
-                    height: 5.h,
-                    width: 5.w,
-                    child: Image.asset("assets/images/ic_send.png"))),
-          )
+                suffix: Image.asset("assets/images/ic_send.png"),
+                prefix: SizedBox(
+                    height: 0,
+                    width: 0,
+                    child: Image.asset("assets/images/ic_attach.png")),
+              )),
         ],
       ),
     );
@@ -225,7 +232,7 @@ showBottomSheet(BuildContext context) {
                           controller: massegeController2,
                           type: TextInputType.text,
                           hint: "اكتب تقييمك",
-                          maxLines: 20,
+                          maxLines: 8,
                           height: 180.h),
                     ),
                     mainBottom(height: 50, width: double.infinity, title: "قيم")

@@ -110,8 +110,12 @@ class CardScreen2 extends StatelessWidget {
                               title: "2 ريال",
                               color: Colors.black45,
                               font: 12.sp),
-                          SizedBox(width: .32.sw),
-                          Image.asset("assets/images/m1.png")
+                          SizedBox(width: .34.sw),
+                          Container(
+                              height: 50.h,
+                              width: 40.w,
+                              child: Image.asset(
+                                  "assets/images/ic_delivery_car.png"))
                         ],
                       ),
                       if (hasCar!)
@@ -310,7 +314,6 @@ class CardScreen2 extends StatelessWidget {
                       height: 60.h,
                       width: 150.w,
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(15.sp),
                           color: Colors.white10),
                       child: Center(
@@ -372,7 +375,7 @@ class DeliveryScreen extends StatelessWidget {
                       insetPadding: EdgeInsets.all(20),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      child: CardScreen(),
+                      child: CardScreen2(),
                     ), //AddScreen()
                     barrierDismissible: false,
                   );
@@ -404,7 +407,7 @@ class DeliveryScreen extends StatelessWidget {
                                 font: 16.sp),
                             myTitle(
                                 title: "نيسان",
-                                color: Colors.black,
+                                color: Colors.grey,
                                 font: 14.sp),
                           ],
                         ),
@@ -419,7 +422,7 @@ class DeliveryScreen extends StatelessWidget {
                                 font: 16.sp),
                             myTitle(
                                 title: "345667",
-                                color: Colors.black,
+                                color: Colors.grey,
                                 font: 14.sp),
                             SizedBox(width: 20.w),
                             myTitle(
@@ -428,7 +431,7 @@ class DeliveryScreen extends StatelessWidget {
                                 font: 16.sp),
                             myTitle(
                                 title: "ازرق ",
-                                color: Colors.black,
+                                color: Colors.grey,
                                 font: 14.sp),
                           ],
                         ),

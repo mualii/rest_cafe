@@ -67,7 +67,7 @@ class CompleteProfileScreen extends StatelessWidget {
                 navigateAndFinish(context, LayoutScreen());
               },
               child:
-                  mainBottom(title: "اكمل الملف", width: .8.sw, height: 50.h),
+                  mainBottom(title: "اكمل الملف", width: .9.sw, height: 50.h),
             ),
             SizedBox(height: 25.h),
           ],

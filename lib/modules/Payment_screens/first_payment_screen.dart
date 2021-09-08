@@ -115,8 +115,8 @@ class _PaymentScreen1State extends State<PaymentScreen1> {
                     ],
                   ),
                   VerticalDivider(
-                    thickness: 2,
-                    indent: 10,
+                    thickness: 1,
+                    indent: 7,
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -129,8 +129,8 @@ class _PaymentScreen1State extends State<PaymentScreen1> {
                     ],
                   ),
                   VerticalDivider(
-                    thickness: 2,
-                    indent: 10,
+                    thickness: 1,
+                    indent: 7,
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,

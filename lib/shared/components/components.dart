@@ -120,35 +120,38 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      iconTheme:
-          IconThemeData(color: Colors.black, size: 25 //change your color here
-              ),
-      title: Text(
-        title!,
-        style: TextStyle(
-            fontFamily: "FrutigerLTArabic",
-            color: Colors.black87,
-            fontWeight: FontWeight.w100),
-      ),
-      // toolbarHeight: 0.12.sh,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(20.r),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: AppBar(
+        iconTheme:
+            IconThemeData(color: Colors.black, size: 25 //change your color here
+                ),
+        title: Text(
+          title!,
+          style: TextStyle(
+              fontFamily: "FrutigerLTArabic",
+              color: Colors.black87,
+              fontWeight: FontWeight.w100),
         ),
+        // toolbarHeight: 0.12.sh,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20.r),
+          ),
+        ),
+        centerTitle: true,
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.of(context).pop();
+        //   },
+        //   icon: Icon(
+        //     Icons.arrow_back_ios,
+        //     color: Colors.grey,
+        //   ),
+        // ),
+        actions: actions,
+        backgroundColor: Colors.white,
       ),
-      centerTitle: true,
-      // leading: IconButton(
-      //   onPressed: () {
-      //     Navigator.of(context).pop();
-      //   },
-      //   icon: Icon(
-      //     Icons.arrow_back_ios,
-      //     color: Colors.grey,
-      //   ),
-      // ),
-      actions: actions,
-      backgroundColor: Colors.white,
     );
   }
 }

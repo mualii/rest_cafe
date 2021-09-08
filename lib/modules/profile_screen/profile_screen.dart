@@ -2,7 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/Payment_screens/first_payment_screen.dart';
 import 'package:rest_cafe/modules/edit_profile/edit_profile.dart';
 import 'package:rest_cafe/shared/components/components.dart';
@@ -25,11 +24,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             SettingsOption(
               title: 'تعديل الملف الشخصي',
-              iconData: Icon(
-                Icons.person,
-                color: Color(0xff4CB379),
-                size: 25,
-              ),
+              iconData: Container(
+                  height: 20,
+                  child: Image.asset("assets/images/ic_profile_edit.png")),
               function: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (_) => EditProfile()));
@@ -37,11 +34,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             SettingsOption(
               title: 'وسائل الدفع',
-              iconData: Icon(
-                Icons.payment,
-                color: Color(0xff4CB379),
-                size: 25,
-              ),
+              iconData: Container(
+                  height: 27,
+                  child: Image.asset("assets/images/ic_profile_payment.png")),
               function: () {
                 navigateTo(context, PaymentScreen1());
               },
@@ -77,30 +72,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Divider(),
             SettingsOption(
               title: 'تريد مساعدة',
-              iconData: Icon(
-                FontAwesomeIcons.lifeRing,
-                color: Color(0xff4CB379),
-                size: 25,
-              ),
+              iconData: Container(
+                  height: 25,
+                  child: Image.asset("assets/images/ic_profile_lang.png")),
               function: () {},
             ),
             SettingsOption(
               title: 'تسجيل خروج',
-              iconData: Icon(
-                FontAwesomeIcons.signOutAlt,
-                color: Color(0xff4CB379),
-                size: 25,
-              ),
+              iconData: Container(
+                  height: 25,
+                  child: Image.asset("assets/images/ic_profile_logout.png")),
               function: () {
                 AwesomeDialog(
                   context: context,
                   //dialogType: DialogType.INFO,
                   customHeader: Container(
-                    child: Icon(
-                      Icons.info,
-                      size: 100,
-                      color: Color(0xffF96D7E),
-                    ),
+                    child: Image.asset("assets/images/ic_error.png"),
                   ),
                   animType: AnimType.BOTTOMSLIDE,
                   title: "تسجيل خروج",

@@ -23,7 +23,7 @@ class ContactScreen extends StatelessWidget {
               Row(
                 children: [
                   myTitle(title: "ايميل", color: Colors.black, font: 15.sp),
-                  SizedBox(width: .35.sw),
+                  SizedBox(width: .31.sw),
                   myTitle(
                       title: "support@zoq.com",
                       color: Colors.black38,
@@ -56,8 +56,7 @@ class ContactScreen extends StatelessWidget {
                   controller: nameController,
                   type: TextInputType.name,
                   prefix: Icon(
-                    Icons.person,
-                    color: color1,
+                    Icons.person_outline_sharp,
                   ),
                   hint: "الاسم"),
               SizedBox(height: 10.h),
@@ -65,8 +64,7 @@ class ContactScreen extends StatelessWidget {
                   controller: mailController,
                   type: TextInputType.emailAddress,
                   prefix: Icon(
-                    Icons.email,
-                    color: color1,
+                    Icons.email_outlined,
                   ),
                   hint: "الايميل"),
               Row(
@@ -80,7 +78,7 @@ class ContactScreen extends StatelessWidget {
                         color: Colors.white10),
                     child: Center(
                         child: Text(
-                      '+966',
+                      '966+',
                       style: TextStyle(fontSize: 18),
                     )),
                   ),

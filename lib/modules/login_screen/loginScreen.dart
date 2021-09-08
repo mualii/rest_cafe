@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 40.w),
                   InkWell(
-                    child: Image.asset("assets/images/inista.png"),
+                    child: Image.asset("assets/images/ic_insta.png"),
                   ),
                 ],
               ),

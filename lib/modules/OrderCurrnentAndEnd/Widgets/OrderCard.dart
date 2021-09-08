@@ -16,68 +16,71 @@ class OrderCard extends StatelessWidget {
       onTap: () {
         navigateTo(context, OrderDetailScreen());
       },
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-        child: Card(
-          elevation: 5,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Widget_NameAndStatus(),
-                        Widget_Cost(),
-                        SizedBox(
-                          height: 5.h,
-                        ),
-                        Container(
-                          width: .64.sw,
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/images/ic_delivery_cafe.png",
-                                fit: BoxFit.fill,
-                                height: 20,
-                              ),
-                              // FaIcon(
-                              //   FontAwesomeIcons.truck,
-                              //   color: Color(0xff4CB379),
-                              // ),
-                              Spacer(),
-                              haveRate ? Widget_Star() : Container(),
-                              SizedBox(
-                                width: 15.w,
-                              ),
-                              Widget_NumItem(),
-                            ],
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+          child: Card(
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Widget_NameAndStatus(),
+                          Widget_Cost(),
+                          SizedBox(
+                            height: 5.h,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Image.asset(
-                      listOrder.image!,
-                      fit: BoxFit.fill,
-                      height: 73.h,
-                      width: 73.w,
-                    ),
-                  ],
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                Widget_Time()
-              ],
+                          Container(
+                            width: .64.sw,
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  "assets/images/ic_delivery_cafe.png",
+                                  fit: BoxFit.fill,
+                                  height: 20,
+                                ),
+                                // FaIcon(
+                                //   FontAwesomeIcons.truck,
+                                //   color: Color(0xff4CB379),
+                                // ),
+                                Spacer(),
+                                haveRate ? Widget_Star() : Container(),
+                                SizedBox(
+                                  width: 15.w,
+                                ),
+                                Widget_NumItem(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Image.asset(
+                        listOrder.image!,
+                        fit: BoxFit.fill,
+                        height: 73.h,
+                        width: 73.w,
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    thickness: 2,
+                  ),
+                  Widget_Time()
+                ],
+              ),
             ),
           ),
         ),
@@ -141,6 +144,7 @@ class OrderCard extends StatelessWidget {
         ),
         FaIcon(
           FontAwesomeIcons.solidClock,
+          size: 20.sp,
           color: Color(0xff4CB379),
         ),
       ],
@@ -167,8 +171,8 @@ class OrderCard extends StatelessWidget {
         Image.asset(
           "assets/images/ic_cart.png",
           fit: BoxFit.fill,
-          height: 25,
-          width: 25,
+          height: 20,
+          width: 20,
           color: Color(0xff4CB379),
         ),
 
@@ -199,6 +203,7 @@ class OrderCard extends StatelessWidget {
         ),
         FaIcon(
           FontAwesomeIcons.solidClock,
+          size: 18.sp,
           color: Color(0xff4CB379),
         ),
       ],

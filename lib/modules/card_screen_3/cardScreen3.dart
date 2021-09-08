@@ -74,7 +74,7 @@ class CardScreen3 extends StatelessWidget {
                                   size: 30.sp,
                                 )
                               : Icon(
-                                  Icons.circle,
+                                  Icons.check_circle,
                                   color: color1,
                                   size: 30.sp,
                                 ),
@@ -119,7 +119,7 @@ class CardScreen3 extends StatelessWidget {
                                   size: 30.sp,
                                 )
                               : Icon(
-                                  Icons.circle,
+                                  Icons.check_circle,
                                   color: color1,
                                   size: 30.sp,
                                 ),
@@ -162,7 +162,7 @@ class CardScreen3 extends StatelessWidget {
                                   size: 30.sp,
                                 )
                               : Icon(
-                                  Icons.circle,
+                                  Icons.check_circle,
                                   color: color1,
                                   size: 30.sp,
                                 ),

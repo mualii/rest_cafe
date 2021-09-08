@@ -80,10 +80,7 @@ class BranchesScreen extends StatelessWidget {
                                 onPressed: () {
                                   navigateAndFinish(context, DetailScreen());
                                 },
-                                icon: Icon(
-                                  Icons.arrow_drop_down_circle_sharp,
-                                  size: 30.sp,
-                                ))
+                                icon: Image.asset("assets/images/0.png"))
                           ],
                         ),
                       ),

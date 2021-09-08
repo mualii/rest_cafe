@@ -71,13 +71,13 @@ class AddScreen extends StatelessWidget {
                   Center(
                       child: myTitle(
                           title: "سموكي باربكيو",
-                          font: 14.sp,
+                          font: 16.sp,
                           color: Colors.black)),
                   ListTile(
                     title: myTitle(
                         title: "مشروم", color: Colors.black, font: 14.sp),
                     trailing: myTitle(
-                        title: "2 ريال", color: Colors.black, font: 14.sp),
+                        title: "2 ريال", color: Colors.grey, font: 14.sp),
                     leading: Checkbox(
                         value: ischange,
                         activeColor: color1,
@@ -92,7 +92,7 @@ class AddScreen extends StatelessWidget {
                     title:
                         myTitle(title: "بصل", color: Colors.black, font: 14.sp),
                     trailing: myTitle(
-                        title: "2 ريال", color: Colors.black, font: 14.sp),
+                        title: "2 ريال", color: Colors.grey, font: 14.sp),
                     leading: Checkbox(
                         activeColor: color1,
                         value: ischange2,
@@ -107,7 +107,7 @@ class AddScreen extends StatelessWidget {
                     title:
                         myTitle(title: "حار", color: Colors.black, font: 14.sp),
                     trailing: myTitle(
-                        title: "2 ريال", color: Colors.black, font: 14.sp),
+                        title: "2 ريال", color: Colors.grey, font: 14.sp),
                     leading: Checkbox(
                         activeColor: color1,
                         value: ischange3,
@@ -122,7 +122,7 @@ class AddScreen extends StatelessWidget {
                     title:
                         myTitle(title: "بيض", color: Colors.black, font: 14.sp),
                     trailing: myTitle(
-                        title: "2 ريال", color: Colors.black, font: 14.sp),
+                        title: "2 ريال", color: Colors.grey, font: 14.sp),
                     leading: Checkbox(
                         activeColor: color1,
                         value: ischange4,
@@ -137,7 +137,7 @@ class AddScreen extends StatelessWidget {
                     title: myTitle(
                         title: "الجبن", color: Colors.black, font: 14.sp),
                     trailing: myTitle(
-                        title: "2 ريال", color: Colors.black, font: 14.sp),
+                        title: "2 ريال", color: Colors.grey, font: 14.sp),
                     leading: Checkbox(
                         activeColor: color1,
                         value: ischange5,
@@ -152,7 +152,7 @@ class AddScreen extends StatelessWidget {
                     title: myTitle(
                         title: "هلابينو", color: Colors.black, font: 14.sp),
                     trailing: myTitle(
-                        title: "2 ريال", color: Colors.black, font: 14.sp),
+                        title: "2 ريال", color: Colors.grey, font: 14.sp),
                     leading: Checkbox(
                         activeColor: color1,
                         value: ischange6,

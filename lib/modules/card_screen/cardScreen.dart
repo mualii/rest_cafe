@@ -46,7 +46,7 @@ class CardScreen extends StatelessWidget {
                 ),
                 Center(
                     child: myTitle(
-                        title: "المنتجات", font: 16.sp, color: Colors.black)),
+                        title: "المنتجات", font: 18.sp, color: Colors.black)),
                 IconButton(
                   icon: Icon(
                     Icons.arrow_forward_ios,
@@ -121,7 +121,6 @@ class CardScreen extends StatelessWidget {
                     height: 60.h,
                     width: 150.w,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(15.sp),
                         color: Colors.white10),
                     child: Center(
@@ -168,109 +167,97 @@ class ListViewCont extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                      onPressed: () {
-                        AwesomeDialog(
-                          context: context,
-                          //dialogType: DialogType.INFO,
-                          customHeader: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.black54,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Icon(
-                              Icons.delete_forever_outlined,
-                              size: 60,
-                              color: color1,
-                            ),
-                          ),
-                          animType: AnimType.BOTTOMSLIDE,
-                          // title: "حذف منتج",
-                          // desc: "هل أنت متأكد من حذف "
-                          //     "سموكي باربكيو"
-                          //     " من قائمة المنتجات",
-                          body: Column(
-                            children: [
-                              Text(
-                                "حذف منتج",
-                                style: TextStyle(
-                                  color: color1,
-                                  fontFamily: "FrutigerLTArabic",
-                                ),
-                              ),
-                              Text(
-                                "هل أنت متأكد من حذف",
-                                style: TextStyle(
-                                  fontFamily: "FrutigerLTArabic",
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "سموكي باربكيو ",
-                                    style: TextStyle(
-                                        fontFamily: "FrutigerLTArabic",
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "من قائمة المنتجات",
-                                    style: TextStyle(
-                                        fontFamily: "FrutigerLTArabic"),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                    onPressed: () {
+                      AwesomeDialog(
+                        context: context,
+                        //dialogType: DialogType.INFO,
+                        customHeader: Image.asset(
+                            "assets/images/ic_delete_item_popup.png"),
+                        animType: AnimType.BOTTOMSLIDE,
 
-                          btnOk: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
-                                    EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 5)),
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                elevation: MaterialStateProperty.all(0),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        side: BorderSide(
-                                            color: Color(0xffC3C6D1))))),
-                            child: Text(
-                              "تراجع",
-                              style: TextStyle(color: Color(0xff4CB379)),
+                        body: Column(
+                          children: [
+                            Text(
+                              "حذف منتج",
+                              style: TextStyle(
+                                color: color1,
+                                fontFamily: "FrutigerLTArabic",
+                              ),
                             ),
-                          ),
+                            Text(
+                              "هل أنت متأكد من حذف",
+                              style: TextStyle(
+                                fontFamily: "FrutigerLTArabic",
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "سموكي باربكيو ",
+                                  style: TextStyle(
+                                      fontFamily: "FrutigerLTArabic",
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "من قائمة المنتجات",
+                                  style:
+                                      TextStyle(fontFamily: "FrutigerLTArabic"),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
 
-                          btnCancel: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
-                                    EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 5)),
-                                backgroundColor: MaterialStateProperty.all(
-                                    Color(0xff4CB379)),
-                                elevation: MaterialStateProperty.all(0),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        side: BorderSide(
-                                            color: Color(0xffC3C6D1))))),
-                            child: Text(
-                              "حذف",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                        btnOk: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          style: ButtonStyle(
+                              padding: MaterialStateProperty.all(
+                                  EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 5)),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.white),
+                              elevation: MaterialStateProperty.all(0),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      side: BorderSide(
+                                          color: Color(0xffC3C6D1))))),
+                          child: Text(
+                            "تراجع",
+                            style: TextStyle(color: Color(0xff4CB379)),
                           ),
-                        )..show(); //AddScreen()
-                      },
-                      icon: Icon(Icons.delete_forever_sharp)),
+                        ),
+
+                        btnCancel: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          style: ButtonStyle(
+                              padding: MaterialStateProperty.all(
+                                  EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 5)),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xff4CB379)),
+                              elevation: MaterialStateProperty.all(0),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      side: BorderSide(
+                                          color: Color(0xffC3C6D1))))),
+                          child: Text(
+                            "حذف",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )..show(); //AddScreen()
+                    },
+                    icon: Image.asset("assets/images/ic_delete_item.png"),
+                  )
                 ],
               ),
               title: Column(

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
 import 'package:rest_cafe/modules/QuestionsScreen/QuestionsScreen.dart';
+import 'package:rest_cafe/modules/contact_screen/contactScreen.dart';
 import 'package:rest_cafe/modules/profile_screen/profile_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
@@ -79,7 +80,9 @@ class SettingsScreen extends StatelessWidget {
               color: Color(0xff4CB379),
               size: 30,
             ),
-            function: () {},
+            function: () {
+              navigateTo(context, ContactScreen());
+            },
           ),
           SettingsOption(
             title: 'عن التطبيق',

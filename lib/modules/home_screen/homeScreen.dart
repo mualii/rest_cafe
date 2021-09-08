@@ -55,7 +55,10 @@ class HomeScreen extends StatelessWidget {
                             },
                             child: Text(
                               "Diptul Glen 1704 ",
-                              style: TextStyle(color: color1, fontSize: 16.sp),
+                              style: TextStyle(
+                                  color: color1,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(width: 10.w),
@@ -234,6 +237,7 @@ class LabolOfSecondListView extends StatelessWidget {
                       color: color1,
                       size: 15.sp,
                     ),
+                    SizedBox(width: 3),
                     Text("45 دقيقة",
                         style: TextStyle(
                           color: Colors.black38,

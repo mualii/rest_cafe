@@ -137,7 +137,7 @@ class DetailScreen extends StatelessWidget {
                                 title: "45 دقيقة")
                           ],
                         ),
-                        SizedBox(width: 90.w),
+                        SizedBox(width: 125.w),
                         Row(
                           children: [
                             myTitle(color: color1, font: 12.sp, title: "مفتوح"),
@@ -158,7 +158,7 @@ class DetailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      height: 50.h,
+                      height: 37.h,
                       child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: false,
@@ -209,7 +209,7 @@ class DetailScreen extends StatelessWidget {
             backgroundColor: Color(0xffF7F7F7),
             bottomSheet: Container(
               decoration: BoxDecoration(
-                  color: Colors.white10,
+                  color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(30.sp),
                       topLeft: Radius.circular(30.sp))),
@@ -281,7 +281,6 @@ class LabolOfSecondListView extends StatelessWidget {
                       fontSize: 14.sp,
                       fontFamily: "FrutigerLTArabic",
                     )),
-                SizedBox(height: 10.h),
                 Row(children: [
                   Text("15 ريال",
                       style: TextStyle(
@@ -310,7 +309,10 @@ class LabolOfSecondListView extends StatelessWidget {
                             DetailCubit.get(context)
                                 .changeFavorites(false, index!);
                           },
-                          icon: Icon(Icons.favorite_border),
+                          icon: Icon(
+                            Icons.favorite_border,
+                            color: Colors.black38,
+                          ),
                         )
                 ]),
               ],
