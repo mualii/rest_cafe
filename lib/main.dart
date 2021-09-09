@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(375.0, 812.0),
       builder: () => MaterialApp(
+        title: "Rest_Cafe",
         //     theme: ThemeData(unselectedWidgetColor: Colors.red,tabBarTheme:TabBarTheme(unselectedLabelColor: Colors.red ) ),
 
         // theme: ThemeData(
