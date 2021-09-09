@@ -19,7 +19,7 @@ class OrderCard extends StatelessWidget {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+          margin: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
           child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(

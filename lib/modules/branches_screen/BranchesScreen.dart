@@ -172,9 +172,15 @@ class LabolOfSecondListView extends StatelessWidget {
                   shrinkWrap: false,
                   itemBuilder: (context, index) => Row(
                         children: [
-                          Image.asset("assets/images/ic_delivery_cafe.png"),
+                          Image.asset(
+                            "assets/images/ic_delivery_cafe.png",
+                            height: 25,
+                          ),
                           SizedBox(width: 5.w),
-                          Image.asset("assets/images/ic_delivery_car.png"),
+                          Image.asset(
+                            "assets/images/ic_delivery_car.png",
+                            height: 25,
+                          ),
                         ],
                       ),
                   separatorBuilder: (context, index) => SizedBox(width: 1.w),

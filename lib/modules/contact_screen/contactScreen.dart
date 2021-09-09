@@ -23,7 +23,7 @@ class ContactScreen extends StatelessWidget {
               Row(
                 children: [
                   myTitle(title: "ايميل", color: Colors.black, font: 15.sp),
-                  SizedBox(width: .38.sw),
+                  SizedBox(width: .30.sw),
                   myTitle(
                       title: "support@zoq.com",
                       color: Colors.black38,
@@ -36,7 +36,7 @@ class ContactScreen extends StatelessWidget {
               Row(
                 children: [
                   myTitle(title: "رقم هاتف", color: Colors.black, font: 15.sp),
-                  SizedBox(width: .40.sw),
+                  SizedBox(width: .32.sw),
                   myTitle(
                       title: "543-649-3478",
                       color: Colors.black38,

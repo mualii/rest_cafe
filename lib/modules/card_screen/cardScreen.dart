@@ -257,7 +257,7 @@ class ListViewCont extends StatelessWidget {
                       )..show(); //AddScreen()
                     },
                     icon: Align(
-                      alignment: Alignment(-3.5, 0),
+                      alignment: Alignment(-3.5, 2),
                       child: Container(
                           height: 20,
                           child:
@@ -275,7 +275,7 @@ class ListViewCont extends StatelessWidget {
                         font: 14.sp,
                         title: "سموكي باربكيو"),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   Row(
                     children: [
                       SizedBox(width: 3.w),
@@ -285,8 +285,8 @@ class ListViewCont extends StatelessWidget {
                               AddCubit.get(context).addOneItemFromCard(count);
                         },
                         child: Container(
-                          height: 30.h,
-                          width: 30.w,
+                          height: 27.h,
+                          width: 27.w,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xff494861),
@@ -298,8 +298,8 @@ class ListViewCont extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          height: 30.h,
-                          width: 30.w,
+                          height: 40.h,
+                          width: 27.w,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
                           ),
@@ -313,8 +313,8 @@ class ListViewCont extends StatelessWidget {
                               AddCubit.get(context).MinusOneItemFromCard(count);
                         },
                         child: Container(
-                          height: 30.h,
-                          width: 30.w,
+                          height: 27.h,
+                          width: 27.w,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
                             color: Color(0xffE7E7E7),

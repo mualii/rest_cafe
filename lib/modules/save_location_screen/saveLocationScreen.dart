@@ -9,7 +9,7 @@ class SaveLocationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 130.h,
+        toolbarHeight: 95.h,
         flexibleSpace: Column(
           children: [
             SizedBox(height: 70.h),

@@ -13,7 +13,7 @@ class BNBCustomPainter extends CustomPainter {
 
     Path path = Path();
 
-    print(size.height );
+    //print(size.height );
     path.moveTo(0,35.h  );
     // دية بداية اول نقطة فى الانحناء
     path.quadraticBezierTo(

@@ -25,7 +25,7 @@ class DetailScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              toolbarHeight: 205.h,
+              toolbarHeight: 203.h,
               flexibleSpace: SafeArea(
                 child: Column(
                   children: [

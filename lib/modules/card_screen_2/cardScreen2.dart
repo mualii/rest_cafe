@@ -110,7 +110,7 @@ class CardScreen2 extends StatelessWidget {
                               title: "2 ريال",
                               color: Colors.black45,
                               font: 12.sp),
-                          SizedBox(width: .34.sw),
+                          SizedBox(width: .32.sw),
                           Container(
                               height: 50.h,
                               width: 40.w,
@@ -131,7 +131,7 @@ class CardScreen2 extends StatelessWidget {
                                     title: "نيسان | 213123 | ازرق",
                                     color: Colors.black38,
                                     font: 16.sp),
-                                SizedBox(width: .25.sw),
+                                SizedBox(width: .20.sw),
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.black38,
@@ -178,7 +178,7 @@ class CardScreen2 extends StatelessWidget {
                         title: "الذهاب للمطعم",
                         color: Colors.black,
                         font: 16.sp),
-                    SizedBox(width: .33.sw),
+                    SizedBox(width: .30.sw),
                     Image.asset("assets/images/m2.png")
                   ],
                 ),
@@ -233,7 +233,7 @@ class CardScreen2 extends StatelessWidget {
                                   title: "حجز طاولة",
                                   color: Colors.black,
                                   font: 16.sp),
-                              SizedBox(width: .41.sw),
+                              SizedBox(width: .40.sw),
                               Image.asset("assets/images/3.png")
                             ],
                           ),
@@ -424,7 +424,7 @@ class DeliveryScreen extends StatelessWidget {
                                 title: "345667",
                                 color: Colors.grey,
                                 font: 14.sp),
-                            SizedBox(width: 20.w),
+                            SizedBox(width: 8.w),
                             myTitle(
                                 title: "للون السيارة",
                                 color: Colors.black,

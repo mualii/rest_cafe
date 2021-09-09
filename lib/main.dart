@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarDividerColor: Colors.black));
     return ScreenUtilInit(
-      designSize: Size(392.72727272727275, 781.0909090909091),
+      designSize: Size(375.0, 812.0),
       builder: () => MaterialApp(
         //     theme: ThemeData(unselectedWidgetColor: Colors.red,tabBarTheme:TabBarTheme(unselectedLabelColor: Colors.red ) ),
 

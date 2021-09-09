@@ -84,7 +84,7 @@ class CardScreen3 extends StatelessWidget {
                             title: "دفع بسداد",
                             font: 16.sp,
                             color: Colors.black),
-                        SizedBox(width: .35.sw),
+                        SizedBox(width: .33.sw),
                         Container(
                             height: 15.h,
                             child: Image.asset("assets/images/pay (1).png")),
@@ -167,7 +167,7 @@ class CardScreen3 extends StatelessWidget {
                                   size: 30.sp,
                                 ),
                         ),
-                        SizedBox(width: 15.w),
+                        SizedBox(width: 8.w),
                         myTitle(
                             title: "فيزا", font: 16.sp, color: Colors.black),
                         myTitle(
