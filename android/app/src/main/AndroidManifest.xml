@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rest_cafe">
+    package="com.alexapps.restCafe">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
