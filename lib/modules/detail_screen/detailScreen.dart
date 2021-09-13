@@ -158,7 +158,7 @@ class DetailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      height: 37.h,
+                      height: 44.h,
                       child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: false,
@@ -197,7 +197,7 @@ class DetailScreen extends StatelessWidget {
                                   barrierDismissible: false,
                                 ).then((value) => Navigator.pop(context));
                               },
-                              child: LabolOfSecondListView(index: index)),
+                              child: LabolOfSecondListView()),
                           separatorBuilder: (context, index) =>
                               SizedBox(height: 10.h),
                           itemCount: 10),
@@ -248,11 +248,9 @@ class DetailScreen extends StatelessWidget {
 }
 
 class LabolOfSecondListView extends StatelessWidget {
-  const LabolOfSecondListView({Key? key, this.index}) : super(key: key);
-  final int? index;
-
   @override
   Widget build(BuildContext context) {
+    bool isFav = true;
     return Container(
       height: 80.h,
       decoration: BoxDecoration(
@@ -295,26 +293,28 @@ class LabolOfSecondListView extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Row(children: [
-                  index == DetailCubit.get(context).currentIndex2
-                      ? IconButton(
-                          onPressed: () {
-                            DetailCubit.get(context)
-                                .changeFavorites(true, index!);
-                          },
-                          icon: Icon(Icons.favorite, color: color1),
-                        )
-                      : IconButton(
-                          onPressed: () {
-                            DetailCubit.get(context)
-                                .changeFavorites(false, index!);
-                          },
-                          icon: Icon(
-                            Icons.favorite_border,
-                            color: Colors.black38,
-                          ),
-                        )
-                ]),
+                StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setState) => Row(
+                    children: [
+                      IconButton(
+                        icon: isFav
+                            ? Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.grey,
+                              )
+                            : Icon(
+                                Icons.favorite,
+                                color: color1,
+                              ),
+                        onPressed: () {
+                          setState(() {
+                            isFav = !isFav;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
@@ -355,7 +355,7 @@ class LabolOfFristListView extends StatelessWidget {
           index == DetailCubit.get(context).currentIndex
               ? Divider(
                   color: color1,
-                  height: 10.h,
+                  height: 16.h,
                   thickness: 2,
                 )
               : Container()

@@ -88,6 +88,8 @@ class CardScreen2 extends StatelessWidget {
                             onTap: () {
                               setState(() {
                                 isChecked1 = !isChecked1;
+                                isChecked2 = true;
+                                isChecked3 = true;
                               });
                             },
                             child: isChecked1
@@ -118,7 +120,7 @@ class CardScreen2 extends StatelessWidget {
                                   "assets/images/ic_delivery_car.png"))
                         ],
                       ),
-                      if (hasCar!)
+                      if (hasCar! || isChecked1 == false)
                         Column(
                           children: [
                             Divider(
@@ -160,6 +162,8 @@ class CardScreen2 extends StatelessWidget {
                       onTap: () {
                         setState(() {
                           isChecked2 = !isChecked2;
+                          isChecked1 = true;
+                          isChecked3 = true;
                         });
                       },
                       child: isChecked2
@@ -214,6 +218,9 @@ class CardScreen2 extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   setState(() {
+                                    isChecked1 = true;
+                                    isChecked2 = true;
+
                                     isChecked3 = !isChecked3;
                                   });
                                 },
@@ -238,7 +245,7 @@ class CardScreen2 extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 10),
-                          if (hasTabol!)
+                          if (hasTabol! || isChecked3 == false)
                             Column(
                               children: [
                                 Divider(
@@ -715,9 +722,10 @@ class BookingScreen extends StatelessWidget {
         builder: (BuildContext ctx, StateSetter setState) => SizedBox(
           height: 180,
           child: CupertinoDatePicker(
+            maximumDate: dateTime,
             initialDateTime: dateTime,
             mode: CupertinoDatePickerMode.time,
-            minuteInterval: 10,
+
             //use24hFormat: true,
             onDateTimeChanged: (dateTime) =>
                 setState(() => this.dateTime = dateTime),

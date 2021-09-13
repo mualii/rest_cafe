@@ -163,10 +163,10 @@ class LabolOfSecondListView extends StatelessWidget {
               ],
             ),
             SizedBox(width: 20.w),
-            Spacer(),
+            // Spacer(),
             Container(
               height: 30.h,
-              width: 60.w,
+              width: 120.w,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: false,

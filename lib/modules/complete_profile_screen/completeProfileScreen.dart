@@ -32,8 +32,14 @@ class CompleteProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 20.h),
-            Image.asset(
-              "assets/images/logoTakeImage.png",
+            CircleAvatar(
+              minRadius: 30,
+              backgroundColor: Colors.black12,
+              child: Icon(
+                Icons.person,
+                size: 80,
+                color: Colors.white,
+              ),
             ),
             SizedBox(height: 20.h),
             Container(
@@ -54,7 +60,7 @@ class CompleteProfileScreen extends StatelessWidget {
               child: defaultFormField(
                   controller: _mailController,
                   type: TextInputType.emailAddress,
-                  hint: "الايميل  اختيارى",
+                  hint: "الايميل  (اختياري)",
                   color: Color(0xff4CB379),
                   prefix: Icon(
                     Icons.email_outlined,

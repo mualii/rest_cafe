@@ -42,7 +42,7 @@ class OrderCurrentAndEnd extends StatelessWidget {
                     ),
                   ),
                   Tab(
-                    child: Text("المنتهية",
+                    child: Text("السابقة",
                         style: TextStyle(
                             fontFamily: "FrutigerLTArabic",
                             color: Colors.black)),

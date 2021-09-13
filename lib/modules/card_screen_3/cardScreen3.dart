@@ -65,6 +65,8 @@ class CardScreen3 extends StatelessWidget {
                           onTap: () {
                             setState(() {
                               isChecked1 = !isChecked1;
+                              isChecked2 = true;
+                              isChecked3 = true;
                             });
                           },
                           child: isChecked1
@@ -110,6 +112,8 @@ class CardScreen3 extends StatelessWidget {
                           onTap: () {
                             setState(() {
                               isChecked2 = !isChecked2;
+                              isChecked3 = true;
+                              isChecked1 = true;
                             });
                           },
                           child: isChecked2
@@ -153,6 +157,8 @@ class CardScreen3 extends StatelessWidget {
                           onTap: () {
                             setState(() {
                               isChecked3 = !isChecked3;
+                              isChecked2 = true;
+                              isChecked1 = true;
                             });
                           },
                           child: isChecked3
