@@ -77,8 +77,34 @@ class OrderDetailScreen extends StatelessWidget {
                             color: Colors.white,
                             font: 14.sp,
                             title: "جاري التحضير")),
-                    SizedBox(width: 10.w),
-                    SizedBox(width: .35.sw),
+                    SizedBox(width: .1.sw),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              " دقائق ",
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: Colors.brown,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "  30-40",
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: Colors.brown,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          "مدة التوصيل",
+                          style: TextStyle(color: Colors.grey, fontSize: 12.sp),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: .08.sw),
                     myTitle(
                         title: "التوصيل للسيارة",
                         color: Colors.black,

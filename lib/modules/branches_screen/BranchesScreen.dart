@@ -162,29 +162,34 @@ class LabolOfSecondListView extends StatelessWidget {
                 ]),
               ],
             ),
-            SizedBox(width: 20.w),
+            SizedBox(width: 80.w),
             // Spacer(),
             Container(
               height: 30.h,
-              width: 120.w,
+              width: 70.w,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: false,
-                  itemBuilder: (context, index) => Row(
+                  itemBuilder: (context, index) => Column(
                         children: [
-                          Image.asset(
-                            "assets/images/ic_delivery_cafe.png",
-                            height: 25,
-                          ),
-                          SizedBox(width: 5.w),
-                          Image.asset(
-                            "assets/images/ic_delivery_car.png",
-                            height: 25,
+                          Spacer(),
+                          Row(
+                            children: [
+                              Image.asset(
+                                "assets/images/ic_delivery_cafe.png",
+                                height: 20,
+                              ),
+                              SizedBox(width: 5.w),
+                              Image.asset(
+                                "assets/images/ic_delivery_car.png",
+                                height: 20,
+                              ),
+                            ],
                           ),
                         ],
                       ),
                   separatorBuilder: (context, index) => SizedBox(width: 1.w),
-                  itemCount: 3),
+                  itemCount: 2),
             )
           ],
         ),

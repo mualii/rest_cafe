@@ -16,10 +16,10 @@ class CardScreen extends StatelessWidget {
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: .91.sh,
-      padding: EdgeInsets.all(10.sp),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Container(
+        height: .91.sh,
+        padding: EdgeInsets.all(10.sp),
         child: Column(
           children: [
             Row(
@@ -82,6 +82,7 @@ class CardScreen extends StatelessWidget {
                   itemCount: 3),
             ),
             SizedBox(height: 45.h),
+            // Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -64,24 +64,24 @@ class CardScreen2 extends StatelessWidget {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(20.sp)),
-                child: InkWell(
-                  onTap: () {
-                    showDialog(
-                      barrierColor: Colors.white10, //AddScreen()
+                child: Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                          barrierColor: Colors.white10, //AddScreen()
 
-                      context: context,
-                      builder: (_) => Dialog(
-                        insetPadding: EdgeInsets.all(20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: DeliveryScreen(),
-                      ), //AddScreen()
-                      barrierDismissible: false,
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      Row(
+                          context: context,
+                          builder: (_) => Dialog(
+                            insetPadding: EdgeInsets.all(20),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            child: DeliveryScreen(),
+                          ), //AddScreen()
+                          barrierDismissible: false,
+                        );
+                      },
+                      child: Row(
                         children: [
                           SizedBox(width: 10.w),
                           InkWell(
@@ -120,33 +120,33 @@ class CardScreen2 extends StatelessWidget {
                                   "assets/images/ic_delivery_car.png"))
                         ],
                       ),
-                      if (hasCar! || isChecked1 == false)
-                        Column(
-                          children: [
-                            Divider(
-                              color: Colors.black38,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: 40.w),
-                                myTitle(
-                                    title: "نيسان | 213123 | ازرق",
-                                    color: Colors.black38,
-                                    font: 16.sp),
-                                SizedBox(width: .20.sw),
-                                Icon(
-                                  Icons.arrow_forward_ios,
+                    ),
+                    if (hasCar! || isChecked1 == false)
+                      Column(
+                        children: [
+                          Divider(
+                            color: Colors.black38,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(width: 40.w),
+                              myTitle(
+                                  title: "نيسان | 213123 | ازرق",
                                   color: Colors.black38,
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            )
-                          ],
-                        ),
-                    ],
-                  ),
+                                  font: 16.sp),
+                              SizedBox(width: .20.sw),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.black38,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          )
+                        ],
+                      ),
+                  ],
                 ),
               ),
               SizedBox(height: 15.h),
@@ -475,8 +475,8 @@ class DeliveryScreen extends StatelessWidget {
                   Container(
                     width: 140.w,
                     child: defaultFormField(
-                        type: TextInputType.name,
-                        controller: carModelController,
+                        type: TextInputType.number,
+                        controller: carNumberController,
                         label: "رقم اللوحة",
                         prefix: Image.asset("assets/images/5.png"),
                         color: color1),
@@ -599,7 +599,7 @@ class BookingScreen extends StatelessWidget {
                     Container(
                       width: .77.sw,
                       child: defaultFormField(
-                          type: TextInputType.name,
+                          type: TextInputType.number,
                           controller: numberOfPersonController,
                           label: "عدد الافراد",
                           prefix: Image.asset("assets/images/7.png"),
@@ -612,17 +612,21 @@ class BookingScreen extends StatelessWidget {
                   children: [
                     SizedBox(width: 10.w),
                     InkWell(
-                      onTap: () => BookingScreen.showSheet(
-                        context,
-                        child: buildDatePicker(),
-                        onClicked: () {
-                          setState(() {
-                            value = DateFormat('yyyy/MM/dd').format(dateTime);
-                          });
+                      onTap: () {
+                        return BookingScreen.showSheet(
+                          context,
+                          child: buildDatePicker(),
+                          onClicked: () {
+                            setState(() {
+                              context.setLocale(Locale('ar'));
 
-                          Navigator.pop(context);
-                        },
-                      ),
+                              value = DateFormat('yyyy/MM/dd').format(dateTime);
+                            });
+
+                            Navigator.pop(context);
+                          },
+                        );
+                      },
                       child: Container(
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black38),
@@ -707,29 +711,39 @@ class BookingScreen extends StatelessWidget {
   Widget buildDatePicker() => StatefulBuilder(
         builder: (BuildContext ctx, StateSetter setState) => SizedBox(
           height: 180,
-          child: CupertinoDatePicker(
-            minimumYear: DateTime.now().year,
-            maximumYear: DateTime.now().year + 1,
-            initialDateTime: dateTime,
-            mode: CupertinoDatePickerMode.date,
-            onDateTimeChanged: (dateTime) =>
-                setState(() => this.dateTime = dateTime),
+          child: CupertinoApp(
+            locale: Locale("en"),
+            debugShowCheckedModeBanner: false,
+            home: CupertinoDatePicker(
+              minimumDate: dateTime,
+              minimumYear: DateTime.now().year,
+              maximumYear: DateTime.now().year + 2,
+              initialDateTime: dateTime,
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (dateTime) =>
+                  setState(() => this.dateTime = dateTime),
+            ),
           ),
         ),
       );
 
-  Widget buildTimePicker() => StatefulBuilder(
-        builder: (BuildContext ctx, StateSetter setState) => SizedBox(
+  Widget buildTimePicker() =>
+      StatefulBuilder(builder: (BuildContext ctx, StateSetter setState) {
+        return SizedBox(
           height: 180,
-          child: CupertinoDatePicker(
-            maximumDate: dateTime,
-            initialDateTime: dateTime,
-            mode: CupertinoDatePickerMode.time,
+          child: CupertinoApp(
+            locale: Locale("en"),
+            debugShowCheckedModeBanner: false,
+            home: CupertinoDatePicker(
+              // minimumDate: dateTime,
+              initialDateTime: dateTime,
+              mode: CupertinoDatePickerMode.time,
 
-            //use24hFormat: true,
-            onDateTimeChanged: (dateTime) =>
-                setState(() => this.dateTime = dateTime),
+              //use24hFormat: true,
+              onDateTimeChanged: (dateTime) =>
+                  setState(() => this.dateTime = dateTime),
+            ),
           ),
-        ),
-      );
-}
+        );
+      });
+} /////عيزين نسيت لوكل لودجيت واحدة بس

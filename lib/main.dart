@@ -13,6 +13,8 @@ void main() async {
     supportedLocales: [Locale('ar'), Locale('en')],
     path: "assets/langs",
     startLocale: Locale('ar'),
+    // fallbackLocale: Locale('en'),
+
     saveLocale: true,
   ));
 }

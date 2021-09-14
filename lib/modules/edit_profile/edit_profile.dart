@@ -15,11 +15,16 @@ class EditProfile extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 0.06.sw),
         child: Column(
           children: [
-            Center(
-                child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Image.asset('assets/images/Pic.png'),
-            )),
+            SizedBox(height: 10.h),
+            CircleAvatar(
+              minRadius: 30,
+              backgroundColor: Colors.black12,
+              child: Icon(
+                Icons.person,
+                size: 70,
+                color: Colors.white,
+              ),
+            ),
             DetailsField(
               title: 'الاسم',
               iconData: Icon(Icons.person_outline, size: 25, color: color1),
