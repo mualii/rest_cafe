@@ -73,7 +73,7 @@ class CardScreen extends StatelessWidget {
             Center(child: Image.asset("assets/images/cart1.png")),
             SizedBox(height: 10.h),
             Container(
-              height: .6.sh,
+              height: .55.sh,
               child: ListView.separated(
                   itemBuilder: (BuildContext context, int index) =>
                       ListViewCont(),

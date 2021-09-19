@@ -30,6 +30,7 @@ class AddScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Container(
+            height: .9.sh,
             padding: EdgeInsets.all(7.sp),
             child: Column(
               children: [
@@ -71,105 +72,111 @@ class AddScreen extends StatelessWidget {
                         title: "سموكي باربكيو",
                         font: 16.sp,
                         color: Colors.black)),
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: myTitle(
-                            title: "مشروم", color: Colors.black, font: 14.sp),
-                        trailing: myTitle(
-                            title: "2 ريال", color: Colors.grey, font: 14.sp),
-                        leading: Checkbox(
-                            value: ischange,
-                            activeColor: color1,
-                            onChanged: (bool? value) {
-                              bool i = AddCubit.get(context)
-                                  .onChangedCheckBox(ischange);
-                              ischange = i;
-                            }),
-                      ),
-                      Divider(),
-                      ListTile(
-                        title: myTitle(
-                            title: "بصل", color: Colors.black, font: 14.sp),
-                        trailing: myTitle(
-                            title: "2 ريال", color: Colors.grey, font: 14.sp),
-                        leading: Checkbox(
-                            activeColor: color1,
-                            value: ischange2,
-                            onChanged: (bool? value) {
-                              bool i = AddCubit.get(context)
-                                  .onChangedCheckBox(ischange2);
-                              ischange2 = i;
-                            }),
-                      ),
-                      Divider(),
-                      ListTile(
-                        title: myTitle(
-                            title: "حار", color: Colors.black, font: 14.sp),
-                        trailing: myTitle(
-                            title: "2 ريال", color: Colors.grey, font: 14.sp),
-                        leading: Checkbox(
-                            activeColor: color1,
-                            value: ischange3,
-                            onChanged: (bool? value) {
-                              bool i = AddCubit.get(context)
-                                  .onChangedCheckBox(ischange3);
-                              ischange3 = i;
-                            }),
-                      ),
-                      Divider(),
-                      ListTile(
-                        title: myTitle(
-                            title: "بيض", color: Colors.black, font: 14.sp),
-                        trailing: myTitle(
-                            title: "2 ريال", color: Colors.grey, font: 14.sp),
-                        leading: Checkbox(
-                            activeColor: color1,
-                            value: ischange4,
-                            onChanged: (bool? value) {
-                              bool i = AddCubit.get(context)
-                                  .onChangedCheckBox(ischange4);
-                              ischange4 = i;
-                            }),
-                      ),
-                      Divider(),
-                      ListTile(
-                        title: myTitle(
-                            title: "الجبن", color: Colors.black, font: 14.sp),
-                        trailing: myTitle(
-                            title: "2 ريال", color: Colors.grey, font: 14.sp),
-                        leading: Checkbox(
-                            activeColor: color1,
-                            value: ischange5,
-                            onChanged: (bool? value) {
-                              bool i = AddCubit.get(context)
-                                  .onChangedCheckBox(ischange5);
-                              ischange5 = i;
-                            }),
-                      ),
-                      Divider(),
-                      ListTile(
-                        title: myTitle(
-                            title: "هلابينو", color: Colors.black, font: 14.sp),
-                        trailing: myTitle(
-                            title: "2 ريال", color: Colors.grey, font: 14.sp),
-                        leading: Checkbox(
-                            activeColor: color1,
-                            value: ischange6,
-                            onChanged: (bool? value) {
-                              bool i = AddCubit.get(context)
-                                  .onChangedCheckBox(ischange6);
-                              ischange6 = i;
-                            }),
-                      ),
-                      Divider(),
-                    ],
+                Container(
+                  height: .5.sh,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: myTitle(
+                              title: "مشروم", color: Colors.black, font: 14.sp),
+                          trailing: myTitle(
+                              title: "2 ريال", color: Colors.grey, font: 14.sp),
+                          leading: Checkbox(
+                              value: ischange,
+                              activeColor: color1,
+                              onChanged: (bool? value) {
+                                bool i = AddCubit.get(context)
+                                    .onChangedCheckBox(ischange);
+                                ischange = i;
+                              }),
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: myTitle(
+                              title: "بصل", color: Colors.black, font: 14.sp),
+                          trailing: myTitle(
+                              title: "2 ريال", color: Colors.grey, font: 14.sp),
+                          leading: Checkbox(
+                              activeColor: color1,
+                              value: ischange2,
+                              onChanged: (bool? value) {
+                                bool i = AddCubit.get(context)
+                                    .onChangedCheckBox(ischange2);
+                                ischange2 = i;
+                              }),
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: myTitle(
+                              title: "حار", color: Colors.black, font: 14.sp),
+                          trailing: myTitle(
+                              title: "2 ريال", color: Colors.grey, font: 14.sp),
+                          leading: Checkbox(
+                              activeColor: color1,
+                              value: ischange3,
+                              onChanged: (bool? value) {
+                                bool i = AddCubit.get(context)
+                                    .onChangedCheckBox(ischange3);
+                                ischange3 = i;
+                              }),
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: myTitle(
+                              title: "بيض", color: Colors.black, font: 14.sp),
+                          trailing: myTitle(
+                              title: "2 ريال", color: Colors.grey, font: 14.sp),
+                          leading: Checkbox(
+                              activeColor: color1,
+                              value: ischange4,
+                              onChanged: (bool? value) {
+                                bool i = AddCubit.get(context)
+                                    .onChangedCheckBox(ischange4);
+                                ischange4 = i;
+                              }),
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: myTitle(
+                              title: "الجبن", color: Colors.black, font: 14.sp),
+                          trailing: myTitle(
+                              title: "2 ريال", color: Colors.grey, font: 14.sp),
+                          leading: Checkbox(
+                              activeColor: color1,
+                              value: ischange5,
+                              onChanged: (bool? value) {
+                                bool i = AddCubit.get(context)
+                                    .onChangedCheckBox(ischange5);
+                                ischange5 = i;
+                              }),
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: myTitle(
+                              title: "هلابينو",
+                              color: Colors.black,
+                              font: 14.sp),
+                          trailing: myTitle(
+                              title: "2 ريال", color: Colors.grey, font: 14.sp),
+                          leading: Checkbox(
+                              activeColor: color1,
+                              value: ischange6,
+                              onChanged: (bool? value) {
+                                bool i = AddCubit.get(context)
+                                    .onChangedCheckBox(ischange6);
+                                ischange6 = i;
+                              }),
+                        ),
+                        Divider(),
+                      ],
+                    ),
                   ),
                 ),
 
                 // SizedBox(height: 15.h),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
                       onTap: () {

@@ -278,9 +278,10 @@ class CardScreen2 extends StatelessWidget {
                   ),
                 ),
               ),
-              hasTabol == true || hasCar == true
-                  ? SizedBox(height: .335.sh)
-                  : SizedBox(height: .403.sh),
+              SizedBox(
+                  height: (isChecked3 == false || isChecked1 == false!)
+                      ? .289.sh
+                      : .357.sh),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -711,7 +712,7 @@ class BookingScreen extends StatelessWidget {
 
   Widget buildDatePicker() => StatefulBuilder(
         builder: (BuildContext ctx, StateSetter setState) => SizedBox(
-          height: 180,
+          height: 180.h,
           child: CupertinoApp(
             locale: Locale("en"),
             debugShowCheckedModeBanner: false,
@@ -730,7 +731,7 @@ class BookingScreen extends StatelessWidget {
   Widget buildTimePicker() =>
       StatefulBuilder(builder: (BuildContext ctx, StateSetter setState) {
         return SizedBox(
-          height: 180,
+          height: 180.h,
           child: CupertinoApp(
             locale: Locale("en"),
             debugShowCheckedModeBanner: false,

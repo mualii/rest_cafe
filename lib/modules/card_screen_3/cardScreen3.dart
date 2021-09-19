@@ -190,7 +190,7 @@ class CardScreen3 extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: .20.sh),
+              SizedBox(height: .175.sh),
               Divider(color: Colors.black38),
               Row(
                 children: [

@@ -117,6 +117,7 @@ class OrderDetailScreen extends StatelessWidget {
                   ],
                 )
               ],
+              mainAxisAlignment: MainAxisAlignment.center,
             ),
           ),
           automaticallyImplyLeading: false,

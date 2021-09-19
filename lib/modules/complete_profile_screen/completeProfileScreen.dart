@@ -30,7 +30,7 @@ class CompleteProfileScreen extends StatelessWidget {
             navigateAndFinish(context, LayoutScreen());
           },
           child: Center(
-              child: myTitle(font: 14.sp, title: "تخطي", color: Colors.black)),
+              child: myTitle(font: 13.sp, title: "تخطي", color: Colors.black)),
         ),
       ),
       body: Center(

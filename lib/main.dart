@@ -87,6 +87,7 @@ class MyApp extends StatelessWidget {
         // ),
 
         debugShowCheckedModeBanner: false,
+
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
