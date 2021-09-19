@@ -13,7 +13,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool notificationsToggle = false;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,19 +38,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Image.asset("assets/images/ic_profile_payment.png")),
               function: () {
                 navigateTo(context, PaymentScreen1());
-              },
-            ),
-            SettingsOption(
-              title: 'اللغة',
-              iconData: Icon(
-                Icons.language,
-                color: Color(0xff4CB379),
-                size: 25,
-              ),
-              function: () {
-                return showCupertinoModalPopup(
-                    context: context,
-                    builder: (BuildContext context) => LanguageDialog());
               },
             ),
             SwitchListTile.adaptive(
@@ -151,85 +137,85 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-class LanguageDialog extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    bool selected = false;
-    return Dialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12.0))),
-      child: StatefulBuilder(builder: (context, setState) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: Container(
-            width: 0.85.sw,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'اختر اللغة',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w200),
-                  textAlign: TextAlign.center,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: GestureDetector(
-                        child: Column(
-                          children: [
-                            Opacity(
-                              opacity: selected ? 1 : 0.6,
-                              child: Image.asset(
-                                  "assets/images/united-kingdom.png"),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text('English'),
-                          ],
-                        ),
-                        onTap: () {
-                          setState(() {
-                            selected = !selected;
-                          });
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: GestureDetector(
-                        child: Column(
-                          children: [
-                            Opacity(
-                              opacity: selected ? 0.6 : 1,
-                              child:
-                                  Image.asset("assets/images/saudi-arabia.png"),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text('العربية'),
-                          ],
-                        ),
-                        onTap: () {
-                          setState(() {
-                            selected = !selected;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      }),
-    );
-  }
-}
+// class LanguageDialog extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     bool selected = false;
+//     return Dialog(
+//       shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.all(Radius.circular(12.0))),
+//       child: StatefulBuilder(builder: (context, setState) {
+//         return Padding(
+//           padding: const EdgeInsets.symmetric(vertical: 10.0),
+//           child: Container(
+//             width: 0.85.sw,
+//             child: Column(
+//               mainAxisSize: MainAxisSize.min,
+//               children: [
+//                 Text(
+//                   'اختر اللغة',
+//                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w200),
+//                   textAlign: TextAlign.center,
+//                 ),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                   children: [
+//                     Padding(
+//                       padding: const EdgeInsets.all(10.0),
+//                       child: GestureDetector(
+//                         child: Column(
+//                           children: [
+//                             Opacity(
+//                               opacity: selected ? 1 : 0.6,
+//                               child: Image.asset(
+//                                   "assets/images/united-kingdom.png"),
+//                             ),
+//                             SizedBox(
+//                               height: 10,
+//                             ),
+//                             Text('English'),
+//                           ],
+//                         ),
+//                         onTap: () {
+//                           setState(() {
+//                             selected = !selected;
+//                           });
+//                         },
+//                       ),
+//                     ),
+//                     Padding(
+//                       padding: const EdgeInsets.all(10.0),
+//                       child: GestureDetector(
+//                         child: Column(
+//                           children: [
+//                             Opacity(
+//                               opacity: selected ? 0.6 : 1,
+//                               child:
+//                                   Image.asset("assets/images/saudi-arabia.png"),
+//                             ),
+//                             SizedBox(
+//                               height: 10,
+//                             ),
+//                             Text('العربية'),
+//                           ],
+//                         ),
+//                         onTap: () {
+//                           setState(() {
+//                             selected = !selected;
+//                           });
+//                         },
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           ),
+//         );
+//       }),
+//     );
+//   }
+// }
 
 class AlertDialogWidget extends StatelessWidget {
   @override

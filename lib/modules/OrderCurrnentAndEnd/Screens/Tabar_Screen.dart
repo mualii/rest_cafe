@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
 import 'package:rest_cafe/modules/OrderCurrnentAndEnd/Widgets/OrderCard.dart';
+import 'package:rest_cafe/modules/order/order_detail_%D9%8Dscreen/orderDedailScreen.dart';
 import 'package:rest_cafe/shared/Model/OrderCurrentAndEnd.dart';
+import 'package:rest_cafe/shared/components/components.dart';
 
 class OrderCurrent extends StatelessWidget {
   List<ModelOrderCurrentAndEnd> listOrder = [
@@ -33,7 +35,11 @@ class OrderCurrent extends StatelessWidget {
         itemCount: listOrder.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return OrderCard(listOrder: listOrder[index]);
+          return InkWell(
+              onTap: () {
+                navigateTo(context, OrderDetailScreen());
+              },
+              child: OrderCard(listOrder: listOrder[index]));
         });
   }
 }

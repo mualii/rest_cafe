@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rest_cafe/modules/order/order_detail_%D9%8Dscreen/orderDedailScreen.dart';
 import 'package:rest_cafe/shared/Model/OrderCurrentAndEnd.dart';
-import 'package:rest_cafe/shared/components/components.dart';
 
 class OrderCard extends StatelessWidget {
   OrderCard({required this.listOrder, this.haveRate = false});
@@ -12,75 +10,70 @@ class OrderCard extends StatelessWidget {
   bool haveRate;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        navigateTo(context, OrderDetailScreen());
-      },
-      child: Directionality(
-        textDirection: TextDirection.ltr,
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
-          child: Card(
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Widget_NameAndStatus(),
-                          Widget_Cost(),
-                          SizedBox(
-                            height: 5.h,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
+        child: Card(
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Widget_NameAndStatus(),
+                        Widget_Cost(),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Container(
+                          width: .64.sw,
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "assets/images/ic_delivery_cafe.png",
+                                fit: BoxFit.fill,
+                                height: 20,
+                              ),
+                              // FaIcon(
+                              //   FontAwesomeIcons.truck,
+                              //   color: Color(0xff4CB379),
+                              // ),
+                              Spacer(),
+                              haveRate ? Widget_Star() : Container(),
+                              SizedBox(
+                                width: 15.w,
+                              ),
+                              Widget_NumItem(),
+                            ],
                           ),
-                          Container(
-                            width: .64.sw,
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "assets/images/ic_delivery_cafe.png",
-                                  fit: BoxFit.fill,
-                                  height: 20,
-                                ),
-                                // FaIcon(
-                                //   FontAwesomeIcons.truck,
-                                //   color: Color(0xff4CB379),
-                                // ),
-                                Spacer(),
-                                haveRate ? Widget_Star() : Container(),
-                                SizedBox(
-                                  width: 15.w,
-                                ),
-                                Widget_NumItem(),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Image.asset(
-                        listOrder.image!,
-                        fit: BoxFit.fill,
-                        height: 73.h,
-                        width: 73.w,
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 2,
-                  ),
-                  Widget_Time()
-                ],
-              ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Image.asset(
+                      listOrder.image!,
+                      fit: BoxFit.fill,
+                      height: 73.h,
+                      width: 73.w,
+                    ),
+                  ],
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                Widget_Time()
+              ],
             ),
           ),
         ),

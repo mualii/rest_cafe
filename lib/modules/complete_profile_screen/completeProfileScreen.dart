@@ -25,8 +25,13 @@ class CompleteProfileScreen extends StatelessWidget {
             color: Colors.black, title: "اكمل الملف الشخصي", font: 18.sp),
         centerTitle: true,
         backgroundColor: Colors.white,
-        leading: Center(
-            child: myTitle(font: 14.sp, title: "تخطي", color: Colors.black)),
+        leading: InkWell(
+          onTap: () {
+            navigateAndFinish(context, LayoutScreen());
+          },
+          child: Center(
+              child: myTitle(font: 14.sp, title: "تخطي", color: Colors.black)),
+        ),
       ),
       body: Center(
         child: Column(

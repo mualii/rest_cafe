@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/verify_OTP_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
@@ -11,14 +12,50 @@ class LoginScreen extends StatelessWidget {
   PhoneNumber number = PhoneNumber(isoCode: "SA");
   @override
   Widget build(BuildContext context) {
+    bool isArabic = true;
     print("phone ${_userPhoneController.text}");
     return Scaffold(
-      body: Form(
-        key: formKey,
-        child: Center(
+      body: SafeArea(
+        child: Form(
+          key: formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        InkWell(
+                            onTap: () {
+                              navigateAndFinish(context, LayoutScreen());
+                            },
+                            child: myTitle(
+                                font: 18.sp,
+                                title: "تخطي",
+                                color: Colors.black)),
+                        StatefulBuilder(
+                            builder:
+                                (BuildContext context, StateSetter setState) =>
+                                    InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            isArabic = !isArabic;
+                                          });
+                                        },
+                                        child: myTitle(
+                                            font: 14.sp,
+                                            title: isArabic == true
+                                                ? "English"
+                                                : "العربية",
+                                            color: Colors.black)))
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 100.h),
               Text(
                 "RESTCAFE",
                 style: TextStyle(
@@ -38,7 +75,6 @@ class LoginScreen extends StatelessWidget {
                   textAlign: TextAlign.right,
                   inputDecoration: InputDecoration(
                     hintText: "رقم الهاتف",
-
                     hintStyle: TextStyle(
                       color: Color(0xffAAAAAA),
                       fontSize: 16.sp,

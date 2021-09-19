@@ -54,7 +54,10 @@ class DetailScreen extends StatelessWidget {
                                   barrierColor: Colors.white10, //AddScreen()
                                 );
                               },
-                              child: Image.asset("assets/images/ic_cart.png")),
+                              child: Icon(
+                                FontAwesomeIcons.cartPlus,
+                                color: Colors.grey,
+                              )),
                         ),
                         SizedBox(width: .29.sw),
                         Column(

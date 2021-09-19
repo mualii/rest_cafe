@@ -101,6 +101,14 @@ class HomeScreen extends StatelessWidget {
                             controller: _searchController,
                             type: TextInputType.name,
                             hint: "بحث عن متجر او منتج",
+                            suffix: Icon(
+                              Icons.clear,
+                              color: Colors.grey,
+                            ),
+                            suffixPressed: () {
+                              _searchController.clear();
+                              FocusScope.of(context).unfocus();
+                            },
                             prefix: Icon(
                               Icons.search,
                               color: color1,

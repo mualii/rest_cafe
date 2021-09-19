@@ -7,7 +7,14 @@ import 'package:rest_cafe/modules/contact_screen/contactScreen.dart';
 import 'package:rest_cafe/modules/profile_screen/profile_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool langIsArabic = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,6 +125,33 @@ class SettingsScreen extends StatelessWidget {
             ),
             function: () {},
           ),
+          langIsArabic
+              ? SettingsOption(
+                  title: 'اللغة',
+                  iconData: Icon(
+                    Icons.language,
+                    color: Color(0xff4CB379),
+                    size: 25,
+                  ),
+                  function: () {
+                    setState(() {
+                      langIsArabic = false;
+                    });
+                  },
+                )
+              : SettingsOption(
+                  title: "language",
+                  iconData: Icon(
+                    Icons.language,
+                    color: Color(0xff4CB379),
+                    size: 25,
+                  ),
+                  function: () {
+                    setState(() {
+                      langIsArabic = true;
+                    });
+                  },
+                ),
           SettingsOption(
             title: 'الاسئلة الشائعة',
             iconData: Container(

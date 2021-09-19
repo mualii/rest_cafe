@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/styles/colors.dart';
 
 class FavoritesScreen extends StatelessWidget {
   ScrollController controller = ScrollController();
@@ -36,6 +37,7 @@ class FavoriteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isFav = false;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
@@ -79,15 +81,28 @@ class FavoriteItem extends StatelessWidget {
             ],
           ),
           Spacer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(
-                Icons.favorite,
-                color: Color(0xff4CB379),
-              )
-            ],
-          )
+          StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) => Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        icon: isFav
+                            ? Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.grey,
+                              )
+                            : Icon(
+                                Icons.favorite,
+                                color: color1,
+                              ),
+                        onPressed: () {
+                          setState(() {
+                            isFav = !isFav;
+                          });
+                        },
+                      ),
+                    ],
+                  ))
         ],
       ),
     );

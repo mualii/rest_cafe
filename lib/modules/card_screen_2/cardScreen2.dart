@@ -279,8 +279,8 @@ class CardScreen2 extends StatelessWidget {
                 ),
               ),
               hasTabol == true || hasCar == true
-                  ? SizedBox(height: .355.sh)
-                  : SizedBox(height: .423.sh),
+                  ? SizedBox(height: .335.sh)
+                  : SizedBox(height: .403.sh),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -550,6 +550,7 @@ class BookingScreen extends StatelessWidget {
   var value;
   var value2;
   DateTime dateTime = DateTime.now();
+  DateTime dateTime2 = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -715,9 +716,8 @@ class BookingScreen extends StatelessWidget {
             locale: Locale("en"),
             debugShowCheckedModeBanner: false,
             home: CupertinoDatePicker(
-              minimumDate: dateTime,
+              // minimumDate: DateTime.now().toLocal(),
               minimumYear: DateTime.now().year,
-              maximumYear: DateTime.now().year + 2,
               initialDateTime: dateTime,
               mode: CupertinoDatePickerMode.date,
               onDateTimeChanged: (dateTime) =>

@@ -31,213 +31,214 @@ class AddScreen extends StatelessWidget {
         builder: (context, state) {
           return Container(
             padding: EdgeInsets.all(7.sp),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState) =>
-                        Row(
-                      children: [
-                        IconButton(
-                          icon: isFav
-                              ? Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: Colors.grey,
-                                )
-                              : Icon(
-                                  Icons.favorite,
-                                  color: color1,
-                                ),
-                          onPressed: () {
-                            setState(() {
-                              isFav = !isFav;
-                            });
-                          },
-                        ),
-                        SizedBox(width: .6.sw),
-                        IconButton(
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.grey,
-                          ),
-                          onPressed: () {
-                            navigateAndFinish(context, DetailScreen());
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                  Center(child: Image.asset("assets/images/Bourger.png")),
-                  Center(
-                      child: myTitle(
-                          title: "سموكي باربكيو",
-                          font: 16.sp,
-                          color: Colors.black)),
-                  ListTile(
-                    title: myTitle(
-                        title: "مشروم", color: Colors.black, font: 14.sp),
-                    trailing: myTitle(
-                        title: "2 ريال", color: Colors.grey, font: 14.sp),
-                    leading: Checkbox(
-                        value: ischange,
-                        activeColor: color1,
-                        onChanged: (bool? value) {
-                          bool i =
-                              AddCubit.get(context).onChangedCheckBox(ischange);
-                          ischange = i;
-                        }),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title:
-                        myTitle(title: "بصل", color: Colors.black, font: 14.sp),
-                    trailing: myTitle(
-                        title: "2 ريال", color: Colors.grey, font: 14.sp),
-                    leading: Checkbox(
-                        activeColor: color1,
-                        value: ischange2,
-                        onChanged: (bool? value) {
-                          bool i = AddCubit.get(context)
-                              .onChangedCheckBox(ischange2);
-                          ischange2 = i;
-                        }),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title:
-                        myTitle(title: "حار", color: Colors.black, font: 14.sp),
-                    trailing: myTitle(
-                        title: "2 ريال", color: Colors.grey, font: 14.sp),
-                    leading: Checkbox(
-                        activeColor: color1,
-                        value: ischange3,
-                        onChanged: (bool? value) {
-                          bool i = AddCubit.get(context)
-                              .onChangedCheckBox(ischange3);
-                          ischange3 = i;
-                        }),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title:
-                        myTitle(title: "بيض", color: Colors.black, font: 14.sp),
-                    trailing: myTitle(
-                        title: "2 ريال", color: Colors.grey, font: 14.sp),
-                    leading: Checkbox(
-                        activeColor: color1,
-                        value: ischange4,
-                        onChanged: (bool? value) {
-                          bool i = AddCubit.get(context)
-                              .onChangedCheckBox(ischange4);
-                          ischange4 = i;
-                        }),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: myTitle(
-                        title: "الجبن", color: Colors.black, font: 14.sp),
-                    trailing: myTitle(
-                        title: "2 ريال", color: Colors.grey, font: 14.sp),
-                    leading: Checkbox(
-                        activeColor: color1,
-                        value: ischange5,
-                        onChanged: (bool? value) {
-                          bool i = AddCubit.get(context)
-                              .onChangedCheckBox(ischange5);
-                          ischange5 = i;
-                        }),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: myTitle(
-                        title: "هلابينو", color: Colors.black, font: 14.sp),
-                    trailing: myTitle(
-                        title: "2 ريال", color: Colors.grey, font: 14.sp),
-                    leading: Checkbox(
-                        activeColor: color1,
-                        value: ischange6,
-                        onChanged: (bool? value) {
-                          bool i = AddCubit.get(context)
-                              .onChangedCheckBox(ischange6);
-                          ischange6 = i;
-                        }),
-                  ),
-                  Divider(),
-                  // SizedBox(height: 15.h),
-                  Row(
+            child: Column(
+              children: [
+                StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setState) => Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (context) {
-                              return Dialog(
-                                insetPadding: EdgeInsets.all(20),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: CardScreen(),
-                              );
-                            },
-                            barrierColor: Colors.white10, //AddScreen()
-                          );
-
-                          // navigateAndFinish(context, CardScreen());
+                      IconButton(
+                        icon: isFav
+                            ? Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.grey,
+                              )
+                            : Icon(
+                                Icons.favorite,
+                                color: color1,
+                              ),
+                        onPressed: () {
+                          setState(() {
+                            isFav = !isFav;
+                          });
                         },
-                        child: mainBottom(
-                            title: "اضافة  35  ريال",
-                            height: 50.h,
-                            width: 140.w),
                       ),
-                      SizedBox(width: 20.w),
-                      InkWell(
-                        onTap: () {
-                          count =
-                              AddCubit.get(context).addOneItemFromCard(count);
-                        },
-                        child: Container(
-                          height: 50.h,
-                          width: 50.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            color: Color(0xff494861),
-                          ),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
+                      SizedBox(width: .6.sw),
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
                         ),
-                      ),
-                      Container(
-                          height: 50.h,
-                          width: 50.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                          ),
-                          child: Center(
-                            child: myTitle(
-                                color: color1, title: "$count", font: 25.sp),
-                          )),
-                      InkWell(
-                        onTap: () {
-                          count =
-                              AddCubit.get(context).MinusOneItemFromCard(count);
+                        onPressed: () {
+                          navigateAndFinish(context, DetailScreen());
                         },
-                        child: Container(
-                          height: 50.h,
-                          width: 50.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            color: Color(0xffE7E7E7),
-                          ),
-                          child: Icon(FontAwesomeIcons.minus,
-                              color: Colors.black38, size: 17.sp),
-                        ),
-                      ),
+                      )
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+                Center(child: Image.asset("assets/images/Bourger.png")),
+                Center(
+                    child: myTitle(
+                        title: "سموكي باربكيو",
+                        font: 16.sp,
+                        color: Colors.black)),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: myTitle(
+                            title: "مشروم", color: Colors.black, font: 14.sp),
+                        trailing: myTitle(
+                            title: "2 ريال", color: Colors.grey, font: 14.sp),
+                        leading: Checkbox(
+                            value: ischange,
+                            activeColor: color1,
+                            onChanged: (bool? value) {
+                              bool i = AddCubit.get(context)
+                                  .onChangedCheckBox(ischange);
+                              ischange = i;
+                            }),
+                      ),
+                      Divider(),
+                      ListTile(
+                        title: myTitle(
+                            title: "بصل", color: Colors.black, font: 14.sp),
+                        trailing: myTitle(
+                            title: "2 ريال", color: Colors.grey, font: 14.sp),
+                        leading: Checkbox(
+                            activeColor: color1,
+                            value: ischange2,
+                            onChanged: (bool? value) {
+                              bool i = AddCubit.get(context)
+                                  .onChangedCheckBox(ischange2);
+                              ischange2 = i;
+                            }),
+                      ),
+                      Divider(),
+                      ListTile(
+                        title: myTitle(
+                            title: "حار", color: Colors.black, font: 14.sp),
+                        trailing: myTitle(
+                            title: "2 ريال", color: Colors.grey, font: 14.sp),
+                        leading: Checkbox(
+                            activeColor: color1,
+                            value: ischange3,
+                            onChanged: (bool? value) {
+                              bool i = AddCubit.get(context)
+                                  .onChangedCheckBox(ischange3);
+                              ischange3 = i;
+                            }),
+                      ),
+                      Divider(),
+                      ListTile(
+                        title: myTitle(
+                            title: "بيض", color: Colors.black, font: 14.sp),
+                        trailing: myTitle(
+                            title: "2 ريال", color: Colors.grey, font: 14.sp),
+                        leading: Checkbox(
+                            activeColor: color1,
+                            value: ischange4,
+                            onChanged: (bool? value) {
+                              bool i = AddCubit.get(context)
+                                  .onChangedCheckBox(ischange4);
+                              ischange4 = i;
+                            }),
+                      ),
+                      Divider(),
+                      ListTile(
+                        title: myTitle(
+                            title: "الجبن", color: Colors.black, font: 14.sp),
+                        trailing: myTitle(
+                            title: "2 ريال", color: Colors.grey, font: 14.sp),
+                        leading: Checkbox(
+                            activeColor: color1,
+                            value: ischange5,
+                            onChanged: (bool? value) {
+                              bool i = AddCubit.get(context)
+                                  .onChangedCheckBox(ischange5);
+                              ischange5 = i;
+                            }),
+                      ),
+                      Divider(),
+                      ListTile(
+                        title: myTitle(
+                            title: "هلابينو", color: Colors.black, font: 14.sp),
+                        trailing: myTitle(
+                            title: "2 ريال", color: Colors.grey, font: 14.sp),
+                        leading: Checkbox(
+                            activeColor: color1,
+                            value: ischange6,
+                            onChanged: (bool? value) {
+                              bool i = AddCubit.get(context)
+                                  .onChangedCheckBox(ischange6);
+                              ischange6 = i;
+                            }),
+                      ),
+                      Divider(),
+                    ],
+                  ),
+                ),
+
+                // SizedBox(height: 15.h),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) {
+                            return Dialog(
+                              insetPadding: EdgeInsets.all(20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: CardScreen(),
+                            );
+                          },
+                          barrierColor: Colors.white10, //AddScreen()
+                        );
+
+                        // navigateAndFinish(context, CardScreen());
+                      },
+                      child: mainBottom(
+                          title: "اضافة  35  ريال", height: 50.h, width: 140.w),
+                    ),
+                    SizedBox(width: 20.w),
+                    InkWell(
+                      onTap: () {
+                        count = AddCubit.get(context).addOneItemFromCard(count);
+                      },
+                      child: Container(
+                        height: 50.h,
+                        width: 50.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.sp),
+                          color: Color(0xff494861),
+                        ),
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Container(
+                        height: 50.h,
+                        width: 50.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
+                        child: Center(
+                          child: myTitle(
+                              color: color1, title: "$count", font: 25.sp),
+                        )),
+                    InkWell(
+                      onTap: () {
+                        count =
+                            AddCubit.get(context).MinusOneItemFromCard(count);
+                      },
+                      child: Container(
+                        height: 50.h,
+                        width: 50.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.sp),
+                          color: Color(0xffE7E7E7),
+                        ),
+                        child: Icon(FontAwesomeIcons.minus,
+                            color: Colors.black38, size: 17.sp),
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           );
         },

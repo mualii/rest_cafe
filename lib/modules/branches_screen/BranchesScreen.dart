@@ -189,7 +189,7 @@ class LabolOfSecondListView extends StatelessWidget {
                         ],
                       ),
                   separatorBuilder: (context, index) => SizedBox(width: 1.w),
-                  itemCount: 2),
+                  itemCount: 1),
             )
           ],
         ),

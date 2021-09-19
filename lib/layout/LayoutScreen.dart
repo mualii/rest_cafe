@@ -66,7 +66,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
 //======================= Bot Nav Custom =========================
   Widget BotNavCustom(BuildContext context, Size size) {
-    return Positioned(
+    return AnimatedPositioned(
+      duration: Duration(milliseconds: 600),
       bottom: _model.bottom,
       child: Container(
         width: size.width,
@@ -141,9 +142,12 @@ class _LayoutScreenState extends State<LayoutScreen> {
                             ))
                         : Container(),
                     SizedBox(height: 2.h),
-                    Text(
-                      "Home",
-                      style: TextStyle(color: Colors.white),
+                    RotationTransition(
+                      turns: AlwaysStoppedAnimation(10 / 360),
+                      child: Text(
+                        "الرئيسية",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ],
                 ),
@@ -209,7 +213,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                         : Container(),
                     SizedBox(height: 2.h),
                     Text(
-                      "home",
+                      "المفضلة",
                       style: TextStyle(color: Colors.white),
                     ),
                   ],
@@ -274,7 +278,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                         : Container(),
                     SizedBox(height: 2.h),
                     Text(
-                      "home",
+                      "الطلبات",
                       style: TextStyle(color: Colors.white),
                     ),
                   ],
@@ -338,9 +342,12 @@ class _LayoutScreenState extends State<LayoutScreen> {
                             ))
                         : Container(),
                     SizedBox(height: 2.h),
-                    Text(
-                      "home",
-                      style: TextStyle(color: Colors.white),
+                    RotationTransition(
+                      turns: AlwaysStoppedAnimation(-10 / 360),
+                      child: Text(
+                        "الاعدادات",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ],
                 ),
