@@ -94,6 +94,7 @@ class BranchesScreen extends StatelessWidget {
                                 onTap: () {
                                   DetailCubit.get(context)
                                       .changeListItem(index);
+                                  navigateTo(context, DetailScreen());
                                 },
                                 child: LabolOfSecondListView(
                                   index: index,

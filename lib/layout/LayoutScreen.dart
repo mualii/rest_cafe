@@ -29,10 +29,11 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   List<Widget> _pages = [];
   List<String> titlePage = [
-    "ألرئيسية",
+    "الرئيسية",
     "المفضلة",
     "الطلبات",
-    "الاعدادت",
+    "الإعدادات",
+    "الإعدادات",
   ];
   int _selectedPageIndex = 0;
 
