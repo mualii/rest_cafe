@@ -35,21 +35,6 @@ class LoginScreen extends StatelessWidget {
                                 font: 18.sp,
                                 title: "تخطي",
                                 color: Colors.black)),
-                        StatefulBuilder(
-                            builder:
-                                (BuildContext context, StateSetter setState) =>
-                                    InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            isArabic = !isArabic;
-                                          });
-                                        },
-                                        child: myTitle(
-                                            font: 14.sp,
-                                            title: isArabic == true
-                                                ? "English"
-                                                : "العربية",
-                                            color: Colors.black)))
                       ],
                     )
                   ],
@@ -156,7 +141,20 @@ class LoginScreen extends StatelessWidget {
                   )
                   // myTitle(title: "انشاء حساب", font: 18.sp, color: color1),
                 ],
-              )
+              ),
+              SizedBox(height: 10.h),
+              StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setState) =>
+                      InkWell(
+                          onTap: () {
+                            setState(() {
+                              isArabic = !isArabic;
+                            });
+                          },
+                          child: myTitle(
+                              font: 14.sp,
+                              title: isArabic == true ? "English" : "العربية",
+                              color: Colors.black)))
             ],
           ),
         ),

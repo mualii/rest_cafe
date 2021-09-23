@@ -19,12 +19,9 @@ class FavoritesScreen extends StatelessWidget {
         shrinkWrap: true,
         padding: EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         children: [
-          FavoriteItem(
-            title: 'سبايسي كرانشي تشيكن',
-          ),
-          FavoriteItem(
-            title: 'بيج تايستي',
-          ),
+          FavoriteItem(),
+          SizedBox(height: 20.h),
+          FavoriteItem(),
         ],
       ),
     );
@@ -32,58 +29,117 @@ class FavoritesScreen extends StatelessWidget {
 }
 
 class FavoriteItem extends StatelessWidget {
-  final String? title;
-  const FavoriteItem({this.title});
-
   @override
+  bool isFav = false;
   Widget build(BuildContext context) {
-    bool isFav = false;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-      //  height: 0.16.sh,
+      height: 110.h,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-          border: Border.all(width: 0.3)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              'assets/images/Bourger.png',
-              height: 100.w,
-              width: 100.w,
+          border: Border.all(color: Color(0xffDADADA)),
+          borderRadius: BorderRadius.circular(20.sp)),
+      child: Padding(
+        padding: EdgeInsets.all(6.0.sp),
+        child: Row(
+          children: [
+            Container(
+              height: 100.h,
+              width: 90.w,
+              decoration: BoxDecoration(
+                  // border: Border.all(color: Color(0xffDADADA)),
+                  borderRadius: BorderRadius.circular(20.sp)),
+              child: Image.asset("assets/images/mac.png"),
             ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title!,
-                style: TextStyle(
-                    fontFamily: "FrutigerLTArabic",
-                    fontWeight: FontWeight.w400,
-                    fontSize: 17),
-              ),
-              Text('ماكدونالد',
-                  style: TextStyle(
+            SizedBox(width: 10.w),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("هارديز",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.sp,
                       fontFamily: "FrutigerLTArabic",
-                      color: Colors.grey.shade600)),
-              Text('15 ريال',
-                  style: TextStyle(
-                      fontFamily: "FrutigerLTArabic",
-                      color: Colors.grey.shade600)),
-            ],
-          ),
-          Spacer(),
-          StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState) => Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    )),
+                SizedBox(height: 5.h),
+                Row(children: [
+                  Container(
+                      height: 20,
+                      child: Image.asset("assets/images/ic_restaurant.png")),
+                  SizedBox(width: 5.w),
+                  Text("ياباني",
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 12.sp,
+                        fontFamily: "FrutigerLTArabic",
+                      )),
+                ]),
+                Spacer(),
+                Row(
+                  children: [
+                    Container(
+                        height: 20,
+                        child: Image.asset("assets/images/ic_location.png")),
+                    SizedBox(width: 5.w),
+                    Row(
+                      children: [
+                        Text("Km",
+                            style: TextStyle(
+                                fontFamily: "FrutigerLTArabic",
+                                color: Colors.black54,
+                                fontSize: 12.sp)),
+                        Text(" 5",
+                            style: TextStyle(
+                                fontFamily: "FrutigerLTArabic",
+                                color: Colors.black54,
+                                fontSize: 12.sp)),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(width: 20.w),
+            Column(
+              // mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                // SizedBox(height: 10.h),
+                Spacer(),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.access_time_filled,
+                      color: color1,
+                      size: 15.sp,
+                    ),
+                    SizedBox(width: 3),
+                    Text("45 دقيقة",
+                        style: TextStyle(
+                          color: Colors.black38,
+                          fontSize: 12.sp,
+                          fontFamily: "FrutigerLTArabic",
+                        )),
+                  ],
+                ),
+              ],
+            ),
+            Spacer(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(children: [
+                  Text("مفتوح",
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 12.sp,
+                        fontFamily: "FrutigerLTArabic",
+                      )),
+                  Icon(
+                    Icons.circle,
+                    color: color1,
+                    size: 10.sp,
+                  ),
+                ]),
+                StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setState) => Row(
                     children: [
                       IconButton(
                         icon: isFav
@@ -102,8 +158,17 @@ class FavoriteItem extends StatelessWidget {
                         },
                       ),
                     ],
-                  ))
-        ],
+                  ),
+                ),
+                Container(
+                  height: 25.h,
+                  width: 40.w,
+                  child: Image.asset("assets/images/ic_delivery_car.png"),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

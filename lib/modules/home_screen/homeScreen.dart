@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
-import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
+import 'package:rest_cafe/modules/branches_screen/BranchesScreen.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeState.dart';
 import 'package:rest_cafe/modules/notifications_screen/notifications_screen.dart';
@@ -41,9 +41,9 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            "التوصيل الى",
+                            "موقعك",
                             style: TextStyle(
-                                color: Color(0xffAEAEAE), fontSize: 12.sp),
+                                color: Color(0xffAEAEAE), fontSize: 16.sp),
                           ),
                         ],
                       ),
@@ -145,7 +145,7 @@ class HomeScreen extends StatelessWidget {
                             physics: BouncingScrollPhysics(),
                             itemBuilder: (context, index) => InkWell(
                                 onTap: () {
-                                  navigateTo(context, DetailScreen());
+                                  navigateTo(context, BranchesScreen());
                                 },
                                 child: LabolOfSecondListView()),
                             separatorBuilder: (context, index) =>
@@ -166,9 +166,10 @@ class HomeScreen extends StatelessWidget {
 
 class LabolOfSecondListView extends StatelessWidget {
   @override
+  bool isFav = false;
   Widget build(BuildContext context) {
     return Container(
-      height: 107.5.h,
+      height: 110.h,
       decoration: BoxDecoration(
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
@@ -207,7 +208,7 @@ class LabolOfSecondListView extends StatelessWidget {
                         fontFamily: "FrutigerLTArabic",
                       )),
                 ]),
-                SizedBox(height: 7.h),
+                Spacer(),
                 Row(
                   children: [
                     Container(
@@ -273,7 +274,28 @@ class LabolOfSecondListView extends StatelessWidget {
                     size: 10.sp,
                   ),
                 ]),
-                Spacer(),
+                StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setState) => Row(
+                    children: [
+                      IconButton(
+                        icon: isFav
+                            ? Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.grey,
+                              )
+                            : Icon(
+                                Icons.favorite,
+                                color: color1,
+                              ),
+                        onPressed: () {
+                          setState(() {
+                            isFav = !isFav;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
                 Container(
                   height: 25.h,
                   width: 40.w,

@@ -28,6 +28,12 @@ class _LayoutScreenState extends State<LayoutScreen> {
   }
 
   List<Widget> _pages = [];
+  List<String> titlePage = [
+    "ألرئيسية",
+    "المفضلة",
+    "الطلبات",
+    "الاعدادت",
+  ];
   int _selectedPageIndex = 0;
 
   late final ScrollListener _model;
@@ -84,7 +90,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
               painter: BNBCustomPainter2(),
             ),
             Positioned(
-              bottom: 7.h,
+              bottom: 25.h,
               right: 40.h,
               child: Container(
                 decoration: BoxDecoration(
@@ -142,20 +148,20 @@ class _LayoutScreenState extends State<LayoutScreen> {
                             ))
                         : Container(),
                     SizedBox(height: 2.h),
-                    RotationTransition(
-                      turns: AlwaysStoppedAnimation(10 / 360),
-                      child: Text(
-                        "الرئيسية",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+                    // RotationTransition(
+                    //   turns: AlwaysStoppedAnimation(10 / 360),
+                    //   child: Text(
+                    //     "الرئيسية",
+                    //     style: TextStyle(color: Colors.white),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
             ),
             Positioned(
               ///hiii
-              bottom: 17.h,
+              bottom: 37.h,
               right: 125.w,
               child: Container(
                 decoration: BoxDecoration(
@@ -213,8 +219,33 @@ class _LayoutScreenState extends State<LayoutScreen> {
                             ))
                         : Container(),
                     SizedBox(height: 2.h),
+                    // Text(
+                    //   "المفضلة",
+                    //   style: TextStyle(color: Colors.white),
+                    // ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              ///hiii
+              bottom: 5.h,
+              right: 175.w,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Container(),
+                    SizedBox(height: 2.h),
                     Text(
-                      "المفضلة",
+                      titlePage[currentIndex],
                       style: TextStyle(color: Colors.white),
                     ),
                   ],
@@ -222,7 +253,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
               ),
             ),
             Positioned(
-              bottom: 17.h,
+              bottom: 37.h,
               left: 125.w,
               child: Container(
                 decoration: BoxDecoration(
@@ -278,16 +309,16 @@ class _LayoutScreenState extends State<LayoutScreen> {
                             ))
                         : Container(),
                     SizedBox(height: 2.h),
-                    Text(
-                      "الطلبات",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    // Text(
+                    //   "الطلبات",
+                    //   style: TextStyle(color: Colors.white),
+                    // ),
                   ],
                 ),
               ),
             ),
             Positioned(
-              bottom: 7.h,
+              bottom: 25.h,
               left: 40.w,
               child: Container(
                 decoration: BoxDecoration(
@@ -343,13 +374,13 @@ class _LayoutScreenState extends State<LayoutScreen> {
                             ))
                         : Container(),
                     SizedBox(height: 2.h),
-                    RotationTransition(
-                      turns: AlwaysStoppedAnimation(-10 / 360),
-                      child: Text(
-                        "الاعدادات",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+                    // RotationTransition(
+                    //   turns: AlwaysStoppedAnimation(-10 / 360),
+                    //   child: Text(
+                    //     "الاعدادات",
+                    //     style: TextStyle(color: Colors.white),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

@@ -140,7 +140,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   },
                 )
               : SettingsOption(
-                  title: "language",
+                  title: "English",
                   iconData: Icon(
                     Icons.language,
                     color: Color(0xff4CB379),
