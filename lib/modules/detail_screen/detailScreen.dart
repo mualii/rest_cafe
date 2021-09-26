@@ -25,7 +25,7 @@ class DetailScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              toolbarHeight: 203.h,
+              toolbarHeight: 180.h,
               flexibleSpace: SafeArea(
                 child: Column(
                   children: [
@@ -106,7 +106,7 @@ class DetailScreen extends StatelessWidget {
                         color: Color(0xffD8D8D8),
                       ),
                     ),
-                    SizedBox(height: 5.h),
+                    Spacer(),
                     Row(
                       children: [
                         SizedBox(width: 20.w),

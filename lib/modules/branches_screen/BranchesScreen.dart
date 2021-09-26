@@ -78,7 +78,7 @@ class BranchesScreen extends StatelessWidget {
                             Spacer(),
                             IconButton(
                                 onPressed: () {
-                                  navigateAndFinish(context, DetailScreen());
+                                  navigateAndFinish(context, LayoutScreen());
                                 },
                                 icon: Image.asset("assets/images/0.png"))
                           ],

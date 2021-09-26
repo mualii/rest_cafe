@@ -554,138 +554,30 @@ class BookingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: .40.sh,
-      padding: EdgeInsets.all(10.sp),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(width: .15.sw),
-              Center(
-                  child: myTitle(
-                      title: "التوصيل (حجز طاولة)",
-                      font: 16.sp,
-                      color: Colors.black)),
-              IconButton(
-                icon: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.grey,
-                ),
-                onPressed: () {
-                  showDialog(
-                    barrierColor: Colors.white10, //AddScreen()
-
-                    context: context,
-                    builder: (_) => Dialog(
-                      insetPadding: EdgeInsets.all(20),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: CardScreen2(),
-                    ), //AddScreen()
-                    barrierDismissible: false,
-                  );
-                },
-              )
-            ],
-          ),
-          SizedBox(height: 20.h),
-          StatefulBuilder(
-            builder: (BuildContext ctx, StateSetter setState) => Column(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Container(
+        height: .40.sh,
+        padding: EdgeInsets.all(10.sp),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    SizedBox(width: 10.w),
-                    Container(
-                      width: .77.sw,
-                      child: defaultFormField(
-                          type: TextInputType.number,
-                          controller: numberOfPersonController,
-                          label: "عدد الافراد",
-                          prefix: Image.asset("assets/images/7.png"),
-                          color: color1),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.h),
-                Row(
-                  children: [
-                    SizedBox(width: 10.w),
-                    InkWell(
-                      onTap: () {
-                        return BookingScreen.showSheet(
-                          context,
-                          child: buildDatePicker(),
-                          onClicked: () {
-                            setState(() {
-                              context.setLocale(Locale('ar'));
-
-                              value = DateFormat('yyyy/MM/dd').format(dateTime);
-                            });
-
-                            Navigator.pop(context);
-                          },
-                        );
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black38),
-                              borderRadius: BorderRadius.circular(10.sp)),
-                          width: 140.w,
-                          height: 50.h,
-                          child: Row(
-                            children: [
-                              SizedBox(width: 10.w),
-                              Image.asset("assets/images/8.png"),
-                              SizedBox(width: 10.w),
-                              Text(
-                                  (value == null) ? "اليوم" : value.toString()),
-                            ],
-                          )),
-                    ),
-                    SizedBox(width: 20.w),
-                    InkWell(
-                      onTap: () => BookingScreen.showSheet(
-                        context,
-                        child: buildTimePicker(),
-                        onClicked: () {
-                          setState(() {
-                            value2 = DateFormat('HH:mm').format(dateTime);
-                          });
-
-                          Navigator.pop(context);
-                        },
-                      ),
-                      child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black38),
-                              borderRadius: BorderRadius.circular(10.sp)),
-                          width: 140.w,
-                          height: 50.h,
-                          child: Row(
-                            children: [
-                              SizedBox(width: 10.w),
-                              Image.asset("assets/images/9.png"),
-                              SizedBox(width: 10.w),
-                              Text((value2 == null)
-                                  ? "الساعة"
-                                  : value2.toString())
-                            ],
-                          )),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-          SizedBox(height: 20.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(width: 10.w),
-              InkWell(
-                  onTap: () {
+                SizedBox(width: .15.sw),
+                Center(
+                    child: myTitle(
+                        title: "التوصيل (حجز طاولة)",
+                        font: 16.sp,
+                        color: Colors.black)),
+                IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
                     showDialog(
                       barrierColor: Colors.white10, //AddScreen()
 
@@ -694,17 +586,133 @@ class BookingScreen extends StatelessWidget {
                         insetPadding: EdgeInsets.all(20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        child: CardScreen2(
-                          hasTabol: true,
-                        ),
+                        child: CardScreen2(),
                       ), //AddScreen()
                       barrierDismissible: false,
                     );
                   },
-                  child: mainBottom(title: "اضف", width: 140.w, height: 50.h)),
-            ],
-          ),
-        ],
+                )
+              ],
+            ),
+            SizedBox(height: 20.h),
+            StatefulBuilder(
+              builder: (BuildContext ctx, StateSetter setState) => Column(
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(width: 10.w),
+                      Container(
+                        width: .77.sw,
+                        child: defaultFormField(
+                            type: TextInputType.number,
+                            controller: numberOfPersonController,
+                            label: "عدد الافراد",
+                            prefix: Image.asset("assets/images/7.png"),
+                            color: color1),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10.h),
+                  Row(
+                    children: [
+                      SizedBox(width: 10.w),
+                      InkWell(
+                        onTap: () {
+                          return BookingScreen.showSheet(
+                            context,
+                            child: buildDatePicker(),
+                            onClicked: () {
+                              setState(() {
+                                context.setLocale(Locale('ar'));
+
+                                value =
+                                    DateFormat('yyyy/MM/dd').format(dateTime);
+                              });
+
+                              Navigator.pop(context);
+                            },
+                          );
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black38),
+                                borderRadius: BorderRadius.circular(10.sp)),
+                            width: 140.w,
+                            height: 50.h,
+                            child: Row(
+                              children: [
+                                SizedBox(width: 10.w),
+                                Image.asset("assets/images/8.png"),
+                                SizedBox(width: 10.w),
+                                Text((value == null)
+                                    ? "اليوم"
+                                    : value.toString()),
+                              ],
+                            )),
+                      ),
+                      SizedBox(width: 20.w),
+                      InkWell(
+                        onTap: () => BookingScreen.showSheet(
+                          context,
+                          child: buildTimePicker(),
+                          onClicked: () {
+                            setState(() {
+                              value2 = DateFormat('HH:mm').format(dateTime);
+                            });
+
+                            Navigator.pop(context);
+                          },
+                        ),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black38),
+                                borderRadius: BorderRadius.circular(10.sp)),
+                            width: 140.w,
+                            height: 50.h,
+                            child: Row(
+                              children: [
+                                SizedBox(width: 10.w),
+                                Image.asset("assets/images/9.png"),
+                                SizedBox(width: 10.w),
+                                Text((value2 == null)
+                                    ? "الساعة"
+                                    : value2.toString())
+                              ],
+                            )),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 10.w),
+                InkWell(
+                    onTap: () {
+                      showDialog(
+                        barrierColor: Colors.white10, //AddScreen()
+
+                        context: context,
+                        builder: (_) => Dialog(
+                          insetPadding: EdgeInsets.all(20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: CardScreen2(
+                            hasTabol: true,
+                          ),
+                        ), //AddScreen()
+                        barrierDismissible: false,
+                      );
+                    },
+                    child:
+                        mainBottom(title: "اضف", width: 140.w, height: 50.h)),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -735,6 +743,7 @@ class BookingScreen extends StatelessWidget {
             locale: Locale("en"),
             debugShowCheckedModeBanner: false,
             home: CupertinoDatePicker(
+              use24hFormat: false,
               // minimumDate: dateTime,
               initialDateTime: dateTime,
               mode: CupertinoDatePickerMode.time,

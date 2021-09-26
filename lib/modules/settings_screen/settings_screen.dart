@@ -125,7 +125,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             function: () {},
           ),
-          langIsArabic
+          !langIsArabic
               ? SettingsOption(
                   title: 'اللغة',
                   iconData: Icon(

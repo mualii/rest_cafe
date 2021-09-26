@@ -99,7 +99,7 @@ class OrderDetailScreen extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          "مدة التوصيل",
+                          "مدة التجهيز",
                           style: TextStyle(color: Colors.grey, fontSize: 12.sp),
                         ),
                       ],
