@@ -129,7 +129,7 @@ class DetailScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(width: 30.w),
+                        SizedBox(width: 100.w),
                         Row(
                           children: [
                             Icon(Icons.access_time_filled,
@@ -140,7 +140,7 @@ class DetailScreen extends StatelessWidget {
                                 title: "45 دقيقة")
                           ],
                         ),
-                        SizedBox(width: 125.w),
+                        SizedBox(width: 60.w),
                         Row(
                           children: [
                             myTitle(color: color1, font: 12.sp, title: "مفتوح"),

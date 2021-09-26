@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rest_cafe/modules/add_screen/addScreen.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/states.dart';
 import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
+import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -53,18 +53,19 @@ class CardScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   onPressed: () {
-                    showDialog(
-                      barrierColor: Colors.white10, //AddScreen()
-
-                      context: context,
-                      builder: (_) => Dialog(
-                        insetPadding: EdgeInsets.all(20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: AddScreen(),
-                      ), //AddScreen()
-                      barrierDismissible: false,
-                    );
+                    navigateAndFinish(context, DetailScreen());
+                    // showDialog(
+                    //   barrierColor: Colors.white10, //AddScreen()
+                    //
+                    //   context: context,
+                    //   builder: (_) => Dialog(
+                    //     insetPadding: EdgeInsets.all(20),
+                    //     shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(20)),
+                    //     child: AddScreen(),
+                    //   ), //AddScreen()
+                    //   barrierDismissible: false,
+                    // );
                   },
                 ),
               ],
@@ -84,7 +85,7 @@ class CardScreen extends StatelessWidget {
             SizedBox(height: 45.h),
             // Spacer(),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
                     onTap: () {
@@ -103,38 +104,6 @@ class CardScreen extends StatelessWidget {
                     },
                     child: mainBottom(
                         title: "التالي", width: 150.w, height: 60.h)),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                      barrierColor: Colors.white10, //AddScreen()
-
-                      context: context,
-                      builder: (_) => Dialog(
-                        insetPadding: EdgeInsets.all(20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.sp)),
-                        child: AddScreen(),
-                      ), //AddScreen()
-                      barrierDismissible: false,
-                    );
-                  },
-                  child: Container(
-                    height: 60.h,
-                    width: 150.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.sp),
-                        color: Colors.white10),
-                    child: Center(
-                      child: Text(
-                        "السابق",
-                        style: TextStyle(
-                            fontFamily: "FrutigerLTArabic",
-                            fontSize: 16.sp,
-                            color: Colors.black),
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
             // SizedBox(height: 15.h),

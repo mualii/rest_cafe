@@ -487,7 +487,7 @@ class DeliveryScreen extends StatelessWidget {
                     child: defaultFormField(
                         type: TextInputType.name,
                         controller: carModelController,
-                        label: "للون السيارة",
+                        label: "لون السيارة",
                         prefix: Image.asset("assets/images/6.png"),
                         color: color1),
                   ),
