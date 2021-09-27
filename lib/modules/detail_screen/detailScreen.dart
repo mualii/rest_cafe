@@ -40,7 +40,7 @@ class DetailScreen extends StatelessWidget {
                           child: InkWell(
                               onTap: () {
                                 showDialog(
-                                  barrierDismissible: false,
+                                  barrierDismissible: true,
                                   context: context,
                                   builder: (context) {
                                     return Dialog(
@@ -89,7 +89,8 @@ class DetailScreen extends StatelessWidget {
                         SizedBox(width: .29.sw),
                         InkWell(
                           onTap: () {
-                            navigateAndFinish(context, LayoutScreen());
+                            navigateAndFinish(
+                                context, LayoutScreen(selectedPageIndex: 0));
                           },
                           child: Icon(
                             Icons.arrow_forward_ios,
@@ -197,8 +198,8 @@ class DetailScreen extends StatelessWidget {
                                             BorderRadius.circular(20)),
                                     child: AddScreen(),
                                   ), //AddScreen()
-                                  barrierDismissible: false,
-                                ).then((value) => Navigator.pop(context));
+                                  barrierDismissible: true,
+                                );
                               },
                               child: LabolOfSecondListView()),
                           separatorBuilder: (context, index) =>

@@ -179,21 +179,6 @@ class AddScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // showDialog(
-                        //   barrierDismissible: false,
-                        //   context: context,
-                        //   builder: (context) {
-                        //     return Dialog(
-                        //       insetPadding: EdgeInsets.all(20),
-                        //       shape: RoundedRectangleBorder(
-                        //           borderRadius: BorderRadius.circular(20)),
-                        //       child: CardScreen(),
-                        //     );
-                        //   },
-                        //   barrierColor: Colors.white10, //AddScreen()
-                        // );
-
-                        // navigateAndFinish(context, CardScreen());
                         navigateAndFinish(context, DetailScreen());
                       },
                       child: mainBottom(

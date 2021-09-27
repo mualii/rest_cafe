@@ -7,7 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/states.dart';
 import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
-import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -53,7 +52,7 @@ class CardScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   onPressed: () {
-                    navigateAndFinish(context, DetailScreen());
+                    Navigator.of(context).pop();
                     // showDialog(
                     //   barrierColor: Colors.white10, //AddScreen()
                     //
@@ -99,7 +98,7 @@ class CardScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           child: CardScreen2(),
                         ), //AddScreen()
-                        barrierDismissible: false,
+                        barrierDismissible: true,
                       );
                     },
                     child: mainBottom(

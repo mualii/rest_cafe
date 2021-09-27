@@ -27,7 +27,7 @@ class CompleteProfileScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () {
-            navigateAndFinish(context, LayoutScreen());
+            navigateAndFinish(context, LayoutScreen(selectedPageIndex: 0));
           },
           child: Center(
               child: myTitle(font: 13.sp, title: "تخطي", color: Colors.black)),
@@ -75,7 +75,7 @@ class CompleteProfileScreen extends StatelessWidget {
             Spacer(),
             InkWell(
               onTap: () {
-                navigateAndFinish(context, LayoutScreen());
+                navigateAndFinish(context, LayoutScreen(selectedPageIndex: 0));
               },
               child:
                   mainBottom(title: "اكمل الملف", width: .9.sw, height: 50.h),

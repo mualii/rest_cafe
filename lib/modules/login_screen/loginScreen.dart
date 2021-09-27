@@ -29,7 +29,8 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         InkWell(
                             onTap: () {
-                              navigateAndFinish(context, LayoutScreen());
+                              navigateAndFinish(
+                                  context, LayoutScreen(selectedPageIndex: 0));
                             },
                             child: myTitle(
                                 font: 18.sp,

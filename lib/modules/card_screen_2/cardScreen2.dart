@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
@@ -40,18 +39,7 @@ class CardScreen2 extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     onPressed: () {
-                      showDialog(
-                        barrierColor: Colors.white10, //AddScreen()
-
-                        context: context,
-                        builder: (_) => Dialog(
-                          insetPadding: EdgeInsets.all(20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: CardScreen(),
-                        ), //AddScreen()
-                        barrierDismissible: false,
-                      );
+                      Navigator.of(context).pop();
                     },
                   )
                 ],
@@ -121,7 +109,7 @@ class CardScreen2 extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(20)),
                                   child: DeliveryScreen(),
                                 ), //AddScreen()
-                                barrierDismissible: false,
+                                barrierDismissible: true,
                               );
                             },
                             child: Row(
@@ -247,7 +235,7 @@ class CardScreen2 extends StatelessWidget {
                                               BorderRadius.circular(20)),
                                       child: BookingScreen(),
                                     ), //AddScreen()
-                                    barrierDismissible: false,
+                                    barrierDismissible: true,
                                   );
                                 },
                                 child: Row(
@@ -297,25 +285,14 @@ class CardScreen2 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20)),
                             child: CardScreen3(),
                           ), //AddScreen()
-                          barrierDismissible: false,
+                          barrierDismissible: true,
                         );
                       },
                       child: mainBottom(
                           title: "التالي", width: 150.w, height: 60)),
                   InkWell(
                     onTap: () {
-                      showDialog(
-                        barrierColor: Colors.white10, //AddScreen()
-
-                        context: context,
-                        builder: (_) => Dialog(
-                          insetPadding: EdgeInsets.all(20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: CardScreen(),
-                        ), //AddScreen()
-                        barrierDismissible: false,
-                      );
+                      Navigator.of(context).pop();
                     },
                     child: Container(
                       height: 60.h,
@@ -384,7 +361,7 @@ class DeliveryScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20)),
                       child: CardScreen2(),
                     ), //AddScreen()
-                    barrierDismissible: false,
+                    barrierDismissible: true,
                   );
                 },
               )
@@ -514,7 +491,7 @@ class DeliveryScreen extends StatelessWidget {
                           hasCar: true,
                         ),
                       ), //AddScreen()
-                      barrierDismissible: false,
+                      barrierDismissible: true,
                     );
                   },
                   child: mainBottom(title: "اضف", width: 140.w, height: 50)),
@@ -588,7 +565,7 @@ class BookingScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                         child: CardScreen2(),
                       ), //AddScreen()
-                      barrierDismissible: false,
+                      barrierDismissible: true,
                     );
                   },
                 )
@@ -704,7 +681,7 @@ class BookingScreen extends StatelessWidget {
                             hasTabol: true,
                           ),
                         ), //AddScreen()
-                        barrierDismissible: false,
+                        barrierDismissible: true,
                       );
                     },
                     child:

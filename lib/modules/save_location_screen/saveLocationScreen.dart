@@ -79,7 +79,8 @@ class SaveLocationScreen extends StatelessWidget {
                       SizedBox(height: 10.h),
                       InkWell(
                         onTap: () {
-                          navigateTo(context, LayoutScreen());
+                          navigateTo(
+                              context, LayoutScreen(selectedPageIndex: 0));
                         },
                         child: mainBottom(
                             title: "تاكيد وحفظ العنوان",

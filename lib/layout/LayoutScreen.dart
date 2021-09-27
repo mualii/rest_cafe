@@ -10,15 +10,15 @@ import 'Fuction/BNBCustomPainter.dart';
 import 'Fuction/BNBCustomPainter2.dart';
 
 class LayoutScreen extends StatefulWidget {
-  const LayoutScreen({Key? key}) : super(key: key);
-
+  LayoutScreen({required this.selectedPageIndex});
+  int selectedPageIndex;
   @override
   State<LayoutScreen> createState() => _LayoutScreenState();
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _LayoutScreenState extends State<LayoutScreen> {
-  int currentIndex = 0;
+  late int currentIndex = widget.selectedPageIndex;
 
   setBottomBarIndex(index) {
     setState(() {
@@ -35,7 +35,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     "الإعدادات",
     "الإعدادات",
   ];
-  int _selectedPageIndex = 0;
+  late int _selectedPageIndex = widget.selectedPageIndex;
 
   late final ScrollListener _model;
 

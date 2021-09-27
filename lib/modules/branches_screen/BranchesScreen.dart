@@ -31,7 +31,11 @@ class BranchesScreen extends StatelessWidget {
               actions: [
                 InkWell(
                   onTap: () {
-                    navigateAndFinish(context, LayoutScreen());
+                    navigateAndFinish(
+                        context,
+                        LayoutScreen(
+                          selectedPageIndex: 0,
+                        ));
                   },
                   child: Icon(
                     Icons.arrow_forward_ios,
@@ -78,7 +82,11 @@ class BranchesScreen extends StatelessWidget {
                             Spacer(),
                             IconButton(
                                 onPressed: () {
-                                  navigateAndFinish(context, LayoutScreen());
+                                  navigateAndFinish(
+                                      context,
+                                      LayoutScreen(
+                                        selectedPageIndex: 0,
+                                      ));
                                 },
                                 icon: Image.asset("assets/images/0.png"))
                           ],
