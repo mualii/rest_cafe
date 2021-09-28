@@ -100,9 +100,9 @@ class HomeScreen extends StatelessWidget {
                       Container(
                         height: 40.h,
                         child: defaultFormField(
-                            // onSubmit: (String qw) {
-                            //   isVis = true;
-                            // },
+                            onSubmit: (String qw) {
+                              isVis = false;
+                            },
                             onTap: () {
                               isVis = !isVis!;
                             },
