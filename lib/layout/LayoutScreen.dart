@@ -5,6 +5,7 @@ import 'package:rest_cafe/modules/OrderCurrnentAndEnd/OrderCurrentAndEnd.dart';
 import 'package:rest_cafe/modules/favorites_screen/favorites_screen.dart';
 import 'package:rest_cafe/modules/home_screen/homeScreen.dart';
 import 'package:rest_cafe/modules/settings_screen/settings_screen.dart';
+import 'package:rest_cafe/shared/components/constants.dart';
 
 import 'Fuction/BNBCustomPainter.dart';
 import 'Fuction/BNBCustomPainter2.dart';
@@ -63,7 +64,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
           return Stack(
             children: [
               _pages.elementAt(_selectedPageIndex),
-              BotNavCustom(context, size),
+              isVis == true ? Container() : BotNavCustom(context, size),
             ],
           );
         },

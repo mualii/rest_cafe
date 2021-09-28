@@ -11,6 +11,7 @@ Widget defaultFormField({
   Color? color,
   int? maxLines,
   VoidCallback? onTap,
+  VoidCallback? onEditingComplete,
   bool isPassword = false,
   String? Function(String?)? validate,
   String? label,
@@ -29,6 +30,7 @@ Widget defaultFormField({
         height: height,
         width: .9.sw,
         child: TextFormField(
+          onEditingComplete: onEditingComplete,
           maxLines: maxLines,
           controller: controller,
           keyboardType: type,

@@ -53,18 +53,6 @@ class CardScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
-                    // showDialog(
-                    //   barrierColor: Colors.white10, //AddScreen()
-                    //
-                    //   context: context,
-                    //   builder: (_) => Dialog(
-                    //     insetPadding: EdgeInsets.all(20),
-                    //     shape: RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(20)),
-                    //     child: AddScreen(),
-                    //   ), //AddScreen()
-                    //   barrierDismissible: false,
-                    // );
                   },
                 ),
               ],

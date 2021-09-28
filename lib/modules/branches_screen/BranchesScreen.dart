@@ -11,6 +11,7 @@ import 'package:rest_cafe/shared/styles/colors.dart';
 class BranchesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool isFull = false;
     return BlocProvider(
       create: (context) => DetailCubit(),
       child: BlocConsumer<DetailCubit, DetailState>(
@@ -18,105 +19,195 @@ class BranchesScreen extends StatelessWidget {
           // TODO: implement listener
         },
         builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(20.r),
-              )),
-              title: Text(
-                "اختر الفرع",
-                style: TextStyle(color: Colors.black54),
-              ),
-              actions: [
-                InkWell(
-                  onTap: () {
-                    navigateAndFinish(
-                        context,
-                        LayoutScreen(
-                          selectedPageIndex: 0,
-                        ));
-                  },
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.grey,
+          var cubit = DetailCubit.get(context);
+          return cubit.isFull
+              ? Scaffold(
+                  appBar: AppBar(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(20.r),
+                    )),
+                    title: Text(
+                      "اختر الفرع",
+                      style: TextStyle(color: Colors.black54),
+                    ),
+                    actions: [
+                      InkWell(
+                        onTap: () {
+                          navigateAndFinish(
+                              context,
+                              LayoutScreen(
+                                selectedPageIndex: 0,
+                              ));
+                        },
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                    centerTitle: true,
+                    backgroundColor: Colors.white,
+                    elevation: 1,
                   ),
-                ),
-              ],
-              centerTitle: true,
-              backgroundColor: Colors.white,
-              elevation: 1,
-            ),
-            body: Image.asset(
-              "assets/images/google-location-history-screenshot-1.jpg",
-              fit: BoxFit.cover,
-            ),
-            bottomSheet: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(30.sp),
-                      topLeft: Radius.circular(30.sp))),
-              width: double.infinity,
-              height: .36.sh,
-              child: Padding(
-                padding: EdgeInsets.all(10.sp),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Row(
+                  body: Padding(
+                    padding: EdgeInsets.all(10.sp),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Row(
+                              children: [
+                                myTitle(
+                                    title: "فروع ماكدونالد",
+                                    font: 14.sp,
+                                    color: Color(0xff3D3D3D)),
+                                SizedBox(width: 20.w),
+                                Text(
+                                  "57",
+                                  style: TextStyle(
+                                    fontFamily: "FrutigerLTArabic",
+                                  ),
+                                ),
+                                Spacer(),
+                                IconButton(
+                                    onPressed: () {
+                                      // navigateAndFinish(
+                                      //     context,
+                                      //     LayoutScreen(
+                                      //       selectedPageIndex: 0,
+                                      //     ));
+                                      cubit.changeBranchSize();
+                                    },
+                                    icon: Image.asset("assets/images/0.png"))
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 10.h),
+                          // LabolOfSecondListView()
+                          Container(
+                            height: .8.sh,
+                            child: ListView.separated(
+                                shrinkWrap: false,
+                                itemBuilder: (context, index) => InkWell(
+                                    onTap: () {
+                                      DetailCubit.get(context)
+                                          .changeListItem(index);
+                                      navigateTo(context, DetailScreen());
+                                    },
+                                    child: LabolOfSecondListView(
+                                      index: index,
+                                    )),
+                                separatorBuilder: (context, index) =>
+                                    SizedBox(height: 10.h),
+                                itemCount: 10),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              : Scaffold(
+                  appBar: AppBar(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(20.r),
+                    )),
+                    title: Text(
+                      "اختر الفرع",
+                      style: TextStyle(color: Colors.black54),
+                    ),
+                    actions: [
+                      InkWell(
+                        onTap: () {
+                          navigateAndFinish(
+                              context,
+                              LayoutScreen(
+                                selectedPageIndex: 0,
+                              ));
+                        },
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                    centerTitle: true,
+                    backgroundColor: Colors.white,
+                    elevation: 1,
+                  ),
+                  body: Image.asset(
+                    "assets/images/google-location-history-screenshot-1.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                  bottomSheet: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30.sp),
+                            topLeft: Radius.circular(30.sp))),
+                    width: double.infinity,
+                    height: .36.sh,
+                    child: Padding(
+                      padding: EdgeInsets.all(10.sp),
+                      child: SingleChildScrollView(
+                        child: Column(
                           children: [
-                            myTitle(
-                                title: "فروع ماكدونالد",
-                                font: 14.sp,
-                                color: Color(0xff3D3D3D)),
-                            SizedBox(width: 20.w),
-                            Text(
-                              "57",
-                              style: TextStyle(
-                                fontFamily: "FrutigerLTArabic",
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Row(
+                                children: [
+                                  myTitle(
+                                      title: "فروع ماكدونالد",
+                                      font: 14.sp,
+                                      color: Color(0xff3D3D3D)),
+                                  SizedBox(width: 20.w),
+                                  Text(
+                                    "57",
+                                    style: TextStyle(
+                                      fontFamily: "FrutigerLTArabic",
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        // navigateAndFinish(
+                                        //     context,
+                                        //     LayoutScreen(
+                                        //       selectedPageIndex: 0,
+                                        //     ));
+                                        cubit.changeBranchSize();
+                                      },
+                                      icon: Image.asset("assets/images/0.png"))
+                                ],
                               ),
                             ),
-                            Spacer(),
-                            IconButton(
-                                onPressed: () {
-                                  navigateAndFinish(
-                                      context,
-                                      LayoutScreen(
-                                        selectedPageIndex: 0,
-                                      ));
-                                },
-                                icon: Image.asset("assets/images/0.png"))
+                            SizedBox(height: 10.h),
+                            // LabolOfSecondListView()
+                            Container(
+                              height: .26.sh,
+                              child: ListView.separated(
+                                  shrinkWrap: false,
+                                  itemBuilder: (context, index) => InkWell(
+                                      onTap: () {
+                                        DetailCubit.get(context)
+                                            .changeListItem(index);
+                                        navigateTo(context, DetailScreen());
+                                      },
+                                      child: LabolOfSecondListView(
+                                        index: index,
+                                      )),
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(height: 10.h),
+                                  itemCount: 10),
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(height: 10.h),
-                      // LabolOfSecondListView()
-                      Container(
-                        height: .26.sh,
-                        child: ListView.separated(
-                            shrinkWrap: false,
-                            itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  DetailCubit.get(context)
-                                      .changeListItem(index);
-                                  navigateTo(context, DetailScreen());
-                                },
-                                child: LabolOfSecondListView(
-                                  index: index,
-                                )),
-                            separatorBuilder: (context, index) =>
-                                SizedBox(height: 10.h),
-                            itemCount: 10),
-                      )
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ),
-          );
+                );
         },
       ),
     );
@@ -206,3 +297,175 @@ class LabolOfSecondListView extends StatelessWidget {
     );
   }
 }
+//class BranchesScreen extends StatefulWidget {
+//   @override
+//   _BranchesScreenState createState() => _BranchesScreenState();
+// }
+//
+// class _BranchesScreenState extends State<BranchesScreen> {
+//   @override
+//   Widget build(BuildContext context) {
+//     bool? isFull = false;
+//     return BlocProvider(
+//       create: (context) => DetailCubit(),
+//       child: BlocConsumer<DetailCubit, DetailState>(
+//         listener: (context, state) {
+//           // TODO: implement listener
+//         },
+//         builder: (context, state) {
+//           return Scaffold(
+//             appBar: AppBar(
+//               shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.vertical(
+//                 bottom: Radius.circular(20.r),
+//               )),
+//               title: Text(
+//                 "اختر الفرع",
+//                 style: TextStyle(color: Colors.black54),
+//               ),
+//               actions: [
+//                 InkWell(
+//                   onTap: () {
+//                     navigateAndFinish(
+//                         context,
+//                         LayoutScreen(
+//                           selectedPageIndex: 0,
+//                         ));
+//                   },
+//                   child: Icon(
+//                     Icons.arrow_forward_ios,
+//                     color: Colors.grey,
+//                   ),
+//                 ),
+//               ],
+//               centerTitle: true,
+//               backgroundColor: Colors.white,
+//               elevation: 1,
+//             ),
+//             body:isFull! ?  Padding(
+//               padding: EdgeInsets.all(10.sp),
+//               child: SingleChildScrollView(
+//                 child: Column(
+//                   children: [
+//                     Align(
+//                       alignment: Alignment.topRight,
+//                       child: Row(
+//                         children: [
+//                           myTitle(
+//                               title: "فروع ماكدونالد",
+//                               font: 14.sp,
+//                               color: Color(0xff3D3D3D)),
+//                           SizedBox(width: 20.w),
+//                           Text(
+//                             "57",
+//                             style: TextStyle(
+//                               fontFamily: "FrutigerLTArabic",
+//                             ),
+//                           ),
+//                           Spacer(),
+//                           IconButton(
+//                               onPressed: () {
+//                                 setState(() {
+//                                   isFull == false;
+//                                 });
+//                               },
+//                               icon: Image.asset("assets/images/0.png"))
+//                         ],
+//                       ),
+//                     ),
+//                     SizedBox(height: 10.h),
+//                     // LabolOfSecondListView()
+//                     Container(
+//                       height: .9.sh,
+//                       child: ListView.separated(
+//                           shrinkWrap: false,
+//                           itemBuilder: (context, index) => InkWell(
+//                               onTap: () {
+//                                 DetailCubit.get(context)
+//                                     .changeListItem(index);
+//                                 navigateTo(context, DetailScreen());
+//                               },
+//                               child: LabolOfSecondListView(
+//                                 index: index,
+//                               )),
+//                           separatorBuilder: (context, index) =>
+//                               SizedBox(height: 10.h),
+//                           itemCount: 10),
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             ):Image.asset(
+//               "assets/images/google-location-history-screenshot-1.jpg",
+//               fit: BoxFit.cover,
+//             ),
+//             bottomSheet: Container(
+//               decoration: BoxDecoration(
+//                   color: Colors.white,
+//                   borderRadius: BorderRadius.only(
+//                       topRight: Radius.circular(30.sp),
+//                       topLeft: Radius.circular(30.sp))),
+//               width: double.infinity,
+//               height: .36.sh,
+//               child: Padding(
+//                 padding: EdgeInsets.all(10.sp),
+//                 child: SingleChildScrollView(
+//                   child: Column(
+//                     children: [
+//                       Align(
+//                         alignment: Alignment.topRight,
+//                         child: Row(
+//                           children: [
+//                             myTitle(
+//                                 title: "فروع ماكدونالد",
+//                                 font: 14.sp,
+//                                 color: Color(0xff3D3D3D)),
+//                             SizedBox(width: 20.w),
+//                             Text(
+//                               "57",
+//                               style: TextStyle(
+//                                 fontFamily: "FrutigerLTArabic",
+//                               ),
+//                             ),
+//                             Spacer(),
+//                             IconButton(
+//                                 onPressed: () {
+//                                   setState(() {
+//                                     isFull = true;
+//                                     print("hi");
+//                                   });
+//                                 },
+//                                 icon: Image.asset("assets/images/0.png"))
+//                           ],
+//                         ),
+//                       ),
+//                       SizedBox(height: 10.h),
+//                       // LabolOfSecondListView()
+//                       Container(
+//                         height: .26.sh,
+//                         child: ListView.separated(
+//                             shrinkWrap: false,
+//                             itemBuilder: (context, index) => InkWell(
+//                                 onTap: () {
+//                                   DetailCubit.get(context)
+//                                       .changeListItem(index);
+//                                   navigateTo(context, DetailScreen());
+//                                 },
+//                                 child: LabolOfSecondListView(
+//                                   index: index,
+//                                 )),
+//                             separatorBuilder: (context, index) =>
+//                                 SizedBox(height: 10.h),
+//                             itemCount: 10),
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }

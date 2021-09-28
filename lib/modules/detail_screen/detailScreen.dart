@@ -23,224 +23,231 @@ class DetailScreen extends StatelessWidget {
           // TODO: implement listener
         },
         builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              toolbarHeight: 180.h,
-              flexibleSpace: SafeArea(
-                child: Column(
-                  children: [
-                    SizedBox(height: 20),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(width: .03.sw),
-                        Container(
-                          height: 40.h,
-                          width: 40.w,
-                          child: InkWell(
-                              onTap: () {
-                                showDialog(
-                                  barrierDismissible: true,
-                                  context: context,
-                                  builder: (context) {
-                                    return Dialog(
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).requestFocus(new FocusNode());
+            },
+            child: Scaffold(
+              appBar: AppBar(
+                toolbarHeight: 180.h,
+                flexibleSpace: SafeArea(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(width: .03.sw),
+                          Container(
+                            height: 40.h,
+                            width: 40.w,
+                            child: InkWell(
+                                onTap: () {
+                                  showDialog(
+                                    barrierDismissible: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        insetPadding: EdgeInsets.all(20),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: CardScreen(),
+                                      );
+                                    },
+                                    barrierColor: Colors.white10, //AddScreen()
+                                  );
+                                },
+                                child: Icon(
+                                  FontAwesomeIcons.cartPlus,
+                                  color: Colors.grey,
+                                )),
+                          ),
+                          SizedBox(width: .29.sw),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Color(0xffDADADA)),
+                                    borderRadius: BorderRadius.circular(20.sp)),
+                                child: Image.asset("assets/images/mac.png"),
+                              ),
+                              myTitle(
+                                  title: "ماكدونالد ",
+                                  font: 16.sp,
+                                  color: Colors.black),
+                              Row(children: [
+                                Container(
+                                    height: 20,
+                                    child: Image.asset(
+                                        "assets/images/ic_restaurant.png")),
+                                Text("امريكي",
+                                    style: TextStyle(
+                                        fontFamily: "FrutigerLTArabic",
+                                        color: Colors.black54,
+                                        fontSize: 12.sp)),
+                              ]),
+                            ],
+                          ),
+                          SizedBox(width: .29.sw),
+                          InkWell(
+                            onTap: () {
+                              navigateAndFinish(
+                                  context, LayoutScreen(selectedPageIndex: 0));
+                            },
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5.h),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Divider(
+                          height: 2.h,
+                          color: Color(0xffD8D8D8),
+                        ),
+                      ),
+                      Spacer(),
+                      Row(
+                        children: [
+                          SizedBox(width: 20.w),
+                          Row(
+                            children: [
+                              Container(
+                                  height: 20,
+                                  child: Image.asset(
+                                      "assets/images/ic_location.png")),
+                              myTitle(
+                                  color: Color(0xff717171),
+                                  font: 12.sp,
+                                  title: "km"),
+                              Text(
+                                "5",
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: Color(0xff717171),
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(width: 100.w),
+                          Row(
+                            children: [
+                              Icon(Icons.access_time_filled,
+                                  color: color1, size: 20.sp),
+                              myTitle(
+                                  color: Color(0xff717171),
+                                  font: 12.sp,
+                                  title: "45 دقيقة")
+                            ],
+                          ),
+                          SizedBox(width: 60.w),
+                          Row(
+                            children: [
+                              myTitle(
+                                  color: color1, font: 12.sp, title: "مفتوح"),
+                              Icon(Icons.circle, color: color1, size: 15.sp),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                automaticallyImplyLeading: false,
+                backgroundColor: Colors.white,
+              ),
+              body: Padding(
+                padding: EdgeInsets.all(20.0.sp),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 44.h,
+                        child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: false,
+                            itemBuilder: (context, index) => InkWell(
+                                  onTap: () {
+                                    DetailCubit.get(context)
+                                        .changeListItem(index);
+                                  },
+                                  child: LabolOfFristListView(
+                                    index: index,
+                                    text: "كل المنتجات",
+                                    icon: FontAwesomeIcons.utensils,
+                                  ),
+                                ),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(width: 10.w),
+                            itemCount: 7),
+                      ),
+                      Divider(),
+                      Container(
+                        height: .52.sh,
+                        child: ListView.separated(
+                            shrinkWrap: false,
+                            itemBuilder: (context, index) => InkWell(
+                                onTap: () {
+                                  print(index);
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) => Dialog(
                                       insetPadding: EdgeInsets.all(20),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20)),
-                                      child: CardScreen(),
-                                    );
-                                  },
-                                  barrierColor: Colors.white10, //AddScreen()
-                                );
-                              },
-                              child: Icon(
-                                FontAwesomeIcons.cartPlus,
-                                color: Colors.grey,
-                              )),
-                        ),
-                        SizedBox(width: .29.sw),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Color(0xffDADADA)),
-                                  borderRadius: BorderRadius.circular(20.sp)),
-                              child: Image.asset("assets/images/mac.png"),
-                            ),
-                            myTitle(
-                                title: "ماكدونالد ",
-                                font: 16.sp,
-                                color: Colors.black),
-                            Row(children: [
-                              Container(
-                                  height: 20,
-                                  child: Image.asset(
-                                      "assets/images/ic_restaurant.png")),
-                              Text("امريكي",
-                                  style: TextStyle(
-                                      fontFamily: "FrutigerLTArabic",
-                                      color: Colors.black54,
-                                      fontSize: 12.sp)),
-                            ]),
-                          ],
-                        ),
-                        SizedBox(width: .29.sw),
-                        InkWell(
-                          onTap: () {
-                            navigateAndFinish(
-                                context, LayoutScreen(selectedPageIndex: 0));
-                          },
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Divider(
-                        height: 2.h,
-                        color: Color(0xffD8D8D8),
-                      ),
-                    ),
-                    Spacer(),
-                    Row(
-                      children: [
-                        SizedBox(width: 20.w),
-                        Row(
-                          children: [
-                            Container(
-                                height: 20,
-                                child: Image.asset(
-                                    "assets/images/ic_location.png")),
-                            myTitle(
-                                color: Color(0xff717171),
-                                font: 12.sp,
-                                title: "km"),
-                            Text(
-                              "5",
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                color: Color(0xff717171),
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(width: 100.w),
-                        Row(
-                          children: [
-                            Icon(Icons.access_time_filled,
-                                color: color1, size: 20.sp),
-                            myTitle(
-                                color: Color(0xff717171),
-                                font: 12.sp,
-                                title: "45 دقيقة")
-                          ],
-                        ),
-                        SizedBox(width: 60.w),
-                        Row(
-                          children: [
-                            myTitle(color: color1, font: 12.sp, title: "مفتوح"),
-                            Icon(Icons.circle, color: color1, size: 15.sp),
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
-            ),
-            body: Padding(
-              padding: EdgeInsets.all(20.0.sp),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      height: 44.h,
-                      child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: false,
-                          itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  DetailCubit.get(context)
-                                      .changeListItem(index);
+                                      child: AddScreen(),
+                                    ), //AddScreen()
+                                    barrierDismissible: true,
+                                  );
                                 },
-                                child: LabolOfFristListView(
-                                  index: index,
-                                  text: "كل المنتجات",
-                                  icon: FontAwesomeIcons.utensils,
-                                ),
-                              ),
-                          separatorBuilder: (context, index) =>
-                              SizedBox(width: 10.w),
-                          itemCount: 7),
-                    ),
-                    Divider(),
-                    Container(
-                      height: .52.sh,
-                      child: ListView.separated(
-                          shrinkWrap: false,
-                          itemBuilder: (context, index) => InkWell(
-                              onTap: () {
-                                print(index);
-                                showDialog(
-                                  context: context,
-                                  builder: (_) => Dialog(
-                                    insetPadding: EdgeInsets.all(20),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: AddScreen(),
-                                  ), //AddScreen()
-                                  barrierDismissible: true,
-                                );
-                              },
-                              child: LabolOfSecondListView()),
-                          separatorBuilder: (context, index) =>
-                              SizedBox(height: 10.h),
-                          itemCount: 10),
-                    ),
-                  ],
+                                child: LabolOfSecondListView()),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(height: 10.h),
+                            itemCount: 10),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            backgroundColor: Color(0xffF7F7F7),
-            bottomSheet: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(30.sp),
-                      topLeft: Radius.circular(30.sp))),
-              width: double.infinity,
-              height: 90.h,
-              child: Padding(
-                padding: EdgeInsets.all(10.sp),
-                child: Row(
-                  children: [
-                    myTitle(
-                        title: "فروع ماكدونالد",
-                        font: 14.sp,
-                        color: Color(0xff3D3D3D)),
-                    SizedBox(width: 20.w),
-                    Text(
-                      "57",
-                      style: TextStyle(
-                        fontFamily: "FrutigerLTArabic",
+              backgroundColor: Color(0xffF7F7F7),
+              bottomSheet: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30.sp),
+                        topLeft: Radius.circular(30.sp))),
+                width: double.infinity,
+                height: 90.h,
+                child: Padding(
+                  padding: EdgeInsets.all(10.sp),
+                  child: Row(
+                    children: [
+                      myTitle(
+                          title: "فروع ماكدونالد",
+                          font: 14.sp,
+                          color: Color(0xff3D3D3D)),
+                      SizedBox(width: 20.w),
+                      Text(
+                        "57",
+                        style: TextStyle(
+                          fontFamily: "FrutigerLTArabic",
+                        ),
                       ),
-                    ),
-                    SizedBox(width: .45.sw),
-                    IconButton(
-                        onPressed: () {
-                          navigateTo(context, BranchesScreen());
-                        },
-                        icon: Image.asset("assets/images/ic_expand.png"))
-                  ],
+                      SizedBox(width: .45.sw),
+                      IconButton(
+                          onPressed: () {
+                            navigateTo(context, BranchesScreen());
+                          },
+                          icon: Image.asset("assets/images/ic_expand.png"))
+                    ],
+                  ),
                 ),
               ),
             ),

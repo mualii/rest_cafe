@@ -24,4 +24,10 @@ class DetailCubit extends Cubit<DetailState> {
 
     emit(DetailFavoritesState());
   }
+
+  bool isFull = false;
+  void changeBranchSize() {
+    isFull = !isFull;
+    emit(ChangeBranchSize());
+  }
 }

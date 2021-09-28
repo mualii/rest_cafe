@@ -12,6 +12,7 @@ import 'package:rest_cafe/modules/home_screen/cubit/HomeState.dart';
 import 'package:rest_cafe/modules/notifications_screen/notifications_screen.dart';
 import 'package:rest_cafe/modules/save_location_screen/saveLocationScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/components/constants.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -99,6 +100,15 @@ class HomeScreen extends StatelessWidget {
                       Container(
                         height: 40.h,
                         child: defaultFormField(
+                            // onSubmit: (String qw) {
+                            //   isVis = true;
+                            // },
+                            onTap: () {
+                              isVis = !isVis!;
+                            },
+                            // onEditingComplete: () {
+                            //   isVis = true;
+                            // },
                             controller: _searchController,
                             type: TextInputType.name,
                             hint: "بحث عن متجر او منتج",
@@ -109,6 +119,7 @@ class HomeScreen extends StatelessWidget {
                             suffixPressed: () {
                               _searchController.clear();
                               FocusScope.of(context).unfocus();
+                              isVis = true;
                             },
                             prefix: Icon(
                               Icons.search,
