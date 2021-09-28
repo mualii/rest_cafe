@@ -712,6 +712,8 @@ class BookingScreen extends StatelessWidget {
             locale: Locale("en"),
             debugShowCheckedModeBanner: false,
             home: CupertinoDatePicker(
+              backgroundColor: Colors.white,
+
               // backgroundColor: Colors.white10,
 
               // minimumDate: DateTime.now().toLocal(),
@@ -733,6 +735,7 @@ class BookingScreen extends StatelessWidget {
             locale: Locale("en"),
             debugShowCheckedModeBanner: false,
             home: CupertinoDatePicker(
+              backgroundColor: Colors.white,
               use24hFormat: false,
               // minimumDate: dateTime,
               initialDateTime: dateTime,

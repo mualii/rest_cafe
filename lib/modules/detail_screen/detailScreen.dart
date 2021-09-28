@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/add_screen/addScreen.dart';
 import 'package:rest_cafe/modules/branches_screen/BranchesScreen.dart';
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
@@ -94,8 +93,7 @@ class DetailScreen extends StatelessWidget {
                           SizedBox(width: .29.sw),
                           InkWell(
                             onTap: () {
-                              navigateAndFinish(
-                                  context, LayoutScreen(selectedPageIndex: 0));
+                              navigateAndFinish(context, BranchesScreen());
                             },
                             child: Icon(
                               Icons.arrow_forward_ios,
