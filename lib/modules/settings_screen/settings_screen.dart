@@ -13,7 +13,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool? langIsArabic;
+  bool? langIsArabic = false;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +125,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             function: () {},
           ),
-          !langIsArabic!
+          langIsArabic!
               ? SettingsOption(
                   title: 'اللغة',
                   iconData: Icon(

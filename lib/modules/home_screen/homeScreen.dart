@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:badges/badges.dart';
@@ -17,6 +18,7 @@ import 'package:rest_cafe/shared/styles/colors.dart';
 
 class HomeScreen extends StatelessWidget {
   var _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -119,7 +121,7 @@ class HomeScreen extends StatelessWidget {
                             suffixPressed: () {
                               _searchController.clear();
                               FocusScope.of(context).unfocus();
-                              isVis = true;
+                              Platform.isIOS ? isVis = false : isVis = true;
                             },
                             prefix: Icon(
                               Icons.search,
@@ -134,16 +136,16 @@ class HomeScreen extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: false,
                             itemBuilder: (context, index) => InkWell(
-                                  onTap: () {
-                                    HomeCubit.get(context)
-                                        .changeListItem(index);
-                                  },
-                                  child: labolOfFristListView(
-                                    index: index,
-                                    text: "المطاعم",
-                                    icon: FontAwesomeIcons.utensils,
-                                  ),
-                                ),
+                              onTap: () {
+                                HomeCubit.get(context)
+                                    .changeListItem(index);
+                              },
+                              child: labolOfFristListView(
+                                index: index,
+                                text: "المطاعم",
+                                icon: FontAwesomeIcons.utensils,
+                              ),
+                            ),
                             separatorBuilder: (context, index) =>
                                 SizedBox(width: 10.w),
                             itemCount: 7),
@@ -179,6 +181,7 @@ class HomeScreen extends StatelessWidget {
 class LabolOfSecondListView extends StatelessWidget {
   @override
   bool isFav = false;
+
   Widget build(BuildContext context) {
     return Container(
       height: 110.h,
@@ -193,7 +196,7 @@ class LabolOfSecondListView extends StatelessWidget {
               height: 100.h,
               width: 90.w,
               decoration: BoxDecoration(
-                  // border: Border.all(color: Color(0xffDADADA)),
+                // border: Border.all(color: Color(0xffDADADA)),
                   borderRadius: BorderRadius.circular(20.sp)),
               child: Image.asset("assets/images/mac.png"),
             ),
@@ -292,13 +295,13 @@ class LabolOfSecondListView extends StatelessWidget {
                       IconButton(
                         icon: isFav
                             ? Icon(
-                                Icons.favorite_border_outlined,
-                                color: Colors.grey,
-                              )
+                          Icons.favorite_border_outlined,
+                          color: Colors.grey,
+                        )
                             : Icon(
-                                Icons.favorite,
-                                color: color1,
-                              ),
+                          Icons.favorite,
+                          color: color1,
+                        ),
                         onPressed: () {
                           setState(() {
                             isFav = !isFav;
@@ -327,9 +330,9 @@ class labolOfFristListView extends StatelessWidget {
   final String text;
   final int index;
 
-  const labolOfFristListView(
-      {Key? key, this.icon, required this.text, required this.index})
+  const labolOfFristListView({Key? key, this.icon, required this.text, required this.index})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -337,12 +340,12 @@ class labolOfFristListView extends StatelessWidget {
       width: 90.w,
       decoration: index == HomeCubit.get(context).currentIndex
           ? BoxDecoration(
-              borderRadius: BorderRadius.circular(10.sp),
-              color: color1,
-            )
+        borderRadius: BorderRadius.circular(10.sp),
+        color: color1,
+      )
           : BoxDecoration(
-              borderRadius: BorderRadius.circular(10.sp),
-            ),
+        borderRadius: BorderRadius.circular(10.sp),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

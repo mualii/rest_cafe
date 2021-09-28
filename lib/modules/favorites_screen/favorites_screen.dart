@@ -59,7 +59,7 @@ class FavoriteItem extends StatelessWidget {
                       fontSize: 16.sp,
                       fontFamily: "FrutigerLTArabic",
                     )),
-                SizedBox(height: 5.h),
+                SizedBox(height: 10.h),
                 Row(children: [
                   Container(
                       height: 20,
