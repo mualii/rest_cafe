@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
+import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
@@ -39,7 +40,18 @@ class CardScreen3 extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      showDialog(
+                        barrierColor: Colors.white10, //AddScreen()
+
+                        context: context,
+                        builder: (_) => Dialog(
+                          insetPadding: EdgeInsets.all(20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: CardScreen2(),
+                        ), //AddScreen()
+                        barrierDismissible: false,
+                      );
                     },
                   )
                 ],
@@ -238,7 +250,18 @@ class CardScreen3 extends StatelessWidget {
                           height: 50.h)),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).pop();
+                      showDialog(
+                        barrierColor: Colors.white10, //AddScreen()
+
+                        context: context,
+                        builder: (_) => Dialog(
+                          insetPadding: EdgeInsets.all(20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: CardScreen2(),
+                        ), //AddScreen()
+                        barrierDismissible: false,
+                      );
                     },
                     child: Container(
                       height: 60.h,

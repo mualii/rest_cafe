@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/states.dart';
 import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
+import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -52,7 +53,7 @@ class CardScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    navigateAndFinish(context, DetailScreen());
                   },
                 ),
               ],

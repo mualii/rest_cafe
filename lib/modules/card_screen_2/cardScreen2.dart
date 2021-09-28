@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
@@ -42,14 +43,24 @@ class CardScreen2 extends StatelessWidget {
                     child: myTitle(
                         title: "التوصيل", font: 16.sp, color: Colors.black)),
                 IconButton(
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        barrierColor: Colors.white10, //AddScreen()
+
+                        context: context,
+                        builder: (_) => Dialog(
+                          insetPadding: EdgeInsets.all(20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: CardScreen(),
+                        ), //AddScreen()
+                        barrierDismissible: false,
+                      );
+                    })
               ],
             ),
             SizedBox(height: 15.h),
@@ -314,7 +325,18 @@ class CardScreen2 extends StatelessWidget {
                         mainBottom(title: "التالي", width: 150.w, height: 60)),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pop();
+                    showDialog(
+                      barrierColor: Colors.white10, //AddScreen()
+
+                      context: context,
+                      builder: (_) => Dialog(
+                        insetPadding: EdgeInsets.all(20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: CardScreen(),
+                      ), //AddScreen()
+                      barrierDismissible: false,
+                    );
                   },
                   child: Container(
                     height: 60.h,
