@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
+import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -28,7 +29,15 @@ class CardScreen2 extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: .15.sw),
+                IconButton(
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    navigateAndFinish(context, DetailScreen());
+                  },
+                ),
                 Center(
                     child: myTitle(
                         title: "التوصيل", font: 16.sp, color: Colors.black)),
@@ -114,7 +123,7 @@ class CardScreen2 extends StatelessWidget {
                                               BorderRadius.circular(20)),
                                       child: DeliveryScreen(),
                                     ), //AddScreen()
-                                    barrierDismissible: true,
+                                    barrierDismissible: false,
                                   );
                                 },
                                 child: Row(
@@ -247,7 +256,7 @@ class CardScreen2 extends StatelessWidget {
                                               },
                                               child: BookingScreen()),
                                         ), //AddScreen()
-                                        barrierDismissible: true,
+                                        barrierDismissible: false,
                                       );
                                     },
                                     child: Row(
@@ -298,7 +307,7 @@ class CardScreen2 extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           child: CardScreen3(),
                         ), //AddScreen()
-                        barrierDismissible: true,
+                        barrierDismissible: false,
                       );
                     },
                     child:
@@ -326,7 +335,7 @@ class CardScreen2 extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 20.h),
             // SizedBox(height: 15.h),
           ],
         ),
@@ -373,7 +382,7 @@ class DeliveryScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20)),
                       child: CardScreen2(),
                     ), //AddScreen()
-                    barrierDismissible: true,
+                    barrierDismissible: false,
                   );
                 },
               )
@@ -503,7 +512,7 @@ class DeliveryScreen extends StatelessWidget {
                           hasCar: true,
                         ),
                       ), //AddScreen()
-                      barrierDismissible: true,
+                      barrierDismissible: false,
                     );
                   },
                   child: mainBottom(title: "اضف", width: 140.w, height: 50)),
@@ -690,7 +699,7 @@ class BookingScreen extends StatelessWidget {
                                 hasTabol: true,
                               ),
                             ), //AddScreen()
-                            barrierDismissible: true,
+                            barrierDismissible: false,
                           );
                         },
                         child: mainBottom(

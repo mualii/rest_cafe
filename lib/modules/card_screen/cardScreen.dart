@@ -86,7 +86,7 @@ class CardScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           child: CardScreen2(),
                         ), //AddScreen()
-                        barrierDismissible: true,
+                        barrierDismissible: false,
                       );
                     },
                     child: mainBottom(

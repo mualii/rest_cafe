@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
+import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -20,7 +21,15 @@ class CardScreen3 extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(width: .15.sw),
+                  IconButton(
+                    icon: Icon(
+                      Icons.close,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      navigateAndFinish(context, DetailScreen());
+                    },
+                  ),
                   Center(
                       child: myTitle(
                           title: "الدفع", font: 16.sp, color: Colors.black)),
