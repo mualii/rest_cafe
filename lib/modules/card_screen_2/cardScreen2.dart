@@ -1,7 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
@@ -546,7 +546,7 @@ class DeliveryScreen extends StatelessWidget {
   }
 }
 
-class BookingScreen extends StatelessWidget {
+class BookingScreen extends StatefulWidget {
   static void showSheet(
     BuildContext context, {
     required Widget child,
@@ -565,12 +565,50 @@ class BookingScreen extends StatelessWidget {
         ),
       );
 
+  @override
+  _BookingScreenState createState() => _BookingScreenState();
+}
+
+class _BookingScreenState extends State<BookingScreen> {
   var numberOfPersonController = TextEditingController();
 
   var value;
+
   var value2;
+
   DateTime dateTime = DateTime.now();
-  DateTime dateTime2 = DateTime.now();
+
+  late DateTime dateTime2;
+
+  Future<void> openTimePicker(BuildContext context) async {
+    final TimeOfDay? t =
+        await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    if (t != null) {
+      setState(() {
+        value2 = t.format(context);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dateTime2 = DateTime.now();
+  }
+
+  Future<void> openDatePicker(BuildContext context) async {
+    final DateTime? t = await showDatePicker(
+        context: context,
+        firstDate: DateTime(DateTime.now().year),
+        lastDate: DateTime(DateTime.now().year + 1),
+        initialDate: dateTime2);
+    if (t != null) {
+      setState(() {
+        value = t;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -630,20 +668,21 @@ class BookingScreen extends StatelessWidget {
                         SizedBox(width: 10.w),
                         InkWell(
                           onTap: () {
-                            return BookingScreen.showSheet(
-                              context,
-                              child: buildDatePicker(),
-                              onClicked: () {
-                                setState(() {
-                                  context.setLocale(Locale('ar'));
-
-                                  value =
-                                      DateFormat('yyyy/MM/dd').format(dateTime);
-                                });
-
-                                Navigator.pop(context);
-                              },
-                            );
+                            openDatePicker(context);
+                            // return BookingScreen.BookingScreen.showSheet(
+                            //   context,
+                            //   child: buildDatePicker(),
+                            //   onClicked: () {
+                            //     setState(() {
+                            //       context.setLocale(Locale('ar'));
+                            //
+                            //       value =
+                            //           DateFormat('yyyy/MM/dd').format(dateTime);
+                            //     });
+                            //
+                            //     Navigator.pop(context);
+                            //   },
+                            // );
                           },
                           child: Container(
                               decoration: BoxDecoration(
@@ -658,23 +697,26 @@ class BookingScreen extends StatelessWidget {
                                   SizedBox(width: 10.w),
                                   Text((value == null)
                                       ? "اليوم"
-                                      : value.toString()),
+                                      : DateFormat.yMd().format(value)),
                                 ],
                               )),
                         ),
                         SizedBox(width: 20.w),
                         InkWell(
-                          onTap: () => BookingScreen.showSheet(
-                            context,
-                            child: buildTimePicker(),
-                            onClicked: () {
-                              setState(() {
-                                value2 = DateFormat('HH:mm').format(dateTime);
-                              });
-
-                              Navigator.pop(context);
-                            },
-                          ),
+                          onTap: () {
+                            openTimePicker(context);
+                          },
+                          // onTap: () => BookingScreen.showSheet(
+                          //   context,
+                          //   child: buildTimePicker(),
+                          //   onClicked: () {
+                          //     setState(() {
+                          //       value2 = DateFormat('HH:mm').format(dateTime);
+                          //     });
+                          //
+                          //     Navigator.pop(context);
+                          //   },
+                          // ),
                           child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black38),
@@ -736,47 +778,47 @@ class BookingScreen extends StatelessWidget {
     );
   }
 
-  Widget buildDatePicker() => StatefulBuilder(
-        builder: (BuildContext ctx, StateSetter setState) => SizedBox(
-          height: 180.h,
-          child: CupertinoApp(
-            locale: Locale("en"),
-            debugShowCheckedModeBanner: false,
-            home: CupertinoDatePicker(
-              backgroundColor: Colors.white,
-
-              // backgroundColor: Colors.white10,
-
-              // minimumDate: DateTime.now().toLocal(),
-              minimumYear: DateTime.now().year,
-              initialDateTime: dateTime,
-              mode: CupertinoDatePickerMode.date,
-              onDateTimeChanged: (dateTime) =>
-                  setState(() => this.dateTime = dateTime),
-            ),
-          ),
-        ),
-      );
-
-  Widget buildTimePicker() =>
-      StatefulBuilder(builder: (BuildContext ctx, StateSetter setState) {
-        return SizedBox(
-          height: 180.h,
-          child: CupertinoApp(
-            locale: Locale("en"),
-            debugShowCheckedModeBanner: false,
-            home: CupertinoDatePicker(
-              backgroundColor: Colors.white,
-              use24hFormat: false,
-              // minimumDate: dateTime,
-              initialDateTime: dateTime,
-              mode: CupertinoDatePickerMode.time,
-
-              //use24hFormat: true,
-              onDateTimeChanged: (dateTime) =>
-                  setState(() => this.dateTime = dateTime),
-            ),
-          ),
-        );
-      });
+  // Widget buildDatePicker() => StatefulBuilder(
+  //       builder: (BuildContext ctx, StateSetter setState) => SizedBox(
+  //         height: 180.h,
+  //         child: CupertinoApp(
+  //           locale: Locale("en"),
+  //           debugShowCheckedModeBanner: false,
+  //           home: CupertinoDatePicker(
+  //             backgroundColor: Colors.white,
+  //
+  //             // backgroundColor: Colors.white10,
+  //
+  //             // minimumDate: DateTime.now().toLocal(),
+  //             minimumYear: DateTime.now().year,
+  //             initialDateTime: dateTime,
+  //             mode: CupertinoDatePickerMode.date,
+  //             onDateTimeChanged: (dateTime) =>
+  //                 setState(() => this.dateTime = dateTime),
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //
+  // Widget buildTimePicker() =>
+  //     StatefulBuilder(builder: (BuildContext ctx, StateSetter setState) {
+  //       return SizedBox(
+  //         height: 180.h,
+  //         child: CupertinoApp(
+  //           locale: Locale("en"),
+  //           debugShowCheckedModeBanner: false,
+  //           home: CupertinoDatePicker(
+  //             backgroundColor: Colors.white,
+  //             use24hFormat: false,
+  //             // minimumDate: dateTime,
+  //             initialDateTime: dateTime,
+  //             mode: CupertinoDatePickerMode.time,
+  //
+  //             //use24hFormat: true,
+  //             onDateTimeChanged: (dateTime) =>
+  //                 setState(() => this.dateTime = dateTime),
+  //           ),
+  //         ),
+  //       );
+  //     });
 } /////عيزين نسيت لوكل لودجيت واحدة بس
