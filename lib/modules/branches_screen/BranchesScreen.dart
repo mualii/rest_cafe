@@ -179,7 +179,8 @@ class BranchesScreen extends StatelessWidget {
                                         //     ));
                                         cubit.changeBranchSize();
                                       },
-                                      icon: Image.asset("assets/images/0.png"))
+                                      icon: Image.asset(
+                                          "assets/images/ic_expand.png"))
                                 ],
                               ),
                             ),

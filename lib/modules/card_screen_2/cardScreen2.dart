@@ -23,179 +23,51 @@ class CardScreen2 extends StatelessWidget {
       builder: (BuildContext context, StateSetter setState) => Container(
         height: .91.sh,
         padding: EdgeInsets.all(10.sp),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(width: .15.sw),
+                Center(
+                    child: myTitle(
+                        title: "التوصيل", font: 16.sp, color: Colors.black)),
+                IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ),
+            SizedBox(height: 15.h),
+            Center(child: Image.asset("assets/images/card2.png")),
+            SizedBox(height: 15.h),
+            SingleChildScrollView(
+              child: Column(
                 children: [
-                  SizedBox(width: .15.sw),
-                  Center(
-                      child: myTitle(
-                          title: "التوصيل", font: 16.sp, color: Colors.black)),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
-              ),
-              SizedBox(height: 15.h),
-              Center(child: Image.asset("assets/images/card2.png")),
-              SizedBox(height: 15.h),
-              Container(
-                // height: 100.h,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(20.sp)),
-                child: Column(
-                  children: [
-                    Row(
+                  Container(
+                    // height: 100.h,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20.sp)),
+                    child: Column(
                       children: [
-                        SizedBox(width: 10.w),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              isChecked1 = !isChecked1;
-                              isChecked2 = true;
-                              isChecked3 = true;
-                            });
-                          },
-                          child: isChecked1
-                              ? Icon(
-                                  Icons.circle_outlined,
-                                  color: Colors.black12,
-                                  size: 30.sp,
-                                )
-                              : Icon(
-                                  Icons.circle,
-                                  color: color1,
-                                  size: 30.sp,
-                                ),
-                        ),
-                        myTitle(
-                            title: "للسيارة", color: Colors.black, font: 16.sp),
-                        myTitle(
-                            title: "2 ريال",
-                            color: Colors.black45,
-                            font: 12.sp),
-                        SizedBox(width: .32.sw),
-                        Container(
-                            height: 50.h,
-                            width: 40.w,
-                            child: Image.asset(
-                                "assets/images/ic_delivery_car.png"))
-                      ],
-                    ),
-                    if (hasCar! || isChecked1 == false)
-                      Column(
-                        children: [
-                          Divider(
-                            color: Colors.black38,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              showDialog(
-                                barrierColor: Colors.white10, //AddScreen()
-
-                                context: context,
-                                builder: (_) => Dialog(
-                                  insetPadding: EdgeInsets.all(20),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: DeliveryScreen(),
-                                ), //AddScreen()
-                                barrierDismissible: true,
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                SizedBox(width: 40.w),
-                                myTitle(
-                                    title: "نيسان | 213123 | ازرق",
-                                    color: Colors.black38,
-                                    font: 16.sp),
-                                SizedBox(width: .20.sw),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.black38,
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          )
-                        ],
-                      ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 15.h),
-              Container(
-                height: 50.h,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(20.sp)),
-                child: Row(
-                  children: [
-                    SizedBox(width: 10.w),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          isChecked2 = !isChecked2;
-                          isChecked1 = true;
-                          isChecked3 = true;
-                        });
-                      },
-                      child: isChecked2
-                          ? Icon(
-                              Icons.circle_outlined,
-                              color: Colors.black12,
-                              size: 30.sp,
-                            )
-                          : Icon(
-                              Icons.circle,
-                              color: color1,
-                              size: 30.sp,
-                            ),
-                    ),
-                    myTitle(
-                        title: "الذهاب للمطعم",
-                        color: Colors.black,
-                        font: 16.sp),
-                    SizedBox(width: .30.sw),
-                    Image.asset("assets/images/m2.png")
-                  ],
-                ),
-              ),
-              SizedBox(height: 15.h),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(20.sp)),
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        SizedBox(height: 10),
                         Row(
                           children: [
                             SizedBox(width: 10.w),
                             InkWell(
                               onTap: () {
                                 setState(() {
-                                  isChecked1 = true;
+                                  isChecked1 = !isChecked1;
                                   isChecked2 = true;
-
-                                  isChecked3 = !isChecked3;
+                                  isChecked3 = true;
                                 });
                               },
-                              child: isChecked3
+                              child: isChecked1
                                   ? Icon(
                                       Icons.circle_outlined,
                                       color: Colors.black12,
@@ -208,15 +80,22 @@ class CardScreen2 extends StatelessWidget {
                                     ),
                             ),
                             myTitle(
-                                title: "حجز طاولة",
+                                title: "للسيارة",
                                 color: Colors.black,
                                 font: 16.sp),
-                            SizedBox(width: .40.sw),
-                            Image.asset("assets/images/3.png")
+                            myTitle(
+                                title: "2 ريال",
+                                color: Colors.black45,
+                                font: 12.sp),
+                            SizedBox(width: .32.sw),
+                            Container(
+                                height: 50.h,
+                                width: 40.w,
+                                child: Image.asset(
+                                    "assets/images/ic_delivery_car.png"))
                           ],
                         ),
-                        SizedBox(height: 10),
-                        if (hasTabol! || isChecked3 == false)
+                        if (hasCar! || isChecked1 == false)
                           Column(
                             children: [
                               Divider(
@@ -233,26 +112,19 @@ class CardScreen2 extends StatelessWidget {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20)),
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            FocusScope.of(context)
-                                                .requestFocus(new FocusNode());
-                                          },
-                                          child: BookingScreen()),
+                                      child: DeliveryScreen(),
                                     ), //AddScreen()
                                     barrierDismissible: true,
                                   );
                                 },
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    // SizedBox(width: 40.w),
+                                    SizedBox(width: 40.w),
                                     myTitle(
-                                        title:
-                                            "5 افراد | 22 Apr 2021 | 02:41AM",
+                                        title: "نيسان | 213123 | ازرق",
                                         color: Colors.black38,
                                         font: 16.sp),
-                                    SizedBox(width: .09.sw),
+                                    SizedBox(width: .20.sw),
                                     Icon(
                                       Icons.arrow_forward_ios,
                                       color: Colors.black38,
@@ -267,61 +139,196 @@ class CardScreen2 extends StatelessWidget {
                           ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                  height: (isChecked3 == false || isChecked1 == false!)
-                      ? .289.sh
-                      : .357.sh),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                      onTap: () {
-                        showDialog(
-                          barrierColor: Colors.white10, //AddScreen()
-
-                          context: context,
-                          builder: (_) => Dialog(
-                            insetPadding: EdgeInsets.all(20),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: CardScreen3(),
-                          ), //AddScreen()
-                          barrierDismissible: true,
-                        );
-                      },
-                      child: mainBottom(
-                          title: "التالي", width: 150.w, height: 60)),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Container(
-                      height: 60.h,
-                      width: 150.w,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.sp),
-                          color: Colors.white10),
-                      child: Center(
-                        child: Text(
-                          "السابق",
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontFamily: "FrutigerLTArabic"),
+                  ),
+                  SizedBox(height: 15.h),
+                  Container(
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20.sp)),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 10.w),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              isChecked2 = !isChecked2;
+                              isChecked1 = true;
+                              isChecked3 = true;
+                            });
+                          },
+                          child: isChecked2
+                              ? Icon(
+                                  Icons.circle_outlined,
+                                  color: Colors.black12,
+                                  size: 30.sp,
+                                )
+                              : Icon(
+                                  Icons.circle,
+                                  color: color1,
+                                  size: 30.sp,
+                                ),
                         ),
-                      ),
+                        myTitle(
+                            title: "الذهاب للمطعم",
+                            color: Colors.black,
+                            font: 16.sp),
+                        SizedBox(width: .30.sw),
+                        Image.asset("assets/images/m2.png")
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15.h),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20.sp)),
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(height: 10),
+                            Row(
+                              children: [
+                                SizedBox(width: 10.w),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isChecked1 = true;
+                                      isChecked2 = true;
+
+                                      isChecked3 = !isChecked3;
+                                    });
+                                  },
+                                  child: isChecked3
+                                      ? Icon(
+                                          Icons.circle_outlined,
+                                          color: Colors.black12,
+                                          size: 30.sp,
+                                        )
+                                      : Icon(
+                                          Icons.circle,
+                                          color: color1,
+                                          size: 30.sp,
+                                        ),
+                                ),
+                                myTitle(
+                                    title: "حجز طاولة",
+                                    color: Colors.black,
+                                    font: 16.sp),
+                                SizedBox(width: .40.sw),
+                                Image.asset("assets/images/3.png")
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            if (hasTabol! || isChecked3 == false)
+                              Column(
+                                children: [
+                                  Divider(
+                                    color: Colors.black38,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                        barrierColor:
+                                            Colors.white10, //AddScreen()
+
+                                        context: context,
+                                        builder: (_) => Dialog(
+                                          insetPadding: EdgeInsets.all(20),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: GestureDetector(
+                                              onTap: () {
+                                                FocusScope.of(context)
+                                                    .requestFocus(
+                                                        new FocusNode());
+                                              },
+                                              child: BookingScreen()),
+                                        ), //AddScreen()
+                                        barrierDismissible: true,
+                                      );
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        // SizedBox(width: 40.w),
+                                        myTitle(
+                                            title:
+                                                "5 افراد | 22 Apr 2021 | 02:41AM",
+                                            color: Colors.black38,
+                                            font: 16.sp),
+                                        SizedBox(width: .09.sw),
+                                        Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.black38,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  )
+                                ],
+                              ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
+            ),
+            Spacer(),
 
-              // SizedBox(height: 15.h),
-            ],
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                    onTap: () {
+                      showDialog(
+                        barrierColor: Colors.white10, //AddScreen()
+
+                        context: context,
+                        builder: (_) => Dialog(
+                          insetPadding: EdgeInsets.all(20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: CardScreen3(),
+                        ), //AddScreen()
+                        barrierDismissible: true,
+                      );
+                    },
+                    child:
+                        mainBottom(title: "التالي", width: 150.w, height: 60)),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    height: 60.h,
+                    width: 150.w,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.sp),
+                        color: Colors.white10),
+                    child: Center(
+                      child: Text(
+                        "السابق",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontFamily: "FrutigerLTArabic"),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10.h),
+            // SizedBox(height: 15.h),
+          ],
         ),
       ),
     );
@@ -576,7 +583,7 @@ class BookingScreen extends StatelessWidget {
                       children: [
                         SizedBox(width: 10.w),
                         Container(
-                          width: .77.sw,
+                          width: .82.sw,
                           child: defaultFormField(
                               type: TextInputType.number,
                               controller: numberOfPersonController,
@@ -611,7 +618,7 @@ class BookingScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black38),
                                   borderRadius: BorderRadius.circular(10.sp)),
-                              width: 140.w,
+                              width: 150.w,
                               height: 50.h,
                               child: Row(
                                 children: [
@@ -641,7 +648,7 @@ class BookingScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black38),
                                   borderRadius: BorderRadius.circular(10.sp)),
-                              width: 140.w,
+                              width: 150.w,
                               height: 50.h,
                               child: Row(
                                 children: [
