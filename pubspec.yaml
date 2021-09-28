@@ -37,7 +37,7 @@ dependencies:
   pin_code_fields: ^7.2.0
   font_awesome_flutter: ^9.0.0
   badges: ^2.0.1
-  intl: ^0.16.1
+#  intl: ^0.16.1
 
   shared_preferences: ^2.0.6
   dio: ^4.0.0

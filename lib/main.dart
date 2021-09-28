@@ -34,6 +34,11 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(392.72727272727275, 781.0909090909091),
       builder: () => MaterialApp(
+        theme: ThemeData(
+          primaryColor: Color(0xff4CB278),
+          accentColor: Color(0xff4CB278),
+          colorScheme: ColorScheme.light(primary: Color(0xff4CB278)),
+        ),
         //     theme: ThemeData(unselectedWidgetColor: Colors.red,tabBarTheme:TabBarTheme(unselectedLabelColor: Colors.red ) ),
 
         // theme: ThemeData(
