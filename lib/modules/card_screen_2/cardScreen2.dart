@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
-import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -30,18 +29,8 @@ class CardScreen2 extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.close,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {
-                    navigateAndFinish(context, DetailScreen());
-                  },
-                ),
-                Center(
-                    child: myTitle(
-                        title: "التوصيل", font: 16.sp, color: Colors.black)),
+                SizedBox(width: .14.sw),
+                myTitle(title: "التوصيل", font: 16.sp, color: Colors.black),
                 IconButton(
                     icon: Icon(
                       Icons.arrow_forward_ios,

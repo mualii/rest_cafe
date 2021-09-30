@@ -141,18 +141,21 @@ class DetailScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(width: 100.w),
+                          SizedBox(width: 110.w),
                           Row(
                             children: [
                               Icon(Icons.access_time_filled,
                                   color: color1, size: 20.sp),
-                              myTitle(
+                              Text(
+                                "45دقيقة",
+                                style: TextStyle(
                                   color: Color(0xff717171),
-                                  font: 12.sp,
-                                  title: "45دقيقة")
+                                  fontSize: 12.sp,
+                                ),
+                              ),
                             ],
                           ),
-                          SizedBox(width: 60.w),
+                          SizedBox(width: 70.w),
                           Row(
                             children: [
                               myTitle(
