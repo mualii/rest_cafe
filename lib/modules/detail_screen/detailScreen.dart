@@ -126,14 +126,15 @@ class DetailScreen extends StatelessWidget {
                               //     title: "km"),
                               SizedBox(width: 4),
                               Text(
-                                "5",
+                                "km",
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Color(0xff717171),
                                 ),
                               ),
+                              SizedBox(width: 3),
                               Text(
-                                "km",
+                                "5",
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Color(0xff717171),
@@ -147,7 +148,7 @@ class DetailScreen extends StatelessWidget {
                               Icon(Icons.access_time_filled,
                                   color: color1, size: 20.sp),
                               Text(
-                                "45دقيقة",
+                                "45 دقيقة",
                                 style: TextStyle(
                                   color: Color(0xff717171),
                                   fontSize: 12.sp,
