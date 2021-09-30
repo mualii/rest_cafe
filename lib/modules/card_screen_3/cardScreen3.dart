@@ -40,6 +40,8 @@ class CardScreen3 extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+
                       showDialog(
                         barrierColor: Colors.white10, //AddScreen()
 
@@ -50,7 +52,7 @@ class CardScreen3 extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           child: CardScreen2(),
                         ), //AddScreen()
-                        barrierDismissible: false,
+                        barrierDismissible: true,
                       );
                     },
                   )
@@ -250,6 +252,8 @@ class CardScreen3 extends StatelessWidget {
                           height: 50.h)),
                   InkWell(
                     onTap: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+
                       showDialog(
                         barrierColor: Colors.white10, //AddScreen()
 
@@ -260,7 +264,7 @@ class CardScreen3 extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           child: CardScreen2(),
                         ), //AddScreen()
-                        barrierDismissible: false,
+                        barrierDismissible: true,
                       );
                     },
                     child: Container(

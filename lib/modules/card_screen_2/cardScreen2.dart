@@ -48,6 +48,7 @@ class CardScreen2 extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
                       showDialog(
                         barrierColor: Colors.white10, //AddScreen()
 
@@ -58,7 +59,7 @@ class CardScreen2 extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           child: CardScreen(),
                         ), //AddScreen()
-                        barrierDismissible: false,
+                        barrierDismissible: true,
                       );
                     })
               ],
@@ -123,6 +124,9 @@ class CardScreen2 extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+
                                   showDialog(
                                     barrierColor: Colors.white10, //AddScreen()
 
@@ -134,7 +138,7 @@ class CardScreen2 extends StatelessWidget {
                                               BorderRadius.circular(20)),
                                       child: DeliveryScreen(),
                                     ), //AddScreen()
-                                    barrierDismissible: false,
+                                    barrierDismissible: true,
                                   );
                                 },
                                 child: Row(
@@ -249,6 +253,9 @@ class CardScreen2 extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
+                                      Navigator.of(context, rootNavigator: true)
+                                          .pop();
+
                                       showDialog(
                                         barrierColor:
                                             Colors.white10, //AddScreen()
@@ -267,7 +274,7 @@ class CardScreen2 extends StatelessWidget {
                                               },
                                               child: BookingScreen()),
                                         ), //AddScreen()
-                                        barrierDismissible: false,
+                                        barrierDismissible: true,
                                       );
                                     },
                                     child: Row(
@@ -308,6 +315,8 @@ class CardScreen2 extends StatelessWidget {
               children: [
                 InkWell(
                     onTap: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+
                       showDialog(
                         barrierColor: Colors.white10, //AddScreen()
 
@@ -318,13 +327,15 @@ class CardScreen2 extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           child: CardScreen3(),
                         ), //AddScreen()
-                        barrierDismissible: false,
+                        barrierDismissible: true,
                       );
                     },
                     child:
                         mainBottom(title: "التالي", width: 150.w, height: 60)),
                 InkWell(
                   onTap: () {
+                    Navigator.of(context, rootNavigator: true).pop();
+
                     showDialog(
                       barrierColor: Colors.white10, //AddScreen()
 
@@ -335,7 +346,7 @@ class CardScreen2 extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                         child: CardScreen(),
                       ), //AddScreen()
-                      barrierDismissible: false,
+                      barrierDismissible: true,
                     );
                   },
                   child: Container(
@@ -394,6 +405,8 @@ class DeliveryScreen extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 onPressed: () {
+                  Navigator.of(context, rootNavigator: true).pop();
+
                   showDialog(
                     barrierColor: Colors.white10, //AddScreen()
 
@@ -404,7 +417,7 @@ class DeliveryScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20)),
                       child: CardScreen2(),
                     ), //AddScreen()
-                    barrierDismissible: false,
+                    barrierDismissible: true,
                   );
                 },
               )
@@ -522,6 +535,8 @@ class DeliveryScreen extends StatelessWidget {
               SizedBox(width: 10.w),
               InkWell(
                   onTap: () {
+                    Navigator.of(context, rootNavigator: true).pop();
+
                     showDialog(
                       barrierColor: Colors.white10, //AddScreen()
 
@@ -534,7 +549,7 @@ class DeliveryScreen extends StatelessWidget {
                           hasCar: true,
                         ),
                       ), //AddScreen()
-                      barrierDismissible: false,
+                      barrierDismissible: true,
                     );
                   },
                   child: mainBottom(title: "اضف", width: 140.w, height: 50)),
@@ -751,9 +766,10 @@ class _BookingScreenState extends State<BookingScreen> {
                     SizedBox(width: 10.w),
                     InkWell(
                         onTap: () {
+                          Navigator.of(context, rootNavigator: true).pop();
+
                           showDialog(
                             barrierColor: Colors.white10, //AddScreen()
-
                             context: context,
                             builder: (_) => Dialog(
                               insetPadding: EdgeInsets.all(20),
@@ -763,7 +779,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                 hasTabol: true,
                               ),
                             ), //AddScreen()
-                            barrierDismissible: false,
+                            barrierDismissible: true,
                           );
                         },
                         child: mainBottom(

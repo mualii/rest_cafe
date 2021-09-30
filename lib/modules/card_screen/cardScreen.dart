@@ -77,6 +77,7 @@ class CardScreen extends StatelessWidget {
               children: [
                 InkWell(
                     onTap: () {
+                      Navigator.of(context, rootNavigator: true).pop();
                       showDialog(
                         barrierColor: Colors.white10, //AddScreen()
 
@@ -87,7 +88,7 @@ class CardScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           child: CardScreen2(),
                         ), //AddScreen()
-                        barrierDismissible: false,
+                        barrierDismissible: true,
                       );
                     },
                     child: mainBottom(
