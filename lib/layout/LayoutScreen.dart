@@ -229,31 +229,110 @@ class _LayoutScreenState extends State<LayoutScreen> {
                 ),
               ),
             ),
-            Positioned(
-              ///hiii
-              bottom: 15.h,
-              right: 175.w,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+            if (currentIndex == 0)
+              Positioned(
+                ///hiii
+                bottom: 15.h,
+                right: 172.w,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(),
+                      SizedBox(height: 2.h),
+                      Text(
+                        titlePage[currentIndex],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
-                child: Column(
-                  children: [
-                    Container(),
-                    SizedBox(height: 2.h),
-                    Text(
-                      titlePage[currentIndex],
-                      style: TextStyle(color: Colors.white),
+              ),
+            if (currentIndex == 1)
+              Positioned(
+                ///hiii
+                bottom: 15.h,
+                right: 175.w,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                  ],
+                  ),
+                  child: Column(
+                    children: [
+                      Container(),
+                      SizedBox(height: 2.h),
+                      Text(
+                        titlePage[currentIndex],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+            if (currentIndex == 2)
+              Positioned(
+                ///hiii
+                bottom: 15.h,
+                right: 175.w,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(),
+                      SizedBox(height: 2.h),
+                      Text(
+                        titlePage[currentIndex],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            if (currentIndex == 3)
+              Positioned(
+                ///hiii
+                bottom: 15.h,
+                right: 170.w,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(),
+                      SizedBox(height: 2.h),
+                      Text(
+                        titlePage[currentIndex],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             Positioned(
               bottom: 37.h,
               left: 125.w,

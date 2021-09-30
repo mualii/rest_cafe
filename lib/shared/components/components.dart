@@ -90,7 +90,7 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     );
 Widget myTitle({String? title, double? font, Color? color}) {
   return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 8.w),
+    padding: EdgeInsets.symmetric(horizontal: 6.w),
     child: Text(
       title!,
       style: TextStyle(

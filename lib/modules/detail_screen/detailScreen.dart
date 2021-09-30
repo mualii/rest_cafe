@@ -120,17 +120,25 @@ class DetailScreen extends StatelessWidget {
                                   height: 20,
                                   child: Image.asset(
                                       "assets/images/ic_location.png")),
-                              myTitle(
-                                  color: Color(0xff717171),
-                                  font: 12.sp,
-                                  title: "km"),
+                              // myTitle(
+                              //     color: Color(0xff717171),
+                              //     font: 12.sp,
+                              //     title: "km"),
+                              SizedBox(width: 4),
                               Text(
                                 "5",
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Color(0xff717171),
                                 ),
-                              )
+                              ),
+                              Text(
+                                "km",
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: Color(0xff717171),
+                                ),
+                              ),
                             ],
                           ),
                           SizedBox(width: 100.w),
@@ -141,7 +149,7 @@ class DetailScreen extends StatelessWidget {
                               myTitle(
                                   color: Color(0xff717171),
                                   font: 12.sp,
-                                  title: "45 دقيقة")
+                                  title: "45دقيقة")
                             ],
                           ),
                           SizedBox(width: 60.w),
