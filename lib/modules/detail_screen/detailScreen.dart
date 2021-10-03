@@ -93,7 +93,7 @@ class DetailScreen extends StatelessWidget {
                           SizedBox(width: .29.sw),
                           InkWell(
                             onTap: () {
-                              navigateAndFinish(context, BranchesScreen());
+                              Navigator.of(context).pop();
                             },
                             child: Icon(
                               Icons.arrow_forward_ios,

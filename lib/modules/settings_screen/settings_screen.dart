@@ -117,7 +117,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             function: () {},
           ),
           SettingsOption(
-            title: 'الاشتراكات',
+            title: 'المشاركة',
             iconData: Icon(
               Icons.share_outlined,
               color: Color(0xff4CB379),

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
-import 'package:rest_cafe/modules/branches_screen/BranchesScreen2.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/states.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
-import 'package:rest_cafe/shared/components/constants.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 
 class BranchesScreen extends StatelessWidget {
   @override
@@ -23,6 +22,7 @@ class BranchesScreen extends StatelessWidget {
           var cubit = DetailCubit.get(context);
           return Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(20.r),
@@ -50,80 +50,98 @@ class BranchesScreen extends StatelessWidget {
               backgroundColor: Colors.white,
               elevation: 1,
             ),
-            body: Image.asset(
-              "assets/images/google-location-history-screenshot-1.jpg",
-              fit: BoxFit.cover,
-            ),
-            bottomSheet: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(30.sp),
-                      topLeft: Radius.circular(30.sp))),
-              width: double.infinity,
-              height: .36.sh,
-              child: Padding(
-                padding: EdgeInsets.all(10.sp),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Row(
-                          children: [
-                            myTitle(
-                                title: "فروع ماكدونالد",
-                                font: 14.sp,
-                                color: Color(0xff3D3D3D)),
-                            SizedBox(width: 20.w),
-                            Text(
-                              "57",
-                              style: TextStyle(
-                                fontFamily: "FrutigerLTArabic",
-                              ),
-                            ),
-                            Spacer(),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      BouncyPageRoute(
-                                          widget: BranchesScreen2()));
-                                  // navigateAndFinish(
-                                  //     context,
-                                  //     LayoutScreen(
-                                  //       selectedPageIndex: 0,
-                                  //     ));
-                                  cubit.changeBranchSize();
-                                },
-                                icon:
-                                    Image.asset("assets/images/ic_expand.png"))
-                          ],
+            body: SlidingSheet(
+              elevation: 8,
+              cornerRadius: 16,
+              snapSpec: const SnapSpec(
+                // Enable snapping. This is true by default.
+                snap: true,
+                // Set custom snapping points.
+                snappings: [0.25, 0.6, 1.0],
+                // Define to what the snappings relate to. In this case,
+                // the total available space that the sheet can expand to.
+                positioning: SnapPositioning.relativeToAvailableSpace,
+              ),
+              headerBuilder: (BuildContext context, SheetState state) {
+                return Container(
+                  height: 50.h,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Row(
+                      children: [
+                        myTitle(
+                            title: "فروع ماكدونالد",
+                            font: 14.sp,
+                            color: Color(0xff3D3D3D)),
+                        SizedBox(width: 20.w),
+                        Text(
+                          "57",
+                          style: TextStyle(
+                            fontFamily: "FrutigerLTArabic",
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 10.h),
-                      // LabolOfSecondListView()
-                      Container(
-                        height: .26.sh,
-                        child: ListView.separated(
-                            shrinkWrap: false,
-                            itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  DetailCubit.get(context)
-                                      .changeListItem(index);
-                                  navigateTo(context, DetailScreen());
-                                },
-                                child: LabolOfSecondListView(
-                                  index: index,
-                                )),
-                            separatorBuilder: (context, index) =>
-                                SizedBox(height: 10.h),
-                            itemCount: 10),
-                      )
-                    ],
+                        Spacer(),
+                        IconButton(
+                            onPressed: () {
+                              cubit.changeBranchSize();
+                            },
+                            icon: Image.asset("assets/images/ic_expand.png"))
+                      ],
+                    ),
                   ),
+                );
+              },
+              // The body widget will be displayed under the SlidingSheet
+              // and a parallax effect can be applied to it.
+              body: Center(
+                child: Image.asset(
+                  "assets/images/google-location-history-screenshot-1.jpg",
+                  fit: BoxFit.cover,
                 ),
               ),
+              builder: (context, state) {
+                // This is the content of the sheet that will get
+                // scrolled, if the content is bigger than the available
+                // height of the sheet.
+                return Container(
+                  height: 650.h,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(30.sp),
+                          topLeft: Radius.circular(30.sp))),
+                  child: Padding(
+                    padding: EdgeInsets.all(10.sp),
+                    child: SingleChildScrollView(
+                      //  physics: NeverScrollableScrollPhysics(),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10.h),
+                          // LabolOfSecondListView()
+                          Container(
+                            // height: 300.h,
+                            child: ListView.separated(
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                itemBuilder: (context, index) => InkWell(
+                                    onTap: () {
+                                      DetailCubit.get(context)
+                                          .changeListItem(index);
+                                      navigateTo(context, DetailScreen());
+                                    },
+                                    child: LabolOfSecondListView(
+                                      index: index,
+                                    )),
+                                separatorBuilder: (context, index) =>
+                                    SizedBox(height: 10.h),
+                                itemCount: 20),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
           );
         },
@@ -161,7 +179,7 @@ class LabolOfSecondListView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("1160 Ejani Center",
+                Text(" Ejani Center $index",
                     style: TextStyle(
                         fontFamily: "FrutigerLTArabic",
                         color: Colors.black,
@@ -180,9 +198,10 @@ class LabolOfSecondListView extends StatelessWidget {
                 ]),
               ],
             ),
-            SizedBox(width: 80.w),
-            // Spacer(),
+            // SizedBox(width: 80.w),
+            Spacer(),
             Container(
+              margin: EdgeInsets.only(left: 20.w),
               height: 30.h,
               width: 70.w,
               child: ListView.separated(
@@ -215,175 +234,6 @@ class LabolOfSecondListView extends StatelessWidget {
     );
   }
 }
-//class BranchesScreen extends StatefulWidget {
-//   @override
-//   _BranchesScreenState createState() => _BranchesScreenState();
-// }
-//
-// class _BranchesScreenState extends State<BranchesScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     bool? isFull = false;
-//     return BlocProvider(
-//       create: (context) => DetailCubit(),
-//       child: BlocConsumer<DetailCubit, DetailState>(
-//         listener: (context, state) {
-//           // TODO: implement listener
-//         },
-//         builder: (context, state) {
-//           return Scaffold(
-//             appBar: AppBar(
-//               shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.vertical(
-//                 bottom: Radius.circular(20.r),
-//               )),
-//               title: Text(
-//                 "اختر الفرع",
-//                 style: TextStyle(color: Colors.black54),
-//               ),
-//               actions: [
-//                 InkWell(
-//                   onTap: () {
-//                     navigateAndFinish(
-//                         context,
-//                         LayoutScreen(
-//                           selectedPageIndex: 0,
-//                         ));
-//                   },
-//                   child: Icon(
-//                     Icons.arrow_forward_ios,
-//                     color: Colors.grey,
-//                   ),
-//                 ),
-//               ],
-//               centerTitle: true,
-//               backgroundColor: Colors.white,
-//               elevation: 1,
-//             ),
-//             body:isFull! ?  Padding(
-//               padding: EdgeInsets.all(10.sp),
-//               child: SingleChildScrollView(
-//                 child: Column(
-//                   children: [
-//                     Align(
-//                       alignment: Alignment.topRight,
-//                       child: Row(
-//                         children: [
-//                           myTitle(
-//                               title: "فروع ماكدونالد",
-//                               font: 14.sp,
-//                               color: Color(0xff3D3D3D)),
-//                           SizedBox(width: 20.w),
-//                           Text(
-//                             "57",
-//                             style: TextStyle(
-//                               fontFamily: "FrutigerLTArabic",
-//                             ),
-//                           ),
-//                           Spacer(),
-//                           IconButton(
-//                               onPressed: () {
-//                                 setState(() {
-//                                   isFull == false;
-//                                 });
-//                               },
-//                               icon: Image.asset("assets/images/0.png"))
-//                         ],
-//                       ),
-//                     ),
-//                     SizedBox(height: 10.h),
-//                     // LabolOfSecondListView()
-//                     Container(
-//                       height: .9.sh,
-//                       child: ListView.separated(
-//                           shrinkWrap: false,
-//                           itemBuilder: (context, index) => InkWell(
-//                               onTap: () {
-//                                 DetailCubit.get(context)
-//                                     .changeListItem(index);
-//                                 navigateTo(context, DetailScreen());
-//                               },
-//                               child: LabolOfSecondListView(
-//                                 index: index,
-//                               )),
-//                           separatorBuilder: (context, index) =>
-//                               SizedBox(height: 10.h),
-//                           itemCount: 10),
-//                     )
-//                   ],
-//                 ),
-//               ),
-//             ):Image.asset(
-//               "assets/images/google-location-history-screenshot-1.jpg",
-//               fit: BoxFit.cover,
-//             ),
-//             bottomSheet: Container(
-//               decoration: BoxDecoration(
-//                   color: Colors.white,
-//                   borderRadius: BorderRadius.only(
-//                       topRight: Radius.circular(30.sp),
-//                       topLeft: Radius.circular(30.sp))),
-//               width: double.infinity,
-//               height: .36.sh,
-//               child: Padding(
-//                 padding: EdgeInsets.all(10.sp),
-//                 child: SingleChildScrollView(
-//                   child: Column(
-//                     children: [
-//                       Align(
-//                         alignment: Alignment.topRight,
-//                         child: Row(
-//                           children: [
-//                             myTitle(
-//                                 title: "فروع ماكدونالد",
-//                                 font: 14.sp,
-//                                 color: Color(0xff3D3D3D)),
-//                             SizedBox(width: 20.w),
-//                             Text(
-//                               "57",
-//                               style: TextStyle(
-//                                 fontFamily: "FrutigerLTArabic",
-//                               ),
-//                             ),
-//                             Spacer(),
-//                             IconButton(
-//                                 onPressed: () {
-//                                   setState(() {
-//                                     isFull = true;
-//                                     print("hi");
-//                                   });
-//                                 },
-//                                 icon: Image.asset("assets/images/0.png"))
-//                           ],
-//                         ),
-//                       ),
-//                       SizedBox(height: 10.h),
-//                       // LabolOfSecondListView()
-//                       Container(
-//                         height: .26.sh,
-//                         child: ListView.separated(
-//                             shrinkWrap: false,
-//                             itemBuilder: (context, index) => InkWell(
-//                                 onTap: () {
-//                                   DetailCubit.get(context)
-//                                       .changeListItem(index);
-//                                   navigateTo(context, DetailScreen());
-//                                 },
-//                                 child: LabolOfSecondListView(
-//                                   index: index,
-//                                 )),
-//                             separatorBuilder: (context, index) =>
-//                                 SizedBox(height: 10.h),
-//                             itemCount: 10),
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
+//the 1 widget
+
+//thw 2 widget
