@@ -116,15 +116,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             function: () {},
           ),
-          SettingsOption(
-            title: 'المشاركة',
-            iconData: Icon(
-              Icons.share_outlined,
-              color: Color(0xff4CB379),
-              size: 30,
-            ),
-            function: () {},
-          ),
+          // SettingsOption(
+          //   title: 'المشاركة',
+          //   iconData: Icon(
+          //     Icons.share_outlined,
+          //     color: Color(0xff4CB379),
+          //     size: 30,
+          //   ),
+          //   function: () {},
+          // ),
           langIsArabic!
               ? SettingsOption(
                   title: 'اللغة',
