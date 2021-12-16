@@ -1,25 +1,76 @@
+import 'dart:async';
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
-import 'package:rest_cafe/modules/detail_screen/cubit/cubit.dart';
-import 'package:rest_cafe/modules/detail_screen/cubit/states.dart';
+import 'package:rest_cafe/modules/branches_screen/cubit.dart';
+import 'package:rest_cafe/modules/branches_screen/states.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
+import 'package:rest_cafe/shared/Model/Resturants_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
-class BranchesScreen extends StatelessWidget {
+
+class BranchesScreen extends StatefulWidget{
+  String id ;
+
+  BranchesScreen(this.id);
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+return BranchesScreenState();
+  }
+}
+class BranchesScreenState extends State<BranchesScreen> {
+
+  List<Datum>data=[];
+  Uint8List? dataBytes;
+bool expand=false;
+SheetController controller =SheetController();
+
+  Completer<GoogleMapController> _controller = Completer();
+  Set<Marker> _createMarker(double latitude, double longitude) {
+
+    return {
+      Marker(
+
+       icon: BitmapDescriptor.fromBytes(dataBytes!.buffer.asUint8List()),
+        markerId: MarkerId("id_1"),
+        position: LatLng(latitude, longitude),
+
+        infoWindow: InfoWindow(
+          title: "marker 1",
+
+          // snippet: office.address,
+        ),
+      ),
+    };
+  }@override
+  void initState() {
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DetailCubit(),
-      child: BlocConsumer<DetailCubit, DetailState>(
+      create: (context) => BranchesCubit()..getBranches(context, widget.id),
+      child: BlocConsumer<BranchesCubit, BranchesState>(
         listener: (context, state) {
           // TODO: implement listener
         },
         builder: (context, state) {
-          var cubit = DetailCubit.get(context);
+          var cubit = BranchesCubit.get(context);
+          data=cubit.data;
+          dataBytes=cubit.dataBytes;
           return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
@@ -50,98 +101,115 @@ class BranchesScreen extends StatelessWidget {
               backgroundColor: Colors.white,
               elevation: 1,
             ),
-            body: SlidingSheet(
-              elevation: 8,
-              cornerRadius: 16,
-              snapSpec: const SnapSpec(
-                // Enable snapping. This is true by default.
-                snap: true,
-                // Set custom snapping points.
-                snappings: [0.25, 0.6, 1.0],
-                // Define to what the snappings relate to. In this case,
-                // the total available space that the sheet can expand to.
-                positioning: SnapPositioning.relativeToAvailableSpace,
-              ),
-              headerBuilder: (BuildContext context, SheetState state) {
-                return Container(
-                  height: 50.h,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Row(
-                      children: [
-                        myTitle(
-                            title: "فروع ماكدونالد",
-                            font: 14.sp,
-                            color: Color(0xff3D3D3D)),
-                        SizedBox(width: 20.w),
-                        Text(
-                          "57",
-                          style: TextStyle(
-                            fontFamily: "FrutigerLTArabic",
-                          ),
-                        ),
-                        Spacer(),
-                        IconButton(
-                            onPressed: () {
-                              cubit.changeBranchSize();
-                            },
-                            icon: Image.asset("assets/images/ic_expand.png"))
-                      ],
-                    ),
-                  ),
-                );
-              },
-              // The body widget will be displayed under the SlidingSheet
-              // and a parallax effect can be applied to it.
-              body: Center(
-                child: Image.asset(
-                  "assets/images/google-location-history-screenshot-1.jpg",
-                  fit: BoxFit.cover,
+            body:state is BranchesLoadingState? Center(child: CircularProgressIndicator()) : StatefulBuilder(
+              builder:(context,setState)=> SlidingSheet(
+                elevation: 8,
+controller: controller,
+                cornerRadius: 16,
+                snapSpec:  SnapSpec(
+                  // Enable snapping. This is true by default.
+
+
+                  // Set custom snapping points.
+
+                  // Define to what the snappings relate to. In this case,
+                  // the total available space that the sheet can expand to.
+                  positioning: SnapPositioning.relativeToAvailableSpace,
                 ),
-              ),
-              builder: (context, state) {
-                // This is the content of the sheet that will get
-                // scrolled, if the content is bigger than the available
-                // height of the sheet.
-                return Container(
-                  height: 650.h,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30.sp),
-                          topLeft: Radius.circular(30.sp))),
-                  child: Padding(
-                    padding: EdgeInsets.all(10.sp),
-                    child: SingleChildScrollView(
-                      //  physics: NeverScrollableScrollPhysics(),
-                      child: Column(
+                headerBuilder: (BuildContext context, SheetState state) {
+                  return Container(
+                    height: 50.h,
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Row(
                         children: [
-                          SizedBox(height: 10.h),
-                          // LabolOfSecondListView()
-                          Container(
-                            // height: 300.h,
-                            child: ListView.separated(
-                                shrinkWrap: true,
-                                physics: BouncingScrollPhysics(),
-                                itemBuilder: (context, index) => InkWell(
-                                    onTap: () {
-                                      DetailCubit.get(context)
-                                          .changeListItem(index);
-                                      navigateTo(context, DetailScreen());
-                                    },
-                                    child: LabolOfSecondListView(
-                                      index: index,
-                                    )),
-                                separatorBuilder: (context, index) =>
-                                    SizedBox(height: 10.h),
-                                itemCount: 20),
-                          )
+                          myTitle(
+                              title:data[0].name,
+                              font: 14.sp,
+                              color: Color(0xff3D3D3D)),
+                          SizedBox(width: 20.w),
+                          Text(
+                           data.length.toString(),
+                            style: TextStyle(
+                              fontFamily: "FrutigerLTArabic",
+                            ),
+                          ),
+                          Spacer(),
+                          IconButton(
+                              onPressed: () {
+                               setState((){
+                            expand==true? controller.collapse():    controller.expand();
+                                 expand=!expand;
+                               });
+                              },
+                              icon:Image.asset(expand==false?  "assets/images/ic_expand.png":"assets/images/0.png"))
                         ],
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+                // The body widget will be displayed under the SlidingSheet
+                // and a parallax effect can be applied to it.
+                body: Center(
+                  child: GoogleMap(
+
+                    markers:_createMarker(data[0].lat!, data[0].lng!) ,
+                    onMapCreated: (GoogleMapController controller) {
+                      _controller.complete(controller);
+
+                    },
+
+                    initialCameraPosition: CameraPosition(
+
+                      target: LatLng(data[0].lat!,data[0].lng!),
+                      zoom: 13,
+                    ),),
+                ),
+                builder: (context, state) {
+                  // This is the content of the sheet that will get
+                  // scrolled, if the content is bigger than the available
+                  // height of the sheet.
+                  return Container(
+                    height: 650.h,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30.sp),
+                            topLeft: Radius.circular(30.sp))),
+                    child: Padding(
+                      padding: EdgeInsets.all(10.sp),
+                      child: SingleChildScrollView(
+                        //  physics: NeverScrollableScrollPhysics(),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 10.h),
+                            // LabolOfSecondListView()
+                            Container(
+                              // height: 300.h,
+                              child: ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: BouncingScrollPhysics(),
+                                  itemBuilder: (context, index) => InkWell(
+                                      onTap: () {
+                                        BranchesCubit.get(context)
+                                            .changeListItem(index);
+                                        navigateTo(context, DetailScreen(id: data[index].id,distance:data[index].distance.toString(),name: data[0].name,number: data.length.toString() ,));
+                                      },
+                                      child: LabolOfSecondListView(
+                                        item: data[index],
+                                        index: index,
+                                      )),
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(height: 10.h),
+                                  itemCount: data.length),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           );
         },
@@ -152,14 +220,15 @@ class BranchesScreen extends StatelessWidget {
 
 class LabolOfSecondListView extends StatelessWidget {
   @override
+  final Datum? item;
   final int? index;
 
-  const LabolOfSecondListView({Key? key, this.index}) : super(key: key);
+  const LabolOfSecondListView({Key? key, this.item,this.index}) : super(key: key);
   Widget build(BuildContext context) {
     return Container(
       height: 70.h,
       decoration: BoxDecoration(
-        border: index == DetailCubit.get(context).currentIndex
+        border: index == BranchesCubit.get(context).currentIndex
             ? Border(right: BorderSide(color: color1, width: 4.sp))
             : Border(right: BorderSide(color: color1, width: 0.sp)),
       ),
@@ -172,14 +241,14 @@ class LabolOfSecondListView extends StatelessWidget {
               width: 60.w,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(20.sp)),
-              child: Image.asset("assets/images/mac.png"),
+              child: Image.network(item!.logo!),
             ),
             SizedBox(width: 20.w),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(" Ejani Center $index",
+                Text(" ${item!.name} $index",
                     style: TextStyle(
                         fontFamily: "FrutigerLTArabic",
                         color: Colors.black,
@@ -190,7 +259,7 @@ class LabolOfSecondListView extends StatelessWidget {
                       height: 20,
                       child: Image.asset("assets/images/ic_location.png")),
                   SizedBox(width: 10),
-                  Text("5 km",
+                  Text(item!.distance.toString(),
                       style: TextStyle(
                           fontFamily: "FrutigerLTArabic",
                           color: Colors.black54,
@@ -212,15 +281,15 @@ class LabolOfSecondListView extends StatelessWidget {
                           Spacer(),
                           Row(
                             children: [
-                              Image.asset(
+                              item!.canPickupOrder!?Image.asset(
                                 "assets/images/ic_delivery_cafe.png",
                                 height: 20,
-                              ),
+                              ):Container(),
                               SizedBox(width: 5.w),
-                              Image.asset(
+                              item!.canDeliverToCar!?  Image.asset(
                                 "assets/images/ic_delivery_car.png",
                                 height: 20,
-                              ),
+                              ):Container(),
                             ],
                           ),
                         ],

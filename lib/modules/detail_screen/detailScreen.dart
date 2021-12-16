@@ -2,22 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_cafe/modules/OrderCurrnentAndEnd/Screens/cart_state.dart';
+import 'package:rest_cafe/modules/OrderCurrnentAndEnd/cart_cubit.dart';
 import 'package:rest_cafe/modules/add_screen/addScreen.dart';
 import 'package:rest_cafe/modules/branches_screen/BranchesScreen.dart';
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
-import 'package:rest_cafe/modules/detail_screen/cubit/cubit.dart';
-import 'package:rest_cafe/modules/detail_screen/cubit/states.dart';
+import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
+import 'package:rest_cafe/shared/Model/details_model.dart';
+
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
+import 'cubit/detail_state.dart';
+import 'cubit/detial_cubit.dart';
+
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  String? id ,distance,number,name;
+   DetailScreen({ this.id,this.distance,this.number,this.name});
+
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DetailCubit(),
-      child: BlocConsumer<DetailCubit, DetailState>(
+    DetailCubit.get(context).getDetails(context, id!);
+    return BlocConsumer<DetailCubit, DetailState>(
         listener: (context, state) {
           // TODO: implement listener
         },
@@ -28,157 +35,176 @@ class DetailScreen extends StatelessWidget {
             },
             child: Scaffold(
               appBar: AppBar(
-                toolbarHeight: 180.h,
+                toolbarHeight: 240,
                 flexibleSpace: SafeArea(
-                  child: Column(
+                  child: state is DetailsLoaded?  Column(
                     children: [
                       SizedBox(height: 20),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(width: .03.sw),
-                          Container(
-                            height: 40.h,
-                            width: 40.w,
-                            child: InkWell(
-                                onTap: () {
-                                  showDialog(
-                                    barrierDismissible: true,
-                                    context: context,
-                                    builder: (context) {
-                                      return Dialog(
-                                        insetPadding: EdgeInsets.all(20),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        child: CardScreen(),
-                                      );
-                                    },
-                                    barrierColor: Colors.white10, //AddScreen()
-                                  );
-                                },
-                                child: Icon(
-                                  FontAwesomeIcons.cartPlus,
-                                  color: Colors.grey,
-                                )),
-                          ),
-                          SizedBox(width: .29.sw),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: Color(0xffDADADA)),
-                                    borderRadius: BorderRadius.circular(20.sp)),
-                                child: Image.asset("assets/images/mac.png"),
-                              ),
-                              myTitle(
-                                  title: "ماكدونالد ",
-                                  font: 16.sp,
-                                  color: Colors.black),
-                              Row(children: [
-                                Container(
-                                    height: 20,
-                                    child: Image.asset(
-                                        "assets/images/ic_restaurant.png")),
-                                Text("امريكي",
-                                    style: TextStyle(
-                                        fontFamily: "FrutigerLTArabic",
-                                        color: Colors.black54,
-                                        fontSize: 12.sp)),
-                              ]),
-                            ],
-                          ),
-                          SizedBox(width: .29.sw),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
+                      Padding(
+                        padding: const EdgeInsets.symmetric( horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+
+                            Container(
+                              height: 40,
+                              width: 40,
+                              child: InkWell(
+                                  onTap: () {
+                                    showDialog(
+                                      barrierDismissible: true,
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                          insetPadding: EdgeInsets.all(20),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: CardScreen(),
+                                        );
+                                      },
+                                      barrierColor: Colors.white10, //AddScreen()
+                                    );
+                                  },
+                                  child: Stack(
+
+                                    children: [
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        child: Icon(
+                                          FontAwesomeIcons.cartPlus,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                             Positioned(top: -.5,right: -0.5,child: BlocConsumer<CartCubit,CartState>(listener: (context,state){},builder:(context,state)=>CartCubit.get(context).cart.length==0?Container(): CircleAvatar(child:Text(CartCubit.get(context).cart.length.toString(),style: TextStyle(fontSize: 13),) ,backgroundColor: Colors.red,foregroundColor: Colors.white,radius: 11,)))
+                                    ],
+                                  )),
                             ),
-                          ),
-                        ],
+
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border.all(color: Color(0xffDADADA)),
+                                      borderRadius: BorderRadius.circular(20.sp)),
+                                  child: Image.network(state.details!.logo.toString()),
+                                ),
+                                myTitle(
+                                    title: state.details!.name,
+                                    font: 16.sp,
+                                    color: Colors.black),
+                                Row(children: [
+                                  Container(
+                                      height: 20,
+                                      child: Image.network(
+                                          HomeCubit.get(context).types[ HomeCubit.get(context).currentIndex].icon.toString())),
+                                  Text(state.details!.cuisine.toString(),
+                                      style: TextStyle(
+                                          fontFamily: "FrutigerLTArabic",
+                                          color: Colors.black54,
+                                          fontSize: 12.sp)),
+                                ]),
+                              ],
+                            ),
+
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 5.h),
+
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: Divider(
-                          height: 2.h,
+                          height: 2,
                           color: Color(0xffD8D8D8),
                         ),
                       ),
                       Spacer(),
-                      Row(
-                        children: [
-                          SizedBox(width: 20.w),
-                          Row(
-                            children: [
-                              Container(
-                                  height: 20,
-                                  child: Image.asset(
-                                      "assets/images/ic_location.png")),
-                              // myTitle(
-                              //     color: Color(0xff717171),
-                              //     font: 12.sp,
-                              //     title: "km"),
-                              SizedBox(width: 4),
-                              Text(
-                                "km",
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color: Color(0xff717171),
+
+                     Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                          children: [
+
+                            Row(
+                              children: [
+                                Container(
+                                    height: 20,
+                                    child: Image.asset(
+                                        "assets/images/ic_location.png")),
+                                // myTitle(
+                                //     color: Color(0xff717171),
+                                //     font: 12.sp,
+                                //     title: "km"),
+                                SizedBox(width: 4),
+                                Text(
+                                  "km",
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Color(0xff717171),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 3),
-                              Text(
-                                "5",
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color: Color(0xff717171),
+                                SizedBox(width: 3),
+                                Text(
+                                  distance!,
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Color(0xff717171),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 110.w),
-                          Row(
-                            children: [
-                              Icon(Icons.access_time_filled,
-                                  color: color1, size: 20.sp),
-                              Text(
-                                "45 دقيقة",
-                                style: TextStyle(
-                                  color: Color(0xff717171),
-                                  fontSize: 12.sp,
+                              ],
+                            ),
+
+                            Row(
+                              children: [
+                                Icon(Icons.access_time_filled,
+                                    color: color1, size: 20.sp),
+                                Text(
+                                 state.details!.preparationTime.toString(),
+                                  style: TextStyle(
+                                    color: Color(0xff717171),
+                                    fontSize: 12.sp,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 70.w),
-                          Row(
-                            children: [
-                              myTitle(
-                                  color: color1, font: 12.sp, title: "مفتوح"),
-                              Icon(Icons.circle, color: color1, size: 15.sp),
-                            ],
-                          ),
-                        ],
-                      )
+                              ],
+                            ),
+
+                            Row(
+                              children: [
+                                myTitle(
+                                    color: color1, font: 12.sp, title: "مفتوح"),
+                                Icon(Icons.circle, color: color1, size: 15.sp),
+                              ],
+                            ),
+                          ],
+                        ),
+
                     ],
-                  ),
+                  ):Container(),
                 ),
                 automaticallyImplyLeading: false,
                 backgroundColor: Colors.white,
               ),
-              body: Padding(
+              body: state is DetailsLoaded?Padding(
                 padding: EdgeInsets.all(20.0.sp),
-                child: SingleChildScrollView(
+
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        height: 44.h,
+                        height: 50,
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: false,
@@ -189,17 +215,17 @@ class DetailScreen extends StatelessWidget {
                                   },
                                   child: LabolOfFristListView(
                                     index: index,
-                                    text: "كل المنتجات",
+                                    text: state.details!.categories![index].name.toString(),
                                     icon: FontAwesomeIcons.utensils,
                                   ),
                                 ),
                             separatorBuilder: (context, index) =>
-                                SizedBox(width: 10.w),
-                            itemCount: 7),
+                                SizedBox(width: 10),
+                            itemCount:state.details!.categories!.length ),
                       ),
                       Divider(),
-                      Container(
-                        height: .52.sh,
+                      Expanded(
+
                         child: ListView.separated(
                             shrinkWrap: false,
                             itemBuilder: (context, index) => InkWell(
@@ -212,63 +238,60 @@ class DetailScreen extends StatelessWidget {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20)),
-                                      child: AddScreen(),
+                                      child: AddScreen( id!,state.details!.categories![DetailCubit.get(context).currentIndex].items![index].id.toString(), state.details!.categories![DetailCubit.get(context).currentIndex].items![index].price!),
                                     ), //AddScreen()
                                     barrierDismissible: true,
                                   );
                                 },
-                                child: LabolOfSecondListView()),
+                                child: LabolOfSecondListView(state.details!.categories![DetailCubit.get(context).currentIndex].items![index])),
                             separatorBuilder: (context, index) =>
-                                SizedBox(height: 10.h),
-                            itemCount: 10),
+                                SizedBox(height: 10),
+                            itemCount: state.details!.categories![DetailCubit.get(context).currentIndex].items!.length),
                       ),
                     ],
                   ),
-                ),
-              ),
+
+              ):Center(child: CircularProgressIndicator()),
               backgroundColor: Color(0xffF7F7F7),
-              bottomSheet: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30.sp),
-                        topLeft: Radius.circular(30.sp))),
-                width: double.infinity,
-                height: 90.h,
-                child: Padding(
-                  padding: EdgeInsets.all(10.sp),
-                  child: Row(
-                    children: [
-                      myTitle(
-                          title: "فروع ماكدونالد",
-                          font: 14.sp,
-                          color: Color(0xff3D3D3D)),
-                      SizedBox(width: 20.w),
-                      Text(
-                        "57",
-                        style: TextStyle(
-                          fontFamily: "FrutigerLTArabic",
-                        ),
-                      ),
-                      SizedBox(width: .45.sw),
-                      IconButton(
-                          onPressed: () {
-                            navigateTo(context, BranchesScreen());
-                          },
-                          icon: Image.asset("assets/images/ic_expand.png"))
-                    ],
-                  ),
-                ),
-              ),
+              // bottomSheet: Container(
+              //   decoration: BoxDecoration(
+              //       color: Colors.white,
+              //       borderRadius: BorderRadius.only(
+              //           topRight: Radius.circular(30.sp),
+              //           topLeft: Radius.circular(30.sp))),
+              //   width: double.infinity,
+              //   height: 90.h,
+              //   child: Padding(
+              //     padding: EdgeInsets.all(10.sp),
+              //     child: Row(
+              //       children: [
+              //         myTitle(
+              //             title: " فروع ${name}",
+              //             font: 14.sp,
+              //             color: Color(0xff3D3D3D)),
+              //         SizedBox(width: 20.w),
+              //         Text(
+              //           number!,
+              //           style: TextStyle(
+              //             fontFamily: "FrutigerLTArabic",
+              //           ),
+              //         ),
+              //
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ),
           );
         },
-      ),
+
     );
   }
 }
 
 class LabolOfSecondListView extends StatelessWidget {
+  Item item;
+  LabolOfSecondListView(this.item);
   @override
   Widget build(BuildContext context) {
     bool isFav = true;
@@ -287,57 +310,61 @@ class LabolOfSecondListView extends StatelessWidget {
               width: 90.w,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(20.sp)),
-              child: Image.asset("assets/images/Bourger.png"),
+              child: Image.network(item.image.toString()),
             ),
             SizedBox(width: 30.w),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("سموكي باربكيو",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.sp,
-                      fontFamily: "FrutigerLTArabic",
-                    )),
-                Row(children: [
-                  Text("15 ريال",
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(item.name.toString(),
+                      maxLines: 1,
                       style: TextStyle(
-                          fontFamily: "FrutigerLTArabic",
-                          color: Colors.black54,
-                          fontSize: 12.sp)),
-                ]),
-              ],
+                        color: Colors.black,
+                        fontSize: 14.sp,
+                        fontFamily: "FrutigerLTArabic",
+                      )),
+                  Row(children: [
+                    Text(item.price.toString(),
+                        style: TextStyle(
+                            fontFamily: "FrutigerLTArabic",
+                            color: Colors.black54,
+                            fontSize: 12.sp)),
+                  ]),
+                ],
+              ),
             ),
-            SizedBox(width: 20.w),
-            Spacer(),
+
+
             Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                StatefulBuilder(
-                  builder: (BuildContext context, StateSetter setState) => Row(
-                    children: [
-                      IconButton(
-                        icon: isFav
-                            ? Icon(
-                                Icons.favorite_border_outlined,
-                                color: Colors.grey,
-                              )
-                            : Icon(
-                                Icons.favorite,
-                                color: color1,
-                              ),
-                        onPressed: () {
-                          setState(() {
-                            isFav = !isFav;
-                          });
-                        },
-                      ),
-                    ],
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setState) => Row(
+                      children: [
+                        IconButton(
+                          icon: isFav
+                              ? Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: Colors.grey,
+                                )
+                              : Icon(
+                                  Icons.favorite,
+                                  color: color1,
+                                ),
+                          onPressed: () {
+                            setState(() {
+                              isFav = !isFav;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+
           ],
         ),
       ),
@@ -357,7 +384,8 @@ class LabolOfFristListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90.w,
+      width: 90,
+
       decoration: BoxDecoration(
         // border:,
         borderRadius: BorderRadius.circular(10.sp),
@@ -376,7 +404,7 @@ class LabolOfFristListView extends StatelessWidget {
           index == DetailCubit.get(context).currentIndex
               ? Divider(
                   color: color1,
-                  height: 16.h,
+                  height: 16,
                   thickness: 2,
                 )
               : Container()

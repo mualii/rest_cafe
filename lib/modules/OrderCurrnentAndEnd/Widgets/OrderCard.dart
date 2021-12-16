@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/shared/Model/OrderCurrentAndEnd.dart';
+import 'package:rest_cafe/shared/Model/orders_model.dart';
 
 class OrderCard extends StatelessWidget {
-  OrderCard({required this.listOrder, this.haveRate = false});
+  OrderCard({required this.order, this.haveRate = false});
 
-  ModelOrderCurrentAndEnd listOrder;
+  Orders order;
   bool haveRate;
   @override
   Widget build(BuildContext context) {
@@ -61,8 +62,8 @@ class OrderCard extends StatelessWidget {
                     SizedBox(
                       width: 10.w,
                     ),
-                    Image.asset(
-                      listOrder.image!,
+                    Image.network(
+                     order.branch!.logo.toString(),
                       fit: BoxFit.fill,
                       height: 73.h,
                       width: 73.w,
@@ -86,7 +87,7 @@ class OrderCard extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(listOrder.star ?? ""),
+        Text(""),
         SizedBox(
           width: 5.w,
         ),
@@ -105,7 +106,7 @@ class OrderCard extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            listOrder.statue!,
+            order.status.toString(),
             style: TextStyle(
                 fontFamily: "FrutigerLTArabic",
                 fontSize: 12.sp,
@@ -113,7 +114,7 @@ class OrderCard extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            listOrder.name!,
+            order.branch!.name.toString(),
             style: TextStyle(fontFamily: "FrutigerLTArabic", fontSize: 14.sp),
           ),
         ],
@@ -127,7 +128,7 @@ class OrderCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          listOrder.date ?? "",
+          order.createdAt.toString() ,
           style: TextStyle(
             fontFamily: "FrutigerLTArabic",
           ),
@@ -148,7 +149,7 @@ class OrderCard extends StatelessWidget {
   Row Widget_NumItem() {
     return Row(
       children: [
-        Text(listOrder.numItem ?? ""),
+        Text(order.itemsCount.toString()),
         SizedBox(
           width: 5.w,
         ),
@@ -181,7 +182,7 @@ class OrderCard extends StatelessWidget {
   Row Widget_Cost() {
     return Row(
       children: [
-        Text(listOrder.cost ?? ""),
+        Text(order.total.toString()),
         SizedBox(
           width: 5.w,
         ),

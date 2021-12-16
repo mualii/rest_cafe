@@ -5,6 +5,7 @@ import 'package:rest_cafe/shared/styles/colors.dart';
 class PinCodeInput extends StatelessWidget {
   TextEditingController controllerPinText = TextEditingController();
 
+
   PinCodeInput({required this.controllerPinText});
 
   @override
@@ -13,11 +14,14 @@ class PinCodeInput extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: PinCodeTextField(
         autoDisposeControllers: false,
+
         appContext: context,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         length: 4,
         obscureText: false,
         cursorColor: Colors.white,
+
+
 
         animationType: AnimationType.fade,
         pinTheme: PinTheme(
@@ -25,6 +29,7 @@ class PinCodeInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             fieldHeight: 60,
             fieldWidth: 60,
+
             activeFillColor: Color(0xff494861),
             activeColor: color1,
             inactiveColor: Color(0xffE6E6E6),

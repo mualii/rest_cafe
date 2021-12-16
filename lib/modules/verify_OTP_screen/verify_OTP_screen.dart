@@ -1,18 +1,22 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/complete_profile_screen/completeProfileScreen.dart';
+import 'package:rest_cafe/modules/save_location_screen/saveLocationScreen.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/PinCodeScreen/pin_code_Input.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/PinCodeScreen/text_sent_otp_again.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/PinCodeScreen/text_show_timer.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/cubits/startCubit.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 class PinCodePhoneScreen extends StatefulWidget {
   String PhoneUser;
   int timerStart;
-
   PinCodePhoneScreen({
     required this.PhoneUser,
     required this.timerStart,
@@ -57,6 +61,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
     );
   }
 
+  bool verfiy=true;
 //=========================== ****** Main Build ******* ========================================
 
   @override
@@ -125,9 +130,12 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                   height: .02.sh,
                 ),
                 PinCodeInput(
-                  controllerPinText: controllerPinText,
+                  controllerPinText: controllerPinText
+
                 ),
-                SizedBox(
+
+               verfiy==false? Text("لقد ادخلت كود خاطئ",style: TextStyle(color: Colors.red),):Container(),
+            SizedBox(
                   height: .02.sh,
                 ),
                 Center(
@@ -137,8 +145,19 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                     margin: EdgeInsets.only(top: 10),
                     child: RaisedButton(
                       onPressed: () async {
-                        _timer.cancel();
-                        navigateAndFinish(context, CompleteProfileScreen());
+                      var response=await  DioHelper.postData(endpoint: "/api/v1/auth/verify-otp", context: context,formData:{"phone":widget.PhoneUser,"otp":controllerPinText.text} );
+    if(response is Response) {
+      StartCubit.get(context).saveNumber(response);
+      _timer.cancel();
+      navigateAndFinish(context, SaveLocationScreen());
+    }else
+      {
+        setState(() {
+          verfiy=false;
+        });
+      }
+
+
                       },
                       elevation: 3,
                       child: Text(

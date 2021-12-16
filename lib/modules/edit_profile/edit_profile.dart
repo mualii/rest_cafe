@@ -43,9 +43,9 @@ class EditProfile extends StatelessWidget {
                       color: Colors.white),
                   child: Center(
                       child: Text(
-                    '966+',
-                    style: TextStyle(fontSize: 18),
-                  )),
+                        '966+',
+                        style: TextStyle(fontSize: 18),
+                      )),
                 ),
                 Spacer(),
                 Container(

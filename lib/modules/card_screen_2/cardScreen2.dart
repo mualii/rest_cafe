@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
+import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_cubit.dart';
+import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_state.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
+import 'package:rest_cafe/shared/Model/set_order_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 class CardScreen2 extends StatelessWidget {
@@ -17,203 +22,71 @@ class CardScreen2 extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+
     bool isChecked1 = true;
     bool isChecked2 = true;
     bool isChecked3 = true;
-    return StatefulBuilder(
-      builder: (BuildContext context, StateSetter setState) => Container(
-        height: .91.sh,
-        padding: EdgeInsets.all(10.sp),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return
+ BlocConsumer<DeliveryCubit,DeliveryState>(
+        listener: (context,state){},
+        builder:(context,state)=> StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) => state is CarsLoadingState? Center(child: CircularProgressIndicator()) :Container(
+            height: .91.sh,
+            padding: EdgeInsets.all(10.sp),
+            child: Column(
               children: [
-                SizedBox(width: .14.sw),
-                myTitle(title: "التوصيل", font: 16.sp, color: Colors.black),
-                IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop();
-                      showDialog(
-                        barrierColor: Colors.white10, //AddScreen()
-
-                        context: context,
-                        builder: (_) => Dialog(
-                          insetPadding: EdgeInsets.all(20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: CardScreen(),
-                        ), //AddScreen()
-                        barrierDismissible: true,
-                      );
-                    })
-              ],
-            ),
-            SizedBox(height: 15.h),
-            Center(child: Image.asset("assets/images/card2.png")),
-            SizedBox(height: 15.h),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    // height: 100.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(20.sp)),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(width: 10.w),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  isChecked1 = !isChecked1;
-                                  isChecked2 = true;
-                                  isChecked3 = true;
-                                });
-                              },
-                              child: isChecked1
-                                  ? Icon(
-                                      Icons.circle_outlined,
-                                      color: Colors.black12,
-                                      size: 30.sp,
-                                    )
-                                  : Icon(
-                                      Icons.circle,
-                                      color: color1,
-                                      size: 30.sp,
-                                    ),
-                            ),
-                            myTitle(
-                                title: "للسيارة",
-                                color: Colors.black,
-                                font: 16.sp),
-                            myTitle(
-                                title: "2 ريال",
-                                color: Colors.black45,
-                                font: 12.sp),
-                            SizedBox(width: .32.sw),
-                            Container(
-                                height: 50.h,
-                                width: 40.w,
-                                child: Image.asset(
-                                    "assets/images/ic_delivery_car.png"))
-                          ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(width: .14.sw),
+                    myTitle(title: "التوصيل", font: 16.sp, color: Colors.black),
+                    IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
                         ),
-                        if (hasCar! || isChecked1 == false)
-                          Column(
-                            children: [
-                              Divider(
-                                color: Colors.black38,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context, rootNavigator: true)
-                                      .pop();
+                        onPressed: () {
+                          Navigator.of(context, rootNavigator: true).pop();
+                          showDialog(
+                            barrierColor: Colors.white10, //AddScreen()
 
-                                  showDialog(
-                                    barrierColor: Colors.white10, //AddScreen()
-
-                                    context: context,
-                                    builder: (_) => Dialog(
-                                      insetPadding: EdgeInsets.all(20),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: DeliveryScreen(),
-                                    ), //AddScreen()
-                                    barrierDismissible: true,
-                                  );
-                                },
-                                child: Row(
-                                  children: [
-                                    SizedBox(width: 40.w),
-                                    myTitle(
-                                        title: "نيسان | 213123 | ازرق",
-                                        color: Colors.black38,
-                                        font: 16.sp),
-                                    SizedBox(width: .20.sw),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.black38,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              )
-                            ],
-                          ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15.h),
-                  Container(
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(20.sp)),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 10.w),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              isChecked2 = !isChecked2;
-                              isChecked1 = true;
-                              isChecked3 = true;
-                            });
-                          },
-                          child: isChecked2
-                              ? Icon(
-                                  Icons.circle_outlined,
-                                  color: Colors.black12,
-                                  size: 30.sp,
-                                )
-                              : Icon(
-                                  Icons.circle,
-                                  color: color1,
-                                  size: 30.sp,
-                                ),
-                        ),
-                        myTitle(
-                            title: "الذهاب للمطعم",
-                            color: Colors.black,
-                            font: 16.sp),
-                        SizedBox(width: .30.sw),
-                        Image.asset("assets/images/m2.png")
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15.h),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(20.sp)),
-                    child: Column(
-                      children: [
-                        Column(
+                            context: context,
+                            builder: (_) => Dialog(
+                              insetPadding: EdgeInsets.all(20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: CardScreen(),
+                            ), //AddScreen()
+                            barrierDismissible: true,
+                          );
+                        })
+                  ],
+                ),
+                SizedBox(height: 15.h),
+                Center(child: Image.asset("assets/images/card2.png")),
+                SizedBox(height: 15.h),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        // height: 100.h,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(20.sp)),
+                        child: Column(
                           children: [
-                            SizedBox(height: 10),
                             Row(
                               children: [
                                 SizedBox(width: 10.w),
                                 InkWell(
                                   onTap: () {
                                     setState(() {
-                                      isChecked1 = true;
+                                      isChecked1 = !isChecked1;
                                       isChecked2 = true;
-
-                                      isChecked3 = !isChecked3;
+                                      isChecked3 = true;
                                     });
                                   },
-                                  child: isChecked3
+                                  child: isChecked1
                                       ? Icon(
                                           Icons.circle_outlined,
                                           color: Colors.black12,
@@ -226,15 +99,22 @@ class CardScreen2 extends StatelessWidget {
                                         ),
                                 ),
                                 myTitle(
-                                    title: "حجز طاولة",
+                                    title: "للسيارة",
                                     color: Colors.black,
                                     font: 16.sp),
-                                SizedBox(width: .40.sw),
-                                Image.asset("assets/images/3.png")
+                                myTitle(
+                                    title: "2 ريال",
+                                    color: Colors.black45,
+                                    font: 12.sp),
+                                SizedBox(width: .32.sw),
+                                Container(
+                                    height: 50.h,
+                                    width: 40.w,
+                                    child: Image.asset(
+                                        "assets/images/ic_delivery_car.png"))
                               ],
                             ),
-                            SizedBox(height: 10),
-                            if (hasTabol! || isChecked3 == false)
+                            if (hasCar! || isChecked1 == false)
                               Column(
                                 children: [
                                   Divider(
@@ -246,8 +126,7 @@ class CardScreen2 extends StatelessWidget {
                                           .pop();
 
                                       showDialog(
-                                        barrierColor:
-                                            Colors.white10, //AddScreen()
+                                        barrierColor: Colors.white10, //AddScreen()
 
                                         context: context,
                                         builder: (_) => Dialog(
@@ -255,28 +134,19 @@ class CardScreen2 extends StatelessWidget {
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(20)),
-                                          child: GestureDetector(
-                                              onTap: () {
-                                                FocusScope.of(context)
-                                                    .requestFocus(
-                                                        new FocusNode());
-                                              },
-                                              child: BookingScreen()),
+                                          child: DeliveryScreen(),
                                         ), //AddScreen()
                                         barrierDismissible: true,
                                       );
                                     },
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
                                       children: [
-                                        // SizedBox(width: 40.w),
+                                        SizedBox(width: 40.w),
                                         myTitle(
-                                            title:
-                                                "5 افراد | 22 Apr 2021 | 02:41AM",
+                                            title: DeliveryCubit.get(context).cars.isEmpty? "اضف سيارة":"${DeliveryCubit.get(context).cars[0].plateNumber} | ${DeliveryCubit.get(context).cars[0].color} | ${DeliveryCubit.get(context).cars[0].brand}",
                                             color: Colors.black38,
                                             font: 16.sp),
-                                        SizedBox(width: .09.sw),
+                                        Spacer(),
                                         Icon(
                                           Icons.arrow_forward_ios,
                                           color: Colors.black38,
@@ -291,77 +161,220 @@ class CardScreen2 extends StatelessWidget {
                               ),
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Spacer(),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                    onTap: () {
-                      Navigator.of(context, rootNavigator: true).pop();
-
-                      showDialog(
-                        barrierColor: Colors.white10, //AddScreen()
-
-                        context: context,
-                        builder: (_) => Dialog(
-                          insetPadding: EdgeInsets.all(20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: CardScreen3(),
-                        ), //AddScreen()
-                        barrierDismissible: true,
-                      );
-                    },
-                    child:
-                        mainBottom(title: "التالي", width: 150.w, height: 60)),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context, rootNavigator: true).pop();
-
-                    showDialog(
-                      barrierColor: Colors.white10, //AddScreen()
-
-                      context: context,
-                      builder: (_) => Dialog(
-                        insetPadding: EdgeInsets.all(20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: CardScreen(),
-                      ), //AddScreen()
-                      barrierDismissible: true,
-                    );
-                  },
-                  child: Container(
-                    height: 60.h,
-                    width: 150.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.sp),
-                        color: Colors.white10),
-                    child: Center(
-                      child: Text(
-                        "السابق",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontFamily: "FrutigerLTArabic"),
                       ),
-                    ),
+                      SizedBox(height: 15.h),
+                      Container(
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(20.sp)),
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10.w),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  isChecked2 = !isChecked2;
+                                  isChecked1 = true;
+                                  isChecked3 = true;
+                                });
+                              },
+                              child: isChecked2
+                                  ? Icon(
+                                      Icons.circle_outlined,
+                                      color: Colors.black12,
+                                      size: 30.sp,
+                                    )
+                                  : Icon(
+                                      Icons.circle,
+                                      color: color1,
+                                      size: 30.sp,
+                                    ),
+                            ),
+                            myTitle(
+                                title: "الذهاب للمطعم",
+                                color: Colors.black,
+                                font: 16.sp),
+                            SizedBox(width: .30.sw),
+                            Image.asset("assets/images/m2.png")
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15.h),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(20.sp)),
+                        child: Column(
+                          children: [
+                            Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    SizedBox(width: 10.w),
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          isChecked1 = true;
+                                          isChecked2 = true;
+
+                                          isChecked3 = !isChecked3;
+                                        });
+                                      },
+                                      child: isChecked3
+                                          ? Icon(
+                                              Icons.circle_outlined,
+                                              color: Colors.black12,
+                                              size: 30.sp,
+                                            )
+                                          : Icon(
+                                              Icons.circle,
+                                              color: color1,
+                                              size: 30.sp,
+                                            ),
+                                    ),
+                                    myTitle(
+                                        title: "حجز طاولة",
+                                        color: Colors.black,
+                                        font: 16.sp),
+                                    SizedBox(width: .40.sw),
+                                    Image.asset("assets/images/3.png")
+                                  ],
+                                ),
+                                SizedBox(height: 10),
+                                if (hasTabol! || isChecked3 == false)
+                                  Column(
+                                    children: [
+                                      Divider(
+                                        color: Colors.black38,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context, rootNavigator: true)
+                                              .pop();
+
+                                          showDialog(
+                                            barrierColor:
+                                                Colors.white10, //AddScreen()
+
+                                            context: context,
+                                            builder: (_) => Dialog(
+                                              insetPadding: EdgeInsets.all(20),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20)),
+                                              child: GestureDetector(
+                                                  onTap: () {
+                                                    FocusScope.of(context)
+                                                        .requestFocus(
+                                                            new FocusNode());
+                                                  },
+                                                  child: BookingScreen()),
+                                            ), //AddScreen()
+                                            barrierDismissible: true,
+                                          );
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            // SizedBox(width: 40.w),
+                                            myTitle(
+                                                title:
+                                                   DeliveryCubit.get(context).setorder.reservation !=null?"${DeliveryCubit.get(context).setorder.reservation!.date.toString()} | ${DeliveryCubit.get(context).setorder.reservation!.time} | ${DeliveryCubit.get(context).setorder.reservation!.persons} ":"استكمال البيانات ",
+                                                color: Colors.black38,
+                                                font: 16.sp),
+                                            Spacer(),
+                                            Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.black38,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      )
+                                    ],
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                Spacer(),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.of(context, rootNavigator: true).pop();
+DeliveryCubit.get(context).setorder.type=isChecked1 == false ? "vehicle":isChecked2 == false ?"pickup":"reservation";
+
+
+showDialog(
+                            barrierColor: Colors.white10, //AddScreen()
+
+                            context: context,
+                            builder: (_) => Dialog(
+                              insetPadding: EdgeInsets.all(20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: CardScreen3(),
+                            ), //AddScreen()
+                            barrierDismissible: true,
+                          );
+                        },
+                        child:
+                            mainBottom(title: "التالي", width: 150.w, height: 60)),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context, rootNavigator: true).pop();
+
+                        showDialog(
+                          barrierColor: Colors.white10, //AddScreen()
+
+                          context: context,
+                          builder: (_) => Dialog(
+                            insetPadding: EdgeInsets.all(20),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            child: CardScreen(),
+                          ), //AddScreen()
+                          barrierDismissible: true,
+                        );
+                      },
+                      child: Container(
+                        height: 60.h,
+                        width: 150.w,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.sp),
+                            color: Colors.white10),
+                        child: Center(
+                          child: Text(
+                            "السابق",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontFamily: "FrutigerLTArabic"),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.h),
+                // SizedBox(height: 15.h),
               ],
             ),
-            SizedBox(height: 20.h),
-            // SizedBox(height: 15.h),
-          ],
+          ),
         ),
-      ),
+
     );
   }
 }
@@ -420,52 +433,60 @@ class DeliveryScreen extends StatelessWidget {
                     font: 16.sp,
                     color: Colors.black),
                 Container(
-                  height: 90.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.sp),
-                      border: Border.all(color: Colors.black12)),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 10.0.sp, right: 15.sp),
-                        child: Row(
+                  height: 100,
+                  child: ListView.builder(
+                    itemCount: DeliveryCubit.get(context).cars.length,
+                    itemBuilder: (context,index)=>
+                      Container(
+                        height: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.sp),
+                            border: Border.all(color: Colors.black12)),
+                        child: Column(
                           children: [
-                            myTitle(
-                                title: "نوع السيارة",
-                                color: Colors.black,
-                                font: 16.sp),
-                            myTitle(
-                                title: "نيسان",
-                                color: Colors.grey,
-                                font: 14.sp),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0.sp, right: 15.sp),
+                              child: Row(
+                                children: [
+                                  myTitle(
+                                      title: "نوع السيارة",
+                                      color: Colors.black,
+                                      font: 16.sp),
+                                  myTitle(
+                                      title: DeliveryCubit.get(context).cars[index].brand,
+                                      color: Colors.grey,
+                                      font: 14.sp),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0.sp, right: 15.sp),
+                              child: Row(
+                                children: [
+                                  myTitle(
+                                      title: "رقم اللوحة",
+                                      color: Colors.black,
+                                      font: 16.sp),
+                                  myTitle(
+                                      title:  DeliveryCubit.get(context).cars[index].plateNumber,
+                                      color: Colors.grey,
+                                      font: 14.sp),
+                                  SizedBox(width: 8.w),
+                                  myTitle(
+                                      title: "للون السيارة",
+                                      color: Colors.black,
+                                      font: 16.sp),
+                                  myTitle(
+                                      title: DeliveryCubit.get(context).cars[index].color,
+                                      color: Colors.grey,
+                                      font: 14.sp),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10.0.sp, right: 15.sp),
-                        child: Row(
-                          children: [
-                            myTitle(
-                                title: "رقم اللوحة",
-                                color: Colors.black,
-                                font: 16.sp),
-                            myTitle(
-                                title: "345667",
-                                color: Colors.grey,
-                                font: 14.sp),
-                            SizedBox(width: 8.w),
-                            myTitle(
-                                title: "للون السيارة",
-                                color: Colors.black,
-                                font: 16.sp),
-                            myTitle(
-                                title: "ازرق ",
-                                color: Colors.grey,
-                                font: 14.sp),
-                          ],
-                        ),
-                      )
-                    ],
+
                   ),
                 )
               ],
@@ -508,7 +529,7 @@ class DeliveryScreen extends StatelessWidget {
                     width: 140.w,
                     child: defaultFormField(
                         type: TextInputType.name,
-                        controller: carModelController,
+                        controller: carColorController,
                         label: "لون السيارة",
                         prefix: Image.asset("assets/images/6.png"),
                         color: color1),
@@ -523,7 +544,8 @@ class DeliveryScreen extends StatelessWidget {
             children: [
               SizedBox(width: 10.w),
               InkWell(
-                  onTap: () {
+                  onTap: () async{
+              DeliveryCubit.get(context).addCar(context: context, brand: carModelController.text, plate: carNumberController.text, color: carColorController.text);
                     Navigator.of(context, rootNavigator: true).pop();
 
                     showDialog(
@@ -756,7 +778,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     InkWell(
                         onTap: () {
                           Navigator.of(context, rootNavigator: true).pop();
-
+DeliveryCubit.get(context).setorder.reservation=Reservation(date:DateFormat.yMd().format(value).toString() ,persons: numberOfPersonController.text,time:value2.toString() );
                           showDialog(
                             barrierColor: Colors.white10, //AddScreen()
                             context: context,
