@@ -2,12 +2,14 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
 import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_cubit.dart';
 import 'package:rest_cafe/modules/save_location_screen/saveLocationScreen.dart';
 import 'package:rest_cafe/modules/splash_screen/splashScreen.dart';
@@ -19,12 +21,15 @@ import 'package:rest_cafe/shared/localstroage.dart';
 import 'modules/OrderCurrnentAndEnd/Screens/Order_cubit.dart';
 import 'modules/OrderCurrnentAndEnd/cart_cubit.dart';
 import 'modules/detail_screen/cubit/detial_cubit.dart';
+import 'modules/favorites_screen/favourites_cubit.dart';
 import 'modules/home_screen/cubit/HomeCubit.dart';
 
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   LocalStorage.init();
 DioHelper.initDio();
   await EasyLocalization.ensureInitialized();
@@ -58,7 +63,9 @@ class MyApp extends StatelessWidget {
       builder: () => MultiBlocProvider(
         providers: [
           BlocProvider<CartCubit>(
-          create: (context)=>CartCubit(),),
+          create: (context)=>CartCubit()..getCart(context),),
+    BlocProvider(
+    create: (context)=>FavoutiresCubit()),
           BlocProvider<StartCubit>(create: (BuildContext context)=>StartCubit()),
           BlocProvider<OrderCubit>(create: (BuildContext context)=>OrderCubit()),
           BlocProvider<HomeCubit>(create: (BuildContext context)=>HomeCubit()..getTypes(context)),

@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
+
 Details welcomeFromJson(String str) => Details.fromJson(json.decode(str));
 
 String welcomeToJson(Details data) => json.encode(data.toJson());
@@ -98,18 +100,21 @@ class Item {
     this.image,
     this.price,
     this.name,
+    this.IsFavourite
   });
 
   String? id;
   String ?image;
   int? price;
   String? name;
+  bool ?IsFavourite;
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
     id: json["id"],
     image: json["image"],
     price: json["price"],
     name: json["name"],
+      IsFavourite: json["IsFavourite"]
   );
 
   Map<String, dynamic> toJson() => {

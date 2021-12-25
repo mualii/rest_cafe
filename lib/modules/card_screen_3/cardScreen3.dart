@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/OrderCurrnentAndEnd/cart_cubit.dart';
 import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
 import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_cubit.dart';
 import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_state.dart';
+import 'package:rest_cafe/modules/card_screen_3/checkout_screen.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/detial_cubit.dart';
 import 'package:rest_cafe/shared/Model/set_order_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
@@ -17,15 +19,17 @@ class CardScreen3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isChecked1 = true;
+    DeliveryCubit.get(context).getTotal(context);
     bool isChecked2 = true;
-    bool isChecked3 = true;
+    // bool isChecked3 = true;
     return BlocConsumer<DeliveryCubit,DeliveryState>(
+
     listener:(context,state){ } ,
       builder:(context,state){
 
 
       return StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) => Container(
+        builder: (BuildContext context, StateSetter setState) => state is CarsLoadingState? Center(child: CircularProgressIndicator()): Container(
           height: .91.sh,
           padding: EdgeInsets.all(10.sp),
           child: SingleChildScrollView(
@@ -54,7 +58,7 @@ class CardScreen3 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20)),
                             child: CardScreen2(),
                           ), //AddScreen()
-                          barrierDismissible: true,
+                          barrierDismissible: false,
                         );
                       },
                     )
@@ -79,7 +83,7 @@ class CardScreen3 extends StatelessWidget {
                               setState(() {
                                 isChecked1 = !isChecked1;
                                 isChecked2 = true;
-                                isChecked3 = true;
+                                // isChecked3 = true;
                               });
                             },
                             child: isChecked1
@@ -96,13 +100,13 @@ class CardScreen3 extends StatelessWidget {
                           ),
                           SizedBox(width: 15.w),
                           myTitle(
-                              title: "دفع بسداد",
+                              title: "الدفع عند الاستلام",
                               font: 16.sp,
                               color: Colors.black),
-                          SizedBox(width: .33.sw),
-                          Container(
-                              height: 15.h,
-                              child: Image.asset("assets/images/pay (1).png")),
+                          // SizedBox(width: .33.sw),
+                          // Container(
+                          //     height: 15.h,
+                          //     child: Image.asset("assets/images/pay (1).png")),
                         ],
                       ),
                       SizedBox(height: 8.h),
@@ -125,7 +129,7 @@ class CardScreen3 extends StatelessWidget {
                             onTap: () {
                               setState(() {
                                 isChecked2 = !isChecked2;
-                                isChecked3 = true;
+                                // isChecked3 = true;
                                 isChecked1 = true;
                               });
                             },
@@ -143,11 +147,11 @@ class CardScreen3 extends StatelessWidget {
                           ),
                           SizedBox(width: 15.w),
                           myTitle(
-                              title: "Paypal", font: 16.sp, color: Colors.black),
-                          SizedBox(width: .38.sw),
-                          Container(
-                              height: 20.h,
-                              child: Image.asset("assets/images/pay (2).png")),
+                              title: "الدفع اونلاين", font: 16.sp, color: Colors.black),
+                          // SizedBox(width: .38.sw),
+                          // Container(
+                          //     height: 20.h,
+                          //     child: Image.asset("assets/images/pay (2).png")),
                         ],
                       ),
                       SizedBox(height: 8.h),
@@ -155,54 +159,54 @@ class CardScreen3 extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10.h),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.sp),
-                      border: Border.all(
-                          color: isChecked3 ? Colors.black12 : Colors.black)),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 8.h),
-                      Row(
-                        children: [
-                          SizedBox(width: 15.w),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                isChecked3 = !isChecked3;
-                                isChecked2 = true;
-                                isChecked1 = true;
-                              });
-                            },
-                            child: isChecked3
-                                ? Icon(
-                                    Icons.circle_outlined,
-                                    color: Colors.black12,
-                                    size: 30.sp,
-                                  )
-                                : Icon(
-                                    Icons.check_circle,
-                                    color: color1,
-                                    size: 30.sp,
-                                  ),
-                          ),
-                          SizedBox(width: 8.w),
-                          myTitle(
-                              title: "فيزا", font: 16.sp, color: Colors.black),
-                          myTitle(
-                              title: "****5689",
-                              font: 16.sp,
-                              color: Colors.black38),
-                          SizedBox(width: .25.sw),
-                          Container(
-                              height: 20.h,
-                              child: Image.asset("assets/images/pay (1).jpg")),
-                        ],
-                      ),
-                      SizedBox(height: 8.h),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(20.sp),
+                //       border: Border.all(
+                //           color: isChecked2? Colors.black12 : Colors.black)),
+                //   child: Column(
+                //     children: [
+                //       SizedBox(height: 8.h),
+                //       Row(
+                //         children: [
+                //           SizedBox(width: 15.w),
+                //           InkWell(
+                //             onTap: () {
+                //               setState(() {
+                //                 isChecked2 = !isChecked2;
+                //
+                //                 isChecked1 = true;
+                //               });
+                //             },
+                //             child: isChecked2
+                //                 ? Icon(
+                //                     Icons.circle_outlined,
+                //                     color: Colors.black12,
+                //                     size: 30.sp,
+                //                   )
+                //                 : Icon(
+                //                     Icons.check_circle,
+                //                     color: color1,
+                //                     size: 30.sp,
+                //                   ),
+                //           ),
+                //           SizedBox(width: 8.w),
+                //           myTitle(
+                //               title: "فيزا", font: 16.sp, color: Colors.black),
+                //           myTitle(
+                //               title: "****5689",
+                //               font: 16.sp,
+                //               color: Colors.black38),
+                //           SizedBox(width: .25.sw),
+                //           Container(
+                //               height: 20.h,
+                //               child: Image.asset("assets/images/pay (1).jpg")),
+                //         ],
+                //       ),
+                //       SizedBox(height: 8.h),
+                //     ],
+                //   ),
+                // ),
                 SizedBox(height: .175.sh),
                 Divider(color: Colors.black38),
                 Row(
@@ -210,7 +214,7 @@ class CardScreen3 extends StatelessWidget {
                     myTitle(title: "الاجمالي", color: Colors.black, font: 16.sp),
                     Spacer(),
                     myTitle(
-                        title: "108 ريال", color: Colors.black38, font: 16.sp),
+                        title: "${DeliveryCubit.get(context).price!.subtotal.toString()} ريال ", color: Colors.black38, font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),
@@ -218,7 +222,7 @@ class CardScreen3 extends StatelessWidget {
                   children: [
                     myTitle(title: "للسيارة", color: Colors.black, font: 16.sp),
                     Spacer(),
-                    myTitle(title: "2 ريال", color: Colors.black38, font: 16.sp),
+                    myTitle(title: "${DeliveryCubit.get(context).price!.serviceCharge.toString()}  ريال ", color: Colors.black38, font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),
@@ -232,7 +236,7 @@ class CardScreen3 extends StatelessWidget {
                         font: 16.sp),
                     Spacer(),
                     myTitle(
-                        title: "110 ريال", color: Colors.black38, font: 16.sp),
+                        title: "${DeliveryCubit.get(context).price!.total.toString()}  ريال ", color: Colors.black38, font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),
@@ -242,8 +246,11 @@ class CardScreen3 extends StatelessWidget {
                   children: [
                     InkWell(
                         onTap: () async{
+                          if(isChecked2 && isChecked1)
+                            Fluttertoast.showToast(msg: "إختر طريقه الدفع");
+                          else{
                           DeliveryCubit.get(context).setorder.branch_id=DetailCubit.get(context).details!.id;
-                          DeliveryCubit.get(context).setorder.paymentMethod="cash";
+                          DeliveryCubit.get(context).setorder.paymentMethod=isChecked1==false? "cash":"online";
                           print(DeliveryCubit.get(context).setorder.toMap());
                         var response=  await  DioHelper.postData(endpoint: "api/v1/orders",formData:DeliveryCubit.get(context).setorder.toMap() , context: context);
                         if(response is Response)
@@ -251,11 +258,15 @@ class CardScreen3 extends StatelessWidget {
                             CartCubit.get(context).cart.clear();
                             CartCubit.get(context).mainId=null;
                           navigateAndFinish(
-                              context,
-                              LayoutScreen(
-                                selectedPageIndex: 2,
-                              ));}
-                        },
+                          context,
+                          LayoutScreen(
+                          selectedPageIndex: 2,
+                          ));
+                           if(isChecked1)
+
+                            navigateTo(context, CheckOutWebView(response.data["invoiceURL"].toString()));
+                     }
+                        }},
                         child: mainBottom(
                             title: "اكمل عملية الشراء",
                             width: 150.w,

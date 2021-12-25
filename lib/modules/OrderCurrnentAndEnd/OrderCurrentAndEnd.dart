@@ -59,8 +59,8 @@ class OrderCurrentAndEnd extends StatelessWidget {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      OrderCurrent(),
-                      OrderCurrent(),
+                      OrderCurrent(0),
+                      OrderCurrent(1),
                     ],
                   ),
                 ),

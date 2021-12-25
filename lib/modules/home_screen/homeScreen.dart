@@ -40,7 +40,7 @@ HomeCubit? homeCubit;
 
   resturants = homeCubit!.resturants;
 
-  print(resturants.length);
+
 
           return Scaffold(
             extendBody: true,
@@ -341,13 +341,26 @@ LabolOfSecondListView({required this.data,required this.index});
                               )),
                         ],
                       ),
-                      Row(
-                        children: [
-                          data[index!].canDeliverToCar!?      Image.asset("assets/images/ic_delivery_car.png",width: 30,height: 25,fit: BoxFit.fill,):Container(),
-                          data[index!].canPickupOrder!?  Image.asset("assets/images/ic_delivery_cafe.png",width: 30,height: 25,fit: BoxFit.fill,):Container(),
 
-                        ],
-                      ),
+
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            data[index!].canDeliverToCar!?      Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                              child: Image.asset("assets/images/ic_delivery_car.png",width: 30,height: 22,fit: BoxFit.fill,),
+                            ):Container(),
+                            data[index!].canPickupOrder!?  Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                              child: Image.asset("assets/images/ic_delivery_cafe.png",width: 30,height: 22,fit: BoxFit.fill,),
+                            ):Container(),
+                            data[index!].canReserveTable!?  Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                              child: Image.asset("assets/images/3.png",width: 30,height: 22,fit: BoxFit.fill,),
+                            ):Container(),
+                          ],
+                        ),
+
                     ],
 
                   )

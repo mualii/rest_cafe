@@ -10,6 +10,7 @@ import 'package:rest_cafe/modules/add_screen/cubit/cubit.dart';
 import 'package:rest_cafe/modules/add_screen/cubit/states.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/detial_cubit.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
+import 'package:rest_cafe/modules/favorites_screen/favourites_cubit.dart';
 import 'package:rest_cafe/shared/Model/cart_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
@@ -18,15 +19,18 @@ import 'package:rest_cafe/shared/styles/colors.dart';
 class AddScreen extends StatelessWidget {
   String id;
   String branchId;
-
+bool favorite;
   int price;
-  AddScreen(this.branchId,this.id,this.price);
+  bool details;
+  AddScreen(this.branchId,this.id,this.price,this.favorite,this.details);
 
-  bool isFav = false;
+  bool  isFav=false ;
+
 
   int count = 1;
   @override
   Widget build(BuildContext context) {
+    isFav=favorite;
     return BlocProvider(
       create: (context) => AddCubit()..getSides(context, id,price),
       child: BlocConsumer<AddCubit, AddState>(
@@ -44,19 +48,29 @@ class AddScreen extends StatelessWidget {
                     builder: (BuildContext context, StateSetter setState) => Row(
                       children: [
                         IconButton(
-                          icon: isFav
-                              ? Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: Colors.grey,
-                                )
+                          icon: (!isFav ) ? Icon(
+                            Icons.favorite_border_outlined,
+                            color: Colors.grey,
+                          )
                               : Icon(
-                                  Icons.favorite,
-                                  color: color1,
-                                ),
-                          onPressed: () {
+                            Icons.favorite,
+                            color: color1,
+                          ),
+
+                          onPressed: () async{
                             setState(() {
+
+
                               isFav = !isFav;
                             });
+                            if(isFav)
+                              await DioHelper.postData(endpoint: "api/v1/favourites/${id}", context: context);
+                            else
+              
+                              await DioHelper.delete(endpoint: "api/v1/favourites/remove/${id}", context: context);
+                            
+                            details==true?
+DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.id!):FavoutiresCubit.get(context).getFavourties(context);
                           },
                         ),
                         SizedBox(width: .6.sw),

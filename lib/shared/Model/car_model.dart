@@ -11,27 +11,75 @@ String welcomeToJson(List<Car> data) => json.encode(List<dynamic>.from(data.map(
 class Car {
   Car({
     this.id,
-    this.brand,
     this.color,
     this.plateNumber,
+    this.deletedAt,
+    this.brandModel,
   });
 
-  String? id;
-  String ?brand;
-  String? color;
-  String? plateNumber;
+  String ?id;
+  String ?color;
+  String ?plateNumber;
+  dynamic deletedAt;
+  BrandModel? brandModel;
 
   factory Car.fromJson(Map<String, dynamic> json) => Car(
     id: json["id"],
-    brand: json["brand"],
     color: json["color"],
     plateNumber: json["plate_number"],
+    deletedAt: json["deleted_at"],
+    brandModel: BrandModel.fromJson(json["brand_model"]),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "brand": brand,
     "color": color,
     "plate_number": plateNumber,
+    "deleted_at": deletedAt,
+    "brand_model": brandModel!.toJson(),
+  };
+}
+
+class BrandModel {
+  BrandModel({
+    this.id,
+    this.name,
+    this.brand,
+  });
+
+  String ?id;
+  String ?name;
+  Brand ?brand;
+
+  factory BrandModel.fromJson(Map<String, dynamic> json) => BrandModel(
+    id: json["id"],
+    name: json["name"],
+    brand: Brand.fromJson(json["brand"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "brand": brand!.toJson(),
+  };
+}
+
+class Brand {
+  Brand({
+    this.id,
+    this.name,
+  });
+
+  String? id;
+  String ?name;
+
+  factory Brand.fromJson(Map<String, dynamic> json) => Brand(
+    id: json["id"],
+    name: json["name"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
   };
 }

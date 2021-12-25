@@ -12,14 +12,25 @@ class OrderCubit extends Cubit<OrderState>{
   OrderCubit() : super(OrderInitialState());
  static OrderCubit get(BuildContext context)=>BlocProvider.of(context);
 List<Orders> orders=[];
+
  getOrders(BuildContext context)async{
 
    emit(OrderLoadingState());
-   var respone= await DioHelper.getData(endpoint: "api/v1/orders/list", setParamars: {}, context: context);
+   var respone= await DioHelper.postData(endpoint: "api/v1/orders/list", formData: {"IsCurrent":1}, context: context);
    if(respone is Response){
      orders= ordersFromJson(json.encode(respone.data));
    emit(OrderLoadedState());}
    else
    emit(OrderFailedState());
  }
+  getOldOrders(BuildContext context)async{
+
+    emit(OrderLoadingState());
+    var respone= await DioHelper.postData(endpoint: "api/v1/orders/list", formData: {"IsCurrent":0}, context: context);
+    if(respone is Response){
+      orders= ordersFromJson(json.encode(respone.data));
+      emit(OrderLoadedState());}
+    else
+      emit(OrderFailedState());
+  }
 }

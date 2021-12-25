@@ -35,11 +35,11 @@ class Orders {
   String ?deliveryType;
   String ?vehicleId;
   String ?paymentMethod;
-  String ?subTotal;
-  String ?serviceCharge;
-  String ?vatPrice;
-  String ?discount;
-  String ?total;
+  int ?subTotal;
+  int ?serviceCharge;
+  int ?vatPrice;
+  int ?discount;
+  int ?total;
   String ?createdAt;
   String ?status;
   int ?itemsCount;

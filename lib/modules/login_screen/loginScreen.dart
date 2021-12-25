@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
+import 'package:rest_cafe/modules/save_location_screen/saveLocationScreen.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/verify_OTP_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
@@ -15,7 +18,26 @@ class LoginScreen extends StatefulWidget{
 }
 class LoginScreenState extends State<LoginScreen>  {
 
+ signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth = await googleUser!
+        .authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+
+    );
+    if(credential !=null)
+      print(credential.token.toString());
+    //   navigateAndFinish(context,SaveLocationScreen());
+    // print(credential.idToken.toString());}
+    // return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
   var _userPhoneController = TextEditingController();
   String v="العربيه";
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -183,11 +205,9 @@ class LoginScreenState extends State<LoginScreen>  {
                       SizedBox(width: 40.w),
                       InkWell(
                         child: Image.asset("assets/images/google.png"),
+                        onTap: ()async{await signInWithGoogle();},
                       ),
-                      SizedBox(width: 40.w),
-                      InkWell(
-                        child: Image.asset("assets/images/ic_insta.png"),
-                      ),
+
                     ],
                   ),
                   SizedBox(height: 10.h),

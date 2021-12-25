@@ -10,11 +10,12 @@ import 'package:rest_cafe/shared/Model/OrderCurrentAndEnd.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 
 class OrderCurrent extends StatelessWidget {
-
+  int index=0;
+OrderCurrent(this.index);
 
   @override
   Widget build(BuildContext context) {
-    OrderCubit.get(context).getOrders(context);
+  index==0?  OrderCubit.get(context).getOrders(context):OrderCubit.get(context).getOldOrders(context);
     return BlocConsumer<OrderCubit,OrderState>(
       listener: (context,state){},
       builder: (context,state)=> state is OrderLoadingState? Center(child: CircularProgressIndicator()): ListView.builder(

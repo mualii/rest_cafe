@@ -40,7 +40,7 @@ class OrderCard extends StatelessWidget {
                           child: Row(
                             children: [
                               Image.asset(
-                                "assets/images/ic_delivery_cafe.png",
+                             order.deliveryType=="PICKUP"?"assets/images/ic_delivery_cafe.png": order.deliveryType=="VEHICLE"?  "assets/images/4.png":"assets/images/3.png",
                                 fit: BoxFit.fill,
                                 height: 20,
                               ),

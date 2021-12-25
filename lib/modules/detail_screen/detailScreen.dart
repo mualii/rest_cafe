@@ -11,6 +11,7 @@ import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/shared/Model/details_model.dart';
 
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 import 'cubit/detail_state.dart';
@@ -238,7 +239,7 @@ class DetailScreen extends StatelessWidget {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20)),
-                                      child: AddScreen( id!,state.details!.categories![DetailCubit.get(context).currentIndex].items![index].id.toString(), state.details!.categories![DetailCubit.get(context).currentIndex].items![index].price!),
+                                      child: AddScreen( id!,state.details!.categories![DetailCubit.get(context).currentIndex].items![index].id.toString(), state.details!.categories![DetailCubit.get(context).currentIndex].items![index].price!,state.details!.categories![DetailCubit.get(context).currentIndex].items![index].IsFavourite!,true),
                                     ), //AddScreen()
                                     barrierDismissible: true,
                                   );
@@ -294,7 +295,8 @@ class LabolOfSecondListView extends StatelessWidget {
   LabolOfSecondListView(this.item);
   @override
   Widget build(BuildContext context) {
-    bool isFav = true;
+    bool isFav =item.IsFavourite!;
+
     return Container(
       height: 80.h,
       decoration: BoxDecoration(
@@ -344,8 +346,7 @@ class LabolOfSecondListView extends StatelessWidget {
                     builder: (BuildContext context, StateSetter setState) => Row(
                       children: [
                         IconButton(
-                          icon: isFav
-                              ? Icon(
+                          icon: (!isFav ) ? Icon(
                                   Icons.favorite_border_outlined,
                                   color: Colors.grey,
                                 )
@@ -353,10 +354,10 @@ class LabolOfSecondListView extends StatelessWidget {
                                   Icons.favorite,
                                   color: color1,
                                 ),
+
                           onPressed: () {
-                            setState(() {
-                              isFav = !isFav;
-                            });
+
+
                           },
                         ),
                       ],
