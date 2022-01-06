@@ -3,8 +3,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,25 +27,85 @@ import 'modules/detail_screen/cubit/detial_cubit.dart';
 import 'modules/favorites_screen/favourites_cubit.dart';
 import 'modules/home_screen/cubit/HomeCubit.dart';
 
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    'This channel is used for important notifications.', // description
+    importance: Importance.high,
+    playSound: true);
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('A bg message just showed up :  ${message.messageId}');
+}
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
 
-  LocalStorage.init();
-DioHelper.initDio();
-  await EasyLocalization.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    RemoteNotification notification = message.notification;
+    AndroidNotification android = message.notification?.android;
+    if (notification != null && android != null) {
+      flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              channel.description,
+              color: Colors.blue,
+              playSound: true,
+              icon: '@mipmap/ic_launcher',
+            ),
+          ));
+    }
+  });
+
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    print('A new onMessageOpenedApp event was published!');
+    RemoteNotification notification = message.notification;
+    AndroidNotification android = message.notification?.android;
+
+
+  });
+
+
+  LocalStorage.init();
+  await EasyLocalization.ensureInitialized();
+DioHelper.initDio();
+
+if(LocalStorage.getData(key: "lang")==null)LocalStorage.saveData(key: "lang", value: "ar");
   Bloc.observer = MyBlocObserver();
   runApp(EasyLocalization(
     child: MyApp(),
     supportedLocales: [Locale('ar'), Locale('en')],
     path: "assets/langs",
-    startLocale: Locale('ar'),
-    // fallbackLocale: Locale('en'),
+    fallbackLocale:Locale('ar'),
+    startLocale: Locale("ar"),
 
-    saveLocale: true,
+
+
+
+
+
+
   ));
 }
 //Test
@@ -68,13 +131,14 @@ class MyApp extends StatelessWidget {
     create: (context)=>FavoutiresCubit()),
           BlocProvider<StartCubit>(create: (BuildContext context)=>StartCubit()),
           BlocProvider<OrderCubit>(create: (BuildContext context)=>OrderCubit()),
-          BlocProvider<HomeCubit>(create: (BuildContext context)=>HomeCubit()..getTypes(context)),
+          BlocProvider<HomeCubit>(create: (BuildContext context)=>HomeCubit()..getTypes(context)..getProfile(context)),
           BlocProvider<DeliveryCubit>(create: (BuildContext context)=>DeliveryCubit()..getVehicles(context)),
     BlocProvider(
     create: (context) => DetailCubit())
 
         ],
         child: MaterialApp(
+
           theme: ThemeData(
             primaryColor: Color(0xff4CB278),
             accentColor: Color(0xff4CB278),
@@ -156,9 +220,12 @@ class _MyPageState extends State<MyPage> {
 
   @override
   void initState() {
-    super.initState();
+
     _controller = ScrollController();
     _model = ScrollListener.initialise(_controller);
+    super.initState();
+
+
   }
 
   @override

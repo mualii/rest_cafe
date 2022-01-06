@@ -11,6 +11,7 @@ import 'package:google_place/google_place.dart';
 
 import 'package:rest_cafe/shared/Model/profile_model.dart';
 import 'package:rest_cafe/shared/cubits/startState.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 
 import 'package:rest_cafe/shared/localstroage.dart';
 
@@ -20,6 +21,7 @@ class StartCubit extends Cubit<StartState> {
   static StartCubit get(BuildContext context) => BlocProvider.of(context);
   Profile? profile;
   Position?location;
+
   AutocompleteResponse? risult  ;
 saveNumber(Response data){
   emit(SavingData());
@@ -82,6 +84,7 @@ autoComplete(String text)async{
     emit(AutoCompeleteDone(risult!.predictions!));
   }
 }
+
 }
 
 

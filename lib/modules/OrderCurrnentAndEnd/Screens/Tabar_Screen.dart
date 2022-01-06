@@ -8,6 +8,7 @@ import 'package:rest_cafe/modules/OrderCurrnentAndEnd/Widgets/OrderCard.dart';
 import 'package:rest_cafe/modules/order/order_detail_%D9%8Dscreen/orderDedailScreen.dart';
 import 'package:rest_cafe/shared/Model/OrderCurrentAndEnd.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/styles/colors.dart';
 
 class OrderCurrent extends StatelessWidget {
   int index=0;
@@ -18,7 +19,7 @@ OrderCurrent(this.index);
   index==0?  OrderCubit.get(context).getOrders(context):OrderCubit.get(context).getOldOrders(context);
     return BlocConsumer<OrderCubit,OrderState>(
       listener: (context,state){},
-      builder: (context,state)=> state is OrderLoadingState? Center(child: CircularProgressIndicator()): ListView.builder(
+      builder: (context,state)=> state is OrderLoadingState? Center(child: CircularProgressIndicator()): OrderCubit.get(context).orders.isEmpty? Center(child: myTitle(color: color1,title: "لا يوجد طلبات ",font: 20),) :ListView.builder(
           controller: scrollController,
           itemCount: OrderCubit.get(context).orders.length,
           shrinkWrap: true,

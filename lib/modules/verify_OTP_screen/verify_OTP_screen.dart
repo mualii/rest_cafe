@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
@@ -95,7 +96,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                       alignment: Alignment.center,
                       width: .8.sw,
                       child: myTitle(
-                          title: "الرجاء إدخال رمز التحقق للمتابعة",
+                          title: "Please enter verification code".tr(),
                           font: 18.sp),
                     ),
                     SizedBox(
@@ -105,7 +106,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                         alignment: Alignment.center,
                         width: .8.sw,
                         child: myTitle(
-                            title: "لقد أرسلنا رمز التحقق إلى رقم الجوال",
+                            title: "We sent a verification code to your phone".tr(),
                             font: 18.sp)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -134,7 +135,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
 
                 ),
 
-               verfiy==false? Text("لقد ادخلت كود خاطئ",style: TextStyle(color: Colors.red),):Container(),
+               verfiy==false? Text("Wrong code".tr(),style: TextStyle(color: Colors.red),):Container(),
             SizedBox(
                   height: .02.sh,
                 ),
@@ -161,7 +162,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                       },
                       elevation: 3,
                       child: Text(
-                        "تحقق",
+                        "Verify".tr(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,

@@ -2,15 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'package:google_place/google_place.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
-import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
-import 'package:rest_cafe/shared/Model/location_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rest_cafe/shared/cubits/startCubit.dart';
@@ -124,9 +123,9 @@ lat=StartCubit.get(context).location!.latitude;
           toolbarHeight: 130,
           flexibleSpace: Column(
             children: [
-              SizedBox(height: 70),
+              SizedBox(height: 40),
               Text(
-                "عنوان التوصيل",
+                "Delivery address".tr(),
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 18.sp,
@@ -139,7 +138,7 @@ lat=StartCubit.get(context).location!.latitude;
                   },
                   controller: _searchController,
                   type: TextInputType.name,
-                  label: "بحث",
+                  label: "Search".tr(),
                   prefix: Icon(Icons.search)),
             ],
           ),
@@ -223,7 +222,7 @@ lat=StartCubit.get(context).location!.latitude;
                             alignment: Alignment.bottomCenter,
 
                           ),
-                          SizedBox(height: 10.h),
+                          SizedBox(height: 10),
                           InkWell(
                             onTap: () async{
                              await DioHelper.getData(endpoint: "api/v1/geocoder", context: context,setParamars: {"latlng":"${lat},${long}"}).then((v){
@@ -240,7 +239,7 @@ lat=StartCubit.get(context).location!.latitude;
                                   context, LayoutScreen(selectedPageIndex: 0));
                             },
                             child: mainBottom(
-                                title: "تاكيد وحفظ العنوان",
+                                title: "Confirm and save address".tr(),
                                 height: 50.h,
                                 width: .8.sw),
                           ),

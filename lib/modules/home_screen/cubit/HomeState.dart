@@ -13,3 +13,6 @@ class ResturantsLoaded extends HomeState{}
 class ResturantsLoading extends HomeState{}
 class ResturantsFailed extends HomeState{}
 class SearchedByType extends HomeState{}
+class ProfileLoading extends HomeState{}
+class ProfileLoaded extends HomeState{}
+class ProfileError extends HomeState{}

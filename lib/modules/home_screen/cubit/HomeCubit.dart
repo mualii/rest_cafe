@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeState.dart';
 import 'package:rest_cafe/shared/Model/Resturants_model.dart';
 import 'package:rest_cafe/shared/Model/types_model.dart';
+import 'package:rest_cafe/shared/Model/user_model.dart';
 
 import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:string_similarity/string_similarity.dart';
@@ -15,7 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
   static HomeCubit get(context) => BlocProvider.of(context);
 List<Types> types=[];
 List<Datum>resturants=[],all=[];
-
+User ?user;
   int currentIndex = 0;
   void changeListItem(int index) {
     currentIndex = index;
@@ -36,7 +37,18 @@ getResturants(context);
     else
       emit(TypesFailed());
   }
+  getProfile(BuildContext context)async{
+    emit(ProfileLoading());
+    var response=await DioHelper.getData(endpoint: "api/v1/users/userInfo", setParamars: {}, context: context);
+    if(response is Response) {
+      user = User.fromJson(response.data);
+      emit(ProfileLoaded());
+    }
+    else
+      emit(ProfileError());
 
+
+  }
   getResturants(BuildContext context)async {
     emit(ResturantsLoading());
     var result = await DioHelper.getData(endpoint: "api/v1/branches/by-geocode",
@@ -62,7 +74,7 @@ getResturants(context);
   }
   filterByName(String name){
 
-    resturants=all.where((element) => (element.name!.toLowerCase().similarityTo(name)>0.6 || element.name!.toLowerCase().contains(name))).toList();
+    resturants=all.where((element) => (element.name!.toLowerCase().similarityTo(name)>0.5 || element.name!.toLowerCase().contains(name))).toList();
     emit(SearchedByType());
   }
 }

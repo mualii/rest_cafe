@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,13 +35,13 @@ class LoginScreenState extends State<LoginScreen>  {
 
     );
     if(credential !=null)
-      print(credential.token.toString());
+      // print(credential.token.toString());
     //   navigateAndFinish(context,SaveLocationScreen());
     // print(credential.idToken.toString());}
-    // return await FirebaseAuth.instance.signInWithCredential(credential);
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
   var _userPhoneController = TextEditingController();
-  String v="العربيه";
+  String language="English";
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   PhoneNumber number = PhoneNumber(isoCode: "SA");
   bool validate=false;
@@ -94,7 +96,7 @@ class LoginScreenState extends State<LoginScreen>  {
                                 },
                                 child: myTitle(
                                     font: 18.sp,
-                                    title: "تخطي",
+                                    title: "Skip".tr(),
                                     color: Colors.black)),
                           ],
                         )
@@ -120,11 +122,12 @@ class LoginScreenState extends State<LoginScreen>  {
 
                     child:  InternationalPhoneNumberInput(
                         textAlign: TextAlign.right,focusNode: focusNode,
+                        maxLength: 10,
                         inputDecoration: InputDecoration(
 
 
-                          errorText: validate==true?"برجاء ادخال رقم الجوال الصحيح":null,
-                          hintText: "رقم الهاتف",
+                          errorText: validate==true?"Phone number is not valid".tr():null,
+                          hintText: "Phone".tr(),
                         focusedErrorBorder: OutlineInputBorder(
 
                           borderSide: BorderSide(
@@ -177,7 +180,7 @@ class LoginScreenState extends State<LoginScreen>  {
                   SizedBox(height: 20.h),
                    InkWell(
                       child: mainBottom(
-                          title: "تسجيل دخول", width: .90.sw, height: 50.h),
+                          title: "Sign in".tr(), width: .90.sw, height: 50.h),
                       onTap: () { if(_userPhoneController.text.length>9 && _userPhoneController.text.length<12){
                         DioHelper.postData(endpoint: "/api/v1/auth/send-otp", context: context,formData: {"phone":_userPhoneController.text});
                         navigateAndFinish(
@@ -238,24 +241,13 @@ class LoginScreenState extends State<LoginScreen>  {
                          decoration: BoxDecoration(
                            borderRadius: BorderRadius.circular(20),border: Border.all(width: 1,color: Colors.grey.shade300)
                          ),
-                         child: DropdownButtonHideUnderline(
-                           
-                           child: DropdownButton( borderRadius: BorderRadius.circular(8),hint:  Container(padding: EdgeInsets.all(10),child: Text("اللغة")),value: lang,onChanged:(v){
-                             setState((){
-                               lang=v as String?;
-                             });
-                           },items: [
-                             DropdownMenuItem(child: Padding(
-                               padding: const EdgeInsets.all(10.0),
-                               child: Text("العربيه"),
-                             ),value: "العربيه",),
+                         child:TextButton(onPressed:(){
+                           setState(()
+                           =>language=="English"?language="العربية":language="English");
 
-                             DropdownMenuItem(child: Padding(
-                               padding: const EdgeInsets.all(10.0),
-                               child: Text("English"),
-                             ),value: ("English"),),
-                           ]),
-                         ),
+                           // await context.setLocale(EasyLocalization.of(context)!.supportedLocales[1]);
+
+                         } ,child: Text(language),)
                        ))
                 ],
               ),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:badges/badges.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,7 @@ import 'package:rest_cafe/shared/Model/Resturants_model.dart';
 import 'package:rest_cafe/shared/Model/location_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/components/constants.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/localstroage.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -59,7 +61,7 @@ HomeCubit? homeCubit;
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            "موقعك",
+                            "Your location".tr(),
                             style: TextStyle(
                                 color: Color(0xffAEAEAE), fontSize: 16.sp),
                           ),
@@ -129,7 +131,7 @@ HomeCubit? homeCubit;
                             // },
                             controller: _searchController,
                             type: TextInputType.name,
-                            hint: "بحث عن متجر او منتج",
+                            hint: "Search for a restaurant".tr(),
                             suffix: Icon(
                               Icons.clear,
                               color: Colors.grey,
@@ -164,7 +166,7 @@ HomeCubit? homeCubit;
                               ),
                             ),
                             separatorBuilder: (context, index) =>
-                                SizedBox(width: 10.w),
+                                SizedBox(width: 10),
                             itemCount: HomeCubit.get(context).types.length),
                       ),
                       SizedBox(height: 10.h),
@@ -198,14 +200,14 @@ HomeCubit? homeCubit;
 
 class LabolOfSecondListView extends StatelessWidget {
   @override
-  bool isFav = false;
+  bool isFav = true;
   List<Datum> data=[];
   int ?index;
 LabolOfSecondListView({required this.data,required this.index});
   Widget build(BuildContext context) {
-
+isFav=data[index!].IsFavourite!;
     return Container(
-      height: 120.h,
+      height: 125,
       decoration: BoxDecoration(
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
@@ -224,7 +226,7 @@ LabolOfSecondListView({required this.data,required this.index});
             SizedBox(width: 10.w),
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
 
 
@@ -240,7 +242,7 @@ LabolOfSecondListView({required this.data,required this.index});
                         Container(
                           height: 30,
                           child: Row(children: [
-                            Text(data[index!].isOpen!?"مفتوح":"مغلق",
+                            Text(data[index!].isOpen!?"Open".tr():"Closed".tr(),
                                 style: TextStyle(
                                   color: Colors.black54,
                                   fontSize: 12.sp,
@@ -248,7 +250,7 @@ LabolOfSecondListView({required this.data,required this.index});
                                 )),
                             Icon(
                               Icons.circle,
-                              color: color1,
+                              color: data[index!].isOpen!? color1:Colors.red,
                               size: 10.sp,
                             ),
                           ]),
@@ -273,27 +275,35 @@ LabolOfSecondListView({required this.data,required this.index});
                               )),
                         ]),
                         Spacer(),
+
                         StatefulBuilder(
-                          builder: (BuildContext context, StateSetter setState) => Row(
-                            children: [
-                              IconButton(
-                                icon: isFav
-                                    ? Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: Colors.grey,
-                                )
-                                    : Icon(
-                                  Icons.favorite,
-                                  color: color1,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    isFav = !isFav;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),)
+                          builder:(context,setState)=> IconButton(
+                            icon: !isFav
+                                ? Icon(
+                              Icons.favorite_border_outlined,
+                              color: Colors.grey,
+                            )
+                                : Icon(
+                              Icons.favorite,
+                              color: color1,
+                            ),
+                            onPressed: () async{
+                              setState(() {
+                                isFav = !isFav;
+
+
+
+                              });
+                              if(isFav){
+                                data[index!].IsFavourite=true;
+                                await DioHelper.postData(endpoint: "api/v1/branch/favourites/${data[index!].id}", context: context);}
+                              else{
+                                data[index!].IsFavourite=false;
+                              await DioHelper.delete(endpoint: "api/v1/branch/favourites/remove/${data[index!].id}", context: context);}
+                            },
+                          ),
+                        ),
+
 
 
                       ],
@@ -388,8 +398,9 @@ class labolOfFristListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.h,
-      width: 90.w,
+
+
+
       decoration: index == HomeCubit.get(context).currentIndex
           ? BoxDecoration(
         borderRadius: BorderRadius.circular(10.sp),

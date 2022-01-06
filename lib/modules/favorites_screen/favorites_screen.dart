@@ -1,12 +1,17 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
 import 'package:rest_cafe/modules/add_screen/addScreen.dart';
+import 'package:rest_cafe/modules/branches_screen/BranchesScreen.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/modules/favorites_screen/favourites_cubit.dart';
+import 'package:rest_cafe/shared/Model/Resturants_model.dart';
+import 'package:rest_cafe/shared/Model/favorite_resturant_model.dart';
 import 'package:rest_cafe/shared/Model/favourties_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 import 'favourites_state.dart';
@@ -22,14 +27,14 @@ class FavoritesScreen extends StatelessWidget {
         listener: (context,state){},
         builder:(context,state)=>  Scaffold(
           appBar: CustomisedAppBar(
-            title: 'المفضلة',
+            title: 'Favourites'.tr(),
             actions: [],
           ),
-          body:state is FavourtiesLoadingState? Center(child: CircularProgressIndicator()): ListView.separated(
+          body:state is FavourtiesLoadingState? Center(child: CircularProgressIndicator()):FavoutiresCubit.get(context).favourites.isEmpty?   Center(child: myTitle(color: color1,title: "You have no favourites".tr(),font: 20),): ListView.separated(
             itemCount: FavoutiresCubit.get(context).favourites.length,
 separatorBuilder: (context,index)=>SizedBox(height: 10,),
 
-           itemBuilder: (context,index)=>FavouriteCard( FavoutiresCubit.get(context).favourites[index].item!),
+           itemBuilder: (context,index)=>FavoriteItem( FavoutiresCubit.get(context).favourites[index].branch!),
           ),
         ),
       
@@ -44,7 +49,10 @@ class FavouriteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isFav = true;
     return GestureDetector(
-      onTap: (){   showDialog(
+      onTap: (){
+
+        navigateTo(context, DetailScreen(id: item.branchId,distance: "2",number: "4",name: "ahmed",));
+        showDialog(
         context: context,
         builder: (_) => Dialog(
           insetPadding: EdgeInsets.all(20),
@@ -125,12 +133,15 @@ class FavouriteCard extends StatelessWidget {
 }
 
 class FavoriteItem extends StatelessWidget {
+  Branch resturant;
+  FavoriteItem(this.resturant);
+
   @override
   bool isFav = false;
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        navigateTo(context, DetailScreen());
+        navigateTo(context, BranchesScreen(resturant.id!));
       },
       child: Container(
         height: 110.h,
@@ -147,13 +158,13 @@ class FavoriteItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     // border: Border.all(color: Color(0xffDADADA)),
                     borderRadius: BorderRadius.circular(20.sp)),
-                child: Image.asset("assets/images/mac.png"),
+                child: Image.network(resturant.logo!),
               ),
               SizedBox(width: 10.w),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("هارديز",
+                  Text(resturant.name.toString(),
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,
@@ -165,7 +176,7 @@ class FavoriteItem extends StatelessWidget {
                         height: 20,
                         child: Image.asset("assets/images/ic_restaurant.png")),
                     SizedBox(width: 5.w),
-                    Text("ياباني",
+                    Text(resturant.cuisine!,
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 12.sp,
@@ -173,28 +184,7 @@ class FavoriteItem extends StatelessWidget {
                         )),
                   ]),
                   Spacer(),
-                  Row(
-                    children: [
-                      Container(
-                          height: 20,
-                          child: Image.asset("assets/images/ic_location.png")),
-                      SizedBox(width: 5.w),
-                      Row(
-                        children: [
-                          Text("Km",
-                              style: TextStyle(
-                                  fontFamily: "FrutigerLTArabic",
-                                  color: Colors.black54,
-                                  fontSize: 12.sp)),
-                          Text(" 5",
-                              style: TextStyle(
-                                  fontFamily: "FrutigerLTArabic",
-                                  color: Colors.black54,
-                                  fontSize: 12.sp)),
-                        ],
-                      ),
-                    ],
-                  ),
+
                 ],
               ),
               SizedBox(width: 20.w),
@@ -202,23 +192,12 @@ class FavoriteItem extends StatelessWidget {
                 // mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   // SizedBox(height: 10.h),
-                  Spacer(),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.access_time_filled,
-                        color: color1,
-                        size: 15.sp,
-                      ),
-                      SizedBox(width: 3),
-                      Text("45 دقيقة",
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontSize: 12.sp,
-                            fontFamily: "FrutigerLTArabic",
-                          )),
-                    ],
-                  ),
+
+
+
+
+
+
                 ],
               ),
               Spacer(),
@@ -226,7 +205,7 @@ class FavoriteItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(children: [
-                    Text("مفتوح",
+                    Text("Open".tr(),
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 12.sp,
@@ -252,20 +231,19 @@ class FavoriteItem extends StatelessWidget {
                                   Icons.favorite,
                                   color: color1,
                                 ),
-                          onPressed: () {
+                          onPressed: ()async {
+                            await DioHelper.delete(endpoint: "api/v1/branch/favourites/remove/${resturant.id}", context: context);
                             setState(() {
                               isFav = !isFav;
+                              FavoutiresCubit.get(context).favourites.removeWhere((element) => element.branch==resturant);
                             });
-                          },
+}
+
                         ),
                       ],
                     ),
                   ),
-                  Container(
-                    height: 25.h,
-                    width: 40.w,
-                    child: Image.asset("assets/images/ic_delivery_car.png"),
-                  )
+
                 ],
               ),
             ],

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,7 +80,7 @@ SheetController controller =SheetController();
                 bottom: Radius.circular(20.r),
               )),
               title: Text(
-                "اختر الفرع",
+                "Choose a branch".tr(),
                 style: TextStyle(color: Colors.black54),
               ),
               actions: [
@@ -226,7 +227,7 @@ class LabolOfSecondListView extends StatelessWidget {
   const LabolOfSecondListView({Key? key, this.item,this.index}) : super(key: key);
   Widget build(BuildContext context) {
     return Container(
-      height: 70.h,
+      height: 75,
       decoration: BoxDecoration(
         border: index == BranchesCubit.get(context).currentIndex
             ? Border(right: BorderSide(color: color1, width: 4.sp))

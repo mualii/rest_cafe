@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +12,7 @@ class TextSentOtpAgain extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("لم أتلق الرمز !",
+        Text("I didn't receive a code".tr(),
             style: TextStyle(
               fontSize: 16.sp,
               fontFamily: "FrutigerLTArabic",
@@ -22,7 +23,7 @@ class TextSentOtpAgain extends StatelessWidget {
         InkWell(
           onTap: FunctionSentSms,
           child: Text(
-            "ارسالها مجددا",
+            "Send again".tr(),
             style: TextStyle(
                 fontFamily: "FrutigerLTArabic",
                 fontSize: 16.sp,

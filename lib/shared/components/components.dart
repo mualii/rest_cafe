@@ -3,13 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 Widget defaultFormField({
+
   required TextEditingController controller,
   required TextInputType type,
   Function(String)? onSubmit,
   Function(String)? onChange,
   String? hint,
   Color? color,
+bool error=false,
   int? maxLines,
+
   VoidCallback? onTap,
   VoidCallback? onEditingComplete,
   bool isPassword = false,
@@ -30,8 +33,10 @@ Widget defaultFormField({
         height: height,
         width: .9.sw,
         child: TextFormField(
+
           onEditingComplete: onEditingComplete,
           maxLines: maxLines,
+
           controller: controller,
           keyboardType: type,
           obscureText: isPassword,
@@ -40,12 +45,14 @@ Widget defaultFormField({
           onChanged: onChange,
           onTap: onTap,
           validator: validate,
-          textAlign: TextAlign.right,
+          textAlign: TextAlign.start,
+
           decoration: InputDecoration(
+
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
-                  color: Colors.grey,
+                  color:error==true ?Colors.red :Colors.grey,
                 )),
             contentPadding: EdgeInsets.symmetric(vertical: 0.0),
             hintText: hint,
@@ -67,6 +74,7 @@ Widget defaultFormField({
                     icon: suffix,
                   )
                 : null,
+
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -88,11 +96,11 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       ),
       (route) => false,
     );
-Widget myTitle({String? title, double? font, Color? color}) {
+Widget myTitle({String? title, double? font, Color? color,int? lines}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 6.w),
     child: Text(
-      title!,
+      title!,maxLines: lines,
       style: TextStyle(
           fontSize: font!, color: color, fontFamily: "FrutigerLTArabic"),
     ),
@@ -171,12 +179,16 @@ class DetailsField extends StatelessWidget {
   final bool? isNumeric;
   final bool? isIcon;
   final bool? isBorder;
+  final bool? disable;
+ TextEditingController ?controller;
   DetailsField({
     required this.title,
     required this.iconData,
     this.isNumeric = false,
     this.isBorder = false,
     this.isIcon = true,
+    this.controller,
+    this.disable
   });
 
   @override
@@ -184,6 +196,8 @@ class DetailsField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
+        controller:controller ,
+        readOnly: disable!,
         keyboardType: isNumeric! ? TextInputType.number : TextInputType.text,
         decoration: InputDecoration(
             isDense: true,

@@ -50,6 +50,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     ];
     super.initState();
     _model = ScrollListener.initialise(scrollController);
+
   }
 
   @override
@@ -75,6 +76,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
 //======================= Bot Nav Custom =========================
   Widget BotNavCustom(BuildContext context, Size size) {
     return AnimatedPositioned(
+
       duration: Duration(milliseconds: 600),
       bottom: _model.bottom,
       child: Container(

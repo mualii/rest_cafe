@@ -1,12 +1,16 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/modules/OrderCurrnentAndEnd/Screens/cart_state.dart';
 import 'package:rest_cafe/modules/OrderCurrnentAndEnd/cart_cubit.dart';
 import 'package:rest_cafe/modules/add_screen/addScreen.dart';
 import 'package:rest_cafe/modules/branches_screen/BranchesScreen.dart';
+import 'package:rest_cafe/modules/branches_screen/cubit.dart';
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
+import 'package:rest_cafe/modules/favorites_screen/favourites_cubit.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/shared/Model/details_model.dart';
 
@@ -53,6 +57,23 @@ class DetailScreen extends StatelessWidget {
                               width: 40,
                               child: InkWell(
                                   onTap: () {
+if(DetailCubit.get(context).details!.isOpen==false)
+
+showDialog(context: context, builder: (context)=>AlertDialog(
+  title: Text("المطعم مغلق الان ",textAlign: TextAlign.center,),
+  shape:RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+
+
+  ),
+  actions: [TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("حسنا"))],
+
+
+));else{
+                                    if(CartCubit.get(context).cart.isEmpty)
+                                      Fluttertoast.showToast(msg: 'Cart is empty'.tr());
+                                    else
+
                                     showDialog(
                                       barrierDismissible: true,
                                       context: context,
@@ -67,7 +88,7 @@ class DetailScreen extends StatelessWidget {
                                       },
                                       barrierColor: Colors.white10, //AddScreen()
                                     );
-                                  },
+                                  }},
                                   child: Stack(
 
                                     children: [
@@ -185,8 +206,8 @@ class DetailScreen extends StatelessWidget {
                             Row(
                               children: [
                                 myTitle(
-                                    color: color1, font: 12.sp, title: "مفتوح"),
-                                Icon(Icons.circle, color: color1, size: 15.sp),
+                                    color: color1, font: 12.sp, title: DetailCubit.get(context).details!.isOpen==true?"Open".tr():"Closed".tr()),
+                                Icon(Icons.circle, color:DetailCubit.get(context).details!.isOpen==true? color1:Colors.red, size: 15.sp),
                               ],
                             ),
                           ],
@@ -262,7 +283,7 @@ class DetailScreen extends StatelessWidget {
               //           topLeft: Radius.circular(30.sp))),
               //   width: double.infinity,
               //   height: 90.h,
-              //   child: Padding(
+              //   child: Paddin0g(
               //     padding: EdgeInsets.all(10.sp),
               //     child: Row(
               //       children: [
@@ -355,11 +376,30 @@ class LabolOfSecondListView extends StatelessWidget {
                                   color: color1,
                                 ),
 
-                          onPressed: () {
+                          onPressed: () async{
+                            setState(() {
 
 
+                              isFav = !isFav;
+                              item.IsFavourite=!item.IsFavourite!;
+                              // if(item.IsFavourite!)
+                              //   DetailCubit.get(context).favourites.add(item);
+                              // else
+                              //   DetailCubit.get(context).favourites.remove(item);
+                            });
+                            if(isFav)
+                              await DioHelper.postData(endpoint: "api/v1/favourites/${item.id}", context: context);
+                            else
+
+                            await DioHelper.delete(endpoint: "api/v1/favourites/remove/${item.id}", context: context);
+
+
+                            // DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.id!);
                           },
-                        ),
+    ),
+
+
+
                       ],
                     ),
                   ),

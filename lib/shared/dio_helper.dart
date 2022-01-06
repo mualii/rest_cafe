@@ -45,7 +45,7 @@ class DioHelper {
             headers:{
               'X-Requested-With': 'XMLHttpRequest',
               'Content-Type': 'application/json',
-              'Content-Language': "en",
+              "Language": LocalStorage.getData(key: "lang"),
               if(LocalStorage.getData(key: "access_token")!=null)   HttpHeaders.authorizationHeader: "Bearer " +LocalStorage.getData(key: "access_token")
               //   HttpHeaders.authorizationHeader: "Bearer " + LocalStorage.getData(key: "deviceToken")
             },
@@ -74,7 +74,7 @@ class DioHelper {
             headers: {
               'X-Requested-With': 'XMLHttpRequest',
               'Content-Type': 'application/json',
-              'Content-Language':  "en",
+              'Language':  LocalStorage.getData(key: "lang"),
               if(LocalStorage.getData(key: "access_token")!=null)   HttpHeaders.authorizationHeader: "Bearer " +LocalStorage.getData(key: "access_token")
             },
           ));
@@ -100,7 +100,7 @@ print(e.response.toString());
             headers:{
               'X-Requested-With': 'XMLHttpRequest',
               'Content-Type': 'application/json',
-              'Content-Language': "en",
+              'Language': LocalStorage.getData(key: "lang"),
               if(LocalStorage.getData(key: "access_token")!=null)   HttpHeaders.authorizationHeader: "Bearer " +LocalStorage.getData(key: "access_token")
               //   HttpHeaders.authorizationHeader: "Bearer " + LocalStorage.getData(key: "deviceToken")
             },
@@ -131,7 +131,7 @@ print(e.response.toString());
             headers:{
               'X-Requested-With': 'XMLHttpRequest',
               'Content-Type': 'application/json',
-              'Content-Language': "en",
+              'Language': LocalStorage.getData(key: "lang"),
               if(LocalStorage.getData(key: "access_token")!=null)   HttpHeaders.authorizationHeader: "Bearer " +LocalStorage.getData(key: "access_token")
               //   HttpHeaders.authorizationHeader: "Bearer " + LocalStorage.getData(key: "deviceToken")
             },

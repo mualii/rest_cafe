@@ -86,15 +86,19 @@ this.lat,
     this.logo,
     this.name,
     this.cuisine,
-    this.type
+    this.type,
+    this.IsFavourite,
+    this.restaurant_id
   });
 double ?lat,lng;
   String ?id;
+  String ?restaurant_id;
   int ?preparationTime;
   bool ?canReserveTable;
   bool ?canDeliverToCar;
   bool ?canPickupOrder;
   bool ?isOpen;
+  bool ?IsFavourite;
   double? distance;
   String ?logo;
   String ?name;
@@ -104,8 +108,11 @@ double ?lat,lng;
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"],
     type:json["type"],
+
+    restaurant_id:json["restaurant_id"],
     lat: json["lat"],
     lng:json["lng"],
+    IsFavourite:json["IsFavourite"],
     preparationTime: json["preparation_time"],
     canReserveTable: json["can_reserve_table"],
     canDeliverToCar: json["can_deliver_to_car"],
@@ -119,6 +126,8 @@ double ?lat,lng;
 
   Map<String, dynamic> toJson() => {
     "id": id,
+    "restaurant_id":restaurant_id,
+    "IsFavourite":IsFavourite,
     "preparation_time": preparationTime,
     "can_reserve_table": canReserveTable,
     "can_deliver_to_car": canDeliverToCar,

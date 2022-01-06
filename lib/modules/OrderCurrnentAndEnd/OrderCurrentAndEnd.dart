@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ class OrderCurrentAndEnd extends StatelessWidget {
          Scaffold(
           backgroundColor: Color(0xffF7F7F7),
           appBar: CustomisedAppBar(
-            title: 'الطلبات',
+            title: 'Orders'.tr(),
             actions: [],
           ),
           body:DefaultTabController(
@@ -42,13 +43,13 @@ class OrderCurrentAndEnd extends StatelessWidget {
                     tabs: [
                       Tab(
                         child: Text(
-                          "الحالية",
+                          "Current".tr(),
                           style: TextStyle(
                               fontFamily: "FrutigerLTArabic", color: Colors.black),
                         ),
                       ),
                       Tab(
-                        child: Text("السابقة",
+                        child: Text("Previous".tr(),
                             style: TextStyle(
                                 fontFamily: "FrutigerLTArabic",
                                 color: Colors.black)),

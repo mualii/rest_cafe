@@ -11,23 +11,23 @@ class TextShowTimer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            myTitle(
-              title: "لم تتلق الرسائل القصيرة؟",
-              font: 16.sp,
-            ),
-            Text(
-              "أرسل رمز التحقق مرة أخرى",
-              style: TextStyle(
-                fontFamily: "FrutigerLTArabic",
-                fontSize: 16.sp,
-                textBaseline: TextBaseline.alphabetic,
-              ),
-            ),
-          ],
-        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     myTitle(
+        //       title: "didn't re",
+        //       font: 16.sp,
+        //     ),
+        //     Text(
+        //       "أرسل رمز التحقق مرة أخرى",
+        //       style: TextStyle(
+        //         fontFamily: "FrutigerLTArabic",
+        //         fontSize: 16.sp,
+        //         textBaseline: TextBaseline.alphabetic,
+        //       ),
+        //     ),
+        //   ],
+        // ),
         Padding(
           padding: EdgeInsets.all(8.h),
           child: Text(

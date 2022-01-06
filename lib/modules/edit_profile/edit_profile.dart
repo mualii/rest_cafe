@@ -1,14 +1,29 @@
+import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
+import 'package:rest_cafe/shared/Model/profile_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+   return EditProfileState();
+  }
+  
+}
+class EditProfileState extends State<EditProfile> {
+  TextEditingController nameController=TextEditingController();
+  TextEditingController emailController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomisedAppBar(
-        title: 'تعديل الملف الشخصي',
+        title: 'Edit profile'.tr(),
         actions: [],
       ),
       body: Padding(
@@ -26,11 +41,15 @@ class EditProfile extends StatelessWidget {
               ),
             ),
             DetailsField(
-              title: 'الاسم',
+              disable:false,
+              controller: nameController,
+              title: HomeCubit.get(context).user!.name??"Next".tr(),
               iconData: Icon(Icons.person_outline, size: 25, color: color1),
             ),
             DetailsField(
-              title: 'الايميل',
+              disable: HomeCubit.get(context).user!.email!=null?true:false ,
+              controller: emailController,
+              title:HomeCubit.get(context).user!.email??"Email".tr(),
               iconData: Icon(Icons.email_outlined, size: 25, color: color1),
             ),
             Row(
@@ -51,7 +70,8 @@ class EditProfile extends StatelessWidget {
                 Container(
                   width: 0.65.sw,
                   child: DetailsField(
-                    title: 'رقم الهاتف',
+                      disable: HomeCubit.get(context).user!.phone!=null?true:false,
+                      title: 'Phone'.tr(),
                     iconData: Icon(Icons.call, size: 25, color: color1),
                     isIcon: false,
                   ),
@@ -63,8 +83,19 @@ class EditProfile extends StatelessWidget {
               width: 0.95.sw,
               height: 0.06.sh,
               child: ElevatedButton(
-                onPressed: () {},
-                child: Text('تعديل'),
+                onPressed: () async{
+                  print(emailController.text);
+                 if(emailController.text=="" || nameController.text=="")
+                   Fluttertoast.showToast(msg: "Complete required data".tr());
+                 else{
+               var response=   await DioHelper.update(endpoint: "api/v1/users/edit", setParamars:{"name":nameController.text,"email":emailController.text}, context: context);
+               if(response is Response) {
+                 Fluttertoast.showToast(msg: "Saved".tr());
+                 Navigator.of(context).pop();
+                 HomeCubit.get(context).user!.name=User.fromJson(response.data).name;
+               }
+                }},
+                child: Text('Edit'.tr()),
                 style: ElevatedButton.styleFrom(primary: Color(0xff4CB379)),
               ),
             ),

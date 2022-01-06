@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:rest_cafe/modules/order/chat_order_screen/chatOrderScreen.dart';
 import 'package:rest_cafe/modules/order/order_detail_%D9%8Dscreen/order_detail_state.dart';
 import 'package:rest_cafe/shared/Model/order_details_model.dart';
@@ -16,6 +17,7 @@ import 'order_detail_cubit.dart';
 class OrderDetailScreen extends StatelessWidget {
   String id;
 int rate=1;
+TextEditingController rateController = TextEditingController();
   OrderDetailScreen(this.id);
 
   @override
@@ -32,13 +34,13 @@ int rate=1;
           backgroundColor: Colors.transparent,
           context: context,
           builder: (BuildContext context) => Container(
-          padding: EdgeInsets.all(20.h),
+          padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
           topRight: Radius.circular(40.sp),
           topLeft: Radius.circular(40.sp))),
-          height: 250,
+          height: 370,
           child: Directionality(
           textDirection: TextDirection.rtl,
           child:Column(
@@ -65,10 +67,21 @@ int rate=1;
                   rate=rating.toInt();
                 },
               ),
+              SizedBox(height: 10,),
+              defaultFormField(controller: rateController, type: TextInputType.name,
+                height: 150,
+                maxLines: 10,
+                hint: "اكتب تقييمك هنا"
+
+
+              ),
               Spacer(),
               InkWell(
                 onTap: ()async{
-                 var response= await DioHelper.postData(endpoint:"api/v1/orders/rate" ,formData: {"order_id":id,"rate":rate}, context: context);
+                 var response= await DioHelper.postData(endpoint:"api/v1/orders/rate" ,formData: {"order_id":id,"rate":rate,
+
+"review":rateController.text
+                 }, context: context);
                   if(response is Response)
                     Fluttertoast.showToast(msg: "شكرا لتقيمك");
                     Navigator.of(context).pop();
@@ -230,8 +243,8 @@ int rate=1;
                 automaticallyImplyLeading: false,
                 backgroundColor: Colors.white,
               ),
-              body: SingleChildScrollView(
-                child: Container(
+              body: 
+                Container(
                   padding: EdgeInsets.all(20.sp),
                   child: Column(
                     children: [
@@ -244,16 +257,30 @@ int rate=1;
                               color: Colors.black),
                         ],
                       ),
-                      SizedBox(height: 20.h),
+                      SizedBox(height: 20),
                       Container(
                         height: .16.sh,
                         width: double.infinity,
                         decoration: BoxDecoration(
                             border: Border.all(color: Color(0xffDADADA)),
                             borderRadius: BorderRadius.circular(20.sp)),
-                        child: Image.asset(
-                          "assets/images/location.png",
-                          fit: BoxFit.fill,
+                        child: InkWell(
+                          onTap: (){
+                            MapsLauncher.launchCoordinates( OrderDetailsCubit
+                                .get(context)
+                                .details!
+                                .branch!
+                                .lat!,  OrderDetailsCubit.get(context)
+                                .details!
+                                .branch!
+                                .lng!,OrderDetailsCubit.get(context)
+                                .details!
+                                .branch!.name);
+                          },
+                          child: Image.asset(
+                            "assets/images/location.png",
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                       SizedBox(height: 10.h),
@@ -266,29 +293,33 @@ int rate=1;
                               color: Colors.black),
                         ],
                       ),
-                      SizedBox(height: 10.h),
-                      ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) =>
-                              ListModle(OrderDetailsCubit
-                                  .get(context)
-                                  .details!
-                                  .orderLine![index]),
-                          separatorBuilder:
-                              (BuildContext context, int index) =>
-                              SizedBox(height: 15.h),
-                          itemCount: OrderDetailsCubit
-                              .get(context)
-                              .details!
-                              .itemsCount!),
+                      SizedBox(height: 10),
+                      Expanded(
+                        child: ListView.separated(
+                            shrinkWrap: true,
+                            physics: AlwaysScrollableScrollPhysics(),
+                            itemBuilder: (BuildContext context, int index) =>
+                                ListModle(OrderDetailsCubit
+                                    .get(context)
+                                    .details!
+                                    .orderLine![index]),
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                SizedBox(height: 15.h),
+                            itemCount: OrderDetailsCubit
+                                .get(context)
+                                .details!
+                                .orderLine!.length),
+                      ),
+                      SizedBox(height:80 ,)
                     ],
                   ),
                 ),
-              ),
+              
               backgroundColor: Color(0xffF7F7F7),
               bottomSheet: Container(
                 padding: EdgeInsets.all(20.h),
-                height: 100.h,
+                height: 100,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     // border: Border.all(color: Colors.black38),
@@ -306,11 +337,11 @@ int rate=1;
                         child: Image.asset("assets/images/pay (1).jpg")),
 
                     Text(
-                        "  ${OrderDetailsCubit
+                        " ريال   ${OrderDetailsCubit
                             .get(context)
                             .details!
                             .total
-                            .toString()} ريال  "),
+                            .toString()}    "),
                   ],
                 ),
               ),

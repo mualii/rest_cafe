@@ -1,5 +1,7 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,8 +12,9 @@ import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_state.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
 import 'package:rest_cafe/shared/Model/set_order_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
-import 'package:rest_cafe/shared/dio_helper.dart';
+
 import 'package:rest_cafe/shared/styles/colors.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class CardScreen2 extends StatelessWidget {
@@ -27,6 +30,7 @@ class CardScreen2 extends StatelessWidget {
   bool isChecked2 = true;
   bool isChecked3 = true;
   int carIndex=0;
+
   @override
   Widget build(BuildContext context) {
     carIndex = DeliveryCubit
@@ -56,7 +60,7 @@ class CardScreen2 extends StatelessWidget {
                       children: [
                         SizedBox(width: .14.sw),
                         myTitle(
-                            title: "التوصيل", font: 16.sp, color: Colors.black),
+                            title: "Delivery".tr(), font: 16.sp, color: Colors.black),
                         IconButton(
                             icon: Icon(
                               Icons.arrow_forward_ios,
@@ -94,44 +98,47 @@ class CardScreen2 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.sp)),
                             child: Column(
                               children: [
-                                Row(
-                                  children: [
-                                    SizedBox(width: 10.w),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          isChecked1 = !isChecked1;
-                                          isChecked2 = true;
-                                          isChecked3 = true;
-                                        });
-                                      },
-                                      child: isChecked1
-                                          ? Icon(
-                                        Icons.circle_outlined,
-                                        color: Colors.black12,
-                                        size: 30.sp,
-                                      )
-                                          : Icon(
-                                        Icons.circle,
-                                        color: color1,
-                                        size: 30.sp,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Row(
+                                    children: [
+
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            isChecked1 = !isChecked1;
+                                            isChecked2 = true;
+                                            isChecked3 = true;
+                                          });
+                                        },
+                                        child: isChecked1
+                                            ? Icon(
+                                          Icons.circle_outlined,
+                                          color: Colors.black12,
+                                          size: 30.sp,
+                                        )
+                                            : Icon(
+                                          Icons.circle,
+                                          color: color1,
+                                          size: 30.sp,
+                                        ),
                                       ),
-                                    ),
-                                    myTitle(
-                                        title: "للسيارة",
-                                        color: Colors.black,
-                                        font: 16.sp),
-                                    myTitle(
-                                        title: "2 ريال",
-                                        color: Colors.black45,
-                                        font: 12.sp),
-                                    SizedBox(width: .32.sw),
-                                    Container(
-                                        height: 50.h,
-                                        width: 40.w,
-                                        child: Image.asset(
-                                            "assets/images/ic_delivery_car.png"))
-                                  ],
+                                      myTitle(
+                                          title: "To car".tr(),
+                                          color: Colors.black,
+                                          font: 16.sp),
+                                      myTitle(
+                                          title: "2 ريال",
+                                          color: Colors.black45,
+                                          font: 12.sp),
+                                      Spacer(),
+                                      Container(
+                                          height: 50.h,
+                                          width: 40.w,
+                                          child: Image.asset(
+                                              "assets/images/ic_delivery_car.png"))
+                                    ],
+                                  ),
                                 ),
                                 if (hasCar! || isChecked1 == false)
                                   Column(
@@ -173,7 +180,7 @@ class CardScreen2 extends StatelessWidget {
                                                     .get(context)
                                                     .cars
                                                     .isEmpty
-                                                    ? "اضف سيارة"
+                                                    ? "Add car".tr()
                                                     : "${DeliveryCubit
                                                     .get(context)
                                                     .cars[carIndex]
@@ -208,39 +215,42 @@ class CardScreen2 extends StatelessWidget {
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(20.sp)),
-                            child: Row(
-                              children: [
-                                SizedBox(width: 10.w),
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      isChecked2 = !isChecked2;
-                                      isChecked1 = true;
-                                      isChecked3 = true;
-                                    });
-                                  },
-                                  child: isChecked2
-                                      ? Icon(
-                                    Icons.circle_outlined,
-                                    color: Colors.black12,
-                                    size: 30.sp,
-                                  )
-                                      : Icon(
-                                    Icons.circle,
-                                    color: color1,
-                                    size: 30.sp,
+                            child: Padding(
+                              padding:  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Row(
+                                children: [
+
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        isChecked2 = !isChecked2;
+                                        isChecked1 = true;
+                                        isChecked3 = true;
+                                      });
+                                    },
+                                    child: isChecked2
+                                        ? Icon(
+                                      Icons.circle_outlined,
+                                      color: Colors.black12,
+                                      size: 30.sp,
+                                    )
+                                        : Icon(
+                                      Icons.circle,
+                                      color: color1,
+                                      size: 30.sp,
+                                    ),
                                   ),
-                                ),
-                                myTitle(
-                                    title: "الذهاب للمطعم",
-                                    color: Colors.black,
-                                    font: 16.sp),
-                                SizedBox(width: .30.sw),
-                                Image.asset("assets/images/m2.png")
-                              ],
+                                  myTitle(
+                                      title: "Pick up".tr(),
+                                      color: Colors.black,
+                                      font: 16.sp),
+                                  Spacer(),
+                                  Image.asset("assets/images/m2.png")
+                                ],
+                              ),
                             ),
                           ),
-                          SizedBox(height: 15.h),
+                          SizedBox(height: 15),
                           Container(
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
@@ -250,37 +260,40 @@ class CardScreen2 extends StatelessWidget {
                                 Column(
                                   children: [
                                     SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        SizedBox(width: 10.w),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              isChecked1 = true;
-                                              isChecked2 = true;
+                                    Padding(
+                                      padding:  const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Row(
+                                        children: [
 
-                                              isChecked3 = !isChecked3;
-                                            });
-                                          },
-                                          child: isChecked3
-                                              ? Icon(
-                                            Icons.circle_outlined,
-                                            color: Colors.black12,
-                                            size: 30.sp,
-                                          )
-                                              : Icon(
-                                            Icons.circle,
-                                            color: color1,
-                                            size: 30.sp,
+                                          InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                isChecked1 = true;
+                                                isChecked2 = true;
+
+                                                isChecked3 = !isChecked3;
+                                              });
+                                            },
+                                            child: isChecked3
+                                                ? Icon(
+                                              Icons.circle_outlined,
+                                              color: Colors.black12,
+                                              size: 30.sp,
+                                            )
+                                                : Icon(
+                                              Icons.circle,
+                                              color: color1,
+                                              size: 30.sp,
+                                            ),
                                           ),
-                                        ),
-                                        myTitle(
-                                            title: "حجز طاولة",
-                                            color: Colors.black,
-                                            font: 16.sp),
-                                        SizedBox(width: .40.sw),
-                                        Image.asset("assets/images/3.png")
-                                      ],
+                                          myTitle(
+                                              title: "Reserve a table".tr(),
+                                              color: Colors.black,
+                                              font: 16.sp),
+                                          Spacer(),
+                                          Image.asset("assets/images/3.png")
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(height: 10),
                                     if (hasTabol! || isChecked3 == false)
@@ -345,7 +358,7 @@ class CardScreen2 extends StatelessWidget {
                                                         .setorder
                                                         .reservation!
                                                         .persons} "
-                                                        : "استكمال البيانات ",
+                                                        : "Complete reservation data".tr(),
                                                     color: Colors.black38,
                                                     font: 16.sp),
                                                 Spacer(),
@@ -377,18 +390,18 @@ class CardScreen2 extends StatelessWidget {
                         InkWell(
                             onTap: () {
                               if (isChecked3 && isChecked2 && isChecked1)
-                                Fluttertoast.showToast(msg: "برجاء الاختيار");
+                                Fluttertoast.showToast(msg: "Please select first".tr());
                               else if (isChecked1 == false && DeliveryCubit
                                   .get(context)
                                   .cars
                                   .isEmpty)
-                                Fluttertoast.showToast(msg: "اضف سيارة");
+                                Fluttertoast.showToast(msg: "Add car".tr());
                               else if (isChecked3 == false && DeliveryCubit
                                   .get(context)
                                   .setorder
                                   .reservation == null)
                                 Fluttertoast.showToast(
-                                    msg: "استكمل بيانات الحجز");
+                                    msg: "Complete reservation data".tr());
                               else {
                                 Navigator.of(context, rootNavigator: true)
                                     .pop();
@@ -418,7 +431,7 @@ class CardScreen2 extends StatelessWidget {
                             },
                             child:
                             mainBottom(
-                                title: "التالي", width: 150.w, height: 60)),
+                                title: "Next".tr(), width: 150.w, height: 60)),
                         InkWell(
                           onTap: () {
                             Navigator.of(context, rootNavigator: true).pop();
@@ -446,7 +459,7 @@ class CardScreen2 extends StatelessWidget {
                                 color: Colors.white10),
                             child: Center(
                               child: Text(
-                                "السابق",
+                                "Back".tr(),
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
@@ -468,6 +481,7 @@ class CardScreen2 extends StatelessWidget {
 }
 
 class DeliveryScreen extends StatefulWidget{
+
   @override
   State<StatefulWidget> createState() {
     return DeliveryScreenState();
@@ -478,8 +492,10 @@ class DeliveryScreenState extends State<DeliveryScreen> {
   var carModelController = TextEditingController();
   var carNumberController = TextEditingController();
   var carColorController = TextEditingController();
+  ItemScrollController _itemScrollController=ItemScrollController();
   bool isOld = true;
 String ?selectedValue;
+  String ?color;
   String ?selectedValue2;
   @override
   Widget build(BuildContext context) {
@@ -487,8 +503,8 @@ String ?selectedValue;
       listener: (context,state){},
       builder:(context,state)=> SingleChildScrollView(
         child: Container(
-          height: 600,
-          padding: EdgeInsets.all(10.sp),
+          height: 640,
+          padding: EdgeInsets.all(8),
           child: Column(
             children: [
               Row(
@@ -497,7 +513,7 @@ String ?selectedValue;
                   SizedBox(width: .15.sw),
                   Center(
                       child: myTitle(
-                          title: "التوصيل (للسيارة)",
+                          title: "Delivery by car".tr(),
                           font: 16.sp,
                           color: Colors.black)),
                   IconButton(
@@ -526,217 +542,330 @@ String ?selectedValue;
               ),
               if (isOld == true)
                 Column(
+
                   children: [
                     myTitle(
-                        title: "بيانات سيارة مسجلة",
+                        title: "Saved Vehicle data".tr(),
                         font: 16.sp,
                         color: Colors.black),
+
                     Container(
-                      height: 100,
-                      child: ListView.builder(
+                      width: 1.sw,
+                      alignment: Alignment.center,
+height: 155,
+                      child: ScrollablePositionedList.builder(
+                        scrollDirection: Axis.horizontal,
+                        initialScrollIndex: 0,
+
+                        itemScrollController: _itemScrollController,
+                        // physics: NeverScrollableScrollPhysics(),
+
                         itemCount: DeliveryCubit.get(context).cars.length,
                         itemBuilder: (context,index)=>
-                          GestureDetector(
-                            onTap: (){
-                              DeliveryCubit.get(context).CarIndex=index;
-                              DeliveryCubit.get(context).setorder.vehicle_id=DeliveryCubit.get(context).cars[index].id!;
-                              Navigator.of(context).pop();
-                            },
-                            child: Container(
-
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15.sp),
-                                  border: Border.all(color: Colors.black12)),
-                              child: Column(
+                            Container(
+                              width: .86.sw,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10.0.sp, right: 15.sp),
-                                    child: Row(
-                                      children: [
-                                        myTitle(
-                                            title: "نوع السيارة",
-                                            color: Colors.black,
-                                            font: 16.sp),
-                                        myTitle(
-                                            title: DeliveryCubit.get(context).cars[index].brandModel!.brand!.name,
-                                            color: Colors.grey,
-                                            font: 14.sp),
-                                        myTitle(
-                                            title: "الموديل",
-                                            color: Colors.black,
-                                            font: 16.sp),
-                                        myTitle(
-                                            title: DeliveryCubit.get(context).cars[index].brandModel!.name,
-                                            color: Colors.grey,
-                                            font: 14.sp),
-                                      ],
+
+                                  GestureDetector(
+                                    onTap: (){
+                                      DeliveryCubit.get(context).CarIndex=index;
+                                      DeliveryCubit.get(context).setorder.vehicle_id=DeliveryCubit.get(context).cars[index].id!;
+                                      Navigator.of(context).pop();
+                                      showDialog(
+                                        barrierColor: Colors.white10, //AddScreen()
+
+                                        context: context,
+                                        builder: (_) => Dialog(
+                                          insetPadding: EdgeInsets.all(20),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(20)),
+                                          child: CardScreen2(
+                                            hasCar: true,
+                                          ),
+                                        ), //AddScreen()
+                                        barrierDismissible: true,
+                                      );
+                                    },
+                                    child: Container(
+
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(15.sp),
+                                          border: Border.all(color: Colors.black12)),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 10.0.sp, ),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                myTitle(
+                                                    title: "Car brand".tr(),
+                                                    color: Colors.black,
+                                                    font: 16.sp),
+                                                myTitle(
+                                                    title: DeliveryCubit.get(context).cars[index].brandModel!.brand!.name,
+                                                    color: Colors.grey,
+                                                    font: 14.sp),
+
+                                                myTitle(
+                                                    title: "Plate number".tr(),
+                                                    color: Colors.black,
+                                                    font: 16.sp),
+                                                myTitle(
+                                                    title:  DeliveryCubit.get(context).cars[index].plateNumber,
+                                                    color: Colors.grey,
+                                                    font: 14.sp),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 10.0.sp, ),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                myTitle(
+                                                    title: "Model".tr(),
+                                                    color: Colors.black,
+                                                    font: 16.sp),
+                                                myTitle(
+                                                    title: DeliveryCubit.get(context).cars[index].brandModel!.name,
+                                                    color: Colors.grey,
+                                                    font: 14.sp),
+
+                                                SizedBox(width: 8.w),
+                                                myTitle(
+                                                    title: "Car color".tr(),
+                                                    color: Colors.black,
+                                                    font: 16.sp),
+                                                myTitle(
+                                                    title: DeliveryCubit.get(context).cars[index].color,
+                                                    color: Colors.grey,
+                                                    font: 14.sp),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10.0.sp, right: 15.sp),
-                                    child: Row(
-                                      children: [
-                                        myTitle(
-                                            title: "رقم اللوحة",
-                                            color: Colors.black,
-                                            font: 16.sp),
-                                        myTitle(
-                                            title:  DeliveryCubit.get(context).cars[index].plateNumber,
-                                            color: Colors.grey,
-                                            font: 14.sp),
-                                        SizedBox(width: 8.w),
-                                        myTitle(
-                                            title: "للون السيارة",
-                                            color: Colors.black,
-                                            font: 16.sp),
-                                        myTitle(
-                                            title: DeliveryCubit.get(context).cars[index].color,
-                                            color: Colors.grey,
-                                            font: 14.sp),
-                                      ],
-                                    ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconButton(onPressed: (){
+                                        if(index-1>=0)
+                                          _itemScrollController.jumpTo(index: index-1,);}, icon: Icon(Icons.arrow_back_ios_outlined)),
+
+
+
+                                      IconButton(onPressed: (){_itemScrollController.jumpTo(index: index+1);}, icon: Icon(Icons.arrow_forward_ios)),
+                                    ],
                                   )
+
                                 ],
+                          ),
                               ),
                             ),
-                          ),
 
                       ),
                     )
                   ],
                 ),
-              SizedBox(height: 20.h),
-              Column(
-                children: [
-                  myTitle(
-                      title: "اضافة سيارة جديدة", color: Colors.black, font: 16.sp),
-                  SizedBox(height: 10.h),
-                  Row(
-                    children: [
 
-                      Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(width: 1,color: Colors.grey)
-                        ),
-                        width: .76.sw,
-                        height: 70,
-                        child:     SearchableDropdown.single(
-icon: ImageIcon(AssetImage("assets/images/4.png",),color:color1 ,),
-                          items: DeliveryCubit.get(context).brands.map((e) => DropdownMenuItem( child: Text(e.name.toString()),value: e.name,)).toList(),
-                          value: selectedValue,
-                          hint: "نوع السيارة",
-                          searchHint: "نوع السيارة",
-closeButton: "اغلاق",displayClearIcon: false,underline:Container() ,
 
-                          onChanged: (value) {
-                            setState(() {
-                              selectedValue =value;
-                              DeliveryCubit.get(context).getModel(context,DeliveryCubit.get(context).brands.firstWhere((element) => element.name==value ).id.toString() );
 
-                            });
+                Column(
+                  children: [
+                    myTitle(
+                        title: "Add car".tr(), color: Colors.black, font: 16.sp),
+                    SizedBox(height: 10.h),
+                    Row(
+                      children: [
 
-                          },
-                          doneButton: "تم",
-                          displayItem: (item, selected) {
-                            return (Row(children: [
-                              selected
-                                  ? Icon(
-                                Icons.radio_button_checked,
-                                color: Colors.grey,
-                              )
-                                  : Icon(
-                                Icons.radio_button_unchecked,
-                                color: Colors.grey,
-                              ),
-                              SizedBox(width: 7),
-                              Expanded(
-                                child: item,
-                              ),
-                            ]));
-                          },
-                          isExpanded: true,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1,color: Colors.grey)
+                          ),
+                          width: .76.sw,
+                          height: 70,
+                          child:     SearchableDropdown.single(
+icon: ImageIcon(AssetImage("assets/images/4.png",),color:color1 ,),
+                            closeButton: "close".tr(),
+                            items: DeliveryCubit.get(context).brands.map((e) => DropdownMenuItem( child: Row(
+                              children: [
+                                Text(e.name.toString()),
+                                SizedBox(width: 2,),
+                                Image.network(e.logo.toString(),width: 20,height: 30,),
+                              ],
+                            ),value: e.name,)).toList(),
+                            value: selectedValue,
+                            hint: "Car brand".tr(),
+                            searchHint: "Car brand".tr(),
+displayClearIcon: false,underline:Container() ,
+
+                            onChanged: (value) {
+                              setState(() {
+                                selectedValue =value;
+                                DeliveryCubit.get(context).getModel(context,DeliveryCubit.get(context).brands.firstWhere((element) => element.name==value ).id.toString() );
+
+                              });
+
+                            },
+
+                            displayItem: (item, selected) {
+                              return (Row(children: [
+                                selected
+                                    ? Icon(
+                                  Icons.radio_button_checked,
+                                  color: Colors.grey,
+                                )
+                                    : Icon(
+                                  Icons.radio_button_unchecked,
+                                  color: Colors.grey,
+                                ),
+                                SizedBox(width: 7),
+                                Expanded(
+                                  child: item,
+                                ),
+                              ]));
+                            },
+                            isExpanded: true,
+                          ),
                         ),
-                        width: .76.sw,
-                        height: 70,
-                        child:     SearchableDropdown.single(
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(width: 1,color: Colors.grey)
+                          ),
+                          width: .76.sw,
+                          height: 70,
+                          child:     SearchableDropdown.single(
 
-                          items: DeliveryCubit.get(context).models.map((e) => DropdownMenuItem( child: Text(e.name.toString()),value: e.name,)).toList(),
-                          value: selectedValue,
-                          hint: "موديل السيارة",
-                          searchHint: "موديل السيارة",
-                          closeButton: "اغلاق",displayClearIcon: false,underline:Container() ,
+                            items: DeliveryCubit.get(context).models.map((e) => DropdownMenuItem( child: Text(e.name.toString()),value: e.name,)).toList(),
+                            value: selectedValue,
+                            hint: "Model".tr(),
+                            searchHint: "Model".tr(),
+                          displayClearIcon: false,underline:Container() ,
 
-                          onChanged: (value) {
-                            setState(() {
-                              selectedValue2 =value;
+                            onChanged: (value) {
+                              setState(() {
+                                selectedValue2 =value;
 
-                            });
+                              });
 
-                          },
-                          doneButton: "تم",
-                          displayItem: (item, selected) {
-                            return (Row(children: [
-                              selected
-                                  ? Icon(
-                                Icons.radio_button_checked,
-                                color: Colors.grey,
-                              )
-                                  : Icon(
-                                Icons.radio_button_unchecked,
-                                color: Colors.grey,
-                              ),
-                              SizedBox(width: 7),
-                              Expanded(
-                                child: item,
-                              ),
-                            ]));
-                          },
-                          isExpanded: true,
+                            },
+
+                            displayItem: (item, selected) {
+                              return (Row(children: [
+                                selected
+                                    ? Icon(
+                                  Icons.radio_button_checked,
+                                  color: Colors.grey,
+                                )
+                                    : Icon(
+                                  Icons.radio_button_unchecked,
+                                  color: Colors.grey,
+                                ),
+                                SizedBox(width: 7),
+                                Expanded(
+                                  child: item,
+                                ),
+                              ]));
+                            },
+                            isExpanded: true,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),   SizedBox(height: 10),
-                  Row(
-                    children: [
+                      ],
+                    ),   SizedBox(height: 10),
+                    Row(
+                      children: [
 
-                      Container(
-                        width: 140.w,
-                        child: defaultFormField(
-                            type: TextInputType.number,
-                            controller: carNumberController,
-                            label: "رقم اللوحة",
-                            prefix: Image.asset("assets/images/5.png"),
-                            color: color1),
-                      ),
-                      SizedBox(width: 20),
-                      Container(
-                        width: 140.w,
-                        child: defaultFormField(
-                            type: TextInputType.name,
-                            controller: carColorController,
-                            label: "لون السيارة",
-                            prefix: Image.asset("assets/images/6.png"),
-                            color: color1),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                        Column(
+                          children: [
+                            Container(
+                              width: .35.sw,
+padding: EdgeInsets.all(8),
+height: 70,
+                              decoration: BoxDecoration(border:Border.all(width: 1,color:  carNumberController.text.length>4?Colors.red:Colors.grey),borderRadius:BorderRadius.circular(10)),
+                              child: TextField(
+
+                                  keyboardType: TextInputType.number,
+                                  controller: carNumberController,
+    inputFormatters: [
+    LengthLimitingTextInputFormatter(4),
+    ],
+                                  decoration:InputDecoration(
+                                    hintText: "Plate number".tr(),
+
+                                    border: InputBorder.none,
+                                      prefix: Image.asset("assets/images/5.png")
+                                      )
+    )
+
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 20),
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(width: 1,color: Colors.grey)
+                          ),
+                          width: .35.sw,
+                          height:70,
+                          child:     SearchableDropdown.single(
+
+                            items: DeliveryCubit.get(context).colors.map((e) => DropdownMenuItem( child: Text(e.name.toString()),value: e.name,)).toList(),
+                            value: selectedValue,
+                            hint: "Car color".tr(),
+                            searchHint: "Car color".tr(),
+                           displayClearIcon: false,underline:Container() ,
+
+                            onChanged: (value) {
+                              setState(() {
+                            color =value;
+
+                              });
+
+                            },
+
+                            displayItem: (item, selected) {
+                              return (Row(children: [
+                                selected
+                                    ? Icon(
+                                  Icons.radio_button_checked,
+                                  color: Colors.grey,
+                                )
+                                    : Icon(
+                                  Icons.radio_button_unchecked,
+                                  color: Colors.grey,
+                                ),
+                                SizedBox(width: 7),
+                                Expanded(
+                                  child: item,
+                                ),
+                              ]));
+                            },
+                            isExpanded: true,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+
               SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -745,8 +874,12 @@ closeButton: "اغلاق",displayClearIcon: false,underline:Container() ,
                   InkWell(
                       onTap: () async{
 
-
-                  DeliveryCubit.get(context).addCar(context: context, brand: DeliveryCubit.get(context).models.firstWhere((element) => element.name!=selectedValue).id.toString(), plate: carNumberController.text, color: carColorController.text);
+if(selectedValue==null ||selectedValue2==null || color==null|| carNumberController.text.isEmpty)
+  Fluttertoast.showToast(msg: "Compelte required data".tr());
+else if (carNumberController.text.length!=4)
+  Fluttertoast.showToast(msg: "Plate number is 4 numbers".tr());
+  else{
+                  DeliveryCubit.get(context).addCar(context: context, brand: DeliveryCubit.get(context).models.firstWhere((element) => element.name!=selectedValue).id.toString(), plate: carNumberController.text, color:  DeliveryCubit.get(context).colors.firstWhere((element) => element.name!=color).id.toString());
                         Navigator.of(context, rootNavigator: true).pop();
 
                         showDialog(
@@ -763,8 +896,8 @@ closeButton: "اغلاق",displayClearIcon: false,underline:Container() ,
                           ), //AddScreen()
                           barrierDismissible: true,
                         );
-                      },
-                      child: mainBottom(title: "اضف", width: 140.w, height: 50)),
+                      }},
+                      child: mainBottom(title: "Add".tr(), width: 140.w, height: 50)),
                 ],
               ),
             ],
@@ -829,7 +962,7 @@ class _BookingScreenState extends State<BookingScreen> {
   Future<void> openDatePicker(BuildContext context) async {
     final DateTime? t = await showDatePicker(
         context: context,
-        firstDate: DateTime(DateTime.now().year),
+        firstDate: DateTime.now(),
         lastDate: DateTime(DateTime.now().year + 1),
         initialDate: dateTime2);
     if (t != null) {
@@ -859,7 +992,7 @@ class _BookingScreenState extends State<BookingScreen> {
                   SizedBox(width: .15.sw),
                   Center(
                       child: myTitle(
-                          title: "التوصيل (حجز طاولة)",
+                          title: "Delivery(reserve a table)".tr(),
                           font: 16.sp,
                           color: Colors.black)),
                   IconButton(
@@ -885,7 +1018,7 @@ class _BookingScreenState extends State<BookingScreen> {
                           child: defaultFormField(
                               type: TextInputType.number,
                               controller: numberOfPersonController,
-                              label: "عدد الافراد",
+                              label: "Number of persons".tr(),
                               prefix: Image.asset("assets/images/7.png"),
                               color: color1),
                         ),
@@ -925,7 +1058,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   Image.asset("assets/images/8.png"),
                                   SizedBox(width: 10.w),
                                   Text((value == null)
-                                      ? "اليوم"
+                                      ? "Date".tr()
                                       : DateFormat.yMd().format(value)),
                                 ],
                               )),
@@ -958,7 +1091,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   Image.asset("assets/images/9.png"),
                                   SizedBox(width: 10.w),
                                   Text((value2 == null)
-                                      ? "الساعة"
+                                      ? "Time".tr()
                                       : value2.toString())
                                 ],
                               )),
@@ -968,7 +1101,7 @@ class _BookingScreenState extends State<BookingScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   FocusScope.of(context).requestFocus(new FocusNode());
@@ -981,7 +1114,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     InkWell(
                         onTap: () {
                           if (value== null || numberOfPersonController.text.isEmpty || value2 == null)
-                            Fluttertoast.showToast(msg: "اكمل البيانات");
+                            Fluttertoast.showToast(msg: "Complete required data".tr());
                           else {
                             Navigator.of(context, rootNavigator: true).pop();
                             DeliveryCubit
@@ -1009,7 +1142,7 @@ class _BookingScreenState extends State<BookingScreen> {
                           }
                         },
                         child: mainBottom(
-                            title: "اضف", width: 140, height: 50)),
+                            title: "Add".tr(), width: 140, height: 50)),
                   ],
                 ),
               ),
