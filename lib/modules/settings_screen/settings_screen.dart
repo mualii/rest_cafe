@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
+import 'package:rest_cafe/main.dart';
 import 'package:rest_cafe/modules/QuestionsScreen/QuestionsScreen.dart';
 import 'package:rest_cafe/modules/branches_screen/cubit.dart';
 import 'package:rest_cafe/modules/branches_screen/states.dart';
@@ -11,7 +12,9 @@ import 'package:rest_cafe/modules/contact_screen/contactScreen.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeState.dart';
 import 'package:rest_cafe/modules/profile_screen/profile_screen.dart';
+import 'package:rest_cafe/modules/splash_screen/splashScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/localstroage.dart';
 import 'package:share/share.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -21,7 +24,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool? langIsArabic = false;
-
+String lang= LocalStorage.getData(key: "lang")=="en"?"العربية":"English";
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit,HomeState>(
@@ -135,9 +138,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             //   ),
             //   function: () {},
             // ),
-            langIsArabic!
-                ? SettingsOption(
-                    title: 'اللغة',
+           SettingsOption(
+                    title: lang,
                     iconData: Icon(
                       Icons.language,
                       color: Color(0xff4CB379),
@@ -145,20 +147,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     function: () {
                       setState(() {
-                        langIsArabic = !langIsArabic!;
-                        print("hi");
-                      });
-                    },
-                  )
-                : SettingsOption(
-                    title: "English",
-                    iconData: Icon(
-                      Icons.language,
-                      color: Color(0xff4CB379),
-                      size: 25,
-                    ),
-                    function: () {
-                      setState(() {
+
+                        if(lang=="English") {
+
+                          LocalStorage.saveData(key: "lang", value: "en");
+                          context.setLocale(Locale('en'));
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyApp(),
+                            ),
+                                (route) => false,
+                          );
+                        }
+                        else {
+                          LocalStorage.saveData(key: "lang", value: "ar");
+                          context.setLocale(Locale('ar'));
+
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyApp(),
+                            ),
+                                (route) => false,
+                          );
+                        }
                         print("bye");
                         langIsArabic = !langIsArabic!;
                       });

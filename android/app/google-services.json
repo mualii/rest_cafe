@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "367687531313",
-    "project_id": "restcafe-6d16d",
-    "storage_bucket": "restcafe-6d16d.appspot.com"
+    "project_number": "622256861766",
+    "project_id": "restcafe-6dc12",
+    "storage_bucket": "restcafe-6dc12.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:367687531313:android:d518d095b54e18eaff4e10",
+        "mobilesdk_app_id": "1:622256861766:android:c70e46d86e8932155e5047",
         "android_client_info": {
           "package_name": "com.alexapps.restCafe"
         }
       },
       "oauth_client": [
         {
-          "client_id": "367687531313-q4468jk7e3lm08jfu8to3rn6ej2usbbc.apps.googleusercontent.com",
+          "client_id": "622256861766-hflg4kma539n2s66t9pa8ob5l6k9n804.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.alexapps.restCafe",
-            "certificate_hash": "9251d27a7456ba4409a255b7cd661715c742e855"
+            "certificate_hash": "d0065bd6a194776ba3036aa45fb2724b285a752e"
           }
         },
         {
-          "client_id": "367687531313-fs7h50kl6vano1qnat2a5lk0bttv2jp4.apps.googleusercontent.com",
+          "client_id": "622256861766-rmdl1gvs20rkmoj8s1fi52vk89tuihjm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA1uBa6FZJZW2cUEquCFg0JduUKAfqHflc"
+          "current_key": "AIzaSyCyhCzjDf_JCpkPoEKCYTW3GrC8Jh2-nxg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "367687531313-fs7h50kl6vano1qnat2a5lk0bttv2jp4.apps.googleusercontent.com",
+              "client_id": "622256861766-rmdl1gvs20rkmoj8s1fi52vk89tuihjm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -147,14 +148,14 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                               body: Column(
                                 children: [
                                   Text(
-                                    "حذف السله",
+                                    "Delete cart".tr(),
                                     style: TextStyle(
                                       color: color1,
                                       fontFamily: "FrutigerLTArabic",
                                     ),
                                   ),
                                   Text(
-                                    "لا يمكك الطلب من متجرين مختلفين هل تريد حذف السلة؟  ",
+                                    "You can't order form 2 different shops, delete cart ?".tr(),
                                     style: TextStyle(
                                       fontFamily: "FrutigerLTArabic",
                                     ),
@@ -225,7 +226,7 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                           }}
                          ,
                           child: mainBottom(
-                              title: "اضافة ${AddCubit.get(context).total}   ريال ", height: 50.h, width: 140.w),
+                              title:  "Add".tr()+ " ${AddCubit.get(context).total} "  + "SAR".tr(), height: 50.h, width: 140.w),
                         ),
                         SizedBox(width: 20.w),
                         InkWell(

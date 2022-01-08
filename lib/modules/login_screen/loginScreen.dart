@@ -8,9 +8,11 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/save_location_screen/saveLocationScreen.dart';
+import 'package:rest_cafe/modules/splash_screen/splashScreen.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/verify_OTP_screen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
+import 'package:rest_cafe/shared/localstroage.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 class LoginScreen extends StatefulWidget{
   @override
@@ -41,7 +43,8 @@ class LoginScreenState extends State<LoginScreen>  {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
   var _userPhoneController = TextEditingController();
-  String language="English";
+  String language=LocalStorage.getData(key: "lang")=="ar"? "English":"العربية";
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   PhoneNumber number = PhoneNumber(isoCode: "SA");
   bool validate=false;
@@ -60,7 +63,7 @@ class LoginScreenState extends State<LoginScreen>  {
           FocusScope.of(context).unfocus();
     }
     );
-
+    print(LocalStorage.getData(key:"lang"));
   }
 
 
@@ -243,7 +246,31 @@ class LoginScreenState extends State<LoginScreen>  {
                          ),
                          child:TextButton(onPressed:(){
                            setState(()
-                           =>language=="English"?language="العربية":language="English");
+                           {if(language=="English") {
+
+LocalStorage.saveData(key: "lang", value: "en");
+                             context.setLocale(Locale('en'));
+                             Navigator.pushAndRemoveUntil(
+                               context,
+                               MaterialPageRoute(
+                                 builder: (context) => SplashScreen(),
+                               ),
+                                   (route) => false,
+                             );
+                           }
+                           else {
+                           LocalStorage.saveData(key: "lang", value: "ar");
+                           context.setLocale(Locale('ar'));
+                           LocalStorage.saveData(key: "lang", value: "ar");
+                           context.setLocale(Locale('ar'));
+                           Navigator.pushAndRemoveUntil(
+                             context,
+                             MaterialPageRoute(
+                               builder: (context) => SplashScreen(),
+                             ),
+                                 (route) => false,
+                           );
+                           }});
 
                            // await context.setLocale(EasyLocalization.of(context)!.supportedLocales[1]);
 

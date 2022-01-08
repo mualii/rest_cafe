@@ -9,9 +9,10 @@ import 'package:rest_cafe/modules/OrderCurrnentAndEnd/Screens/cart_state.dart';
 import 'package:rest_cafe/modules/OrderCurrnentAndEnd/cart_cubit.dart';
 
 import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
-
+import 'dart:math' as math;
 import 'package:rest_cafe/shared/Model/cart_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/localstroage.dart';
 
 import 'package:rest_cafe/shared/styles/colors.dart';
 
@@ -75,7 +76,11 @@ cubit=CartCubit.get(context);
                       ],
                     ),
                     SizedBox(height: 10),
-                    Center(child: Image.asset("assets/images/cart1.png")),
+                    Center(child: Transform(
+                        
+                        transform: LocalStorage.getData(key: "lang")=="en"? Matrix4.rotationY(math.pi): Matrix4.rotationY(2*math.pi),
+                        alignment: Alignment.center,
+                        child: Image.asset("assets/images/cart1.png"))),
                     SizedBox(height: 10),
                     Expanded(
 

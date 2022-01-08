@@ -6,13 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:rest_cafe/modules/branches_screen/cubit.dart';
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
 import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_cubit.dart';
 import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_state.dart';
 import 'package:rest_cafe/modules/card_screen_3/cardScreen3.dart';
+import 'package:rest_cafe/modules/detail_screen/cubit/detial_cubit.dart';
 import 'package:rest_cafe/shared/Model/set_order_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
-
+import 'package:rest_cafe/shared/localstroage.dart';
+import 'dart:math' as math;
 import 'package:rest_cafe/shared/styles/colors.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
@@ -85,8 +88,12 @@ class CardScreen2 extends StatelessWidget {
                             })
                       ],
                     ),
-                    SizedBox(height: 15.h),
-                    Center(child: Image.asset("assets/images/card2.png")),
+                    SizedBox(height: 15),
+                    Center(child: Transform(
+
+                        transform: LocalStorage.getData(key: "lang")=="en"? Matrix4.rotationY(math.pi): Matrix4.rotationY(2*math.pi),
+                        alignment: Alignment.center,
+                        child: Image.asset("assets/images/card2.png"))),
                     SizedBox(height: 15.h),
                     SingleChildScrollView(
                       child: Column(
@@ -127,10 +134,7 @@ class CardScreen2 extends StatelessWidget {
                                           title: "To car".tr(),
                                           color: Colors.black,
                                           font: 16.sp),
-                                      myTitle(
-                                          title: "2 ريال",
-                                          color: Colors.black45,
-                                          font: 12.sp),
+
                                       Spacer(),
                                       Container(
                                           height: 50.h,
@@ -209,7 +213,7 @@ class CardScreen2 extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(height: 15.h),
+                          SizedBox(height: 15),
                           Container(
                             height: 50.h,
                             decoration: BoxDecoration(
@@ -251,7 +255,7 @@ class CardScreen2 extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 15),
-                          Container(
+                     DetailCubit.get(context).details!.canPickupOrder==true?     Container(
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(20.sp)),
@@ -378,7 +382,7 @@ class CardScreen2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ),
+                          ):Container(),
                         ],
                       ),
                     ),
@@ -974,179 +978,182 @@ class _BookingScreenState extends State<BookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        print("tesr");
-      },
-      child: Material(
-        elevation: 10,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        child: Container(
-          height: .40.sh,
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(width: .15.sw),
-                  Center(
-                      child: myTitle(
-                          title: "Delivery(reserve a table)".tr(),
-                          font: 16.sp,
-                          color: Colors.black)),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
-              ),
-              SizedBox(height: 20.h),
-              StatefulBuilder(
-                builder: (BuildContext ctx, StateSetter setState) => Column(
+    return MediaQuery(
+      data:  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+          print("tesr");
+        },
+        child: Material(
+          elevation: 10,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          child: Container(
+            height: .40.sh,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        SizedBox(width: 10.w),
-                        Container(
-                          width: .82.sw,
-                          child: defaultFormField(
-                              type: TextInputType.number,
-                              controller: numberOfPersonController,
-                              label: "Number of persons".tr(),
-                              prefix: Image.asset("assets/images/7.png"),
-                              color: color1),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.h),
-                    Row(
-                      children: [
-                        SizedBox(width: 10.w),
-                        InkWell(
-                          onTap: () {
-                            openDatePicker(context);
-                            // return BookingScreen.BookingScreen.showSheet(
+                    SizedBox(width: .15.sw),
+                    Center(
+                        child: myTitle(
+                            title: "Delivery(reserve a table)".tr(),
+                            font: 16.sp,
+                            color: Colors.black)),
+                    IconButton(
+                      icon: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                ),
+                SizedBox(height: 20.h),
+                StatefulBuilder(
+                  builder: (BuildContext ctx, StateSetter setState) => Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(width: 10.w),
+                          Container(
+                            width: .82.sw,
+                            child: defaultFormField(
+                                type: TextInputType.number,
+                                controller: numberOfPersonController,
+                                label: "Number of persons".tr(),
+                                prefix: Image.asset("assets/images/7.png"),
+                                color: color1),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      Row(
+                        children: [
+                          SizedBox(width: 10.w),
+                          InkWell(
+                            onTap: () {
+                              openDatePicker(context);
+                              // return BookingScreen.BookingScreen.showSheet(
+                              //   context,
+                              //   child: buildDatePicker(),
+                              //   onClicked: () {
+                              //     setState(() {
+                              //       context.setLocale(Locale('ar'));
+                              //
+                              //       value =
+                              //           DateFormat('yyyy/MM/dd').format(dateTime);
+                              //     });
+                              //
+                              //     Navigator.pop(context);
+                              //   },
+                              // );
+                            },
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black38),
+                                    borderRadius: BorderRadius.circular(10.sp)),
+                                width: 150.w,
+                                height: 50.h,
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 10.w),
+                                    Image.asset("assets/images/8.png"),
+                                    SizedBox(width: 10.w),
+                                    Text((value == null)
+                                        ? "Date".tr()
+                                        : DateFormat.yMd().format(value)),
+                                  ],
+                                )),
+                          ),
+                          SizedBox(width: 20.w),
+                          InkWell(
+                            onTap: () {
+                              openTimePicker(context);
+                            },
+                            // onTap: () => BookingScreen.showSheet(
                             //   context,
-                            //   child: buildDatePicker(),
+                            //   child: buildTimePicker(),
                             //   onClicked: () {
                             //     setState(() {
-                            //       context.setLocale(Locale('ar'));
-                            //
-                            //       value =
-                            //           DateFormat('yyyy/MM/dd').format(dateTime);
+                            //       value2 = DateFormat('HH:mm').format(dateTime);
                             //     });
                             //
                             //     Navigator.pop(context);
                             //   },
-                            // );
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black38),
-                                  borderRadius: BorderRadius.circular(10.sp)),
-                              width: 150.w,
-                              height: 50.h,
-                              child: Row(
-                                children: [
-                                  SizedBox(width: 10.w),
-                                  Image.asset("assets/images/8.png"),
-                                  SizedBox(width: 10.w),
-                                  Text((value == null)
-                                      ? "Date".tr()
-                                      : DateFormat.yMd().format(value)),
-                                ],
-                              )),
-                        ),
-                        SizedBox(width: 20.w),
-                        InkWell(
+                            // ),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black38),
+                                    borderRadius: BorderRadius.circular(10.sp)),
+                                width: 150.w,
+                                height: 50.h,
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 10.w),
+                                    Image.asset("assets/images/9.png"),
+                                    SizedBox(width: 10.w),
+                                    Text((value2 == null)
+                                        ? "Time".tr()
+                                        : value2.toString())
+                                  ],
+                                )),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                    print("tesr");
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(width: 10.w),
+                      InkWell(
                           onTap: () {
-                            openTimePicker(context);
+                            if (value== null || numberOfPersonController.text.isEmpty || value2 == null)
+                              Fluttertoast.showToast(msg: "Complete required data".tr());
+                            else {
+                              Navigator.of(context, rootNavigator: true).pop();
+                              DeliveryCubit
+                                  .get(context)
+                                  .setorder
+                                  .reservation = Reservation(date: DateFormat
+                                  .yMd().format(value).toString(),
+                                  persons: numberOfPersonController.text,
+                                  time: value2.toString());
+                              showDialog(
+                                barrierColor: Colors.white10, //AddScreen()
+                                context: context,
+                                builder: (_) =>
+                                    Dialog(
+                                      insetPadding: EdgeInsets.all(20),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              20)),
+                                      child: CardScreen2(
+                                        hasTabol: true,
+                                      ),
+                                    ), //AddScreen()
+                                barrierDismissible: true,
+                              );
+                            }
                           },
-                          // onTap: () => BookingScreen.showSheet(
-                          //   context,
-                          //   child: buildTimePicker(),
-                          //   onClicked: () {
-                          //     setState(() {
-                          //       value2 = DateFormat('HH:mm').format(dateTime);
-                          //     });
-                          //
-                          //     Navigator.pop(context);
-                          //   },
-                          // ),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black38),
-                                  borderRadius: BorderRadius.circular(10.sp)),
-                              width: 150.w,
-                              height: 50.h,
-                              child: Row(
-                                children: [
-                                  SizedBox(width: 10.w),
-                                  Image.asset("assets/images/9.png"),
-                                  SizedBox(width: 10.w),
-                                  Text((value2 == null)
-                                      ? "Time".tr()
-                                      : value2.toString())
-                                ],
-                              )),
-                        ),
-                      ],
-                    )
-                  ],
+                          child: mainBottom(
+                              title: "Add".tr(), width: 140, height: 50)),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  FocusScope.of(context).requestFocus(new FocusNode());
-                  print("tesr");
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(width: 10.w),
-                    InkWell(
-                        onTap: () {
-                          if (value== null || numberOfPersonController.text.isEmpty || value2 == null)
-                            Fluttertoast.showToast(msg: "Complete required data".tr());
-                          else {
-                            Navigator.of(context, rootNavigator: true).pop();
-                            DeliveryCubit
-                                .get(context)
-                                .setorder
-                                .reservation = Reservation(date: DateFormat
-                                .yMd().format(value).toString(),
-                                persons: numberOfPersonController.text,
-                                time: value2.toString());
-                            showDialog(
-                              barrierColor: Colors.white10, //AddScreen()
-                              context: context,
-                              builder: (_) =>
-                                  Dialog(
-                                    insetPadding: EdgeInsets.all(20),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            20)),
-                                    child: CardScreen2(
-                                      hasTabol: true,
-                                    ),
-                                  ), //AddScreen()
-                              barrierDismissible: true,
-                            );
-                          }
-                        },
-                        child: mainBottom(
-                            title: "Add".tr(), width: 140, height: 50)),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

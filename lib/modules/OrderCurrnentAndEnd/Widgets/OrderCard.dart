@@ -1,8 +1,10 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/shared/Model/OrderCurrentAndEnd.dart';
 import 'package:rest_cafe/shared/Model/orders_model.dart';
+import 'package:rest_cafe/shared/localstroage.dart';
 
 class OrderCard extends StatelessWidget {
   OrderCard({required this.order, this.haveRate = false});
@@ -12,7 +14,7 @@ class OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.ltr,
+      textDirection:LocalStorage.getData(key: "lang")=="ar"? TextDirection.ltr:TextDirection.rtl,
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
         child: Card(
@@ -154,7 +156,7 @@ class OrderCard extends StatelessWidget {
           width: 5.w,
         ),
         Text(
-          "منتجات",
+          "Products".tr(),
           style: TextStyle(
             fontFamily: "FrutigerLTArabic",
           ),
@@ -187,7 +189,7 @@ class OrderCard extends StatelessWidget {
           width: 5.w,
         ),
         Text(
-          "ريال",
+          "SAR".tr(),
           style: TextStyle(
             fontFamily: "FrutigerLTArabic",
           ),

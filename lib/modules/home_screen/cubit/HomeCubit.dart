@@ -31,8 +31,9 @@ filterByType();
     result is Response
     ){
 types.addAll((result.data as List<dynamic>).map((e) => Types.fromJson(e)).toList());
-      emit(TypesLoaded());
 getResturants(context);
+      emit(TypesLoaded());
+
     }
     else
       emit(TypesFailed());

@@ -51,7 +51,7 @@ HomeCubit? homeCubit;
               child: Container(
                 padding: EdgeInsets.only(
                     top: 20.0.sp, left: 20.0.sp, right: 20.0.sp),
-                child:state is ResturantsLoading || state is TypesLoading ?Center(child: CircularProgressIndicator()) :SingleChildScrollView(
+                child: state is TypesLoading ?Center(child: CircularProgressIndicator()) :state is TypesFailed? Center(child: Text("اعد المحاولة لاحقا"),): SingleChildScrollView(
                   controller: scrollController,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,

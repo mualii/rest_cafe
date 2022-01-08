@@ -97,7 +97,7 @@ if(LocalStorage.getData(key: "lang")==null)LocalStorage.saveData(key: "lang", va
     child: MyApp(),
     supportedLocales: [Locale('ar'), Locale('en')],
     path: "assets/langs",
-    fallbackLocale:Locale('ar'),
+    fallbackLocale:Locale(LocalStorage.getData(key: "lang")),
     startLocale: Locale("ar"),
 
 
@@ -131,7 +131,7 @@ class MyApp extends StatelessWidget {
     create: (context)=>FavoutiresCubit()),
           BlocProvider<StartCubit>(create: (BuildContext context)=>StartCubit()),
           BlocProvider<OrderCubit>(create: (BuildContext context)=>OrderCubit()),
-          BlocProvider<HomeCubit>(create: (BuildContext context)=>HomeCubit()..getTypes(context)..getProfile(context)),
+          BlocProvider<HomeCubit>(create: (BuildContext context)=>HomeCubit()..getProfile(context)..getTypes(context)),
           BlocProvider<DeliveryCubit>(create: (BuildContext context)=>DeliveryCubit()..getVehicles(context)),
     BlocProvider(
     create: (context) => DetailCubit())

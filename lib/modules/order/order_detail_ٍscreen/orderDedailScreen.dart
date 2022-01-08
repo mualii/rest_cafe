@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -222,7 +223,11 @@ TextEditingController rateController = TextEditingController();
                             Row(
                               children: [
                                 myTitle(
-                                    title: "التوصيل للسيارة",
+                                    title: OrderDetailsCubit
+                                        .get(context)
+                                        .details!.deliveryType=="PICKUP"?"Pick up".tr():OrderDetailsCubit
+                                        .get(context)
+                                        .details!.deliveryType=="VEHICLE"?"To car".tr():"Reserve a table".tr(),
                                     color: Colors.black,
                                     font: 12.sp), Container(
                                   height: 20,
@@ -252,7 +257,7 @@ TextEditingController rateController = TextEditingController();
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           myTitle(
-                              title: "الفرع",
+                              title: "Branch".tr(),
                               font: 14.sp,
                               color: Colors.black),
                         ],
@@ -288,7 +293,7 @@ TextEditingController rateController = TextEditingController();
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           myTitle(
-                              title: "المنتجات",
+                              title: "Products".tr(),
                               font: 14.sp,
                               color: Colors.black),
                         ],
@@ -330,7 +335,7 @@ TextEditingController rateController = TextEditingController();
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     mainBottom(
-                        title: "انهاء الطلب", height: 50.h, width: .4.sw),
+                        title: "End order".tr(), height: 50.h, width: .4.sw),
 
                     Container(
                         height: 30,
@@ -397,11 +402,13 @@ class ListModle extends StatelessWidget {
                                 ),
                                 myTitle(
                                     title: item.name,
-                                    font: 14.sp,
+                                    font: 14.sp ,
+                                    lines: 1,
+
                                     color: Colors.black),
                                 // SizedBox(height: 5.h),
                                 myTitle(
-                                    title: "الاضافات",
+                                    title: "Extras".tr(),
                                     font: 14.sp,
                                     color: Colors.black),
 
@@ -440,14 +447,14 @@ class ListModle extends StatelessWidget {
                     children: [
                       Icon(Icons.arrow_back_ios, color: Colors.grey),
                       myTitle(
-                          color: Colors.black54, font: 14.sp, title: "الاضافات"),]),
+                          color: Colors.black54, font: 14.sp, title: "Extras".tr()),]),
                       Column(
                         children: [
                           myTitle(title: item.name, font: 14.sp, color: Colors.black),
                           Row(
                             children: [
                               myTitle(
-                                  title: "${item.unitPrice}  ريال ",
+                                  title: "${item.unitPrice}"+"SAR".tr(),
                                   font: 14.sp,
                                   color: Colors.black54),
                               myTitle(

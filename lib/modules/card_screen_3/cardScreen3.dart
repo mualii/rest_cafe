@@ -13,10 +13,12 @@ import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_state.dart';
 import 'package:rest_cafe/modules/card_screen_3/checkout_screen.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/detial_cubit.dart';
 import 'package:rest_cafe/modules/edit_profile/edit_profile.dart';
+import 'dart:math' as math;
 import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/shared/Model/set_order_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
+import 'package:rest_cafe/shared/localstroage.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 class CardScreen3 extends StatelessWidget {
@@ -69,7 +71,11 @@ class CardScreen3 extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 15.h),
-                Center(child: Image.asset("assets/images/card3.png")),
+                Center(child: Transform(
+
+                    transform: LocalStorage.getData(key: "lang")=="en"? Matrix4.rotationY(math.pi): Matrix4.rotationY(2*math.pi),
+                    alignment: Alignment.center,
+                    child: Image.asset("assets/images/card3.png"))),
                 SizedBox(height: 15.h),
                 Container(
                   decoration: BoxDecoration(

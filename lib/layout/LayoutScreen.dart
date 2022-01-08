@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
@@ -6,6 +7,7 @@ import 'package:rest_cafe/modules/favorites_screen/favorites_screen.dart';
 import 'package:rest_cafe/modules/home_screen/homeScreen.dart';
 import 'package:rest_cafe/modules/settings_screen/settings_screen.dart';
 import 'package:rest_cafe/shared/components/constants.dart';
+import 'package:rest_cafe/shared/localstroage.dart';
 
 import 'Fuction/BNBCustomPainter.dart';
 import 'Fuction/BNBCustomPainter2.dart';
@@ -30,10 +32,10 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   List<Widget> _pages = [];
   List<String> titlePage = [
-    "الرئيسية",
-    "المفضلة",
-    "الطلبات",
-    "الإعدادات",
+    "Home".tr(),
+    "Favorites".tr(),
+    "Orders".tr(),
+    "Settings".tr(),
     "الإعدادات",
   ];
   late int _selectedPageIndex = widget.selectedPageIndex;
@@ -48,6 +50,12 @@ class _LayoutScreenState extends State<LayoutScreen> {
       OrderCurrentAndEnd(),
       SettingsScreen()
     ];
+    if(LocalStorage.getData(key: "lang")=="en"){
+      _pages=_pages.reversed.toList();
+      currentIndex=3;
+      _selectedPageIndex=3;
+
+    }
     super.initState();
     _model = ScrollListener.initialise(scrollController);
 
@@ -134,7 +142,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                             ),
                       alignment: Alignment.bottomCenter,
                       icon: Image.asset(
-                        "assets/images/home.png",
+                   LocalStorage.getData(key: "lang")=="ar" ?    "assets/images/home.png":"assets/images/settings.png",
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -205,7 +213,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                             ),
                       alignment: Alignment.bottomCenter,
                       icon: Image.asset(
-                        "assets/images/fav.png",
+                        LocalStorage.getData(key: "lang")=="ar" ?     "assets/images/fav.png":"assets/images/orders.png",
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -375,7 +383,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                               bottom: 7,
                             ),
                       alignment: Alignment.bottomCenter,
-                      icon: Image.asset("assets/images/orders.png",
+                      icon: Image.asset(    LocalStorage.getData(key: "lang")=="ar" ?  "assets/images/orders.png":"assets/images/fav.png",
                           fit: BoxFit.fill),
                     ),
                     currentIndex == 2
@@ -440,7 +448,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                               bottom: 7.h,
                             ),
                       alignment: Alignment.bottomCenter,
-                      icon: Image.asset("assets/images/settings.png",
+                      icon: Image.asset(LocalStorage.getData(key: "lang")=="ar" ?  "assets/images/settings.png":"assets/images/home.png",
                           fit: BoxFit.fill),
                     ),
                     currentIndex == 3

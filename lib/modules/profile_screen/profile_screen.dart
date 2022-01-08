@@ -1,10 +1,13 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/modules/Payment_screens/first_payment_screen.dart';
 import 'package:rest_cafe/modules/edit_profile/edit_profile.dart';
+import 'package:rest_cafe/modules/login_screen/loginScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/localstroage.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -17,12 +20,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        appBar: CustomisedAppBar(title: 'البروفايل', actions: []),
+        appBar: CustomisedAppBar(title: 'Profile'.tr(), actions: []),
         body: ListView(
           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           children: [
             SettingsOption(
-              title: 'تعديل الملف الشخصي',
+              title: 'Edit profile'.tr(),
               iconData: Container(
                   height: 20,
                   child: Image.asset("assets/images/ic_profile_edit.png")),
@@ -32,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             SettingsOption(
-              title: 'وسائل الدفع',
+              title: 'Payment methods'.tr(),
               iconData: Container(
                   height: 27,
                   child: Image.asset("assets/images/ic_profile_payment.png")),
@@ -41,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             SwitchListTile.adaptive(
-              title: Text('الاشعارات'),
+              title: Text('Notifications'.tr()),
               value: notificationsToggle,
               onChanged: (bool value) {
                 setState(() {
@@ -57,14 +60,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Divider(),
             SettingsOption(
-              title: 'تريد مساعدة',
+              title: "Help".tr(),
               iconData: Container(
                   height: 25,
                   child: Image.asset("assets/images/ic_profile_lang.png")),
               function: () {},
             ),
             SettingsOption(
-              title: 'تسجيل خروج',
+              title: 'Log out'.tr(),
               iconData: Container(
                   height: 25,
                   child: Image.asset("assets/images/ic_profile_logout.png")),
@@ -76,12 +79,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Image.asset("assets/images/ic_error.png"),
                   ),
                   animType: AnimType.BOTTOMSLIDE,
-                  title: "تسجيل خروج",
-                  desc: "هل أنت متأكد من تسجيل خروجك بالتطبيق",
+                  title: "Log out".tr(),
+                  desc: "Are you sure you want to log out ?".tr(),
 
                   btnOk: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
+
                     },
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all(
@@ -96,14 +100,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     side:
                                         BorderSide(color: Color(0xffC3C6D1))))),
                     child: Text(
-                      "تراجع",
+                      "Back".tr(),
                       style: TextStyle(color: Color(0xff4CB379)),
                     ),
                   ),
 
                   btnCancel: ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+
+                      LocalStorage.removeData(key: "access_token");
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
+
                     },
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all(
@@ -118,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     side:
                                         BorderSide(color: Color(0xffC3C6D1))))),
                     child: Text(
-                      "خروج",
+                      "Exit".tr(),
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
