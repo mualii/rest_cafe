@@ -255,7 +255,7 @@ class CardScreen2 extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 15),
-                     DetailCubit.get(context).details!.canPickupOrder==true?     Container(
+                    Container(
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(20.sp)),
@@ -382,7 +382,7 @@ class CardScreen2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ):Container(),
+                          ),
                         ],
                       ),
                     ),

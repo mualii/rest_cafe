@@ -224,7 +224,7 @@ class CardScreen3 extends StatelessWidget {
                     myTitle(title: "Total".tr(), color: Colors.black, font: 16.sp),
                     Spacer(),
                     myTitle(
-                        title: "${DeliveryCubit.get(context).price!.subtotal.toString()} ريال ", color: Colors.black38, font: 16.sp),
+                        title: "${DeliveryCubit.get(context).price!.subtotal.toString()} "+"SAR".tr(), color: Colors.black38, font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),
@@ -232,7 +232,7 @@ class CardScreen3 extends StatelessWidget {
                   children: [
                     myTitle(title: "Service".tr(), color: Colors.black, font: 16.sp),
                     Spacer(),
-                    myTitle(title: "${DeliveryCubit.get(context).price!.serviceCharge.toString()}  ريال ", color: Colors.black38, font: 16.sp),
+                    myTitle(title: "${DeliveryCubit.get(context).price!.serviceCharge.toString()} "+"SAR".tr(), color: Colors.black38, font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),
@@ -246,7 +246,7 @@ class CardScreen3 extends StatelessWidget {
                         font: 16.sp),
                     Spacer(),
                     myTitle(
-                        title: "${DeliveryCubit.get(context).price!.total.toString()}  ريال ", color: Colors.black38, font: 16.sp),
+                        title: "${DeliveryCubit.get(context).price!.total.toString()} "+"SAR".tr(), color: Colors.black38, font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),

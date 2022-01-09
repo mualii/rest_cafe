@@ -197,7 +197,7 @@ TextEditingController rateController = TextEditingController();
                                 Row(
                                   children: [
                                     Text(
-                                      " دقائق ",
+                                      "mins".tr(),
                                       style: TextStyle(
                                           fontSize: 14.sp,
                                           color: Colors.brown,
@@ -213,7 +213,7 @@ TextEditingController rateController = TextEditingController();
                                   ],
                                 ),
                                 Text(
-                                  "مدة التجهيز",
+                                  "Prep time".tr(),
                                   style: TextStyle(
                                       color: Colors.grey, fontSize: 12.sp),
                                 ),
@@ -342,11 +342,11 @@ TextEditingController rateController = TextEditingController();
                         child: Image.asset("assets/images/pay (1).jpg")),
 
                     Text(
-                        " ريال   ${OrderDetailsCubit
+                        "${OrderDetailsCubit
                             .get(context)
                             .details!
                             .total
-                            .toString()}    "),
+                            .toString()} "+"SAR".tr()),
                   ],
                 ),
               ),
@@ -454,7 +454,7 @@ class ListModle extends StatelessWidget {
                           Row(
                             children: [
                               myTitle(
-                                  title: "${item.unitPrice}"+"SAR".tr(),
+                                  title: "${item.unitPrice} "+"SAR".tr(),
                                   font: 14.sp,
                                   color: Colors.black54),
                               myTitle(

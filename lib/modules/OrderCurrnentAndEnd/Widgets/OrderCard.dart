@@ -184,16 +184,18 @@ class OrderCard extends StatelessWidget {
   Row Widget_Cost() {
     return Row(
       children: [
-        Text(order.total.toString()),
-        SizedBox(
-          width: 5.w,
-        ),
+
         Text(
           "SAR".tr(),
           style: TextStyle(
             fontFamily: "FrutigerLTArabic",
           ),
         ),
+        SizedBox(
+          width: 5.w,
+        ),
+        Text(order.total.toString()),
+
         SizedBox(
           width: 10.w,
         ),

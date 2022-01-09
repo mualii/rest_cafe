@@ -36,7 +36,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     "Favorites".tr(),
     "Orders".tr(),
     "Settings".tr(),
-    "الإعدادات",
+
   ];
   late int _selectedPageIndex = widget.selectedPageIndex;
 
@@ -52,6 +52,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     ];
     if(LocalStorage.getData(key: "lang")=="en"){
       _pages=_pages.reversed.toList();
+      titlePage=titlePage.reversed.toList();
       currentIndex=3;
       _selectedPageIndex=3;
 

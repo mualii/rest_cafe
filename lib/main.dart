@@ -138,6 +138,8 @@ class MyApp extends StatelessWidget {
 
         ],
         child: MaterialApp(
+          builder: (context, child) =>
+              MediaQuery(data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),child: child,),
 
           theme: ThemeData(
             primaryColor: Color(0xff4CB278),
