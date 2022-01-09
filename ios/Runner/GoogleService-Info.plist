@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>622256861766-qs8jrn775hnthvd43ktoe93v5p7fvavm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.622256861766-qs8jrn775hnthvd43ktoe93v5p7fvavm</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>622256861766-hflg4kma539n2s66t9pa8ob5l6k9n804.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB4KB1fZQgWzc9eFZyBm7ixCDF_OlFFFx8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>622256861766</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.alexapps.restCafe</string>
+	<key>PROJECT_ID</key>
+	<string>restcafe-6dc12</string>
+	<key>STORAGE_BUCKET</key>
+	<string>restcafe-6dc12.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:622256861766:ios:fd50c52bdbfe95545e5047</string>
+</dict>
+</plist>

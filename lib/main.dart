@@ -20,7 +20,6 @@ import 'package:rest_cafe/shared/cubits/startCubit.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/localstroage.dart';
 
-
 import 'modules/OrderCurrnentAndEnd/Screens/Order_cubit.dart';
 import 'modules/OrderCurrnentAndEnd/cart_cubit.dart';
 import 'modules/detail_screen/cubit/detial_cubit.dart';
@@ -30,17 +29,19 @@ import 'modules/home_screen/cubit/HomeCubit.dart';
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
-    'This channel is used for important notifications.', // description
+    description:
+        'This channel is used for important notifications.', // description
     importance: Importance.high,
     playSound: true);
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('A bg message just showed up :  ${message.messageId}');
 }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -49,7 +50,8 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
@@ -69,7 +71,7 @@ void main() async {
             android: AndroidNotificationDetails(
               channel.id,
               channel.name,
-              channel.description,
+              channelDescription: channel.description,
               color: Colors.blue,
               playSound: true,
               icon: '@mipmap/ic_launcher',
@@ -82,30 +84,21 @@ void main() async {
     print('A new onMessageOpenedApp event was published!');
     RemoteNotification notification = message.notification;
     AndroidNotification android = message.notification?.android;
-
-
   });
-
 
   LocalStorage.init();
   await EasyLocalization.ensureInitialized();
-DioHelper.initDio();
+  DioHelper.initDio();
 
-if(LocalStorage.getData(key: "lang")==null)LocalStorage.saveData(key: "lang", value: "ar");
+  if (LocalStorage.getData(key: "lang") == null)
+    LocalStorage.saveData(key: "lang", value: "ar");
   Bloc.observer = MyBlocObserver();
   runApp(EasyLocalization(
     child: MyApp(),
     supportedLocales: [Locale('ar'), Locale('en')],
     path: "assets/langs",
-    fallbackLocale:Locale(LocalStorage.getData(key: "lang")),
+    fallbackLocale: Locale(LocalStorage.getData(key: "lang")),
     startLocale: Locale("ar"),
-
-
-
-
-
-
-
   ));
 }
 //Test
@@ -126,20 +119,27 @@ class MyApp extends StatelessWidget {
       builder: () => MultiBlocProvider(
         providers: [
           BlocProvider<CartCubit>(
-          create: (context)=>CartCubit()..getCart(context),),
-    BlocProvider(
-    create: (context)=>FavoutiresCubit()),
-          BlocProvider<StartCubit>(create: (BuildContext context)=>StartCubit()),
-          BlocProvider<OrderCubit>(create: (BuildContext context)=>OrderCubit()),
-          BlocProvider<HomeCubit>(create: (BuildContext context)=>HomeCubit()..getProfile(context)..getTypes(context)),
-          BlocProvider<DeliveryCubit>(create: (BuildContext context)=>DeliveryCubit()..getVehicles(context)),
-    BlocProvider(
-    create: (context) => DetailCubit())
-
+            create: (context) => CartCubit()..getCart(context),
+          ),
+          BlocProvider(create: (context) => FavoutiresCubit()),
+          BlocProvider<StartCubit>(
+              create: (BuildContext context) => StartCubit()),
+          BlocProvider<OrderCubit>(
+              create: (BuildContext context) => OrderCubit()),
+          BlocProvider<HomeCubit>(
+              create: (BuildContext context) => HomeCubit()
+                ..getProfile(context)
+                ..getTypes(context)),
+          BlocProvider<DeliveryCubit>(
+              create: (BuildContext context) =>
+                  DeliveryCubit()..getVehicles(context)),
+          BlocProvider(create: (context) => DetailCubit())
         ],
         child: MaterialApp(
-          builder: (context, child) =>
-              MediaQuery(data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),child: child,),
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            child: child,
+          ),
 
           theme: ThemeData(
             primaryColor: Color(0xff4CB278),
@@ -216,18 +216,15 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-    ScrollListener _model;
-    ScrollController  _controller;
+  ScrollListener _model;
+  ScrollController _controller;
   final double _bottomNavBarHeight = 56;
 
   @override
   void initState() {
-
     _controller = ScrollController();
     _model = ScrollListener.initialise(_controller);
     super.initState();
-
-
   }
 
   @override
@@ -285,6 +282,7 @@ class ScrollListener extends ChangeNotifier {
     });
   }
 }
+
 class MyBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
@@ -310,4 +308,3 @@ class MyBlocObserver extends BlocObserver {
     print('onClose -- ${bloc.runtimeType}');
   }
 }
-
