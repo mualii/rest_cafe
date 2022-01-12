@@ -52,7 +52,10 @@ dependencies:
   scrollable_positioned_list: ^0.2.3
   maps_launcher: ^2.0.1
   share: ^2.0.4
+  firebase_messaging: ^11.2.5
   flutter_local_notifications: ^9.2.0
+  apple_sign_in:
+    git: https://github.com/saisantosh2095/flutter_apple_sign_in
 
   #  intl: ^0.16.1
 
@@ -63,12 +66,14 @@ dependencies:
   flutter_bloc: ^7.0.0
   awesome_dialog: ^2.1.1
   flutter_rating_bar: ^4.0.0
-  google_maps_flutter: ^2.0.11
-  firebase_core: ^1.0.1
-  firebase_auth: ^1.0.1
-  firebase_messaging: ^10.0.9
+  google_maps_flutter: ^2.1.1
+  #  firebase_core: ^1.11.0
+  firebase_auth: ^3.3.5
+
+
 
   google_sign_in: ^5.0.7
+  rxdart: ^0.27.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

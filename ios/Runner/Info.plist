@@ -37,6 +37,10 @@
 	<string>This app needs access to location when in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your location to show the nearest restaurants</string>
+	<key>NSCameraUsageDescription</key>
+    <string>We Use it to Upload your profile picture or scan QR codes</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>We Use it to Upload your invoice or profile picture</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

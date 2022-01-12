@@ -74,12 +74,12 @@ HomeCubit? homeCubit;
                               navigateTo(context, SaveLocationScreen());
                             },
                             child: Text(
-                              "${location.area==null?"" :location.area} ${location.district}",
-                              style: TextStyle(
-                                  color: color1,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                              "${location.area!.isEmpty ? " " : location.area} ${location.district}",
+                                      style: TextStyle(
+                                          color: color1,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                           ),
                           SizedBox(width: 10.w),
                           Icon(Icons.keyboard_arrow_down_sharp,

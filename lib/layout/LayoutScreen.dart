@@ -33,10 +33,9 @@ class _LayoutScreenState extends State<LayoutScreen> {
   List<Widget> _pages = [];
   List<String> titlePage = [
     "Home".tr(),
-    "Favorites".tr(),
+    "Favourites".tr(),
     "Orders".tr(),
     "Settings".tr(),
-
   ];
   late int _selectedPageIndex = widget.selectedPageIndex;
 

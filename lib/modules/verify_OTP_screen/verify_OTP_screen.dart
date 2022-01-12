@@ -62,7 +62,8 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
     );
   }
 
-  bool verfiy=true;
+  bool verfiy = true;
+
 //=========================== ****** Main Build ******* ========================================
 
   @override
@@ -106,7 +107,8 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                         alignment: Alignment.center,
                         width: .8.sw,
                         child: myTitle(
-                            title: "We sent a verification code to your phone".tr(),
+                            title: "We sent a verification code to your phone"
+                                .tr(),
                             font: 18.sp)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -130,13 +132,14 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                 SizedBox(
                   height: .02.sh,
                 ),
-                PinCodeInput(
-                  controllerPinText: controllerPinText
-
-                ),
-
-               verfiy==false? Text("Wrong code".tr(),style: TextStyle(color: Colors.red),):Container(),
-            SizedBox(
+                PinCodeInput(controllerPinText: controllerPinText),
+                verfiy == false
+                    ? Text(
+                        "Wrong code".tr(),
+                        style: TextStyle(color: Colors.red),
+                      )
+                    : Container(),
+                SizedBox(
                   height: .02.sh,
                 ),
                 Center(
@@ -146,19 +149,22 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                     margin: EdgeInsets.only(top: 10),
                     child: RaisedButton(
                       onPressed: () async {
-                      var response=await  DioHelper.postData(endpoint: "/api/v1/auth/verify-otp", context: context,formData:{"phone":widget.PhoneUser,"otp":controllerPinText.text} );
-    if(response is Response) {
-      StartCubit.get(context).saveNumber(response);
-      _timer.cancel();
-      navigateAndFinish(context, SaveLocationScreen());
-    }else
-      {
-        setState(() {
-          verfiy=false;
-        });
-      }
-
-
+                        var response = await DioHelper.postData(
+                            endpoint: "/api/v1/auth/verify-otp",
+                            context: context,
+                            formData: {
+                              "phone": widget.PhoneUser,
+                              "otp": controllerPinText.text
+                            });
+                        if (response is Response) {
+                          StartCubit.get(context).saveNumber(response);
+                          _timer.cancel();
+                          navigateAndFinish(context, SaveLocationScreen());
+                        } else {
+                          setState(() {
+                            verfiy = false;
+                          });
+                        }
                       },
                       elevation: 3,
                       child: Text(

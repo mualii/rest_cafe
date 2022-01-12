@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/src/public_ext.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -85,7 +86,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   btnOk: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
-
                     },
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all(
@@ -106,11 +106,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   btnCancel: ElevatedButton(
-                    onPressed: () {
-
+                    onPressed: () async {
+                      //     LocalStorage.sharedPreferences.clear();
                       LocalStorage.removeData(key: "access_token");
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
-
+                      await FirebaseMessaging.instance.deleteToken();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => LoginScreen()));
                     },
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all(

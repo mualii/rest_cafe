@@ -1,5 +1,4 @@
-// @dart=2.9
-
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,6 +18,7 @@ import 'package:rest_cafe/modules/splash_screen/splashScreen.dart';
 import 'package:rest_cafe/shared/cubits/startCubit.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/localstroage.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'modules/OrderCurrnentAndEnd/Screens/Order_cubit.dart';
 import 'modules/OrderCurrnentAndEnd/cart_cubit.dart';
@@ -26,73 +26,72 @@ import 'modules/detail_screen/cubit/detial_cubit.dart';
 import 'modules/favorites_screen/favourites_cubit.dart';
 import 'modules/home_screen/cubit/HomeCubit.dart';
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message ${message.messageId}');
+  print(message.data);
+  // flutterLocalNotificationsPlugin.show(
+  //     message.data.hashCode,
+  //     message.data['title'],
+  //     message.data['body'],
+  //     NotificationDetails(
+  //       android: AndroidNotificationDetails(
+  //         channel.id,
+  //         channel.name,
+  //         channelDescription: channel.description,
+  //       ),
+  //     ));
+}
+
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    'high_importance_channel', // id
-    'High Importance Notifications', // title
-    description:
-        'This channel is used for important notifications.', // description
-    importance: Importance.high,
-    playSound: true);
+  'high_importance_channel', // id
+  'High Importance Notifications', // title
+  description:
+      'This channel is used for important notifications.', // description
+  importance: Importance.high,
+);
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print('A bg message just showed up :  ${message.messageId}');
+final BehaviorSubject<ReceivedNotification> didReceiveLocalNotificationSubject =
+    BehaviorSubject<ReceivedNotification>();
+
+class ReceivedNotification {
+  ReceivedNotification({
+    required this.id,
+    required this.title,
+    required this.body,
+    required this.payload,
+  });
+
+  final int id;
+  final String? title;
+  final String? body;
+  final String? payload;
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await LocalStorage.init();
+  await EasyLocalization.ensureInitialized();
+  DioHelper.initDio();
+  if (LocalStorage.getData(key: "lang") == null)
+    LocalStorage.saveData(key: "lang", value: "ar");
+  Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp();
-
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    RemoteNotification notification = message.notification;
-    AndroidNotification android = message.notification?.android;
-    if (notification != null && android != null) {
-      flutterLocalNotificationsPlugin.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              channel.id,
-              channel.name,
-              channelDescription: channel.description,
-              color: Colors.blue,
-              playSound: true,
-              icon: '@mipmap/ic_launcher',
-            ),
-          ));
-    }
-  });
+  // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+  //   print('A new onMessageOpenedApp event was published!');
+  //   RemoteNotification notification = message.notification;
+  //   AndroidNotification android = message.notification?.android;
+  // });
 
-  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-    print('A new onMessageOpenedApp event was published!');
-    RemoteNotification notification = message.notification;
-    AndroidNotification android = message.notification?.android;
-  });
-
-  LocalStorage.init();
-  await EasyLocalization.ensureInitialized();
-  DioHelper.initDio();
-
-  if (LocalStorage.getData(key: "lang") == null)
-    LocalStorage.saveData(key: "lang", value: "ar");
-  Bloc.observer = MyBlocObserver();
   runApp(EasyLocalization(
     child: MyApp(),
     supportedLocales: [Locale('ar'), Locale('en')],
@@ -103,7 +102,146 @@ void main() async {
 }
 //Test
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  getDeviceToken() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      print('User granted provisional permission');
+    } else {
+      print('User declined or has not accepted permission');
+    }
+
+    setState(() {
+      token = token;
+    });
+    print(token);
+  }
+
+  void _requestPermissions() {
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            MacOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+  }
+
+  void onDidReceiveLocalNotification(
+      int id, String title, String body, String payload) async {
+    // display a dialog with the notification details, tap ok to go to another page
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: Text(title),
+        content: Text(body),
+        actions: [
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: Text('Ok'),
+            onPressed: () async {
+              // Navigator.of(context, rootNavigator: true).pop();
+              // await Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => SecondScreen(payload),
+              //   ),
+              // );
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDeviceToken();
+    _requestPermissions();
+    var initialzationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/launcher_icon');
+    final IOSInitializationSettings initializationSettingsIOS =
+        IOSInitializationSettings(onDidReceiveLocalNotification: (
+      int id,
+      String? title,
+      String? body,
+      String? payload,
+    ) async {
+      didReceiveLocalNotificationSubject.add(
+        ReceivedNotification(
+          id: id,
+          title: title,
+          body: body,
+          payload: payload,
+        ),
+      );
+    });
+    var initializationSettings = InitializationSettings(
+        android: initialzationSettingsAndroid, iOS: initializationSettingsIOS);
+
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      AppleNotification? ios = message.notification!.apple;
+
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channelDescription: channel.description,
+                icon: android.smallIcon,
+              ),
+            ));
+      } else if (ios != null) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification!.title,
+            notification.body,
+            NotificationDetails(
+              iOS: IOSNotificationDetails(
+                presentSound: true,
+              ),
+            ));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -138,7 +276,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           builder: (context, child) => MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child,
+            child: child!,
           ),
 
           theme: ThemeData(
@@ -216,14 +354,14 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-  ScrollListener _model;
-  ScrollController _controller;
+  ScrollListener? _model;
+  ScrollController? _controller;
   final double _bottomNavBarHeight = 56;
 
   @override
   void initState() {
     _controller = ScrollController();
-    _model = ScrollListener.initialise(_controller);
+    _model = ScrollListener.initialise(_controller!);
     super.initState();
   }
 
@@ -231,7 +369,7 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedBuilder(
-        animation: _model,
+        animation: _model!,
         builder: (context, child) {
           return Stack(
             children: [
@@ -243,7 +381,7 @@ class _MyPageState extends State<MyPage> {
               Positioned(
                 left: 0,
                 right: 0,
-                bottom: _model.bottom,
+                bottom: _model?.bottom,
                 child: _bottomNavBar,
               ),
             ],
