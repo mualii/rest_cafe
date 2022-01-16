@@ -8,7 +8,7 @@
 
 
     <application
-        android:label="RESTCAFE"
+        android:label="FastMenu"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/launcher_icon">
         <activity

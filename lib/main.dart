@@ -274,6 +274,7 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(create: (context) => DetailCubit())
         ],
         child: MaterialApp(
+          title: "FastMenu",
           builder: (context, child) => MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
             child: child!,

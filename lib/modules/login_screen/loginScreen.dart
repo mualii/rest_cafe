@@ -122,7 +122,7 @@ class LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 100.h),
                 Text(
-                  "RESTCAFE",
+                  "FastMenu",
                   style: TextStyle(
                     fontFamily: "Superclarendon",
                     color: Color(0xff4CB278),

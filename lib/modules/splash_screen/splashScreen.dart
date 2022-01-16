@@ -40,14 +40,9 @@ print(LocalStorage.getData(key: "access_token"));
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Text(
-          "RESTCAFE",
-          style: TextStyle(
-            fontFamily: "Superclarendon",
-            color: Color(0xff4CB278),
-            fontSize: 50.sp,
-            // fontStyle: FontStyle.normal,
-          ),
+        child: Image.asset(
+          "assets/images/logo.jpg",
+          fit: BoxFit.fill,
         ),
       ),
     );
