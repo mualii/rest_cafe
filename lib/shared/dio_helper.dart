@@ -7,7 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'localstroage.dart';
 
 class DioHelper {
-  static const baseurl="restcafe.mvdev.xyz";
+  static const baseurl = "api.fastmenu-sa.com";
+
   //========================== جميع ال Errors ال ممكن تقابلها فى اى تطبيق =============
   static String errorGlobal({required DioError dioError}) {
     if (DioErrorType.response == dioError.type) {

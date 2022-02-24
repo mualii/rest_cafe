@@ -227,7 +227,7 @@ class LabolOfSecondListView extends StatelessWidget {
   const LabolOfSecondListView({Key? key, this.item,this.index}) : super(key: key);
   Widget build(BuildContext context) {
     return Container(
-      height: 75,
+      height: 100.h,
       decoration: BoxDecoration(
         border: index == BranchesCubit.get(context).currentIndex
             ? Border(right: BorderSide(color: color1, width: 4.sp))

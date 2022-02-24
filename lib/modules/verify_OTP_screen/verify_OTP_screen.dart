@@ -154,7 +154,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                             context: context,
                             formData: {
                               "phone": widget.PhoneUser,
-                              "otp": controllerPinText.text
+                              "otp": controllerPinText.text.trim(),
                             });
                         if (response is Response) {
                           StartCubit.get(context).saveNumber(response);

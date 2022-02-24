@@ -27,22 +27,22 @@ class Details {
   });
 
   String? id;
-  int ?preparationTime;
-  bool ?canReserveTable;
-  bool ?canDeliverToCar;
-  bool ?canPickupOrder;
-  String ?totalRating;
+  int? preparationTime;
+  bool? canReserveTable;
+  bool? canDeliverToCar;
+  bool? canPickupOrder;
+  int? totalRating;
   bool? isOpen;
   String? type;
-  String ?logo;
-  String ?name;
-  String ?cuisine;
-  List<Category> ?categories;
+  String? logo;
+  String? name;
+  String? cuisine;
+  List<Category>? categories;
 
   factory Details.fromJson(Map<String, dynamic> json) => Details(
-    id: json["id"],
-    preparationTime: json["preparation_time"],
-    canReserveTable: json["can_reserve_table"],
+        id: json["id"],
+        preparationTime: json["preparation_time"],
+        canReserveTable: json["can_reserve_table"],
     canDeliverToCar: json["can_deliver_to_car"],
     canPickupOrder: json["can_pickup_order"],
     totalRating: json["total_rating"],

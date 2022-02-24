@@ -275,10 +275,22 @@ class _MyAppState extends State<MyApp> {
         ],
         child: MaterialApp(
           title: "FastMenu",
-          builder: (context, child) => MediaQuery(
-            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-            child: child!,
-          ),
+
+          builder: (context, widget) {
+            //add this line
+            ScreenUtil.setContext(context);
+            // BotToastInit();
+            return MediaQuery(
+              //Setting font does not change with system font size
+              data: MediaQuery.of(context)
+                  .copyWith(textScaleFactor: 1.0, alwaysUse24HourFormat: true),
+              child: widget!,
+            );
+          },
+          // builder: (context, child) => MediaQuery(
+          //   data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          //   child: child!,
+          // ),
 
           theme: ThemeData(
             primaryColor: Color(0xff4CB278),
