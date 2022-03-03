@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/modules/Payment_screens/first_payment_screen.dart';
 import 'package:rest_cafe/modules/edit_profile/edit_profile.dart';
+import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/modules/login_screen/loginScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/localstroage.dart';
@@ -109,6 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () async {
                       //     LocalStorage.sharedPreferences.clear();
                       LocalStorage.removeData(key: "access_token");
+
                       await FirebaseMessaging.instance.deleteToken();
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => LoginScreen()));

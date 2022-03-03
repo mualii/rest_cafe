@@ -436,7 +436,9 @@ class CardScreen2 extends StatelessWidget {
                               child: Container(
                                 height: 60.h,
                                 width: 150.w,
+
                                 decoration: BoxDecoration(
+                                  border: Border.all(width: 1,color:Theme.of(context).primaryColor),
                                     borderRadius: BorderRadius.circular(15.sp),
                                     color: Colors.white10),
                                 child: Center(
@@ -775,7 +777,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .76.sw,
-                        height: 83.h,
+                        height: 70.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -787,6 +789,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                         value: e.name,
                                       ))
                                   .toList(),
+                              icon: Icon(Icons.expand_more),
                               value: selectedValue,
                               hint: "Model".tr(),
                               closeButton: "close".tr(),
@@ -818,7 +821,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                           Container(
                               width: .35.sw,
                               padding: EdgeInsets.all(8),
-                              height: 82.h,
+                              height: 69.h,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1,
@@ -844,7 +847,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .35.sw,
-                        height: 82.h,
+                        height: 70.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -874,6 +877,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                   value: e.name,
                                 );
                               }).toList(),
+                              icon: Icon(Icons.expand_more),
                               value: selectedValue,
                               hint: "Car color".tr(),
                               closeButton: "close".tr(),

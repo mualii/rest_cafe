@@ -71,7 +71,7 @@ class EditProfileState extends State<EditProfile> {
                   width: 0.65.sw,
                   child: DetailsField(
                       disable: HomeCubit.get(context).user!.phone!=null?true:false,
-                      title: 'Phone'.tr(),
+                      title: HomeCubit.get(context).user!.phone!=null?HomeCubit.get(context).user!.phone!:'Phone'.tr(),
                     iconData: Icon(Icons.call, size: 25, color: color1),
                     isIcon: false,
                   ),

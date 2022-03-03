@@ -254,7 +254,7 @@ class CardScreen3 extends StatelessWidget {
                   children: [
                     myTitle(title: "Service".tr(), color: Colors.black, font: 16.sp),
                     Spacer(),
-                    myTitle(title: "${DeliveryCubit.get(context).price!.serviceCharge.toString()} "+"SAR".tr(), color: Colors.black38, font: 16.sp),
+                    myTitle(title: "${DeliveryCubit.get(context).price!.vat.toString()} "+"SAR".tr(), color: Colors.black38, font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),
@@ -326,6 +326,7 @@ class CardScreen3 extends StatelessWidget {
                                     shape: MaterialStateProperty.all<
                                         RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
+
                                             borderRadius: BorderRadius.circular(10.0),
                                             side: BorderSide(
                                                 color: Color(0xffC3C6D1))))),
@@ -413,6 +414,7 @@ class CardScreen3 extends StatelessWidget {
                         height: 60.h,
                         width: 150.w,
                         decoration: BoxDecoration(
+                          border: Border.all(color: Theme.of(context).primaryColor,width: 1),
                             // border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(15.sp),
                             color: Colors.white10),

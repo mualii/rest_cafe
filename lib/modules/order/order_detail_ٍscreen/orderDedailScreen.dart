@@ -251,73 +251,75 @@ TextEditingController rateController = TextEditingController();
               body: 
                 Container(
                   padding: EdgeInsets.all(20.sp),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          myTitle(
-                              title: "Branch".tr(),
-                              font: 14.sp,
-                              color: Colors.black),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        height: .16.sh,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffDADADA)),
-                            borderRadius: BorderRadius.circular(20.sp)),
-                        child: InkWell(
-                          onTap: (){
-                            MapsLauncher.launchCoordinates( OrderDetailsCubit
-                                .get(context)
-                                .details!
-                                .branch!
-                                .lat!,  OrderDetailsCubit.get(context)
-                                .details!
-                                .branch!
-                                .lng!,OrderDetailsCubit.get(context)
-                                .details!
-                                .branch!.name);
-                          },
-                          child: Image.asset(
-                            "assets/images/location.png",
-                            fit: BoxFit.fill,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            myTitle(
+                                title: OrderDetailsCubit.get(context).address,
+                                font: 14.sp,
+                                color: Colors.black),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          height: .16.sh,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xffDADADA)),
+                              borderRadius: BorderRadius.circular(20.sp)),
+                          child: InkWell(
+                            onTap: (){
+                              MapsLauncher.launchCoordinates( OrderDetailsCubit
+                                  .get(context)
+                                  .details!
+                                  .branch!
+                                  .lat!,  OrderDetailsCubit.get(context)
+                                  .details!
+                                  .branch!
+                                  .lng!,OrderDetailsCubit.get(context)
+                                  .details!
+                                  .branch!.name);
+                            },
+                            child: Image.asset(
+                              "assets/images/location.png",
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          myTitle(
-                              title: "Products".tr(),
-                              font: 14.sp,
-                              color: Colors.black),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Expanded(
-                        child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: AlwaysScrollableScrollPhysics(),
-                            itemBuilder: (BuildContext context, int index) =>
-                                ListModle(OrderDetailsCubit
-                                    .get(context)
-                                    .details!
-                                    .orderLine![index]),
-                            separatorBuilder:
-                                (BuildContext context, int index) =>
-                                SizedBox(height: 15.h),
-                            itemCount: OrderDetailsCubit
-                                .get(context)
-                                .details!
-                                .orderLine!.length),
-                      ),
-                      SizedBox(height:80 ,)
-                    ],
+                        SizedBox(height: 10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            myTitle(
+                                title: "Products".tr(),
+                                font: 14.sp,
+                                color: Colors.black),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+
+                           ListView.separated(
+                              shrinkWrap: true,
+                              physics:NeverScrollableScrollPhysics(),
+                              itemBuilder: (BuildContext context, int index) =>
+                                  ListModle(OrderDetailsCubit
+                                      .get(context)
+                                      .details!
+                                      .orderLine![index]),
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                  SizedBox(height: 15.h),
+                              itemCount: OrderDetailsCubit
+                                  .get(context)
+                                  .details!
+                                  .orderLine!.length),
+
+                        SizedBox(height:80.h ,)
+                      ],
+                    ),
                   ),
                 ),
               
