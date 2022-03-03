@@ -29,6 +29,7 @@ class CardScreen2 extends StatelessWidget {
     this.hasTabol = false,
 
   });
+
   bool isChecked1 = true;
   bool isChecked2 = true;
   bool isChecked3 = true;
@@ -46,6 +47,7 @@ class CardScreen2 extends StatelessWidget {
 
     return
  BlocConsumer<DeliveryCubit,DeliveryState>(
+
         listener: (context,state){},
         builder:(context,state) {
 
@@ -146,6 +148,7 @@ class CardScreen2 extends StatelessWidget {
                                 ),
                                 if (hasCar! || isChecked1 == false)
                                   Column(
+
                                     children: [
                                       Divider(
                                         color: Colors.black38,
@@ -493,6 +496,10 @@ class DeliveryScreen extends StatefulWidget{
 
 }
 class DeliveryScreenState extends State<DeliveryScreen> {
+  Color colorFromHex(String hexColor) {
+    final hexCode = hexColor.replaceAll('#', '');
+    return Color(int.parse('FF$hexCode', radix: 16));
+  }
   var carModelController = TextEditingController();
   var carNumberController = TextEditingController();
   var carColorController = TextEditingController();
@@ -682,7 +689,9 @@ height: 155,
 
 
                 Column(
+crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+
                     myTitle(
                         title: "Add car".tr(), color: Colors.black, font: 16.sp),
                     SizedBox(height: 10.h),
@@ -697,48 +706,45 @@ height: 155,
                           ),
                           width: .76.sw,
                           height: 70,
-                          child:     SearchableDropdown.single(
+                          child:     Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SearchableDropdown.single (
 icon: ImageIcon(AssetImage("assets/images/4.png",),color:color1 ,),
-                            closeButton: "close".tr(),
-                            items: DeliveryCubit.get(context).brands.map((e) => DropdownMenuItem( child: Row(
-                              children: [
-                                Text(e.name.toString()),
-                                SizedBox(width: 2,),
-                                Image.network(e.logo.toString(),width: 20,height: 30,),
-                              ],
-                            ),value: e.name,)).toList(),
-                            value: selectedValue,
-                            hint: "Car brand".tr(),
-                            searchHint: "Car brand".tr(),
+                                closeButton: "close".tr(),
+
+                                items: DeliveryCubit.get(context).brands.map((e) => DropdownMenuItem( child: Row(
+                                  children: [
+                                    Text(e.name.toString()),
+                                    SizedBox(width: 2,),
+                                    Image.network(e.logo.toString(),width: 20,height: 30,),
+                                  ],
+                                ),value: e.name,)).toList(),
+                                value: selectedValue,
+                                hint: "Car brand".tr(),
+                                searchHint: "Car brand".tr(),
 displayClearIcon: false,underline:Container() ,
 
-                            onChanged: (value) {
-                              setState(() {
-                                selectedValue =value;
-                                DeliveryCubit.get(context).getModel(context,DeliveryCubit.get(context).brands.firstWhere((element) => element.name==value ).id.toString() );
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedValue =value;
+                                    DeliveryCubit.get(context).getModel(context,DeliveryCubit.get(context).brands.firstWhere((element) => element.name==value ).id.toString() );
 
-                              });
+                                  });
 
-                            },
+                                },
 
-                            displayItem: (item, selected) {
-                              return (Row(children: [
-                                selected
-                                    ? Icon(
-                                  Icons.radio_button_checked,
-                                  color: Colors.grey,
-                                )
-                                    : Icon(
-                                  Icons.radio_button_unchecked,
-                                  color: Colors.grey,
-                                ),
-                                SizedBox(width: 7),
-                                Expanded(
-                                  child: item,
-                                ),
-                              ]));
-                            },
-                            isExpanded: true,
+                                displayItem: (item, selected) {
+                                  return (
+
+                                    Row(
+                                      children:[ item],
+
+                                  ));
+                                },
+                                isExpanded: true,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -753,41 +759,37 @@ displayClearIcon: false,underline:Container() ,
                               border: Border.all(width: 1,color: Colors.grey)
                           ),
                           width: .76.sw,
-                          height: 70,
-                          child:     SearchableDropdown.single(
+                          height: 70.h,
+                          child:     Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SearchableDropdown.single(
 
-                            items: DeliveryCubit.get(context).models.map((e) => DropdownMenuItem( child: Text(e.name.toString()),value: e.name,)).toList(),
-                            value: selectedValue,
-                            hint: "Model".tr(),
-                            searchHint: "Model".tr(),
-                          displayClearIcon: false,underline:Container() ,
+                                items: DeliveryCubit.get(context).models.map((e) => DropdownMenuItem( child: Text(e.name.toString()),value: e.name,)).toList(),
+                                value: selectedValue,
+                                hint: "Model".tr(),   closeButton: "close".tr(),
+                                searchHint: "Model".tr(),
+                              displayClearIcon: false,underline:Container() ,
 
-                            onChanged: (value) {
-                              setState(() {
-                                selectedValue2 =value;
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedValue2 =value;
 
-                              });
+                                  });
 
-                            },
+                                },
 
-                            displayItem: (item, selected) {
-                              return (Row(children: [
-                                selected
-                                    ? Icon(
-                                  Icons.radio_button_checked,
-                                  color: Colors.grey,
-                                )
-                                    : Icon(
-                                  Icons.radio_button_unchecked,
-                                  color: Colors.grey,
-                                ),
-                                SizedBox(width: 7),
-                                Expanded(
-                                  child: item,
-                                ),
-                              ]));
-                            },
-                            isExpanded: true,
+                                displayItem: (item, selected) {
+                                  return (
+
+                                    Row(
+                                      children:[ item],
+                                    )
+                                  );
+                                },
+                                isExpanded: true,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -800,11 +802,11 @@ displayClearIcon: false,underline:Container() ,
                             Container(
                               width: .35.sw,
 padding: EdgeInsets.all(8),
-height: 70,
+height: 70.h,
                               decoration: BoxDecoration(border:Border.all(width: 1,color:  carNumberController.text.length>4?Colors.red:Colors.grey),borderRadius:BorderRadius.circular(10)),
                               child: TextField(
 
-                                  keyboardType: TextInputType.number,
+
                                   controller: carNumberController,
     inputFormatters: [
     LengthLimitingTextInputFormatter(4),
@@ -813,7 +815,7 @@ height: 70,
                                     hintText: "Plate number".tr(),
 
                                     border: InputBorder.none,
-                                      prefix: Image.asset("assets/images/5.png")
+
                                       )
     )
 
@@ -828,41 +830,45 @@ height: 70,
                               border: Border.all(width: 1,color: Colors.grey)
                           ),
                           width: .35.sw,
-                          height:70,
-                          child:     SearchableDropdown.single(
+                          height:70.h,
+                          child:     Column(mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SearchableDropdown.single(
 
-                            items: DeliveryCubit.get(context).colors.map((e) => DropdownMenuItem( child: Text(e.name.toString()),value: e.name,)).toList(),
-                            value: selectedValue,
-                            hint: "Car color".tr(),
-                            searchHint: "Car color".tr(),
-                           displayClearIcon: false,underline:Container() ,
+                                items: DeliveryCubit.get(context).colors.map((e){
 
-                            onChanged: (value) {
-                              setState(() {
-                            color =value;
+                                  return DropdownMenuItem( child: Row(
+                                  children: [
+                                    Container(width: 50.w,child: Text(e.name.toString())),
+                                    SizedBox(width: 5.w,),
 
-                              });
+                                    Container(width: 25,height: 25, decoration: BoxDecoration(color: colorFromHex(e.hex!),borderRadius: BorderRadius.circular(100),border: Border.all(width: 1,color: Colors.grey)),)
+                                  ],
+                                ),value: e.name,);}).toList(),
+                                value: selectedValue,
+                                hint: "Car color".tr(),   closeButton: "close".tr(),
+                                searchHint: "Car color".tr(),
+                               displayClearIcon: false,underline:Container() ,
 
-                            },
+                                onChanged: (value) {
+                                  setState(() {
+                                color =value;
 
-                            displayItem: (item, selected) {
-                              return (Row(children: [
-                                selected
-                                    ? Icon(
-                                  Icons.radio_button_checked,
-                                  color: Colors.grey,
-                                )
-                                    : Icon(
-                                  Icons.radio_button_unchecked,
-                                  color: Colors.grey,
-                                ),
-                                SizedBox(width: 7),
-                                Expanded(
-                                  child: item,
-                                ),
-                              ]));
-                            },
-                            isExpanded: true,
+                                  });
+
+                                },
+
+                                displayItem: (item, selected) {
+                                  return (
+
+                                    Row(
+                                      children: [item],
+                                    )
+                                  );
+                                },
+                                isExpanded: true,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -948,7 +954,7 @@ class _BookingScreenState extends State<BookingScreen> {
 
   Future<void> openTimePicker(BuildContext context) async {
     final TimeOfDay? t =
-        await showTimePicker(context: context, initialTime: TimeOfDay.now());
+        await showTimePicker( initialEntryMode: TimePickerEntryMode.input,context: context, initialTime: TimeOfDay.now());
     if (t != null) {
       setState(() {
         value2 = t.format(context);

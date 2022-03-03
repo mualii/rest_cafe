@@ -93,6 +93,12 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                           title: state.sideDish!.name,
                           font: 16.sp,
                           color: Colors.black)),
+                  Center(
+                      child: myTitle(
+
+                          title: state.sideDish!.description,
+                          font: 14.sp,
+                          color: Colors.black)),
                   Expanded(
 
 

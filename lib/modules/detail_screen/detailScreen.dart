@@ -40,7 +40,7 @@ class DetailScreen extends StatelessWidget {
           },
           child: Scaffold(
             appBar: AppBar(
-              toolbarHeight: 200.h,
+              toolbarHeight: 230,
               flexibleSpace: SafeArea(
                 child: state is DetailsLoaded
                     ? Column(
@@ -172,7 +172,7 @@ class DetailScreen extends StatelessWidget {
                                         color: Colors.black),
                                     Row(children: [
                                       Container(
-                                          height: 20,
+                                          height: 20.h,
                                           child: Image.network(
                                               HomeCubit.get(context)
                                                   .types[HomeCubit.get(context)

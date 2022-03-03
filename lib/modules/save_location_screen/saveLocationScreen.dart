@@ -36,7 +36,7 @@ List<Marker> markers=[];
   changeLocation(String text)async{
     final c =await _controller.future;
 
-    var googlePlace = GooglePlace("AIzaSyBdlD4WTPYOclk6wgkf0iKfEvgoHrsF5uM");
+    var googlePlace = GooglePlace("AIzaSyDAc-y-9PWVagF01ChYsf0Goo50Pybdli0");
     TextSearchResponse? result = await googlePlace.search.getTextSearch(text);
 
     setState(() {
@@ -120,7 +120,7 @@ lat=StartCubit.get(context).location!.latitude;
       listener: (context,state){},
       builder: (context,state)=>Scaffold(
         appBar: AppBar(
-          toolbarHeight: 130,
+          toolbarHeight: 100,
           flexibleSpace: Column(
             children: [
               SizedBox(height: 40),

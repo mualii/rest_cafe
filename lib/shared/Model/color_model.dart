@@ -12,14 +12,18 @@ class Colors {
   Colors({
     this.id,
     this.name,
+    this.hex
+
   });
 
   int ?id;
+  String ? hex;
   String? name;
 
   factory Colors.fromJson(Map<String, dynamic> json) => Colors(
     id: json["id"],
     name: json["name"],
+    hex: json["hex"]
   );
 
   Map<String, dynamic> toJson() => {

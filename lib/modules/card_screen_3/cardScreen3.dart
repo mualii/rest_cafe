@@ -15,6 +15,8 @@ import 'package:rest_cafe/modules/detail_screen/cubit/detial_cubit.dart';
 import 'package:rest_cafe/modules/edit_profile/edit_profile.dart';
 import 'dart:math' as math;
 import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
+import 'package:rest_cafe/modules/order/order_detail_%D9%8Dscreen/orderDedailScreen.dart';
+import 'package:rest_cafe/shared/Model/cart_model.dart';
 import 'package:rest_cafe/shared/Model/set_order_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
@@ -217,7 +219,27 @@ class CardScreen3 extends StatelessWidget {
                 //     ],
                 //   ),
                 // ),
-                SizedBox(height: .175.sh),
+
+                 ListView.separated(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) =>
+                         Directionality(
+                           textDirection: LocalStorage.getData(key: "lang")=="en"? TextDirection.rtl:TextDirection.ltr,
+                           child: CartModle(CartCubit
+                                .get(context)
+                                .cart
+                                [index]),
+                         ),
+                      separatorBuilder:
+                          (BuildContext context, int index) =>
+                          SizedBox(height: 15.h),
+                      itemCount: CartCubit
+                          .get(context)
+                          .cart
+                          .length
+                          ),
+
                 Divider(color: Colors.black38),
                 Row(
                   children: [
@@ -412,6 +434,132 @@ class CardScreen3 extends StatelessWidget {
           ),
         ),
       );}
+    );
+  }
+}
+
+class CartModle extends StatelessWidget {
+  Cart item;
+
+  CartModle(this.item);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Color(0xffDADADA)),
+            borderRadius: BorderRadius.circular(20.sp)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (BuildContext context) => Container(
+                    padding: EdgeInsets.all(20.h),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(40.sp),
+                            topLeft: Radius.circular(40.sp))),
+                    height: .3.sh,
+                    child: Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Center(
+                        child: Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Container(
+                                  child:
+                                  Image.network(item.image.toString()),
+                                  height: 60.h,
+                                ),
+                                myTitle(
+                                    title: item.name,
+                                    font: 14.sp ,
+                                    lines: 1,
+
+                                    color: Colors.black),
+                                // SizedBox(height: 5.h),
+                                myTitle(
+                                    title: "Extras".tr(),
+                                    font: 14.sp,
+                                    color: Colors.black),
+
+
+                                ListView.separated(shrinkWrap: true,
+                                    itemBuilder: (context,index)=>Row(
+                                      children: [
+                                        myTitle(
+                                            title: item.extras![index].price.toString(),
+                                            font: 14.sp,
+                                            color: Colors.black54),
+                                        Spacer(),
+                                        myTitle(
+                                            title: item.extras![index].name,
+                                            font: 14.sp,
+                                            color: Colors.black),
+                                      ],
+                                    ),
+                                    separatorBuilder: (context,index)=> Divider(color: Colors.grey),
+                                    itemCount: item.extras!.length)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+
+
+                Row(
+
+                    children: [
+                      Icon(Icons.arrow_back_ios, color: Colors.grey),
+                      myTitle(
+                          color: Colors.black54, font: 14.sp, title: "Extras".tr()),]),
+                Column(
+                  children: [
+                    myTitle(title: item.name, font: 14.sp, color: Colors.black),
+                    Row(
+                      children: [
+                        myTitle(
+                            title: "${item.price} "+"SAR".tr(),
+                            font: 14.sp,
+                            color: Colors.black54),
+                        myTitle(
+                            title: "${item.quantity}x", font: 14.sp, color: color1),
+
+                      ],
+                    ),
+                  ],
+                ),
+
+                Container(
+                    height: 80,
+                    width: 70,
+                    child: Image.network(item.image.toString())),
+
+              ],
+            ),
+          ),
+        )
+
+
+
+
+
+
     );
   }
 }

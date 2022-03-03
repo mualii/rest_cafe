@@ -33,8 +33,8 @@ cubit=CartCubit.get(context);
               Center(child: CircularProgressIndicator()):
 
 
-              SingleChildScrollView(
-              child: Container(
+
+               Container(
                 height: .91.sh,
                 padding: EdgeInsets.all(10.sp),
                 child: Column(
@@ -77,7 +77,7 @@ cubit=CartCubit.get(context);
                     ),
                     SizedBox(height: 10),
                     Center(child: Transform(
-                        
+
                         transform: LocalStorage.getData(key: "lang")=="en"? Matrix4.rotationY(math.pi): Matrix4.rotationY(2*math.pi),
                         alignment: Alignment.center,
                         child: Image.asset("assets/images/cart1.png"))),
@@ -95,11 +95,9 @@ cubit=CartCubit.get(context);
 
                     // SizedBox(height: 45.h),
 
-                    Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child:
                           InkWell(
                               onTap: () {
                                 Navigator.of(context, rootNavigator: true).pop();
@@ -118,13 +116,12 @@ cubit=CartCubit.get(context);
                               },
                               child: mainBottom(
                                   title: "Next".tr(), width: 150.w, height: 60.h)),
-                        ],
-                      ),
+
                     ),
                     // SizedBox(height: 15.h),
                   ],
                 ),
-              ),
+
             );
           },
 

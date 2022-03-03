@@ -226,7 +226,7 @@ class LabolOfSecondListView extends StatelessWidget {
   Widget build(BuildContext context) {
     isFav = data[index!].IsFavourite!;
     return Container(
-      height: 135.h,
+      height: 150.h,
       decoration: BoxDecoration(
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
