@@ -12,9 +12,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
+import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/modules/save_location_screen/saveLocationScreen.dart';
 import 'package:rest_cafe/modules/splash_screen/splashScreen.dart';
 import 'package:rest_cafe/modules/verify_OTP_screen/verify_OTP_screen.dart';
+
+import 'package:rest_cafe/shared/Model/user_model.dart';
 import 'package:rest_cafe/shared/apple_login_helper.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/cubits/startCubit.dart';
@@ -110,8 +113,10 @@ class LoginScreenState extends State<LoginScreen> {
                         children: [
                           InkWell(
                               onTap: () {
+
+                                HomeCubit.get(context).user=ClientUser(name: "user".tr());
                                 navigateAndFinish(context,
-                                    LayoutScreen(selectedPageIndex: 0));
+                                    SaveLocationScreen());
                               },
                               child: myTitle(
                                   font: 18.sp,

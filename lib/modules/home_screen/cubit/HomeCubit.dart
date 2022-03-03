@@ -16,7 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
   static HomeCubit get(context) => BlocProvider.of(context);
 List<Types> types=[];
 List<Datum>resturants=[],all=[];
-User ?user;
+  ClientUser ?user;
   int currentIndex = 0;
   void changeListItem(int index) {
     currentIndex = index;
@@ -42,7 +42,7 @@ getResturants(context);
     emit(ProfileLoading());
     var response=await DioHelper.getData(endpoint: "api/v1/users/userInfo", setParamars: {}, context: context);
     if(response is Response) {
-      user = User.fromJson(response.data);
+      user = ClientUser.fromJson(response.data);
       emit(ProfileLoaded());
     }
     else

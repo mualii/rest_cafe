@@ -820,6 +820,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                         children: [
                           Container(
                               width: .35.sw,
+                              alignment: Alignment.center,
                               padding: EdgeInsets.all(8),
                               height: 69.h,
                               decoration: BoxDecoration(
@@ -829,15 +830,17 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                           ? Colors.red
                                           : Colors.grey),
                                   borderRadius: BorderRadius.circular(10)),
-                              child: TextField(
-                                  controller: carNumberController,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(4),
-                                  ],
-                                  decoration: InputDecoration(
-                                    hintText: "Plate number".tr(),
-                                    border: InputBorder.none,
-                                  ))),
+                              child: Align(
+                                child: TextField(
+                                    controller: carNumberController,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(4),
+                                    ],
+                                    decoration: InputDecoration(
+                                      hintText: "Plate number".tr(),
+                                      border: InputBorder.none,
+                                    )),
+                              )),
                         ],
                       ),
                       SizedBox(width: 20),

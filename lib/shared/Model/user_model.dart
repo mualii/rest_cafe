@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-User welcomeFromJson(String str) => User.fromJson(json.decode(str));
+ClientUser welcomeFromJson(String str) => ClientUser.fromJson(json.decode(str));
 
-String welcomeToJson(User data) => json.encode(data.toJson());
+String welcomeToJson(ClientUser data) => json.encode(data.toJson());
 
-class User {
-  User({
+class ClientUser {
+  ClientUser({
     this.id,
     this.name,
     this.email,
@@ -21,7 +21,7 @@ class User {
   String? email;
   String? phone;
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+  factory ClientUser.fromJson(Map<String, dynamic> json) => ClientUser(
     id: json["id"],
     name: json["name"],
     email: json["email"],

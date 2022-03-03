@@ -115,6 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => LoginScreen()));
                     },
+                    //
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all(
                             EdgeInsets.symmetric(vertical: 10, horizontal: 5)),
