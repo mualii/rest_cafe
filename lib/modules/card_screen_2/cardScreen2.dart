@@ -24,286 +24,125 @@ class CardScreen2 extends StatelessWidget {
   final bool? hasCar;
   final bool? hasTabol;
 
-   CardScreen2({
+  CardScreen2({
     this.hasCar = false,
     this.hasTabol = false,
-
   });
 
   bool isChecked1 = true;
   bool isChecked2 = true;
   bool isChecked3 = true;
-  int carIndex=0;
+  int carIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    carIndex = DeliveryCubit
-        .get(context)
-        .CarIndex;
-  if(hasTabol==true)
-    isChecked3=false;
-  if(hasCar==true)
-    isChecked1=false;
+    carIndex = DeliveryCubit.get(context).CarIndex;
+    if (hasTabol == true) isChecked3 = false;
+    if (hasCar == true) isChecked1 = false;
 
-    return
- BlocConsumer<DeliveryCubit,DeliveryState>(
-
-        listener: (context,state){},
-        builder:(context,state) {
-
-          return
-            StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState) =>
-              state is CarsLoadingState ? Center(
-                  child: CircularProgressIndicator()) : Container(
-                height: .91.sh,
-                padding: EdgeInsets.all(10.sp),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return BlocConsumer<DeliveryCubit, DeliveryState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) => state
+                    is CarsLoadingState
+                ? Center(child: CircularProgressIndicator())
+                : Container(
+                    height: .91.sh,
+                    padding: EdgeInsets.all(10.sp),
+                    child: Column(
                       children: [
-                        SizedBox(width: .14.sw),
-                        myTitle(
-                            title: "Delivery".tr(), font: 16.sp, color: Colors.black),
-                        IconButton(
-                            icon: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {
-                              Navigator.of(context, rootNavigator: true).pop();
-                              showDialog(
-                                barrierColor: Colors.white10, //AddScreen()
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(width: .14.sw),
+                            myTitle(
+                                title: "Delivery".tr(),
+                                font: 16.sp,
+                                color: Colors.black),
+                            IconButton(
+                                icon: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.grey,
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+                                  showDialog(
+                                    barrierColor: Colors.white10, //AddScreen()
 
-                                context: context,
-                                builder: (_) =>
-                                    Dialog(
+                                    context: context,
+                                    builder: (_) => Dialog(
                                       insetPadding: EdgeInsets.all(20),
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              20)),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
                                       child: CardScreen(),
                                     ), //AddScreen()
-                                barrierDismissible: true,
-                              );
-                            })
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Center(child: Transform(
-
-                        transform: LocalStorage.getData(key: "lang")=="en"? Matrix4.rotationY(math.pi): Matrix4.rotationY(2*math.pi),
-                        alignment: Alignment.center,
-                        child: Image.asset("assets/images/card2.png"))),
-                    SizedBox(height: 15.h),
-                    SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            // height: 100.h,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(20.sp)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Row(
-                                    children: [
-
-                                      InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            isChecked1 = !isChecked1;
-                                            isChecked2 = true;
-                                            isChecked3 = true;
-                                          });
-                                        },
-                                        child: isChecked1
-                                            ? Icon(
-                                          Icons.circle_outlined,
-                                          color: Colors.black12,
-                                          size: 30.sp,
-                                        )
-                                            : Icon(
-                                          Icons.circle,
-                                          color: color1,
-                                          size: 30.sp,
-                                        ),
-                                      ),
-                                      myTitle(
-                                          title: "To car".tr(),
-                                          color: Colors.black,
-                                          font: 16.sp),
-
-                                      Spacer(),
-                                      Container(
-                                          height: 50.h,
-                                          width: 40.w,
-                                          child: Image.asset(
-                                              "assets/images/ic_delivery_car.png"))
-                                    ],
-                                  ),
-                                ),
-                                if (hasCar! || isChecked1 == false)
-                                  Column(
-
-                                    children: [
-                                      Divider(
-                                        color: Colors.black38,
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.of(
-                                              context, rootNavigator: true)
-                                              .pop();
-                                          DeliveryCubit.get(context).getBrands(
-                                              context);
-                                          showDialog(
-                                            barrierColor: Colors.white10,
-                                            //AddScreen()
-
-                                            context: context,
-                                            builder: (_) =>
-                                                Dialog(
-                                                  insetPadding: EdgeInsets.all(
-                                                      20),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                                  child: DeliveryScreen(),
-                                                ),
-                                            //AddScreen()
-                                            barrierDismissible: true,
-                                          );
-                                        },
-                                        child: Row(
-                                          children: [
-                                            SizedBox(width: 40.w),
-                                            myTitle(
-                                                title: DeliveryCubit
-                                                    .get(context)
-                                                    .cars
-                                                    .isEmpty
-                                                    ? "Add car".tr()
-                                                    : "${DeliveryCubit
-                                                    .get(context)
-                                                    .cars[carIndex]
-                                                    .plateNumber} | ${DeliveryCubit
-                                                    .get(context)
-                                                    .cars[carIndex]
-                                                    .color} | ${DeliveryCubit
-                                                    .get(context)
-                                                    .cars[carIndex].brandModel!.brand!
-                                                    .name}",
-                                                color: Colors.black38,
-                                                font: 16.sp),
-                                            Spacer(),
-                                            Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.black38,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      )
-                                    ],
-                                  ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 15),
-                          Container(
-                            height: 50.h,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(20.sp)),
-                            child: Padding(
-                              padding:  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Row(
-                                children: [
-
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        isChecked2 = !isChecked2;
-                                        isChecked1 = true;
-                                        isChecked3 = true;
-                                      });
-                                    },
-                                    child: isChecked2
-                                        ? Icon(
-                                      Icons.circle_outlined,
-                                      color: Colors.black12,
-                                      size: 30.sp,
-                                    )
-                                        : Icon(
-                                      Icons.circle,
-                                      color: color1,
-                                      size: 30.sp,
-                                    ),
-                                  ),
-                                  myTitle(
-                                      title: "Pick up".tr(),
-                                      color: Colors.black,
-                                      font: 16.sp),
-                                  Spacer(),
-                                  Image.asset("assets/images/m2.png")
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 15),
-                    Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(20.sp)),
-                            child: Column(
-                              children: [
-                                Column(
+                                    barrierDismissible: true,
+                                  );
+                                })
+                          ],
+                        ),
+                        SizedBox(height: 15),
+                        Center(
+                            child: Transform(
+                                transform:
+                                    LocalStorage.getData(key: "lang") == "en"
+                                        ? Matrix4.rotationY(math.pi)
+                                        : Matrix4.rotationY(2 * math.pi),
+                                alignment: Alignment.center,
+                                child: Image.asset("assets/images/card2.png"))),
+                        SizedBox(height: 15.h),
+                        SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Container(
+                                // height: 100.h,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(20.sp)),
+                                child: Column(
                                   children: [
-                                    SizedBox(height: 10),
                                     Padding(
-                                      padding:  const EdgeInsets.symmetric(horizontal: 8.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
                                       child: Row(
                                         children: [
-
                                           InkWell(
                                             onTap: () {
                                               setState(() {
-                                                isChecked1 = true;
+                                                isChecked1 = !isChecked1;
                                                 isChecked2 = true;
-
-                                                isChecked3 = !isChecked3;
+                                                isChecked3 = true;
                                               });
                                             },
-                                            child: isChecked3
+                                            child: isChecked1
                                                 ? Icon(
-                                              Icons.circle_outlined,
-                                              color: Colors.black12,
-                                              size: 30.sp,
-                                            )
+                                                    Icons.circle_outlined,
+                                                    color: Colors.black12,
+                                                    size: 30.sp,
+                                                  )
                                                 : Icon(
-                                              Icons.circle,
-                                              color: color1,
-                                              size: 30.sp,
-                                            ),
+                                                    Icons.circle,
+                                                    color: color1,
+                                                    size: 30.sp,
+                                                  ),
                                           ),
                                           myTitle(
-                                              title: "Reserve a table".tr(),
+                                              title: "To car".tr(),
                                               color: Colors.black,
                                               font: 16.sp),
                                           Spacer(),
-                                          Image.asset("assets/images/3.png")
+                                          Container(
+                                              height: 50.h,
+                                              width: 40.w,
+                                              child: Image.asset(
+                                                  "assets/images/ic_delivery_car.png"))
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: 10),
-                                    if (hasTabol! || isChecked3 == false)
+                                    if (hasCar! || isChecked1 == false)
                                       Column(
                                         children: [
                                           Divider(
@@ -311,61 +150,39 @@ class CardScreen2 extends StatelessWidget {
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              Navigator.of(
-                                                  context, rootNavigator: true)
+                                              Navigator.of(context,
+                                                      rootNavigator: true)
                                                   .pop();
-
+                                              DeliveryCubit.get(context)
+                                                  .getBrands(context);
                                               showDialog(
-                                                barrierColor:
-                                                Colors.white10, //AddScreen()
+                                                barrierColor: Colors.white10,
+                                                //AddScreen()
 
                                                 context: context,
-                                                builder: (_) =>
-                                                    Dialog(
-                                                      insetPadding: EdgeInsets
-                                                          .all(20),
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius:
+                                                builder: (_) => Dialog(
+                                                  insetPadding:
+                                                      EdgeInsets.all(20),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
                                                           BorderRadius.circular(
                                                               20)),
-                                                      child: GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                context)
-                                                                .requestFocus(
-                                                                new FocusNode());
-                                                          },
-                                                          child: BookingScreen()),
-                                                    ), //AddScreen()
+                                                  child: DeliveryScreen(),
+                                                ),
+                                                //AddScreen()
                                                 barrierDismissible: true,
                                               );
                                             },
                                             child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
                                               children: [
-                                                // SizedBox(width: 40.w),
+                                                SizedBox(width: 40.w),
                                                 myTitle(
-                                                    title:
-                                                    DeliveryCubit
-                                                        .get(context)
-                                                        .setorder
-                                                        .reservation != null
-                                                        ? "${DeliveryCubit
-                                                        .get(context)
-                                                        .setorder
-                                                        .reservation!
-                                                        .date
-                                                        .toString()} | ${DeliveryCubit
-                                                        .get(context)
-                                                        .setorder
-                                                        .reservation!
-                                                        .time} | ${DeliveryCubit
-                                                        .get(context)
-                                                        .setorder
-                                                        .reservation!
-                                                        .persons} "
-                                                        : "Complete reservation data".tr(),
+                                                    title: DeliveryCubit.get(
+                                                                context)
+                                                            .cars
+                                                            .isEmpty
+                                                        ? "Add car".tr()
+                                                        : "${DeliveryCubit.get(context).cars[carIndex].plateNumber} | ${DeliveryCubit.get(context).cars[carIndex].color} | ${DeliveryCubit.get(context).cars[carIndex].brandModel!.brand!.name}",
                                                     color: Colors.black38,
                                                     font: 16.sp),
                                                 Spacer(),
@@ -383,136 +200,295 @@ class CardScreen2 extends StatelessWidget {
                                       ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Spacer(),
+                              ),
+                              SizedBox(height: 15),
+                              Container(
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(20.sp)),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            isChecked2 = !isChecked2;
+                                            isChecked1 = true;
+                                            isChecked3 = true;
+                                          });
+                                        },
+                                        child: isChecked2
+                                            ? Icon(
+                                                Icons.circle_outlined,
+                                                color: Colors.black12,
+                                                size: 30.sp,
+                                              )
+                                            : Icon(
+                                                Icons.circle,
+                                                color: color1,
+                                                size: 30.sp,
+                                              ),
+                                      ),
+                                      myTitle(
+                                          title: "Pick up".tr(),
+                                          color: Colors.black,
+                                          font: 16.sp),
+                                      Spacer(),
+                                      Image.asset("assets/images/m2.png")
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 15),
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(20.sp)),
+                                child: Column(
+                                  children: [
+                                    Column(
+                                      children: [
+                                        SizedBox(height: 10),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Row(
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    isChecked1 = true;
+                                                    isChecked2 = true;
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              if (isChecked3 && isChecked2 && isChecked1)
-                                Fluttertoast.showToast(msg: "Please select first".tr());
-                              else if (isChecked1 == false && DeliveryCubit
-                                  .get(context)
-                                  .cars
-                                  .isEmpty)
-                                Fluttertoast.showToast(msg: "Add car".tr());
-                              else if (isChecked3 == false && DeliveryCubit
-                                  .get(context)
-                                  .setorder
-                                  .reservation == null)
-                                Fluttertoast.showToast(
-                                    msg: "Complete reservation data".tr());
-                              else {
+                                                    isChecked3 = !isChecked3;
+                                                  });
+                                                },
+                                                child: isChecked3
+                                                    ? Icon(
+                                                        Icons.circle_outlined,
+                                                        color: Colors.black12,
+                                                        size: 30.sp,
+                                                      )
+                                                    : Icon(
+                                                        Icons.circle,
+                                                        color: color1,
+                                                        size: 30.sp,
+                                                      ),
+                                              ),
+                                              myTitle(
+                                                  title: "Reserve a table".tr(),
+                                                  color: Colors.black,
+                                                  font: 16.sp),
+                                              Spacer(),
+                                              Image.asset("assets/images/3.png")
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        if (hasTabol! || isChecked3 == false)
+                                          Column(
+                                            children: [
+                                              Divider(
+                                                color: Colors.black38,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Navigator.of(context,
+                                                          rootNavigator: true)
+                                                      .pop();
+
+                                                  showDialog(
+                                                    barrierColor: Colors
+                                                        .white10, //AddScreen()
+
+                                                    context: context,
+                                                    builder: (_) => Dialog(
+                                                      insetPadding:
+                                                          EdgeInsets.all(20),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20)),
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            FocusScope.of(
+                                                                    context)
+                                                                .requestFocus(
+                                                                    new FocusNode());
+                                                          },
+                                                          child:
+                                                              BookingScreen()),
+                                                    ), //AddScreen()
+                                                    barrierDismissible: true,
+                                                  );
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    // SizedBox(width: 40.w),
+                                                    myTitle(
+                                                        title: DeliveryCubit.get(
+                                                                        context)
+                                                                    .setorder
+                                                                    .reservation !=
+                                                                null
+                                                            ? "${DeliveryCubit.get(context).setorder.reservation!.date.toString()} | ${DeliveryCubit.get(context).setorder.reservation!.time} | ${DeliveryCubit.get(context).setorder.reservation!.persons} "
+                                                            : "Complete reservation data"
+                                                                .tr(),
+                                                        color: Colors.black38,
+                                                        font: 16.sp),
+                                                    Spacer(),
+                                                    Icon(
+                                                      Icons.arrow_forward_ios,
+                                                      color: Colors.black38,
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 10.h,
+                                              )
+                                            ],
+                                          ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Spacer(),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                                onTap: () {
+                                  if (isChecked3 && isChecked2 && isChecked1)
+                                    Fluttertoast.showToast(
+                                        msg: "Please select first".tr());
+                                  else if (isChecked1 == false &&
+                                      DeliveryCubit.get(context).cars.isEmpty)
+                                    Fluttertoast.showToast(msg: "Add car".tr());
+                                  else if (isChecked3 == false &&
+                                      DeliveryCubit.get(context)
+                                              .setorder
+                                              .reservation ==
+                                          null)
+                                    Fluttertoast.showToast(
+                                        msg: "Complete reservation data".tr());
+                                  else {
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
+                                    DeliveryCubit.get(context).setorder.type =
+                                        isChecked1 == false
+                                            ? "vehicle"
+                                            : isChecked2 == false
+                                                ? "pickup"
+                                                : "reservation";
+
+                                    showDialog(
+                                      barrierColor:
+                                          Colors.white10, //AddScreen()
+
+                                      context: context,
+                                      builder: (_) => Dialog(
+                                        insetPadding: EdgeInsets.all(20),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: CardScreen3(),
+                                      ), //AddScreen()
+                                      barrierDismissible: true,
+                                    );
+                                  }
+                                },
+                                child: mainBottom(
+                                    title: "Next".tr(),
+                                    width: 150.w,
+                                    height: 60)),
+                            InkWell(
+                              onTap: () {
                                 Navigator.of(context, rootNavigator: true)
                                     .pop();
-                                DeliveryCubit
-                                    .get(context)
-                                    .setorder
-                                    .type =
-                                isChecked1 == false ? "vehicle" : isChecked2 ==
-                                    false ? "pickup" : "reservation";
-
 
                                 showDialog(
                                   barrierColor: Colors.white10, //AddScreen()
 
                                   context: context,
-                                  builder: (_) =>
-                                      Dialog(
-                                        insetPadding: EdgeInsets.all(20),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                20)),
-                                        child: CardScreen3(),
-                                      ), //AddScreen()
-                                  barrierDismissible: true,
-                                );
-                              }
-                            },
-                            child:
-                            mainBottom(
-                                title: "Next".tr(), width: 150.w, height: 60)),
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context, rootNavigator: true).pop();
-
-                            showDialog(
-                              barrierColor: Colors.white10, //AddScreen()
-
-                              context: context,
-                              builder: (_) =>
-                                  Dialog(
+                                  builder: (_) => Dialog(
                                     insetPadding: EdgeInsets.all(20),
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            20)),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
                                     child: CardScreen(),
                                   ), //AddScreen()
-                              barrierDismissible: true,
-                            );
-                          },
-                          child: Container(
-                            height: 60.h,
-                            width: 150.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15.sp),
-                                color: Colors.white10),
-                            child: Center(
-                              child: Text(
-                                "Back".tr(),
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontFamily: "FrutigerLTArabic"),
+                                  barrierDismissible: true,
+                                );
+                              },
+                              child: Container(
+                                height: 60.h,
+                                width: 150.w,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15.sp),
+                                    color: Colors.white10),
+                                child: Center(
+                                  child: Text(
+                                    "Back".tr(),
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                        fontFamily: "FrutigerLTArabic"),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
+                        SizedBox(height: 20.h),
+                        // SizedBox(height: 15.h),
                       ],
                     ),
-                    SizedBox(height: 20.h),
-                    // SizedBox(height: 15.h),
-                  ],
-                ),
-              ),
-            );
+                  ),
+          );
         });
   }
 }
 
-class DeliveryScreen extends StatefulWidget{
-
+class DeliveryScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return DeliveryScreenState();
   }
-
 }
+
 class DeliveryScreenState extends State<DeliveryScreen> {
   Color colorFromHex(String hexColor) {
     final hexCode = hexColor.replaceAll('#', '');
     return Color(int.parse('FF$hexCode', radix: 16));
   }
+
   var carModelController = TextEditingController();
   var carNumberController = TextEditingController();
   var carColorController = TextEditingController();
-  ItemScrollController _itemScrollController=ItemScrollController();
+  ItemScrollController _itemScrollController = ItemScrollController();
   bool isOld = true;
-String ?selectedValue;
-  String ?color;
-  String ?selectedValue2;
+  String? selectedValue;
+  String? color;
+  String? selectedValue2;
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DeliveryCubit,DeliveryState>(
-      listener: (context,state){},
-      builder:(context,state)=> SingleChildScrollView(
+    return BlocConsumer<DeliveryCubit, DeliveryState>(
+      listener: (context, state) {},
+      builder: (context, state) => SingleChildScrollView(
         child: Container(
           height: 640,
           padding: EdgeInsets.all(8),
@@ -553,17 +529,15 @@ String ?selectedValue;
               ),
               if (isOld == true)
                 Column(
-
                   children: [
                     myTitle(
                         title: "Saved Vehicle data".tr(),
                         font: 16.sp,
                         color: Colors.black),
-
                     Container(
                       width: 1.sw,
                       alignment: Alignment.center,
-height: 155,
+                      height: 155,
                       child: ScrollablePositionedList.builder(
                         scrollDirection: Axis.horizontal,
                         initialScrollIndex: 0,
@@ -572,342 +546,410 @@ height: 155,
                         // physics: NeverScrollableScrollPhysics(),
 
                         itemCount: DeliveryCubit.get(context).cars.length,
-                        itemBuilder: (context,index)=>
-                            Container(
-                              width: .86.sw,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                        itemBuilder: (context, index) => Container(
+                          width: .86.sw,
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    DeliveryCubit.get(context).CarIndex = index;
+                                    DeliveryCubit.get(context)
+                                            .setorder
+                                            .vehicle_id =
+                                        DeliveryCubit.get(context)
+                                            .cars[index]
+                                            .id!;
+                                    Navigator.of(context).pop();
+                                    showDialog(
+                                      barrierColor:
+                                          Colors.white10, //AddScreen()
 
-                                  GestureDetector(
-                                    onTap: (){
-                                      DeliveryCubit.get(context).CarIndex=index;
-                                      DeliveryCubit.get(context).setorder.vehicle_id=DeliveryCubit.get(context).cars[index].id!;
-                                      Navigator.of(context).pop();
-                                      showDialog(
-                                        barrierColor: Colors.white10, //AddScreen()
-
-                                        context: context,
-                                        builder: (_) => Dialog(
-                                          insetPadding: EdgeInsets.all(20),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(20)),
-                                          child: CardScreen2(
-                                            hasCar: true,
+                                      context: context,
+                                      builder: (_) => Dialog(
+                                        insetPadding: EdgeInsets.all(20),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: CardScreen2(
+                                          hasCar: true,
+                                        ),
+                                      ), //AddScreen()
+                                      barrierDismissible: true,
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(15.sp),
+                                        border:
+                                            Border.all(color: Colors.black12)),
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 10.0.sp,
                                           ),
-                                        ), //AddScreen()
-                                        barrierDismissible: true,
-                                      );
-                                    },
-                                    child: Container(
-
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(15.sp),
-                                          border: Border.all(color: Colors.black12)),
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 10.0.sp, ),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                myTitle(
-                                                    title: "Car brand".tr(),
-                                                    color: Colors.black,
-                                                    font: 16.sp),
-                                                myTitle(
-                                                    title: DeliveryCubit.get(context).cars[index].brandModel!.brand!.name,
-                                                    color: Colors.grey,
-                                                    font: 14.sp),
-
-                                                myTitle(
-                                                    title: "Plate number".tr(),
-                                                    color: Colors.black,
-                                                    font: 16.sp),
-                                                myTitle(
-                                                    title:  DeliveryCubit.get(context).cars[index].plateNumber,
-                                                    color: Colors.grey,
-                                                    font: 14.sp),
-                                              ],
-                                            ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              myTitle(
+                                                  title: "Car brand".tr(),
+                                                  color: Colors.black,
+                                                  font: 16.sp),
+                                              myTitle(
+                                                  title:
+                                                      DeliveryCubit.get(context)
+                                                          .cars[index]
+                                                          .brandModel!
+                                                          .brand!
+                                                          .name,
+                                                  color: Colors.grey,
+                                                  font: 14.sp),
+                                              myTitle(
+                                                  title: "Plate number".tr(),
+                                                  color: Colors.black,
+                                                  font: 16.sp),
+                                              myTitle(
+                                                  title:
+                                                      DeliveryCubit.get(context)
+                                                          .cars[index]
+                                                          .plateNumber,
+                                                  color: Colors.grey,
+                                                  font: 14.sp),
+                                            ],
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 10.0.sp, ),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                myTitle(
-                                                    title: "Model".tr(),
-                                                    color: Colors.black,
-                                                    font: 16.sp),
-                                                myTitle(
-                                                    title: DeliveryCubit.get(context).cars[index].brandModel!.name,
-                                                    color: Colors.grey,
-                                                    font: 14.sp),
-
-                                                SizedBox(width: 8.w),
-                                                myTitle(
-                                                    title: "Car color".tr(),
-                                                    color: Colors.black,
-                                                    font: 16.sp),
-                                                myTitle(
-                                                    title: DeliveryCubit.get(context).cars[index].color,
-                                                    color: Colors.grey,
-                                                    font: 14.sp),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 10.0.sp,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              myTitle(
+                                                  title: "Model".tr(),
+                                                  color: Colors.black,
+                                                  font: 16.sp),
+                                              myTitle(
+                                                  title:
+                                                      DeliveryCubit.get(context)
+                                                          .cars[index]
+                                                          .brandModel!
+                                                          .name,
+                                                  color: Colors.grey,
+                                                  font: 14.sp),
+                                              SizedBox(width: 8.w),
+                                              myTitle(
+                                                  title: "Car color".tr(),
+                                                  color: Colors.black,
+                                                  font: 16.sp),
+                                              myTitle(
+                                                  title:
+                                                      DeliveryCubit.get(context)
+                                                          .cars[index]
+                                                          .color,
+                                                  color: Colors.grey,
+                                                  font: 14.sp),
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      IconButton(onPressed: (){
-                                        if(index-1>=0)
-                                          _itemScrollController.jumpTo(index: index-1,);}, icon: Icon(Icons.arrow_back_ios_outlined)),
-
-
-
-                                      IconButton(onPressed: (){_itemScrollController.jumpTo(index: index+1);}, icon: Icon(Icons.arrow_forward_ios)),
-                                    ],
-                                  )
-
-                                ],
-                          ),
-                              ),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          if (index - 1 >= 0)
+                                            _itemScrollController.jumpTo(
+                                              index: index - 1,
+                                            );
+                                        },
+                                        icon: Icon(
+                                            Icons.arrow_back_ios_outlined)),
+                                    IconButton(
+                                        onPressed: () {
+                                          _itemScrollController.jumpTo(
+                                              index: index + 1);
+                                        },
+                                        icon: Icon(Icons.arrow_forward_ios)),
+                                  ],
+                                )
+                              ],
                             ),
-
+                          ),
+                        ),
                       ),
                     )
                   ],
                 ),
-
-
-
-                Column(
-crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-
-                    myTitle(
-                        title: "Add car".tr(), color: Colors.black, font: 16.sp),
-                    SizedBox(height: 10.h),
-                    Row(
-                      children: [
-
-                        Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  myTitle(
+                      title: "Add car".tr(), color: Colors.black, font: 16.sp),
+                  SizedBox(height: 10.h),
+                  Row(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(width: 1,color: Colors.grey)
-                          ),
-                          width: .76.sw,
-                          height: 70,
-                          child:     Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SearchableDropdown.single (
-icon: ImageIcon(AssetImage("assets/images/4.png",),color:color1 ,),
-                                closeButton: "close".tr(),
-
-                                items: DeliveryCubit.get(context).brands.map((e) => DropdownMenuItem( child: Row(
-                                  children: [
-                                    Text(e.name.toString()),
-                                    SizedBox(width: 2,),
-                                    Image.network(e.logo.toString(),width: 20,height: 30,),
-                                  ],
-                                ),value: e.name,)).toList(),
-                                value: selectedValue,
-                                hint: "Car brand".tr(),
-                                searchHint: "Car brand".tr(),
-displayClearIcon: false,underline:Container() ,
-
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedValue =value;
-                                    DeliveryCubit.get(context).getModel(context,DeliveryCubit.get(context).brands.firstWhere((element) => element.name==value ).id.toString() );
-
-                                  });
-
-                                },
-
-                                displayItem: (item, selected) {
-                                  return (
-
-                                    Row(
-                                      children:[ item],
-
-                                  ));
-                                },
-                                isExpanded: true,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(width: 1,color: Colors.grey)
-                          ),
-                          width: .76.sw,
-                          height: 70.h,
-                          child:     Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SearchableDropdown.single(
-
-                                items: DeliveryCubit.get(context).models.map((e) => DropdownMenuItem( child: Text(e.name.toString()),value: e.name,)).toList(),
-                                value: selectedValue,
-                                hint: "Model".tr(),   closeButton: "close".tr(),
-                                searchHint: "Model".tr(),
-                              displayClearIcon: false,underline:Container() ,
-
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedValue2 =value;
-
-                                  });
-
-                                },
-
-                                displayItem: (item, selected) {
-                                  return (
-
-                                    Row(
-                                      children:[ item],
-                                    )
-                                  );
-                                },
-                                isExpanded: true,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),   SizedBox(height: 10),
-                    Row(
-                      children: [
-
-                        Column(
+                            border: Border.all(width: 1, color: Colors.grey)),
+                        width: .76.sw,
+                        height: 70,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              width: .35.sw,
-padding: EdgeInsets.all(8),
-height: 70.h,
-                              decoration: BoxDecoration(border:Border.all(width: 1,color:  carNumberController.text.length>4?Colors.red:Colors.grey),borderRadius:BorderRadius.circular(10)),
-                              child: TextField(
-
-
-                                  controller: carNumberController,
-    inputFormatters: [
-    LengthLimitingTextInputFormatter(4),
-    ],
-                                  decoration:InputDecoration(
-                                    hintText: "Plate number".tr(),
-
-                                    border: InputBorder.none,
-
-                                      )
-    )
-
+                            SearchableDropdown.single(
+                              icon: ImageIcon(
+                                AssetImage(
+                                  "assets/images/4.png",
+                                ),
+                                color: color1,
+                              ),
+                              closeButton: "close".tr(),
+                              items: DeliveryCubit.get(context)
+                                  .brands
+                                  .map((e) => DropdownMenuItem(
+                                        child: Row(
+                                          children: [
+                                            Text(e.name.toString()),
+                                            SizedBox(
+                                              width: 2,
+                                            ),
+                                            Image.network(
+                                              e.logo.toString(),
+                                              width: 20,
+                                              height: 30,
+                                            ),
+                                          ],
+                                        ),
+                                        value: e.name,
+                                      ))
+                                  .toList(),
+                              value: selectedValue,
+                              hint: "Car brand".tr(),
+                              searchHint: "Car brand".tr(),
+                              displayClearIcon: false,
+                              underline: Container(),
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value;
+                                  DeliveryCubit.get(context).getModel(
+                                      context,
+                                      DeliveryCubit.get(context)
+                                          .brands
+                                          .firstWhere((element) =>
+                                              element.name == value)
+                                          .id
+                                          .toString());
+                                });
+                              },
+                              displayItem: (item, selected) {
+                                return (Row(
+                                  children: [item],
+                                ));
+                              },
+                              isExpanded: true,
                             ),
                           ],
                         ),
-                        SizedBox(width: 20),
-                        Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(width: 1,color: Colors.grey)
-                          ),
-                          width: .35.sw,
-                          height:70.h,
-                          child:     Column(mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SearchableDropdown.single(
-
-                                items: DeliveryCubit.get(context).colors.map((e){
-
-                                  return DropdownMenuItem( child: Row(
-                                  children: [
-                                    Container(width: 50.w,child: Text(e.name.toString())),
-                                    SizedBox(width: 5.w,),
-
-                                    Container(width: 25,height: 25, decoration: BoxDecoration(color: colorFromHex(e.hex!),borderRadius: BorderRadius.circular(100),border: Border.all(width: 1,color: Colors.grey)),)
-                                  ],
-                                ),value: e.name,);}).toList(),
-                                value: selectedValue,
-                                hint: "Car color".tr(),   closeButton: "close".tr(),
-                                searchHint: "Car color".tr(),
-                               displayClearIcon: false,underline:Container() ,
-
-                                onChanged: (value) {
-                                  setState(() {
-                                color =value;
-
-                                  });
-
-                                },
-
-                                displayItem: (item, selected) {
-                                  return (
-
-                                    Row(
-                                      children: [item],
-                                    )
-                                  );
-                                },
-                                isExpanded: true,
-                              ),
-                            ],
-                          ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(width: 1, color: Colors.grey)),
+                        width: .76.sw,
+                        height: 83.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SearchableDropdown.single(
+                              items: DeliveryCubit.get(context)
+                                  .models
+                                  .map((e) => DropdownMenuItem(
+                                        child: Text(e.name.toString()),
+                                        value: e.name,
+                                      ))
+                                  .toList(),
+                              value: selectedValue,
+                              hint: "Model".tr(),
+                              closeButton: "close".tr(),
+                              searchHint: "Model".tr(),
+                              displayClearIcon: false,
+                              underline: Container(),
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue2 = value;
+                                });
+                              },
+                              displayItem: (item, selected) {
+                                return (Row(
+                                  children: [item],
+                                ));
+                              },
+                              isExpanded: true,
+                            ),
+                          ],
                         ),
-                      ],
-                    )
-                  ],
-                ),
-
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                              width: .35.sw,
+                              padding: EdgeInsets.all(8),
+                              height: 82.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 1,
+                                      color: carNumberController.text.length > 4
+                                          ? Colors.red
+                                          : Colors.grey),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: TextField(
+                                  controller: carNumberController,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(4),
+                                  ],
+                                  decoration: InputDecoration(
+                                    hintText: "Plate number".tr(),
+                                    border: InputBorder.none,
+                                  ))),
+                        ],
+                      ),
+                      SizedBox(width: 20),
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(width: 1, color: Colors.grey)),
+                        width: .35.sw,
+                        height: 82.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SearchableDropdown.single(
+                              items: DeliveryCubit.get(context).colors.map((e) {
+                                return DropdownMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                          width: 50.w,
+                                          child: Text(e.name.toString())),
+                                      SizedBox(
+                                        width: 5.w,
+                                      ),
+                                      Container(
+                                        width: 25,
+                                        height: 25,
+                                        decoration: BoxDecoration(
+                                            color: colorFromHex(e.hex!),
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            border: Border.all(
+                                                width: 1, color: Colors.grey)),
+                                      )
+                                    ],
+                                  ),
+                                  value: e.name,
+                                );
+                              }).toList(),
+                              value: selectedValue,
+                              hint: "Car color".tr(),
+                              closeButton: "close".tr(),
+                              searchHint: "Car color".tr(),
+                              displayClearIcon: false,
+                              underline: Container(),
+                              onChanged: (value) {
+                                setState(() {
+                                  color = value;
+                                });
+                              },
+                              displayItem: (item, selected) {
+                                return (Row(
+                                  children: [item],
+                                ));
+                              },
+                              isExpanded: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
               SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-
                   InkWell(
-                      onTap: () async{
+                      onTap: () async {
+                        if (selectedValue == null ||
+                            selectedValue2 == null ||
+                            color == null ||
+                            carNumberController.text.isEmpty)
+                          Fluttertoast.showToast(
+                              msg: "Compelte required data".tr());
+                        else if (carNumberController.text.length != 4)
+                          Fluttertoast.showToast(
+                              msg: "Plate number is 4 numbers".tr());
+                        else {
+                          DeliveryCubit.get(context).addCar(
+                              context: context,
+                              brand: DeliveryCubit.get(context)
+                                  .models
+                                  .firstWhere((element) =>
+                                      element.name != selectedValue)
+                                  .id
+                                  .toString(),
+                              plate: carNumberController.text,
+                              color: DeliveryCubit.get(context)
+                                  .colors
+                                  .firstWhere(
+                                      (element) => element.name != color)
+                                  .id
+                                  .toString());
+                          Navigator.of(context, rootNavigator: true).pop();
 
-if(selectedValue==null ||selectedValue2==null || color==null|| carNumberController.text.isEmpty)
-  Fluttertoast.showToast(msg: "Compelte required data".tr());
-else if (carNumberController.text.length!=4)
-  Fluttertoast.showToast(msg: "Plate number is 4 numbers".tr());
-  else{
-                  DeliveryCubit.get(context).addCar(context: context, brand: DeliveryCubit.get(context).models.firstWhere((element) => element.name!=selectedValue).id.toString(), plate: carNumberController.text, color:  DeliveryCubit.get(context).colors.firstWhere((element) => element.name!=color).id.toString());
-                        Navigator.of(context, rootNavigator: true).pop();
+                          showDialog(
+                            barrierColor: Colors.white10, //AddScreen()
 
-                        showDialog(
-                          barrierColor: Colors.white10, //AddScreen()
-
-                          context: context,
-                          builder: (_) => Dialog(
-                            insetPadding: EdgeInsets.all(20),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: CardScreen2(
-                              hasCar: true,
-                            ),
-                          ), //AddScreen()
-                          barrierDismissible: true,
-                        );
-                      }},
-                      child: mainBottom(title: "Add".tr(), width: 140.w, height: 50)),
+                            context: context,
+                            builder: (_) => Dialog(
+                              insetPadding: EdgeInsets.all(20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: CardScreen2(
+                                hasCar: true,
+                              ),
+                            ), //AddScreen()
+                            barrierDismissible: true,
+                          );
+                        }
+                      },
+                      child: mainBottom(
+                          title: "Add".tr(), width: 140.w, height: 50)),
                 ],
               ),
             ],
@@ -953,8 +995,10 @@ class _BookingScreenState extends State<BookingScreen> {
   late DateTime dateTime2;
 
   Future<void> openTimePicker(BuildContext context) async {
-    final TimeOfDay? t =
-        await showTimePicker( initialEntryMode: TimePickerEntryMode.input,context: context, initialTime: TimeOfDay.now());
+    final TimeOfDay? t = await showTimePicker(
+        initialEntryMode: TimePickerEntryMode.input,
+        context: context,
+        initialTime: TimeOfDay.now());
     if (t != null) {
       setState(() {
         value2 = t.format(context);
@@ -985,7 +1029,7 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     return MediaQuery(
-      data:  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+      data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
       child: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -1125,30 +1169,31 @@ class _BookingScreenState extends State<BookingScreen> {
                       SizedBox(width: 10.w),
                       InkWell(
                           onTap: () {
-                            if (value== null || numberOfPersonController.text.isEmpty || value2 == null)
-                              Fluttertoast.showToast(msg: "Complete required data".tr());
+                            if (value == null ||
+                                numberOfPersonController.text.isEmpty ||
+                                value2 == null)
+                              Fluttertoast.showToast(
+                                  msg: "Complete required data".tr());
                             else {
                               Navigator.of(context, rootNavigator: true).pop();
-                              DeliveryCubit
-                                  .get(context)
-                                  .setorder
-                                  .reservation = Reservation(date: DateFormat
-                                  .yMd().format(value).toString(),
-                                  persons: numberOfPersonController.text,
-                                  time: value2.toString());
+                              DeliveryCubit.get(context).setorder.reservation =
+                                  Reservation(
+                                      date: DateFormat.yMd()
+                                          .format(value)
+                                          .toString(),
+                                      persons: numberOfPersonController.text,
+                                      time: value2.toString());
                               showDialog(
                                 barrierColor: Colors.white10, //AddScreen()
                                 context: context,
-                                builder: (_) =>
-                                    Dialog(
-                                      insetPadding: EdgeInsets.all(20),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              20)),
-                                      child: CardScreen2(
-                                        hasTabol: true,
-                                      ),
-                                    ), //AddScreen()
+                                builder: (_) => Dialog(
+                                  insetPadding: EdgeInsets.all(20),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: CardScreen2(
+                                    hasTabol: true,
+                                  ),
+                                ), //AddScreen()
                                 barrierDismissible: true,
                               );
                             }
