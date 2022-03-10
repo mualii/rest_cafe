@@ -777,7 +777,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .76.sw,
-                        height: 70.h,
+                        height: 82.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -822,7 +822,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                               width: .35.sw,
                               alignment: Alignment.center,
                               padding: EdgeInsets.all(8),
-                              height: 69.h,
+                              height: 82.h,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1,
@@ -850,7 +850,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .35.sw,
-                        height: 70.h,
+                        height: 82.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
