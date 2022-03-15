@@ -1089,8 +1089,8 @@ class _BookingScreenState extends State<BookingScreen> {
                           SizedBox(width: 10.w),
                           Container(
                             width: .82.sw,
-                            child: Directionality(
-                              textDirection: TextDirection.ltr,
+
+
                               child: defaultFormField(
 
                                   type: TextInputType.number,
@@ -1099,7 +1099,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   prefix: Image.asset("assets/images/7.png"),
                                   color: color1),
                             ),
-                          ),
+
                         ],
                       ),
                       SizedBox(height: 10.h),
