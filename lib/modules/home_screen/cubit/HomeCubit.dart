@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeState.dart';
@@ -31,6 +32,9 @@ filterByType();
     result is Response
     ){
 types.addAll((result.data as List<dynamic>).map((e) => Types.fromJson(e)).toList());
+
+Types type = Types(name: "all".tr(),key: "",icon: "");
+types.insert(0,type);
 getResturants(context);
       emit(TypesLoaded());
 
@@ -69,7 +73,9 @@ getResturants(context);
       emit(ResturantsFailed());
   }
   filterByType(){
-
+if(currentIndex==0)
+  resturants=all;
+else
     resturants=all.where((element) => element.type==types[currentIndex].key).toList();
     emit(SearchedByType());
   }

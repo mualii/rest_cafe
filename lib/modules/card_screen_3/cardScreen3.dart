@@ -40,8 +40,8 @@ class CardScreen3 extends StatelessWidget {
         builder: (BuildContext context, StateSetter setState) => state is CarsLoadingState? Center(child: CircularProgressIndicator()): Container(
           height: .91.sh,
           padding: EdgeInsets.all(10.sp),
-          child: SingleChildScrollView(
-            child: Column(
+          child:
+             Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -220,25 +220,27 @@ class CardScreen3 extends StatelessWidget {
                 //   ),
                 // ),
 
-                 ListView.separated(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index) =>
-                         Directionality(
-                           textDirection: LocalStorage.getData(key: "lang")=="en"? TextDirection.rtl:TextDirection.ltr,
-                           child: CartModle(CartCubit
-                                .get(context)
-                                .cart
-                                [index]),
-                         ),
-                      separatorBuilder:
-                          (BuildContext context, int index) =>
-                          SizedBox(height: 15.h),
-                      itemCount: CartCubit
-                          .get(context)
-                          .cart
-                          .length
-                          ),
+                 Expanded(
+
+                   child: ListView.separated(
+
+                        itemBuilder: (BuildContext context, int index) =>
+                           Directionality(
+                             textDirection: LocalStorage.getData(key: "lang")=="en"? TextDirection.rtl:TextDirection.ltr,
+                             child: CartModle(CartCubit
+                                  .get(context)
+                                  .cart
+                                  [index]),
+                           ),
+                        separatorBuilder:
+                            (BuildContext context, int index) =>
+                            SizedBox(height: 15.h),
+                        itemCount: CartCubit
+                            .get(context)
+                            .cart
+                            .length
+                            ),
+                 ),
 
                 Divider(color: Colors.black38),
                 Row(
@@ -434,7 +436,7 @@ class CardScreen3 extends StatelessWidget {
               ],
             ),
           ),
-        ),
+
       );}
     );
   }
@@ -467,7 +469,7 @@ class CartModle extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(40.sp),
                             topLeft: Radius.circular(40.sp))),
-                    height: .3.sh,
+                    height: .4.sh,
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Center(

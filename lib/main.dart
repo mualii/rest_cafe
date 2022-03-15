@@ -283,7 +283,7 @@ class _MyAppState extends State<MyApp> {
             return MediaQuery(
               //Setting font does not change with system font size
               data: MediaQuery.of(context)
-                  .copyWith(textScaleFactor: 1.0, alwaysUse24HourFormat: true),
+                  .copyWith(textScaleFactor: 1.0, boldText: false,alwaysUse24HourFormat: false),
               child: widget!,
             );
           },

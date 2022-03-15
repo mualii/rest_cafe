@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_static_maps_controller/google_static_maps_controller.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:rest_cafe/modules/order/chat_order_screen/chatOrderScreen.dart';
 import 'package:rest_cafe/modules/order/order_detail_%D9%8Dscreen/order_detail_state.dart';
@@ -21,8 +22,14 @@ int rate=1;
 TextEditingController rateController = TextEditingController();
   OrderDetailScreen(this.id);
 
+
+  /// Get map image provider from controller.
+  /// You can also get image url by accessing
+  /// `_controller.url` property.
+
   @override
   Widget build(BuildContext context) {
+
     return Directionality(
       textDirection: TextDirection.ltr,
       child: BlocProvider(
@@ -30,7 +37,8 @@ TextEditingController rateController = TextEditingController();
         child: BlocConsumer<OrderDetailsCubit, OrderDetailState>(
           listener: (context, state) {
 
-          if(  state is !OrderDetailsLoading)
+          if(  state is !OrderDetailsLoading){
+
           showModalBottomSheet(isDismissible: false,
           backgroundColor: Colors.transparent,
           context: context,
@@ -96,7 +104,7 @@ TextEditingController rateController = TextEditingController();
           ))));
 
 
-          },
+          }},
           builder: (context, state) {
             return state is OrderDetailsLoading
                 ? Center(child: CircularProgressIndicator())
@@ -283,9 +291,25 @@ TextEditingController rateController = TextEditingController();
                                   .details!
                                   .branch!.name);
                             },
-                            child: Image.asset(
-                              "assets/images/location.png",
-                              fit: BoxFit.fill,
+                            child:Image(
+
+                              image: StaticMapController(
+                                googleApiKey: "AIzaSyDAc-y-9PWVagF01ChYsf0Goo50Pybdli0",
+                                width: 200,
+                                height: 200,
+                                zoom: 10,markers:  <Marker>[
+                              /// Define marker style
+                              Marker(
+                              color: Colors.red,
+                                label: "A",size: MarkerSize.small,
+                                locations: [
+                                  /// Provide locations for markers of a defined style
+                                  Location(OrderDetailsCubit.get(context).details!.branch!.lat!, OrderDetailsCubit.get(context).details!.branch!.lng!),
+
+                                ],
+                              ),],
+                                center: Location(OrderDetailsCubit.get(context).details!.branch!.lat!, OrderDetailsCubit.get(context).details!.branch!.lng!),
+                              ).image,fit: BoxFit.fitWidth,
                             ),
                           ),
                         ),

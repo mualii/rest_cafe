@@ -280,7 +280,7 @@ class LabolOfSecondListView extends StatelessWidget {
                   Row(
                     children: [
                       Row(children: [
-                        Container(
+                       HomeCubit.get(context).currentIndex==0?Container():   Container(
                             height: 20,
                             child: Image.network(
                               HomeCubit.get(context)
@@ -449,8 +449,8 @@ class labolOfFristListView extends StatelessWidget {
         children: [
           Container(
               height: 20,
-              child: ImageIcon(
-                NetworkImage(path, scale: 1.5),
+              child:     path==""?Container():ImageIcon(
+            NetworkImage(path, scale: 1.5),
                 color: index == HomeCubit.get(context).currentIndex
                     ? Colors.white
                     : Theme.of(context).primaryColor,

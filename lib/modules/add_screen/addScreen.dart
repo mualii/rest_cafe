@@ -39,198 +39,209 @@ bool favorite;
           // TODO: implement listener
         },
         builder: (context, state) {
-          return state is DataLoaded? Container(
+          if (state is DataLoaded) {
+            return Container(
             height: .9.sh,
             padding: EdgeInsets.all(7.sp),
 
-              child: Column(
+              child: Stack(
                 children: [
-                  StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState) => Row(
-                      children: [
-                        IconButton(
-                          icon: (!isFav ) ? Icon(
-                            Icons.favorite_border_outlined,
-                            color: Colors.grey,
-                          )
-                              : Icon(
-                            Icons.favorite,
-                            color: color1,
-                          ),
+                  ListView(
+                    children: [
+                      StatefulBuilder(
+                        builder: (BuildContext context, StateSetter setState) => Row(
+                          children: [
+                            IconButton(
+                              icon: (!isFav ) ? Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.grey,
+                              )
+                                  : Icon(
+                                Icons.favorite,
+                                color: color1,
+                              ),
 
-                          onPressed: () async{
-                            setState(() {
+                              onPressed: () async{
+                                setState(() {
 
 
-                              isFav = !isFav;
-                            });
-                            if(isFav)
-                              await DioHelper.postData(endpoint: "api/v1/favourites/${id}", context: context);
-                            else
-              
-                              await DioHelper.delete(endpoint: "api/v1/favourites/remove/${id}", context: context);
-                            
-                            details==true?
+                                  isFav = !isFav;
+                                });
+                                if(isFav)
+                                  await DioHelper.postData(endpoint: "api/v1/favourites/${id}", context: context);
+                                else
+
+                                  await DioHelper.delete(endpoint: "api/v1/favourites/remove/${id}", context: context);
+
+                                details==true?
 DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.id!):FavoutiresCubit.get(context).getFavourties(context);
-                          },
+                              },
+                            ),
+                            SizedBox(width: .6.sw),
+                            IconButton(
+                              icon: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () {
+                               Navigator.of(context).pop();
+                              },
+                            )
+                          ],
                         ),
-                        SizedBox(width: .6.sw),
-                        IconButton(
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.grey,
-                          ),
-                          onPressed: () {
-                           Navigator.of(context).pop();
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                  Center(child: Image.network(state.sideDish!.image.toString(),height: 240,)),
-                  Center(
-                      child: myTitle(
-                          title: state.sideDish!.name,
-                          font: 16.sp,
-                          color: Colors.black)),
-                  Center(
-                      child: myTitle(
-
-                          title: state.sideDish!.description,
-                          font: 14.sp,
-                          color: Colors.black)),
-                  Expanded(
-
-
-                      child: ListView.separated(shrinkWrap: true,
-                        itemBuilder:  (context,index)=>
-                          ListTile(
-                            title: myTitle(
-                                title: state.sideDish!.extras![index].name, color: Colors.black, font: 14.sp),
-                            trailing: myTitle(
-                                title:state.sideDish!.extras![index].price.toString() , color: Colors.grey, font: 14.sp),
-                            leading: Checkbox(
-                                value: AddCubit.get(context).choises[index],
-                                activeColor: color1,
-                                onChanged: (bool? value) {
-                                  bool i = AddCubit.get(context)
-                                      .onChangedCheckBox(AddCubit.get(context).choises[index],index);
-                                  AddCubit.get(context).choises[index] = i;
-                                }),
-                          ),
-                     itemCount: state.sideDish!.extras!.length,
-                        separatorBuilder: (context,index)=>Divider(),
-
                       ),
-                    ),
+                      Center(child: Image.network(state.sideDish!.image.toString(),height: 240,)),
+                      Center(
+                          child: myTitle(
+                              title: state.sideDish!.name,
+                              font: 16.sp,
+                              color: Colors.black)),
+                      Center(
+                          child: myTitle(
+
+                              title: state.sideDish!.description,
+                              font: 12.sp,
+                              color: Colors.black)),
+                      Expanded(
 
 
-                  // SizedBox(height: 15.h),
-                 Row(
+                          child: ListView.separated(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder:  (context,index)=>
+                              ListTile(
+                                title: myTitle(
+                                    title: state.sideDish!.extras![index].name, color: Colors.black, font: 14.sp),
+                                trailing: myTitle(
+                                    title:state.sideDish!.extras![index].price.toString()+" "+"SAR".tr() , color: Colors.grey, font: 14.sp),
+                                leading: Checkbox(
+                                    value: AddCubit.get(context).choises[index],
+                                    activeColor: color1,
+                                    onChanged: (bool? value) {
+                                      bool i = AddCubit.get(context)
+                                          .onChangedCheckBox(AddCubit.get(context).choises[index],index);
+                                      AddCubit.get(context).choises[index] = i;
+                                    }),
+                              ),
+                         itemCount: state.sideDish!.extras!.length,
+                            separatorBuilder: (context,index)=>Divider(),
+
+                          ),
+                        ),
+
+
+                      SizedBox(height: 50.h),
+
+
+                    ],
+                  ),
+                  Align(child:  Container(
+                    height: 50.h,
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
                           onTap: () async{
                             if(CartCubit.get(context).mainId==null  )
                               CartCubit.get(context).mainId=branchId;
-                          if (CartCubit.get(context).mainId==branchId){
+                            if (CartCubit.get(context).mainId==branchId){
 
 
 
-                          var response= await DioHelper.postData(endpoint: "api/v1/carts", context: context,formData: {
-                              "item_id":id,"quantity":AddCubit.get(context).counter,"extras":AddCubit.get(context).ids
-                            });
-                          if(response is Response)
-                          CartCubit.get(context).updateCart(response);
-                          Navigator.of(context).pop();
-                          } else{
-                            AwesomeDialog(
-                              context: context,
-                              //dialogType: DialogType.INFO,
-                              customHeader: Image.asset(
-                                  "assets/images/ic_delete_item_popup.png"),
-                              animType: AnimType.BOTTOMSLIDE,
+                              var response= await DioHelper.postData(endpoint: "api/v1/carts", context: context,formData: {
+                                "item_id":id,"quantity":AddCubit.get(context).counter,"extras":AddCubit.get(context).ids
+                              });
+                              if(response is Response)
+                                CartCubit.get(context).updateCart(response);
+                              Navigator.of(context).pop();
+                            } else{
+                              AwesomeDialog(
+                                context: context,
+                                //dialogType: DialogType.INFO,
+                                customHeader: Image.asset(
+                                    "assets/images/ic_delete_item_popup.png"),
+                                animType: AnimType.BOTTOMSLIDE,
 
-                              body: Column(
-                                children: [
-                                  Text(
-                                    "Delete cart".tr(),
-                                    style: TextStyle(
-                                      color: color1,
-                                      fontFamily: "FrutigerLTArabic",
+                                body: Column(
+                                  children: [
+                                    Text(
+                                      "Delete cart".tr(),
+                                      style: TextStyle(
+                                        color: color1,
+                                        fontFamily: "FrutigerLTArabic",
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "You can't order form 2 different shops, delete cart ?".tr(),
-                                    style: TextStyle(
-                                      fontFamily: "FrutigerLTArabic",
+                                    Text(
+                                      "You can't order form 2 different shops, delete cart ?".tr(),
+                                      style: TextStyle(
+                                        fontFamily: "FrutigerLTArabic",
+                                      ),
                                     ),
+
+                                  ],
+                                ),
+
+                                btnOk: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  style: ButtonStyle(
+                                      padding: MaterialStateProperty.all(
+                                          EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 5)),
+                                      backgroundColor:
+                                      MaterialStateProperty.all(Colors.white),
+                                      elevation: MaterialStateProperty.all(0),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10.0),
+                                              side: BorderSide(
+                                                  color: Color(0xffC3C6D1))))),
+                                  child: Text(
+                                    "تراجع",
+                                    style: TextStyle(color: Color(0xff4CB379)),
                                   ),
-
-                                ],
-                              ),
-
-                              btnOk: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
-                                        EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 5)),
-                                    backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                    elevation: MaterialStateProperty.all(0),
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                            side: BorderSide(
-                                                color: Color(0xffC3C6D1))))),
-                                child: Text(
-                                  "تراجع",
-                                  style: TextStyle(color: Color(0xff4CB379)),
                                 ),
-                              ),
 
-                              btnCancel: ElevatedButton(
-                                onPressed: () async{
-                                 CartCubit.get(context).mainId=branchId;
-                                  var response= await DioHelper.postData(endpoint: "api/v1/carts/clear", context: context,
-                                  );
-                                  if(response is Response)
-                                    CartCubit.get(context).updateCart(response);
-                                   response= await DioHelper.postData(endpoint: "api/v1/carts", context: context,formData: {
-                                    "item_id":id,"quantity":AddCubit.get(context).counter,"extras":AddCubit.get(context).ids
-                                  });
-                                  if(response is Response)
-                                    CartCubit.get(context).updateCart(response);
-                                  Navigator.of(context).pop();
-                                 Navigator.of(context).pop();
-                                },
-                                style: ButtonStyle(
+                                btnCancel: ElevatedButton(
+                                  onPressed: () async{
+                                    CartCubit.get(context).mainId=branchId;
+                                    var response= await DioHelper.postData(endpoint: "api/v1/carts/clear", context: context,
+                                    );
+                                    if(response is Response)
+                                      CartCubit.get(context).updateCart(response);
+                                    response= await DioHelper.postData(endpoint: "api/v1/carts", context: context,formData: {
+                                      "item_id":id,"quantity":AddCubit.get(context).counter,"extras":AddCubit.get(context).ids
+                                    });
+                                    if(response is Response)
+                                      CartCubit.get(context).updateCart(response);
+                                    Navigator.of(context).pop();
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: ButtonStyle(
 
-                                    padding: MaterialStateProperty.all(
-                                        EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 5)),
-                                    backgroundColor:
-                                    MaterialStateProperty.all(Color(0xff4CB379)),
-                                    elevation: MaterialStateProperty.all(0),
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                            side: BorderSide(
-                                                color: Color(0xffC3C6D1))))),
-                                child: Text(
-                                  "حذف",
-                                  style: TextStyle(color: Colors.white),
+                                      padding: MaterialStateProperty.all(
+                                          EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 5)),
+                                      backgroundColor:
+                                      MaterialStateProperty.all(Color(0xff4CB379)),
+                                      elevation: MaterialStateProperty.all(0),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10.0),
+                                              side: BorderSide(
+                                                  color: Color(0xffC3C6D1))))),
+                                  child: Text(
+                                    "حذف",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
-                              ),
-                            )..show();
+                              )..show();
 
-                          }}
-                         ,
+                            }}
+                          ,
                           child: mainBottom(
                               title:  "Add".tr()+ " ${AddCubit.get(context).total} "  + "SAR".tr(), height: 50.h, width: 140.w),
                         ),
@@ -280,11 +291,14 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                         ),
                       ],
                     ),
-
+                  ),alignment: Alignment.bottomCenter,)
                 ],
               ),
 
-          ):Center(child: CircularProgressIndicator());
+          );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
         },
       ),
     );

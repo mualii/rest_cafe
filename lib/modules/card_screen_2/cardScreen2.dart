@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:intl/intl.dart';
-import 'package:rest_cafe/modules/branches_screen/cubit.dart';
+import 'package:intl/intl.dart' as intel;
+
 import 'package:rest_cafe/modules/card_screen/cardScreen.dart';
 import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_cubit.dart';
 import 'package:rest_cafe/modules/card_screen_2/cubit/delivery_state.dart';
@@ -324,7 +324,7 @@ class CardScreen2 extends StatelessWidget {
                                                           child:
                                                               BookingScreen()),
                                                     ), //AddScreen()
-                                                    barrierDismissible: true,
+                                                    barrierDismissible: false,
                                                   );
                                                 },
                                                 child: Row(
@@ -777,7 +777,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .76.sw,
-                        height: 70.h,
+                        height: 83.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -822,7 +822,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                               width: .35.sw,
                               alignment: Alignment.center,
                               padding: EdgeInsets.all(8),
-                              height: 69.h,
+                              height: 83.h,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1,
@@ -832,6 +832,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                   borderRadius: BorderRadius.circular(10)),
                               child: Align(
                                 child: TextField(
+                                  keyboardType: TextInputType.number,
                                     controller: carNumberController,
                                     inputFormatters: [
                                       LengthLimitingTextInputFormatter(4),
@@ -839,6 +840,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                     decoration: InputDecoration(
                                       hintText: "Plate number".tr(),
                                       border: InputBorder.none,
+
                                     )),
                               )),
                         ],
@@ -850,7 +852,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .35.sw,
-                        height: 70.h,
+                        height: 83.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -995,7 +997,7 @@ class _BookingScreenState extends State<BookingScreen> {
 
   var value;
 
-  var value2;
+  String ?value2;
 
   DateTime dateTime = DateTime.now();
 
@@ -1008,7 +1010,16 @@ class _BookingScreenState extends State<BookingScreen> {
         initialTime: TimeOfDay.now());
     if (t != null) {
       setState(() {
+
         value2 = t.format(context);
+       if(value2!.contains("PM") || value2!.contains("م"))
+         {
+           String temp=value2!.split(":")[1].toString().split(" ")[0];
+           String temp2= (int.parse(value2!.split(":")[0])+12).toString();
+
+           value2=temp2 +":"+temp;
+         }
+        print(value2);
       });
     }
   }
@@ -1036,10 +1047,10 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     return MediaQuery(
-      data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+      data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
       child: GestureDetector(
         onTap: () {
-          FocusScope.of(context).unfocus();
+          // FocusScope.of(context).unfocus();
           print("tesr");
         },
         child: Material(
@@ -1078,12 +1089,16 @@ class _BookingScreenState extends State<BookingScreen> {
                           SizedBox(width: 10.w),
                           Container(
                             width: .82.sw,
-                            child: defaultFormField(
-                                type: TextInputType.number,
-                                controller: numberOfPersonController,
-                                label: "Number of persons".tr(),
-                                prefix: Image.asset("assets/images/7.png"),
-                                color: color1),
+                            child: Directionality(
+                              textDirection: TextDirection.ltr,
+                              child: defaultFormField(
+
+                                  type: TextInputType.number,
+                                  controller: numberOfPersonController,
+                                  label: "Number of persons".tr(),
+                                  prefix: Image.asset("assets/images/7.png"),
+                                  color: color1),
+                            ),
                           ),
                         ],
                       ),
@@ -1122,7 +1137,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                     SizedBox(width: 10.w),
                                     Text((value == null)
                                         ? "Date".tr()
-                                        : DateFormat.yMd().format(value)),
+                                        : intel.DateFormat.yMd().format(value)),
                                   ],
                                 )),
                           ),
@@ -1185,7 +1200,7 @@ class _BookingScreenState extends State<BookingScreen> {
                               Navigator.of(context, rootNavigator: true).pop();
                               DeliveryCubit.get(context).setorder.reservation =
                                   Reservation(
-                                      date: DateFormat.yMd()
+                                      date: intel.DateFormat.yMd()
                                           .format(value)
                                           .toString(),
                                       persons: numberOfPersonController.text,

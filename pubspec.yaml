@@ -34,6 +34,7 @@ dependencies:
   intl_phone_number_input: ^0.7.0+2
   intl_phone_field: ^2.0.1
   image_picker: ^0.8.3+3
+  google_static_maps_controller: ^0.6.0
   http:
   keyboard_visibility:
     git: https://github.com/spiderion/flutter_keyboard_visibility.git

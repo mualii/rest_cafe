@@ -159,6 +159,8 @@ lat=StartCubit.get(context).location!.latitude;
                   width: 1.sw,
                   height: 1.sh-(180),
                   child: GoogleMap(
+                    myLocationEnabled: true,
+                    myLocationButtonEnabled: true,
                       onTap: (v){  Marker maker=Marker(
 
 
