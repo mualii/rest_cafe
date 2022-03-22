@@ -485,9 +485,16 @@ class DeliveryScreenState extends State<DeliveryScreen> {
   String? selectedValue;
   String? color;
   String? selectedValue2;
-
+@override
+  void initState() {
+    // TODO: implement initState
+  DeliveryCubit.get(context).getModel(context,"048da139-fd72-4f3a-8cc1-4a3b92bbf3c2");
+  DeliveryCubit.get(context).getBrands(context);
+  }
   @override
   Widget build(BuildContext context) {
+
+
     return BlocConsumer<DeliveryCubit, DeliveryState>(
       listener: (context, state) {},
       builder: (context, state) => SingleChildScrollView(
