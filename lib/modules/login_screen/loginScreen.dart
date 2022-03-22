@@ -204,7 +204,7 @@ class LoginScreenState extends State<LoginScreen> {
                           endpoint: "/api/v1/auth/send-otp",
                           context: context,
                           formData: {"phone": _userPhoneController.text});
-                      navigateAndFinish(
+                      navigateTo(
                           context,
                           PinCodePhoneScreen(
                               PhoneUser: _userPhoneController.text.toString(),

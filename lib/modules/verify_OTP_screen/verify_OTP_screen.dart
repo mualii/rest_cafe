@@ -76,6 +76,14 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
         return false;
       },
       child: Scaffold(
+        appBar: AppBar(backgroundColor:   Colors.white,elevation: 0,
+        title: Text(""),leading:
+              new IconButton(
+
+                icon: new Icon(Icons.arrow_back_ios, color: Colors.grey),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
         backgroundColor: Colors.white,
         body: Center(
           child: SingleChildScrollView(

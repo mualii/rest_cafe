@@ -492,7 +492,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
       listener: (context, state) {},
       builder: (context, state) => SingleChildScrollView(
         child: Container(
-          height: 640,
+
           padding: EdgeInsets.all(8),
           child: Column(
             children: [
@@ -536,7 +536,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                         title: "Saved Vehicle data".tr(),
                         font: 16.sp,
                         color: Colors.black),
-                    Container(
+                    DeliveryCubit.get(context).cars.isEmpty?SizedBox(height: 30.h,):  Container(
                       width: 1.sw,
                       alignment: Alignment.center,
                       height: 155,
@@ -707,7 +707,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .76.sw,
-                        height: 70,
+
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -777,7 +777,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .76.sw,
-                        height: 83.h,
+
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -820,9 +820,10 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                         children: [
                           Container(
                               width: .35.sw,
+                              padding: EdgeInsets.symmetric(horizontal: 8),
                               alignment: Alignment.center,
-                              padding: EdgeInsets.all(8),
-                              height: 83.h,
+                     height: (carNumberController.text.isEmpty && color==null) ?50:70,
+
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1,
@@ -852,7 +853,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(width: 1, color: Colors.grey)),
                         width: .35.sw,
-                        height: 83.h,
+
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

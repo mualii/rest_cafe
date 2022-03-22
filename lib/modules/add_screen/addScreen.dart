@@ -12,10 +12,13 @@ import 'package:rest_cafe/modules/add_screen/cubit/states.dart';
 import 'package:rest_cafe/modules/detail_screen/cubit/detial_cubit.dart';
 import 'package:rest_cafe/modules/detail_screen/detailScreen.dart';
 import 'package:rest_cafe/modules/favorites_screen/favourites_cubit.dart';
+import 'package:rest_cafe/modules/login_screen/loginScreen.dart';
 import 'package:rest_cafe/shared/Model/cart_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
+
+import '../../shared/localstroage.dart';
 
 class AddScreen extends StatelessWidget {
   String id;
@@ -142,6 +145,85 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                       children: [
                         GestureDetector(
                           onTap: () async{
+
+                            if(LocalStorage.getData(key: "access_token")==null
+
+                            ){
+                              AwesomeDialog(
+                                context: context,
+                                //dialogType: DialogType.INFO,
+                                customHeader: Image.asset(
+                                    "assets/images/ic_error.png"),
+                                animType: AnimType.BOTTOMSLIDE,
+
+                                body: Column(
+                                  children: [
+                                    Text(
+                                      "Login".tr(),
+                                      style: TextStyle(
+                                        color: color1,
+                                        fontFamily: "FrutigerLTArabic",
+                                      ),
+                                    ),
+                                    Text("You need to sing up first to order".tr(),
+                                      style: TextStyle(
+                                        fontFamily: "FrutigerLTArabic",
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+
+                                btnOk: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  style: ButtonStyle(
+                                      padding: MaterialStateProperty.all(
+                                          EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 5)),
+                                      backgroundColor:
+                                      MaterialStateProperty.all(Colors.white),
+                                      elevation: MaterialStateProperty.all(0),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10.0),
+                                              side: BorderSide(
+                                                  color: Color(0xffC3C6D1))))),
+                                  child: Text(
+                                    "Back".tr(),
+                                    style: TextStyle(color: Color(0xff4CB379)),
+                                  ),
+                                ),
+
+                                btnCancel: ElevatedButton(
+                                  onPressed: () async{
+                                    navigateAndFinish(context, LoginScreen());
+                                  },
+                                  style: ButtonStyle(
+
+                                      padding: MaterialStateProperty.all(
+                                          EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 5)),
+                                      backgroundColor:
+                                      MaterialStateProperty.all(Color(0xff4CB379)),
+                                      elevation: MaterialStateProperty.all(0),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10.0),
+                                              side: BorderSide(
+                                                  color: Color(0xffC3C6D1))))),
+                                  child: Text(
+                                    "Confirm".tr(),
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              )..show();
+                            }
+                            else{
+
                             if(CartCubit.get(context).mainId==null  )
                               CartCubit.get(context).mainId=branchId;
                             if (CartCubit.get(context).mainId==branchId){
@@ -240,7 +322,7 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                                 ),
                               )..show();
 
-                            }}
+                            }}}
                           ,
                           child: mainBottom(
                               title:  "Add".tr()+ " ${AddCubit.get(context).total} "  + "SAR".tr(), height: 50.h, width: 140.w),

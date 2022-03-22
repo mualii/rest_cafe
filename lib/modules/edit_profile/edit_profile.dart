@@ -85,7 +85,7 @@ class EditProfileState extends State<EditProfile> {
               child: ElevatedButton(
                 onPressed: () async{
                   print(emailController.text);
-                 if(emailController.text=="" || nameController.text=="")
+                 if(  nameController.text=="")
                    Fluttertoast.showToast(msg: "Complete required data".tr());
                  else{
                var response=   await DioHelper.update(endpoint: "api/v1/users/edit", setParamars:{"name":nameController.text,"email":emailController.text}, context: context);
