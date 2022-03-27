@@ -2,10 +2,12 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_place/google_place.dart';
 
@@ -40,6 +42,8 @@ saveNumber(Response data){
     // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
+
+      Fluttertoast.showToast(msg: "ss");
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
@@ -50,6 +54,7 @@ saveNumber(Response data){
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
+
         // Permissions are denied, next time you could try
         // requesting permissions again (this is also where
         // Android's shouldShowRequestPermissionRationale
@@ -61,6 +66,7 @@ saveNumber(Response data){
 
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, handle appropriately.
+
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
@@ -69,7 +75,9 @@ saveNumber(Response data){
     // continue accessing the position of the device.
     location=  await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 
-
+if(location==null){
+  Fluttertoast.showToast(msg: "Allow location access to start".tr(),backgroundColor: Colors.white,fontSize: 16,textColor: Colors.black,toastLength:Toast.LENGTH_LONG );
+}
     print(location!.longitude.toString());
   }
 

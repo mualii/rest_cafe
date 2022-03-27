@@ -23,6 +23,7 @@ import 'package:rest_cafe/shared/localstroage.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 class HomeScreen extends StatelessWidget {
+
   var _searchController = TextEditingController();
   Location location =
       Location.fromJson(json.decode(LocalStorage.getData(key: "Location")));

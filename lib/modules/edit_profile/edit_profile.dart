@@ -88,7 +88,7 @@ class EditProfileState extends State<EditProfile> {
                  if(  nameController.text=="")
                    Fluttertoast.showToast(msg: "Complete required data".tr());
                  else{
-               var response=   await DioHelper.update(endpoint: "api/v1/users/edit", setParamars:{"name":nameController.text,"email":emailController.text}, context: context);
+               var response=   await DioHelper.update(endpoint: "api/v1/users/edit", setParamars:emailController.text==""?{"name":nameController.text}: {"name":nameController.text,"email":emailController.text}, context: context);
                if(response is Response) {
                  Fluttertoast.showToast(msg: "Saved".tr());
                  Navigator.of(context).pop();
