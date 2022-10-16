@@ -385,7 +385,7 @@ class CardScreen3 extends StatelessWidget {
                           ));
                            if(isChecked1)
 
-                            navigateTo(context, CheckOutWebView(response.data["invoiceURL"].toString()));
+                            navigateTo(context, CheckOutWebView(response.data.toString()));
                      }
                         }}},
                         child: mainBottom(

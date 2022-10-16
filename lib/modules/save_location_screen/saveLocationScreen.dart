@@ -119,20 +119,32 @@ lat=StartCubit.get(context).location!.latitude;
     return BlocConsumer<StartCubit,StartState>(
       listener: (context,state){},
       builder: (context,state)=>Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 100,
+        appBar: AppBar(leading:   Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+          toolbarHeight: 100.h,
           flexibleSpace: Column(
             children: [
-              SizedBox(height: 40),
+              SizedBox(height: 40.h),
               Text(
                 "Delivery address".tr(),
                 style: TextStyle(
-                    color: Colors.black,
+
                     fontSize: 18.sp,
                     fontWeight: FontWeight.bold),
               ),
               defaultFormField(
-                  height: 40,
+                  height: 50.h,width: .8.sw,
+
                   onChange: (v){
                     StartCubit.get(context).autoComplete(v);
                   },
@@ -143,7 +155,7 @@ lat=StartCubit.get(context).location!.latitude;
             ],
           ),
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
+
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(20.r),
@@ -193,8 +205,8 @@ lat=StartCubit.get(context).location!.latitude;
                       ),),
                 ),state is AutoCompeleteDone?
                 Align(alignment: Alignment.topLeft,
-                child: ListView.separated(shrinkWrap: true,itemBuilder: (context,index)=>Container(child: Container(color: Colors.white,
-                  child: ListTile(tileColor: Colors.white,title: Text(state.data[index].description!),leading: Icon(Icons.add_location_rounded),onTap: (){
+                child: ListView.separated(shrinkWrap: true,itemBuilder: (context,index)=>Container(child: Container(color:  Colors.black54,
+                  child: ListTile(title: Text(state.data[index].description!),leading: Icon(Icons.add_location_rounded),onTap: (){
 
 
 
@@ -209,8 +221,8 @@ lat=StartCubit.get(context).location!.latitude;
                   child: Container(
                     height: 100,
                     decoration: BoxDecoration(
-                        // color: Colors.white10,
-                        color: Colors.white,
+                        color:  Colors.black45,
+
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(30.sp),
                             topLeft: Radius.circular(30.sp))),

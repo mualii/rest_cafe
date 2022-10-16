@@ -40,13 +40,13 @@ class DetailScreen extends StatelessWidget {
           },
           child: Scaffold(
             appBar: AppBar(
-              toolbarHeight: 230,
+              toolbarHeight: 230.h,
 
               flexibleSpace: SafeArea(
                 child: state is DetailsLoaded
                     ? Column(
                         children: [
-                          SizedBox(height: 20),
+                          SizedBox(height: 20.h),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Row(
@@ -54,8 +54,8 @@ class DetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 40,
-                                  width: 40,
+                                  height: 40.h,
+                                  width: 40.w,
                                   child: InkWell(
                                       onTap: () {
                                         if (DetailCubit.get(context)
@@ -108,16 +108,16 @@ class DetailScreen extends StatelessWidget {
                                                   child: CardScreen(),
                                                 );
                                               },
-                                              barrierColor:
-                                                  Colors.white10, //AddScreen()
+                                              // barrierColor:
+                                              //     Colors.white10, //AddScreen()
                                             );
                                         }
                                       },
                                       child: Stack(
                                         children: [
                                           Container(
-                                            height: 40,
-                                            width: 40,
+                                            height: 40.h,
+                                            width: 40.w,
                                             child: Icon(
                                               FontAwesomeIcons.cartPlus,
                                               color: Colors.grey,
@@ -161,16 +161,16 @@ class DetailScreen extends StatelessWidget {
                                     Container(
                                       decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color(0xffDADADA)),
+                                             ),
                                           borderRadius:
                                               BorderRadius.circular(20.sp)),
                                       child: Image.network(
-                                          state.details!.logo.toString()),
+                                          state.details!.logo.toString(),height: 100.h,),
                                     ),
                                     myTitle(
                                         title: state.details!.name,
                                         font: 16.sp,
-                                        color: Colors.black),
+                                        ),
                                     Row(children: [
                                       Container(
                                           height: 20.h,
@@ -184,7 +184,7 @@ class DetailScreen extends StatelessWidget {
                                       Text(state.details!.cuisine.toString(),
                                           style: TextStyle(
                                               fontFamily: "FrutigerLTArabic",
-                                              color: Colors.black54,
+                                              // color: Colors.black54,
                                               fontSize: 12.sp)),
                                     ]),
                                   ],
@@ -205,7 +205,7 @@ class DetailScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
                             child: Divider(
                               height: 2,
-                              color: Color(0xffD8D8D8),
+
                             ),
                           ),
                           Spacer(),
@@ -281,7 +281,7 @@ class DetailScreen extends StatelessWidget {
                     : Container(),
               ),
               automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
             ),
             body: state is DetailsLoaded
                 ? Padding(
@@ -372,7 +372,7 @@ class DetailScreen extends StatelessWidget {
                     ),
                   )
                 : Center(child: CircularProgressIndicator()),
-            backgroundColor: Color(0xffF7F7F7),
+            // backgroundColor: Color(0xffF7F7F7),
             // bottomSheet: Container(
             //   decoration: BoxDecoration(
             //       color: Colors.white,
@@ -418,7 +418,7 @@ class LabolOfSecondListView extends StatelessWidget {
     return Container(
       height: 100.h,
       decoration: BoxDecoration(
-          color: Colors.white,
+          // color: Colors.white,
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
       child: Padding(
@@ -441,7 +441,7 @@ class LabolOfSecondListView extends StatelessWidget {
                   Text(item.name.toString(),
                       maxLines: 1,
                       style: TextStyle(
-                        color: Colors.black,
+                        // color: Colors.black,
                         fontSize: 14.sp,
                         fontFamily: "FrutigerLTArabic",
                       )),
@@ -449,7 +449,7 @@ class LabolOfSecondListView extends StatelessWidget {
                     Text(item.price.toString(),
                         style: TextStyle(
                             fontFamily: "FrutigerLTArabic",
-                            color: Colors.black54,
+                            // color: Colors.black54,
                             fontSize: 12.sp)),
                   ]),
                 ],
@@ -528,7 +528,7 @@ class LabolOfFristListView extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(),
               )
             ],
           ),

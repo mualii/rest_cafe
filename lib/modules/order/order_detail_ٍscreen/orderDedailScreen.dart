@@ -111,7 +111,7 @@ TextEditingController rateController = TextEditingController();
                 : Scaffold(
 
               appBar: AppBar(
-                toolbarHeight: 265,
+                toolbarHeight: 265.h,
                 flexibleSpace: SafeArea(
                   child: Column(
                     children: [
@@ -146,7 +146,7 @@ TextEditingController rateController = TextEditingController();
                                           .details!
                                           .branch!
                                           .logo
-                                          .toString()),
+                                          .toString(),height: 100.h,),
                                 ),
                                 myTitle(
                                     title: OrderDetailsCubit
@@ -160,7 +160,7 @@ TextEditingController rateController = TextEditingController();
                             ),
 
                             Container(
-                              height: 40,
+                              height: 40.h,
                               child: InkWell(
                                 onTap: () {
                                   navigateTo(context, ChatOrderScreen());
@@ -171,7 +171,7 @@ TextEditingController rateController = TextEditingController();
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 20.h),
 
                       Divider(
                         height: 3.h,
@@ -348,34 +348,34 @@ TextEditingController rateController = TextEditingController();
                 ),
               
               backgroundColor: Color(0xffF7F7F7),
-              bottomSheet: Container(
-                padding: EdgeInsets.all(20.h),
-                height: 100,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    // border: Border.all(color: Colors.black38),
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(40.sp),
-                        topLeft: Radius.circular(40.sp))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    mainBottom(
-                        title: "End order".tr(), height: 50.h, width: .4.sw),
-
-                    Container(
-                        height: 30,
-                        child: Image.asset("assets/images/pay (1).jpg")),
-
-                    Text(
-                        "${OrderDetailsCubit
-                            .get(context)
-                            .details!
-                            .total
-                            .toString()} "+"SAR".tr()),
-                  ],
-                ),
-              ),
+              // bottomSheet: Container(
+              //   padding: EdgeInsets.all(20.h),
+              //   height: 100,
+              //   decoration: BoxDecoration(
+              //       color: Colors.white,
+              //       // border: Border.all(color: Colors.black38),
+              //       borderRadius: BorderRadius.only(
+              //           topRight: Radius.circular(40.sp),
+              //           topLeft: Radius.circular(40.sp))),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       mainBottom(
+              //           title: "End order".tr(), height: 50.h, width: .4.sw),
+              //
+              //       Container(
+              //           height: 30,
+              //           child: Image.asset("assets/images/pay (1).jpg")),
+              //
+              //       Text(
+              //           "${OrderDetailsCubit
+              //               .get(context)
+              //               .details!
+              //               .total
+              //               .toString()} "+"SAR".tr()),
+              //     ],
+              //   ),
+              // ),
             );
 
           }),

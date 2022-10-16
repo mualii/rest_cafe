@@ -76,7 +76,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
         return false;
       },
       child: Scaffold(
-        appBar: AppBar(backgroundColor:   Colors.white,elevation: 0,
+        appBar: AppBar(elevation: 0,
         title: Text(""),leading:
               new IconButton(
 
@@ -84,7 +84,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),
-        backgroundColor: Colors.white,
+
         body: Center(
           child: SingleChildScrollView(
             child: Column(

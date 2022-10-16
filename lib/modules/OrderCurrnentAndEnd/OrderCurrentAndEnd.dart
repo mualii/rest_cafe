@@ -16,7 +16,7 @@ class OrderCurrentAndEnd extends StatelessWidget {
     return
 
          Scaffold(
-          backgroundColor: Color(0xffF7F7F7),
+
           appBar: CustomisedAppBar(
             title: 'Orders'.tr(),
             actions: [],
@@ -30,7 +30,7 @@ class OrderCurrentAndEnd extends StatelessWidget {
                   //  padding:EdgeInsets.symmetric(horizontal: 10) ,
                   decoration: BoxDecoration(
                       //This is for background color
-                      color: Color(0xffF7F7F7),
+
 
                       //This is for bottom border that is needed
                       border:
@@ -45,14 +45,14 @@ class OrderCurrentAndEnd extends StatelessWidget {
                         child: Text(
                           "Current".tr(),
                           style: TextStyle(
-                              fontFamily: "FrutigerLTArabic", color: Colors.black),
+                              fontFamily: "FrutigerLTArabic", ),
                         ),
                       ),
                       Tab(
                         child: Text("Previous".tr(),
                             style: TextStyle(
                                 fontFamily: "FrutigerLTArabic",
-                                color: Colors.black)),
+                               )),
                       ),
                     ],
                   ),

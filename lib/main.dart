@@ -244,14 +244,14 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.dark,
-        statusBarColor: Colors.transparent,
-        //or set color with: Color(0xFF0000FF)
-        systemNavigationBarColor: Colors.black,
-        statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarDividerColor: Colors.black));
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //     systemNavigationBarIconBrightness: Brightness.dark,
+    //     statusBarBrightness: Brightness.dark,
+    //     statusBarColor: Colors.transparent,
+    //     //or set color with: Color(0xFF0000FF)
+    //     systemNavigationBarColor: Colors.black,
+    //     statusBarIconBrightness: Brightness.dark,
+    //     systemNavigationBarDividerColor: Colors.black));
     return ScreenUtilInit(
       designSize: Size(392.72727272727275, 781.0909090909091),
       builder: () => MultiBlocProvider(
@@ -292,11 +292,14 @@ class _MyAppState extends State<MyApp> {
           //   child: child!,
           // ),
 
-          theme: ThemeData(
-            primaryColor: Color(0xff4CB278),
-            accentColor: Color(0xff4CB278),
-            colorScheme: ColorScheme.light(primary: Color(0xff4CB278)),
-          ),
+          theme: ThemeData.dark(),
+            themeMode: ThemeMode.system,
+          //
+          // ThemeData(
+          //   primaryColor: Color(0xff4CB278),
+          //   accentColor: Color(0xff4CB278),
+          //   colorScheme: ColorScheme.light(primary: Color(0xff4CB278)),
+          // ),
           //     theme: ThemeData(unselectedWidgetColor: Colors.red,tabBarTheme:TabBarTheme(unselectedLabelColor: Colors.red ) ),
 
           // theme: ThemeData(
@@ -350,6 +353,9 @@ class _MyAppState extends State<MyApp> {
           // ),
 
           debugShowCheckedModeBanner: false,
+          // darkTheme: ThemeData.dark(),
+          // themeMode: ThemeMode.system,
+
 
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,

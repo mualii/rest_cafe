@@ -81,7 +81,7 @@ SheetController controller =SheetController();
               )),
               title: Text(
                 "Choose a branch".tr(),
-                style: TextStyle(color: Colors.black54),
+                style: TextStyle(),
               ),
               actions: [
                 InkWell(
@@ -99,7 +99,7 @@ SheetController controller =SheetController();
                 ),
               ],
               centerTitle: true,
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
               elevation: 1,
             ),
             body:state is BranchesLoadingState? Center(child: CircularProgressIndicator()) : StatefulBuilder(

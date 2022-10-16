@@ -253,7 +253,7 @@ class LabolOfSecondListView extends StatelessWidget {
                     children: [
                       Text(data[index!].name!,
                           style: TextStyle(
-                            color: Colors.black,
+                            // color: Colors.black,
                             fontSize: 16.sp,
                             fontFamily: "FrutigerLTArabic",
                           )),
@@ -266,7 +266,7 @@ class LabolOfSecondListView extends StatelessWidget {
                                   ? "Open".tr()
                                   : "Closed".tr(),
                               style: TextStyle(
-                                color: Colors.black54,
+                                // color: Colors.black54,
                                 fontSize: 12.sp,
                                 fontFamily: "FrutigerLTArabic",
                               )),
@@ -293,7 +293,7 @@ class LabolOfSecondListView extends StatelessWidget {
                         SizedBox(width: 5.w),
                         Text(data[index!].cuisine!,
                             style: TextStyle(
-                              color: Colors.black54,
+                              // color: Colors.black54,
                               fontSize: 12.sp,
                               fontFamily: "FrutigerLTArabic",
                             )),
@@ -347,12 +347,12 @@ class LabolOfSecondListView extends StatelessWidget {
                               Text("Km",
                                   style: TextStyle(
                                       fontFamily: "FrutigerLTArabic",
-                                      color: Colors.black54,
+                                      // color: Colors.black54,
                                       fontSize: 12.sp)),
                               Text(data[index!].distance!.toString(),
                                   style: TextStyle(
                                       fontFamily: "FrutigerLTArabic",
-                                      color: Colors.black54,
+                                      // color: Colors.black54,
                                       fontSize: 12.sp)),
                             ],
                           ),
@@ -368,7 +368,7 @@ class LabolOfSecondListView extends StatelessWidget {
                           SizedBox(width: 3),
                           Text(data[index!].preparationTime.toString(),
                               style: TextStyle(
-                                color: Colors.black38,
+                                // color: Colors.black38,
                                 fontSize: 12.sp,
                                 fontFamily: "FrutigerLTArabic",
                               )),
@@ -453,18 +453,19 @@ class labolOfFristListView extends StatelessWidget {
               height: 20,
               child:     path==""?Container():ImageIcon(
             NetworkImage(path, scale: 1.5),
-                color: index == HomeCubit.get(context).currentIndex
-                    ? Colors.white
-                    : Theme.of(context).primaryColor,
+                // color: index == HomeCubit.get(context).currentIndex
+                //     ? Colors.white
+                //     : Theme.of(context).primaryColor,
               )),
           SizedBox(width: 10.w),
           Text(
             text,
             style: TextStyle(
                 fontFamily: "FrutigerLTArabic",
-                color: index == HomeCubit.get(context).currentIndex
-                    ? Colors.white
-                    : Colors.black),
+                // color: index == HomeCubit.get(context).currentIndex
+                //     ? Colors.white
+                //     : Colors.black
+            ),
           )
         ],
       ),

@@ -43,7 +43,7 @@ saveNumber(Response data){
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
 
-      Fluttertoast.showToast(msg: "ss");
+
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.

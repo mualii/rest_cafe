@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
 import 'package:rest_cafe/modules/home_screen/homeScreen.dart';
 import 'package:rest_cafe/modules/login_screen/loginScreen.dart';
@@ -18,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   startApp() async {
     Timer(
-      Duration(seconds: 5),
+      Duration(seconds: 2),
       () {
         navigateAndFinish(context,LocalStorage.getData(key: "access_token")!=null?LocalStorage.getData(key: "Location")==null? SaveLocationScreen(): LayoutScreen(selectedPageIndex: 0): LoginScreen());
       },
@@ -27,8 +28,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    StartCubit.get(context).determinePosition();
-    startApp();
+    try{
+    StartCubit.get(context).determinePosition().then((v){
+      startApp();
+    });}
+    catch(e){print("e");}
+
+
+
+
+
 print(LocalStorage.getData(key: "access_token"));
     super.initState();
   }

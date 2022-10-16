@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 Widget defaultFormField({
-
+ double ?width,
   required TextEditingController controller,
   required TextInputType type,
   Function(String)? onSubmit,
@@ -31,7 +31,7 @@ bool error=false,
         //     border: Border.all(color: Colors.grey),
         //     borderRadius: BorderRadius.circular(10)),
         height: height,
-        width: .9.sw,
+        width: width==null ?0.9.sw:width,
         child: TextFormField(
 
           onEditingComplete: onEditingComplete,
@@ -141,13 +141,13 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
       textDirection: TextDirection.ltr,
       child: AppBar(
         iconTheme:
-            IconThemeData(color: Colors.black, size: 25 //change your color here
+            IconThemeData( size: 25 //change your color here
                 ),
         title: Text(
           title!,
           style: TextStyle(
               fontFamily: "FrutigerLTArabic",
-              color: Colors.black87,
+
               fontWeight: FontWeight.w100),
         ),
         // toolbarHeight: 0.12.sh,
@@ -167,7 +167,7 @@ class CustomisedAppBar extends StatelessWidget with PreferredSizeWidget {
         //   ),
         // ),
         actions: actions,
-        backgroundColor: Colors.white,
+
       ),
     );
   }
