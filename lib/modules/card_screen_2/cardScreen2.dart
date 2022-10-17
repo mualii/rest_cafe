@@ -59,7 +59,7 @@ class CardScreen2 extends StatelessWidget {
                             myTitle(
                                 title: "Delivery".tr(),
                                 font: 16.sp,
-                                color: Colors.black),
+                              ),
                             IconButton(
                                 icon: Icon(
                                   Icons.arrow_forward_ios,
@@ -120,7 +120,7 @@ class CardScreen2 extends StatelessWidget {
                                             child: isChecked1
                                                 ? Icon(
                                                     Icons.circle_outlined,
-                                                    color: Colors.black12,
+                                                    // color: Colors.black12,
                                                     size: 30.sp,
                                                   )
                                                 : Icon(
@@ -131,7 +131,7 @@ class CardScreen2 extends StatelessWidget {
                                           ),
                                           myTitle(
                                               title: "To car".tr(),
-                                              color: Colors.black,
+                                              // color: Colors.black,
                                               font: 16.sp),
                                           Spacer(),
                                           Container(
@@ -183,7 +183,7 @@ class CardScreen2 extends StatelessWidget {
                                                             .isEmpty
                                                         ? "Add car".tr()
                                                         : "${DeliveryCubit.get(context).cars[carIndex].plateNumber} | ${DeliveryCubit.get(context).cars[carIndex].color} | ${DeliveryCubit.get(context).cars[carIndex].brandModel!.brand!.name}",
-                                                    color: Colors.black38,
+                                                    // color: Colors.black38,
                                                     font: 16.sp),
                                                 Spacer(),
                                                 Icon(
@@ -223,7 +223,7 @@ class CardScreen2 extends StatelessWidget {
                                         child: isChecked2
                                             ? Icon(
                                                 Icons.circle_outlined,
-                                                color: Colors.black12,
+                                                // color: Colors.black12,
                                                 size: 30.sp,
                                               )
                                             : Icon(
@@ -234,7 +234,7 @@ class CardScreen2 extends StatelessWidget {
                                       ),
                                       myTitle(
                                           title: "Pick up".tr(),
-                                          color: Colors.black,
+                                          // color: Colors.black,
                                           font: 16.sp),
                                       Spacer(),
                                       Image.asset("assets/images/m2.png")
@@ -269,7 +269,7 @@ class CardScreen2 extends StatelessWidget {
                                                 child: isChecked3
                                                     ? Icon(
                                                         Icons.circle_outlined,
-                                                        color: Colors.black12,
+                                                        // color: Colors.black12,
                                                         size: 30.sp,
                                                       )
                                                     : Icon(
@@ -280,7 +280,7 @@ class CardScreen2 extends StatelessWidget {
                                               ),
                                               myTitle(
                                                   title: "Reserve a table".tr(),
-                                                  color: Colors.black,
+                                                  // color: Colors.black,
                                                   font: 16.sp),
                                               Spacer(),
                                               Image.asset("assets/images/3.png")
@@ -341,7 +341,7 @@ class CardScreen2 extends StatelessWidget {
                                                             ? "${DeliveryCubit.get(context).setorder.reservation!.date.toString()} | ${DeliveryCubit.get(context).setorder.reservation!.time} | ${DeliveryCubit.get(context).setorder.reservation!.persons} "
                                                             : "Complete reservation data"
                                                                 .tr(),
-                                                        color: Colors.black38,
+                                                        // color: Colors.black38,
                                                         font: 16.sp),
                                                     Spacer(),
                                                     Icon(
@@ -446,7 +446,7 @@ class CardScreen2 extends StatelessWidget {
                                     "Back".tr(),
                                     style: TextStyle(
                                         fontSize: 16,
-                                        color: Colors.black,
+
                                         fontFamily: "FrutigerLTArabic"),
                                   ),
                                 ),
@@ -511,7 +511,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                       child: myTitle(
                           title: "Delivery by car".tr(),
                           font: 16.sp,
-                          color: Colors.black)),
+                          )),
                   IconButton(
                     icon: Icon(
                       Icons.arrow_forward_ios,
@@ -542,7 +542,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                     myTitle(
                         title: "Saved Vehicle data".tr(),
                         font: 16.sp,
-                        color: Colors.black),
+                       ),
                     DeliveryCubit.get(context).cars.isEmpty?SizedBox(height: 30.h,):  Container(
                       width: 1.sw,
                       alignment: Alignment.center,
@@ -607,7 +607,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                             children: [
                                               myTitle(
                                                   title: "Car brand".tr(),
-                                                  color: Colors.black,
+
                                                   font: 16.sp),
                                               myTitle(
                                                   title:
@@ -620,7 +620,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                                   font: 14.sp),
                                               myTitle(
                                                   title: "Plate number".tr(),
-                                                  color: Colors.black,
+
                                                   font: 16.sp),
                                               myTitle(
                                                   title:
@@ -642,7 +642,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                             children: [
                                               myTitle(
                                                   title: "Model".tr(),
-                                                  color: Colors.black,
+
                                                   font: 16.sp),
                                               myTitle(
                                                   title:
@@ -655,7 +655,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                               SizedBox(width: 8.w),
                                               myTitle(
                                                   title: "Car color".tr(),
-                                                  color: Colors.black,
+
                                                   font: 16.sp),
                                               myTitle(
                                                   title:
@@ -704,7 +704,7 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   myTitle(
-                      title: "Add car".tr(), color: Colors.black, font: 16.sp),
+                      title: "Add car".tr(),  font: 16.sp),
                   SizedBox(height: 10.h),
                   Row(
                     children: [

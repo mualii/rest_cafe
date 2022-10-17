@@ -45,11 +45,11 @@ TextEditingController rateController = TextEditingController();
           builder: (BuildContext context) => Container(
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
-          color: Colors.white,
+color: Colors.black87,
           borderRadius: BorderRadius.only(
           topRight: Radius.circular(40.sp),
           topLeft: Radius.circular(40.sp))),
-          height: 370,
+          height: 390.h,
           child: Directionality(
           textDirection: TextDirection.rtl,
           child:Column(
@@ -58,8 +58,8 @@ TextEditingController rateController = TextEditingController();
               myTitle(
                   title: "تقييم الطلب",
                   font: 18.sp,
-                  color: Colors.black),
-              SizedBox(height: 20),
+               ),
+              SizedBox(height: 20.h),
               RatingBar.builder(
                 initialRating: 3,
                 minRating: rate.toDouble(),
@@ -76,9 +76,9 @@ TextEditingController rateController = TextEditingController();
                   rate=rating.toInt();
                 },
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 10.h,),
               defaultFormField(controller: rateController, type: TextInputType.name,
-                height: 150,
+                height: 150.h,
                 maxLines: 10,
                 hint: "اكتب تقييمك هنا"
 
@@ -155,7 +155,7 @@ TextEditingController rateController = TextEditingController();
                                         .branch!
                                         .name,
                                     font: 16.sp,
-                                    color: Colors.black),
+                                    ),
                               ],
                             ),
 
@@ -175,7 +175,7 @@ TextEditingController rateController = TextEditingController();
 
                       Divider(
                         height: 3.h,
-                        color: Color(0xffD8D8D8),
+
                       ),
 
                       SizedBox(height: 5),
@@ -188,12 +188,12 @@ TextEditingController rateController = TextEditingController();
                             Container(
                                 padding: EdgeInsets.only(bottom: 1),
                                 decoration: BoxDecoration(
-                                    color: Colors.black54,
+
                                     borderRadius:
                                     BorderRadius.circular(10.sp),
                                     border: Border.all(color: Colors.grey)),
                                 child: myTitle(
-                                    color: Colors.white,
+
                                     font: 14.sp,
                                     title: OrderDetailsCubit
                                         .get(context)
@@ -236,7 +236,7 @@ TextEditingController rateController = TextEditingController();
                                         .details!.deliveryType=="PICKUP"?"Pick up".tr():OrderDetailsCubit
                                         .get(context)
                                         .details!.deliveryType=="VEHICLE"?"To car".tr():"Reserve a table".tr(),
-                                    color: Colors.black,
+
                                     font: 12.sp), Container(
                                   height: 20,
                                   width: 20,
@@ -254,7 +254,7 @@ TextEditingController rateController = TextEditingController();
                   ),
                 ),
                 automaticallyImplyLeading: false,
-                backgroundColor: Colors.white,
+
               ),
               body: 
                 Container(
@@ -268,7 +268,7 @@ TextEditingController rateController = TextEditingController();
                             myTitle(
                                 title: OrderDetailsCubit.get(context).address,
                                 font: 14.sp,
-                                color: Colors.black),
+                            ),
                           ],
                         ),
                         SizedBox(height: 20),
@@ -320,7 +320,7 @@ TextEditingController rateController = TextEditingController();
                             myTitle(
                                 title: "Products".tr(),
                                 font: 14.sp,
-                                color: Colors.black),
+                                ),
                           ],
                         ),
                         SizedBox(height: 10),
@@ -346,8 +346,7 @@ TextEditingController rateController = TextEditingController();
                     ),
                   ),
                 ),
-              
-              backgroundColor: Color(0xffF7F7F7),
+
               // bottomSheet: Container(
               //   padding: EdgeInsets.all(20.h),
               //   height: 100,
@@ -394,7 +393,7 @@ class ListModle extends StatelessWidget {
     return Container(
 
       decoration: BoxDecoration(
-          color: Colors.white,
+
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
       child: Padding(
@@ -407,7 +406,7 @@ class ListModle extends StatelessWidget {
                   builder: (BuildContext context) => Container(
                     padding: EdgeInsets.all(20.h),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(40.sp),
                             topLeft: Radius.circular(40.sp))),
@@ -431,12 +430,12 @@ class ListModle extends StatelessWidget {
                                     font: 14.sp ,
                                     lines: 1,
 
-                                    color: Colors.black),
+                                 ),
                                 // SizedBox(height: 5.h),
                                 myTitle(
                                     title: "Extras".tr(),
                                     font: 14.sp,
-                                    color: Colors.black),
+                                 ),
 
 
                                 ListView.separated(shrinkWrap: true,
@@ -445,12 +444,12 @@ class ListModle extends StatelessWidget {
                                         myTitle(
                                             title: item.extras![index].price.toString(),
                                             font: 14.sp,
-                                            color: Colors.black54),
+                                            ),
                                         Spacer(),
                                         myTitle(
                                             title: item.extras![index].name,
                                             font: 14.sp,
-                                            color: Colors.black),
+                                          ),
                                       ],
                                     ),
                                     separatorBuilder: (context,index)=> Divider(color: Colors.grey),
@@ -473,16 +472,16 @@ class ListModle extends StatelessWidget {
                     children: [
                       Icon(Icons.arrow_back_ios, color: Colors.grey),
                       myTitle(
-                          color: Colors.black54, font: 14.sp, title: "Extras".tr()),]),
+                           font: 14.sp, title: "Extras".tr()),]),
                       Column(
                         children: [
-                          myTitle(title: item.name, font: 14.sp, color: Colors.black),
+                          myTitle(title: item.name, font: 14.sp, ),
                           Row(
                             children: [
                               myTitle(
                                   title: "${item.unitPrice} "+"SAR".tr(),
                                   font: 14.sp,
-                                  color: Colors.black54),
+                                  ),
                               myTitle(
                                   title: "${item.quantity}x", font: 14.sp, color: color1),
 

@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/animate.dart';
+import 'package:flutter_animate/effects/effects.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rest_cafe/layout/LayoutScreen.dart';
@@ -50,9 +53,10 @@ print(LocalStorage.getData(key: "access_token"));
       backgroundColor: Colors.black,
       body: Center(
         child: Image.asset(
-          "assets/images/logo.jpg",
+          "assets/images/vast_logo.png",
           fit: BoxFit.fill,
-        ),
+        ).animate()
+            .fadeIn(duration: 1500.ms),
       ),
     );
   }

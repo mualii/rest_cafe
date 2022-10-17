@@ -227,7 +227,7 @@ class DetailScreen extends StatelessWidget {
                                     "km",
                                     style: TextStyle(
                                       fontSize: 12.sp,
-                                      color: Color(0xff717171),
+                                      // color: Color(0xff717171),
                                     ),
                                   ),
                                   SizedBox(width: 3),
@@ -235,7 +235,7 @@ class DetailScreen extends StatelessWidget {
                                     distance!,
                                     style: TextStyle(
                                       fontSize: 12.sp,
-                                      color: Color(0xff717171),
+                                      // color: Color(0xff717171),
                                     ),
                                   ),
                                 ],
@@ -247,7 +247,7 @@ class DetailScreen extends StatelessWidget {
                                   Text(
                                     state.details!.preparationTime.toString(),
                                     style: TextStyle(
-                                      color: Color(0xff717171),
+                                      // color: Color(0xff717171),
                                       fontSize: 12.sp,
                                     ),
                                   ),

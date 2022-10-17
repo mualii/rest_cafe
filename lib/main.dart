@@ -278,7 +278,7 @@ class _MyAppState extends State<MyApp> {
 
           builder: (context, widget) {
             //add this line
-            ScreenUtil.setContext(context);
+            // ScreenUtil.defaultSize();
             // BotToastInit();
             return MediaQuery(
               //Setting font does not change with system font size

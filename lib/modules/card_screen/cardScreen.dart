@@ -63,7 +63,7 @@ cubit=CartCubit.get(context);
                         ),
                         Center(
                             child: myTitle(
-                                title: "Products".tr(), font: 18.sp, color: Colors.black)),
+                                title: "Products".tr(), font: 18.sp)),
                         IconButton(
                           icon: Icon(
                             Icons.arrow_forward_ios,
@@ -249,7 +249,7 @@ ListViewCont(this.item);
                       child: Container(
                           height: 20,
                           child:
-                              Image.asset("assets/images/ic_delete_item.png")),
+                              Image.asset("assets/images/ic_delete_item.png",color: Colors.white,)),
                     ),
                   )
                 ],
@@ -259,7 +259,7 @@ ListViewCont(this.item);
                   Align(
                     alignment: Alignment.topRight,
                     child: myTitle(
-                        color: Colors.black,lines: 1,
+                    lines: 1,
                         font: 14.sp,
 
                         title: item!.name!),
@@ -318,7 +318,7 @@ ListViewCont(this.item);
                       ),
                       SizedBox(width: 5.w),
                       myTitle(
-                          color: Colors.black38, font: 12.sp, title: item!.total!.toString()),
+                           font: 12.sp, title: item!.total!.toString()),
                       // myTitle()
                     ],
                   )

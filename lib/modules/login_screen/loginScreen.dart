@@ -121,7 +121,7 @@ class LoginScreenState extends State<LoginScreen> {
                               child: myTitle(
                                   font: 18.sp,
                                   title: "Skip".tr(),
-                                  color: Colors.black)),
+                                 )),
                         ],
                       )
                     ],
@@ -141,6 +141,7 @@ class LoginScreenState extends State<LoginScreen> {
                 //   myTitle(title: "RESTCAFE", font: 50.sp, color: color1,),
                 SizedBox(height: .15.sh),
                 Container(
+
                   width: .91.sw,
                   child: InternationalPhoneNumberInput(
                     textAlign: TextAlign.right,

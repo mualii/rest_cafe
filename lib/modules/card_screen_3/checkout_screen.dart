@@ -1,5 +1,7 @@
 
 
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +42,12 @@ class CheckOutWebViewState extends State<CheckOutWebView>{
               initialUrl: widget.url,
               navigationDelegate: (NavigationRequest request) {
                 urlSuccess = request.url;
-                print(urlSuccess);
+               // check url success
+                if (urlSuccess!.contains('success')) {
+                  Timer(Duration(seconds: 2), () {
+                    Navigator.pop(context);
+                  });
+                }
 
 
                 return NavigationDecision.navigate;
@@ -49,9 +56,9 @@ class CheckOutWebViewState extends State<CheckOutWebView>{
                   (WebViewController webViewController) async {
                 _controller = webViewController;
                 urlSuccess = await _controller!.currentUrl();
-
                 //  print(urlSuccess);
               },
+
             ),
           ),
         ],

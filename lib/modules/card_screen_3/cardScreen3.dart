@@ -101,7 +101,7 @@ class CardScreen3 extends StatelessWidget {
                             child: isChecked1
                                 ? Icon(
                                     Icons.circle_outlined,
-                                    color: Colors.black12,
+                                    // color: Colors.black12,
                                     size: 30.sp,
                                   )
                                 : Icon(
@@ -114,7 +114,7 @@ class CardScreen3 extends StatelessWidget {
                           myTitle(
                               title: "Payment on recieving ".tr(),
                               font: 16.sp,
-                              color: Colors.black),
+                          ),
                           // SizedBox(width: .33.sw),
                           // Container(
                           //     height: 15.h,
@@ -148,7 +148,7 @@ class CardScreen3 extends StatelessWidget {
                             child: isChecked2
                                 ? Icon(
                                     Icons.circle_outlined,
-                                    color: Colors.black12,
+                                    // color: Colors.black12,
                                     size: 30.sp,
                                   )
                                 : Icon(
@@ -159,7 +159,7 @@ class CardScreen3 extends StatelessWidget {
                           ),
                           SizedBox(width: 15.w),
                           myTitle(
-                              title: "Online payment".tr(), font: 16.sp, color: Colors.black),
+                              title: "Online payment".tr(), font: 16.sp),
                           // SizedBox(width: .38.sw),
                           // Container(
                           //     height: 20.h,
@@ -245,18 +245,18 @@ class CardScreen3 extends StatelessWidget {
                 Divider(color: Colors.black38),
                 Row(
                   children: [
-                    myTitle(title: "Total".tr(), color: Colors.black, font: 16.sp),
+                    myTitle(title: "Total".tr(), font: 16.sp),
                     Spacer(),
                     myTitle(
-                        title: "${DeliveryCubit.get(context).price!.subtotal.toString()} "+"SAR".tr(), color: Colors.black38, font: 16.sp),
+                        title: "${DeliveryCubit.get(context).price!.subtotal.toString()} "+"SAR".tr(), font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    myTitle(title: "Service".tr(), color: Colors.black, font: 16.sp),
+                    myTitle(title: "Service".tr(), font: 16.sp),
                     Spacer(),
-                    myTitle(title: "${DeliveryCubit.get(context).price!.vat.toString()} "+"SAR".tr(), color: Colors.black38, font: 16.sp),
+                    myTitle(title: "${DeliveryCubit.get(context).price!.vat.toString()} "+"SAR".tr(), font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),
@@ -266,11 +266,11 @@ class CardScreen3 extends StatelessWidget {
                   children: [
                     myTitle(
                         title: "Total price".tr(),
-                        color: Colors.black,
+
                         font: 16.sp),
                     Spacer(),
                     myTitle(
-                        title: "${DeliveryCubit.get(context).price!.total.toString()} "+"SAR".tr(), color: Colors.black38, font: 16.sp),
+                        title: "${DeliveryCubit.get(context).price!.total.toString()} "+"SAR".tr(), font: 16.sp),
                   ],
                 ),
                 SizedBox(height: 10.h),

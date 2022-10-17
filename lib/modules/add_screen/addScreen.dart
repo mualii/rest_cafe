@@ -98,13 +98,13 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                           child: myTitle(
                               title: state.sideDish!.name,
                               font: 16.sp,
-                              color: Colors.black)),
+                             )),
                       Center(
                           child: myTitle(
 
                               title: state.sideDish!.description,
                               font: 12.sp,
-                              color: Colors.black)),
+                              )),
                       Expanded(
 
 
@@ -114,7 +114,7 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                             itemBuilder:  (context,index)=>
                               ListTile(
                                 title: myTitle(
-                                    title: state.sideDish!.extras![index].name, color: Colors.black, font: 14.sp),
+                                    title: state.sideDish!.extras![index].name, font: 14.sp),
                                 trailing: myTitle(
                                     title:state.sideDish!.extras![index].price.toString()+" "+"SAR".tr() , color: Colors.grey, font: 14.sp),
                                 leading: Checkbox(
