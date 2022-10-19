@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +10,10 @@ import 'package:rest_cafe/modules/edit_profile/edit_profile.dart';
 import 'package:rest_cafe/modules/home_screen/cubit/HomeCubit.dart';
 import 'package:rest_cafe/modules/login_screen/loginScreen.dart';
 import 'package:rest_cafe/shared/components/components.dart';
+import 'package:rest_cafe/shared/dio_helper.dart';
 import 'package:rest_cafe/shared/localstroage.dart';
+
+import '../../shared/styles/colors.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -18,6 +22,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool notificationsToggle = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,6 +73,83 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Image.asset("assets/images/ic_profile_lang.png")),
               function: () {},
             ),
+            SettingsOption(
+              title: 'Delete account'.tr(),
+              iconData: Container(
+                  height: 25,
+                  child:ImageIcon(AssetImage("assets/images/ic_delete_item.png"),color: color1)),
+              function: () {
+                AwesomeDialog(
+                  context: context,
+                  //dialogType: DialogType.INFO,
+                  customHeader: Container(
+                    child: ImageIcon(AssetImage("assets/images/ic_delete_item.png"),color: color1),
+                  ),
+                  animType: AnimType.BOTTOMSLIDE,
+                  title: "Delete".tr(),
+                  desc: "Are you sure you want to delete your account?".tr(),
+
+                  btnOk: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 5)),
+                        backgroundColor:
+                        MaterialStateProperty.all(Colors.white),
+                        elevation: MaterialStateProperty.all(0),
+                        shape:
+                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                side:
+                                BorderSide(color: Color(0xffC3C6D1))))),
+                    child: Text(
+                      "Back".tr(),
+                      style: TextStyle(color: Color(0xff4CB379)),
+                    ),
+                  ),
+
+                  btnCancel: ElevatedButton(
+                    onPressed: () async {
+                      //     LocalStorage.sharedPreferences.clear();
+
+
+                      await FirebaseMessaging.instance.deleteToken();
+                      try{
+                      await DioHelper.delete(endpoint: "/api/v1/users/delete", context: context);
+                      LocalStorage.removeData(key: "access_token");
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => LoginScreen()));}  on DioError catch(e){}
+                    },
+                    //
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 5)),
+                        backgroundColor:
+                        MaterialStateProperty.all(Color(0xff4CB379)),
+                        elevation: MaterialStateProperty.all(0),
+                        shape:
+                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                side:
+                                BorderSide(color: Color(0xffC3C6D1))))),
+                    child: Text(
+                      "Delete".tr(),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                )..show();
+
+                // showDialog<String>(
+                //   context: context,
+                //   builder: (BuildContext context) => AlertDialogWidget(),
+                // );
+              },
+            ),
+
             SettingsOption(
               title: 'Log out'.tr(),
               iconData: Container(
