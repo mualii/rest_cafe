@@ -54,7 +54,7 @@ bool error=false,
                 borderSide: BorderSide(
                   color:error==true ?Colors.red :Colors.grey,
                 )),
-            contentPadding: EdgeInsets.symmetric(vertical: 0.0),
+            contentPadding: EdgeInsets.all(8),
             hintText: hint,
             hintStyle: TextStyle(
               color: Color(0xffAAAAAA),

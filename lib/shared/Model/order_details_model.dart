@@ -28,10 +28,13 @@ class OrderDetails {
     this.vehicle,
     this.reservationDetails,
     this.orderLine,
+    this.review,
+    this.status_id
   });
 
   String ? id;
   String ?userId;
+  dynamic review;
   String ?orderNumber;
   String ?deliveryType;
   dynamic vehicleId;
@@ -43,6 +46,7 @@ class OrderDetails {
   int ?total;
   String ?createdAt;
   String ?status;
+  int ? status_id;
   int ?itemsCount;
   Branch ?branch;
   dynamic vehicle;
@@ -51,6 +55,8 @@ class OrderDetails {
 
   factory OrderDetails.fromJson(Map<String, dynamic> json) => OrderDetails(
     id: json["id"],
+    status_id:json["status_id"],
+    review: json["review"],
     userId: json["user_id"],
     orderNumber: json["order_number"],
     deliveryType: json["delivery_type"],

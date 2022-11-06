@@ -43,7 +43,7 @@ class EditProfileState extends State<EditProfile> {
             DetailsField(
               disable:false,
               controller: nameController,
-              title: HomeCubit.get(context).user!.name??"Next".tr(),
+              title: HomeCubit.get(context).user!.name??"Name".tr(),
               iconData: Icon(Icons.person_outline, size: 25, color: color1),
             ),
             DetailsField(
@@ -59,7 +59,7 @@ class EditProfileState extends State<EditProfile> {
                   width: 0.2.sw,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: Colors.white),
+              ),
                   child: Center(
                       child: Text(
                         '966+',

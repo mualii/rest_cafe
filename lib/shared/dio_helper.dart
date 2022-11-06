@@ -65,7 +65,7 @@ class DioHelper {
       {required String endpoint,
         Map<String, dynamic>? formData,
 
-        required BuildContext context}) async {
+        required BuildContext ?context}) async {
 
     try{
       Uri uri = Uri.https(baseurl, endpoint);

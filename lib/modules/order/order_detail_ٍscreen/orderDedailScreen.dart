@@ -12,6 +12,7 @@ import 'package:rest_cafe/modules/order/order_detail_%D9%8Dscreen/order_detail_s
 import 'package:rest_cafe/shared/Model/order_details_model.dart';
 import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/dio_helper.dart';
+import 'package:rest_cafe/shared/localstroage.dart';
 import 'package:rest_cafe/shared/styles/colors.dart';
 
 import 'order_detail_cubit.dart';
@@ -38,7 +39,7 @@ TextEditingController rateController = TextEditingController();
           listener: (context, state) {
 
           if(  state is !OrderDetailsLoading){
-
+if(OrderDetailsCubit.get(context).details!.status_id==6 && OrderDetailsCubit.get(context).details!.review==null)
           showModalBottomSheet(isDismissible: false,
           backgroundColor: Colors.transparent,
           context: context,
@@ -161,12 +162,12 @@ color: Colors.black87,
 
                             Container(
                               height: 40.h,
-                              child: InkWell(
-                                onTap: () {
-                                  navigateTo(context, ChatOrderScreen());
-                                },
-                                child: Image.asset("assets/images/11.png"),
-                              ),
+                              // child: InkWell(
+                              //   onTap: () {
+                              //     navigateTo(context, ChatOrderScreen());
+                              //   },
+                              //   child: Image.asset("assets/images/11.png"),
+                              // ),
                             ),
                           ],
                         ),
@@ -406,7 +407,7 @@ class ListModle extends StatelessWidget {
                   builder: (BuildContext context) => Container(
                     padding: EdgeInsets.all(20.h),
                     decoration: BoxDecoration(
-
+color: LocalStorage.getData(key: "theme")=="light"? Colors.white:Colors.black,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(40.sp),
                             topLeft: Radius.circular(40.sp))),

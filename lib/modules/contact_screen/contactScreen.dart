@@ -37,24 +37,24 @@ class ContactScreenState extends State<ContactScreen> {
             children: [
               Row(
                 children: [
-                  myTitle(title: "Email".tr(), color: Colors.black, font: 15.sp),
+                  myTitle(title: "Email".tr(),  font: 15.sp),
                   SizedBox(width: .30.sw),
                   myTitle(
                       title: "support@zoq.com",
-                      color: Colors.black38,
+
                       font: 15.sp),
-                  Icon(FontAwesomeIcons.at, color: color1)
+                  Icon(FontAwesomeIcons.at, )
                 ],
               ),
               Divider(color: Colors.grey),
               SizedBox(height: 10.h),
               Row(
                 children: [
-                  myTitle(title: "Phone".tr(), color: Colors.black, font: 15.sp),
+                  myTitle(title: "Phone".tr(), font: 15.sp),
                   SizedBox(width: .32.sw),
                   myTitle(
                       title: "543-649-3478",
-                      color: Colors.black38,
+
                       font: 15.sp),
                   Container(
                       height: 20,
@@ -66,7 +66,7 @@ class ContactScreenState extends State<ContactScreen> {
               Center(
                   child: myTitle(
                       title: "التواصل مع الادارة ",
-                      color: Colors.black,
+
                       font: 19.sp)),
               SizedBox(height: 20.h),
               defaultFormField(

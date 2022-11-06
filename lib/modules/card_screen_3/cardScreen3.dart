@@ -463,6 +463,7 @@ class CartModle extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   context: context,
                   builder: (BuildContext context) => Container(
+                    color: LocalStorage.getData(key: "theme")=="light"? Colors.white:Colors.black,
                     padding: EdgeInsets.all(20.h),
                     decoration: BoxDecoration(
                         color: Colors.white,

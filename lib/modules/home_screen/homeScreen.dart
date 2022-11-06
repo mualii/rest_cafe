@@ -32,6 +32,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     HomeCubit.get(context).getResturants(context);
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
@@ -228,7 +230,7 @@ class LabolOfSecondListView extends StatelessWidget {
   Widget build(BuildContext context) {
     isFav = data[index!].IsFavourite!;
     return Container(
-      height: 150.h,
+      height: 120.h,
       decoration: BoxDecoration(
           border: Border.all(color: Color(0xffDADADA)),
           borderRadius: BorderRadius.circular(20.sp)),
@@ -237,7 +239,7 @@ class LabolOfSecondListView extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 100.h,
+              height: 80.h,
               width: 90.w,
               decoration: BoxDecoration(
                 // border: Border.all(color: Color(0xffDADADA)),
@@ -283,7 +285,7 @@ class LabolOfSecondListView extends StatelessWidget {
                     children: [
                       Row(children: [
                        HomeCubit.get(context).currentIndex==0?Container():   Container(
-                            height: 20,
+                            height: 20.h,
                             child: Image.network(
                               HomeCubit.get(context)
                                   .types[HomeCubit.get(context).currentIndex]

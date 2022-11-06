@@ -1,4 +1,5 @@
 import 'package:easy_localization/src/public_ext.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
@@ -6,9 +7,11 @@ import 'package:rest_cafe/modules/OrderCurrnentAndEnd/OrderCurrentAndEnd.dart';
 import 'package:rest_cafe/modules/favorites_screen/favorites_screen.dart';
 import 'package:rest_cafe/modules/home_screen/homeScreen.dart';
 import 'package:rest_cafe/modules/settings_screen/settings_screen.dart';
+import 'package:rest_cafe/shared/components/components.dart';
 import 'package:rest_cafe/shared/components/constants.dart';
 import 'package:rest_cafe/shared/localstroage.dart';
 
+import '../modules/order/order_detail_ٍscreen/orderDedailScreen.dart';
 import 'Fuction/BNBCustomPainter.dart';
 import 'Fuction/BNBCustomPainter2.dart';
 
@@ -43,6 +46,16 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   @override
   void initState() {
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+      print("here");
+      print(message.data);
+      if (message.data['order_id'] != null) {
+        print("ho");
+
+       navigateTo(context,OrderDetailScreen(message.data['order_id']));
+      }
+
+    });
     _pages = [
       HomeScreen(),
       FavoritesScreen(),

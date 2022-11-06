@@ -23,45 +23,37 @@ class CheckOutWebViewState extends State<CheckOutWebView>{
   @override
   Widget build(BuildContext context) {
   return Scaffold(
-    body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: WebView(
-              gestureNavigationEnabled: true,
-              // gestureRecognizers: Set()
-              //   ..add(Factory<VerticalDragGestureRecognizer>(
-              //           () => VerticalDragGestureRecognizer())),
-              javascriptMode: JavascriptMode.unrestricted,
+    body:  SafeArea(
+      child: WebView(
+                gestureNavigationEnabled: true,
+                // gestureRecognizers: Set()
+                //   ..add(Factory<VerticalDragGestureRecognizer>(
+                //           () => VerticalDragGestureRecognizer())),
+                javascriptMode: JavascriptMode.unrestricted,
 
-              debuggingEnabled: true,
-              allowsInlineMediaPlayback: true,
-              initialUrl: widget.url,
-              navigationDelegate: (NavigationRequest request) {
-                urlSuccess = request.url;
-               // check url success
-                if (urlSuccess!.contains('success')) {
-                  Timer(Duration(seconds: 2), () {
-                    Navigator.pop(context);
-                  });
-                }
+                debuggingEnabled: true,
+                allowsInlineMediaPlayback: true,
+                initialUrl: widget.url,
+                navigationDelegate: (NavigationRequest request) {
+                  urlSuccess = request.url;
+                 // check url success
+                  if (urlSuccess!.contains('success')) {
+                    Timer(Duration(seconds: 2), () {
+                      Navigator.pop(context);
+                    });
+                  }
 
 
-                return NavigationDecision.navigate;
-              },
-              onWebViewCreated:
-                  (WebViewController webViewController) async {
-                _controller = webViewController;
-                urlSuccess = await _controller!.currentUrl();
-                //  print(urlSuccess);
-              },
+                  return NavigationDecision.navigate;
+                },
+                onWebViewCreated:
+                    (WebViewController webViewController) async {
+                  _controller = webViewController;
+                  urlSuccess = await _controller!.currentUrl();
+                  //  print(urlSuccess);
+                },
 
-            ),
-          ),
-        ],
+
       ),
     ),
   );

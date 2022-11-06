@@ -1,6 +1,7 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_cafe/layout/Fuction/ScrollListener.dart';
@@ -177,7 +178,39 @@ String lang= LocalStorage.getData(key: "lang")=="en"?"العربية":"English";
                       });
                     },
                   ),
-            SettingsOption(
+    Column(
+    children: [
+    ListTile(
+    leading: Icon(Icons.nightlight_round,color:Color(0xff4CB379),),
+    title: ListTile(
+        title: Text(
+        "Light mode".tr(),
+        style: TextStyle(fontFamily: "FrutigerLTArabic", fontSize: 16),
+      ),
+
+      trailing:  Switch(activeColor:Color(0xff4CB379),value: LocalStorage.getData(key: "theme")==null? false:true, onChanged: (v){
+          setState(() {
+          if(v==true)  LocalStorage.saveData(key: "theme", value: "light");
+          else
+            LocalStorage.removeData(key: "theme");
+            Phoenix.rebirth(context);
+          });
+
+        }),
+
+    ),
+
+    onTap: () {
+
+    },
+    ),
+    Divider()
+    ],
+    )
+
+,
+
+SettingsOption(
               title: 'Common questions'.tr(),
               iconData: Container(
                   height: 30.h, child: Image.asset("assets/images/ic_faq.png")),

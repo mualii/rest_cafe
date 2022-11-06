@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rest_cafe/modules/card_screen_2/cardScreen2.dart';
@@ -25,7 +28,9 @@ import 'modules/OrderCurrnentAndEnd/cart_cubit.dart';
 import 'modules/detail_screen/cubit/detial_cubit.dart';
 import 'modules/favorites_screen/favourites_cubit.dart';
 import 'modules/home_screen/cubit/HomeCubit.dart';
-
+import 'modules/order/order_detail_ٍscreen/orderDedailScreen.dart';
+final GlobalKey<NavigatorState> navigatorKey =
+GlobalKey(debugLabel: "Main Navigator");late String routeToGo = '/';
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('Handling a background message ${message.messageId}');
@@ -81,6 +86,11 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
@@ -93,12 +103,22 @@ void main() async {
   // });
 
   runApp(EasyLocalization(
-    child: MyApp(),
+    child: Phoenix(child: MyApp()),
     supportedLocales: [Locale('ar'), Locale('en')],
     path: "assets/langs",
     fallbackLocale: Locale(LocalStorage.getData(key: "lang")),
     startLocale: Locale("ar"),
   ));
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+    print("here");
+    print(message.data);
+    if (message.data['order_id'] != null) {
+      print("ho");
+
+      navigatorKey.currentState?.pushNamed('/second', arguments: message.data['order_id'] as String);
+    }
+
+  });
 }
 //Test
 
@@ -181,7 +201,17 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+  void onSelectNotification(payload) async {
+// navigate to booking screen if the payload equal BOOKING
+    print("ss");
+    var message = json.decode(payload);
+    if (message['order_id'] != null) {
+      print("ho");
+routeToGo="/second";
+      navigatorKey.currentState?.pushNamed('/second', arguments: message['order_id'] as String);
+    }
 
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -209,7 +239,7 @@ class _MyAppState extends State<MyApp> {
     var initializationSettings = InitializationSettings(
         android: initialzationSettingsAndroid, iOS: initializationSettingsIOS);
 
-    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,onSelectNotification: onSelectNotification);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
@@ -227,7 +257,10 @@ class _MyAppState extends State<MyApp> {
                 channelDescription: channel.description,
                 icon: android.smallIcon,
               ),
-            ));
+            ),payload: json.encode({
+          "order_id": message.data['order_id'],
+
+        }));
       } else if (ios != null) {
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
@@ -275,13 +308,14 @@ class _MyAppState extends State<MyApp> {
         ],
         child: MaterialApp(
           title: "FastMenu",
-
+          navigatorKey: navigatorKey,
           builder: (context, widget) {
             //add this line
             // ScreenUtil.defaultSize();
             // BotToastInit();
             return MediaQuery(
               //Setting font does not change with system font size
+
               data: MediaQuery.of(context)
                   .copyWith(textScaleFactor: 1.0, boldText: false,alwaysUse24HourFormat: false),
               child: widget!,
@@ -292,7 +326,9 @@ class _MyAppState extends State<MyApp> {
           //   child: child!,
           // ),
 
-          theme: ThemeData.dark(),
+          theme:LocalStorage.getData(key: "theme")==null?  ThemeData.dark():ThemeData(tabBarTheme: TabBarTheme(labelColor: Colors.black),appBarTheme: AppBarTheme( color:  Colors.white,titleTextStyle: TextStyle(color: Colors.black,fontSize: 25 , fontFamily: "FrutigerLTArabic",
+
+              fontWeight: FontWeight.w100))),
             themeMode: ThemeMode.system,
           //
           // ThemeData(
@@ -356,11 +392,25 @@ class _MyAppState extends State<MyApp> {
           // darkTheme: ThemeData.dark(),
           // themeMode: ThemeMode.system,
 
+    onGenerateRoute: (RouteSettings settings) {
+    switch (settings.name) {
+    case '/':
+    return MaterialPageRoute(
+    builder: (_) => SplashScreen(),
+    );
+    break;
+    case '/second':
+    return MaterialPageRoute(
+    builder: (_) => OrderDetailScreen(settings.arguments as String),
+    );}   return null;
+    },
+
+          initialRoute: (routeToGo != null) ? routeToGo : '/',
 
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: SplashScreen(),
+          // home: SplashScreen(),
         ),
       ),
     );
@@ -372,15 +422,19 @@ class MyPage extends StatefulWidget {
   State<MyPage> createState() => _MyPageState();
 }
 
+
 class _MyPageState extends State<MyPage> {
   ScrollListener? _model;
   ScrollController? _controller;
+
+
   final double _bottomNavBarHeight = 56;
 
   @override
   void initState() {
     _controller = ScrollController();
     _model = ScrollListener.initialise(_controller!);
+
     super.initState();
   }
 

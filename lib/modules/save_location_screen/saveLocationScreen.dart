@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:easy_localization/src/public_ext.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +30,38 @@ late  BitmapDescriptor mapMarker;
 double ?lat,long;
 
 List<Marker> markers=[];
+  getDeviceToken() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      print('User granted provisional permission');
+    } else {
+      print('User declined or has not accepted permission');
+    }
+
+    try {
+      var respone = await DioHelper.postData(
+          endpoint: "/api/v1/users/fcm",
+        context: context,
+          formData: {"fcm": token});
+    } on DioError catch (e) {
+      print(e);
+    }
+    print(token);
+  }
 
   setCustomMarker()async{
     mapMarker=await BitmapDescriptor.fromAssetImage(ImageConfiguration(), "assets/images/Oval.png");
@@ -112,6 +145,7 @@ List<Marker> markers=[];
   );
 lat=StartCubit.get(context).location!.latitude;
   long=StartCubit.get(context).location!.longitude;
+  getDeviceToken();
     super.initState();
   }
   @override

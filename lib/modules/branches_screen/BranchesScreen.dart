@@ -118,36 +118,33 @@ controller: controller,
                   positioning: SnapPositioning.relativeToAvailableSpace,
                 ),
                 headerBuilder: (BuildContext context, SheetState state) {
-                  return Container(
-                    height: 50.h,
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Row(
-                        children: [
-                          myTitle(
-                              title:data[0].name,
-                              font: 14.sp,
-                              color: Color(0xff3D3D3D)),
-                          SizedBox(width: 20.w),
-                          Text(
-                           data.length.toString(),
-                            style: TextStyle(
-                              fontFamily: "FrutigerLTArabic",
-                            ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                              onPressed: () {
-                               setState((){
-                            expand==true? controller.collapse():    controller.expand();
-                                 expand=!expand;
-                               });
-                              },
-                              icon:Image.asset(expand==false?  "assets/images/ic_expand.png":"assets/images/0.png"))
-                        ],
-                      ),
-                    ),
-                  );
+                  return
+                    Container(height: 20.h,child: Align(alignment: Alignment.topCenter,child: Center(child: Container(decoration:  BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.grey),width: 60.w,height: 7.h,),)));
+                  //   Container(
+                  //   height: 50.h,
+                  //   child: Align(
+                  //     alignment: Alignment.topCenter,
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: [
+                  //         myTitle(
+                  //             title:data[0].name,
+                  //             font: 14.sp,
+                  //            ),
+                  //         SizedBox(width: 20.w),
+                  //         Text(
+                  //          data.length.toString(),
+                  //           style: TextStyle(
+                  //             fontFamily: "FrutigerLTArabic",
+                  //           ),
+                  //         ),
+                  //         Spacer(),
+                  //
+                  //
+                  //       ],
+                  //     ),
+                  //   ),
+                  // );
                 },
                 // The body widget will be displayed under the SlidingSheet
                 // and a parallax effect can be applied to it.
@@ -173,7 +170,7 @@ controller: controller,
                   return Container(
                     height: 650.h,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(30.sp),
                             topLeft: Radius.circular(30.sp))),
@@ -230,8 +227,8 @@ class LabolOfSecondListView extends StatelessWidget {
       height: 100.h,
       decoration: BoxDecoration(
         border: index == BranchesCubit.get(context).currentIndex
-            ? Border(right: BorderSide(color: color1, width: 4.sp))
-            : Border(right: BorderSide(color: color1, width: 0.sp)),
+            ? Border(right: BorderSide( width: 4.sp))
+            : Border(right: BorderSide( width: 0.sp)),
       ),
       child: Padding(
         padding: EdgeInsets.all(8.0.sp),
@@ -252,7 +249,7 @@ class LabolOfSecondListView extends StatelessWidget {
                 Text(" ${item!.name} $index",
                     style: TextStyle(
                         fontFamily: "FrutigerLTArabic",
-                        color: Colors.black,
+
                         fontSize: 14.sp)),
                 // SizedBox(height: 5.h),
                 Row(children: [
@@ -263,7 +260,7 @@ class LabolOfSecondListView extends StatelessWidget {
                   Text(item!.distance.toString(),
                       style: TextStyle(
                           fontFamily: "FrutigerLTArabic",
-                          color: Colors.black54,
+
                           fontSize: 12.sp)),
                 ]),
               ],
