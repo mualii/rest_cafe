@@ -166,7 +166,7 @@ class FavoriteItem extends StatelessWidget {
                 children: [
                   Text(resturant.name.toString(),
                       style: TextStyle(
-                        color: Colors.black,
+
                         fontSize: 16.sp,
                         fontFamily: "FrutigerLTArabic",
                       )),
@@ -178,7 +178,7 @@ class FavoriteItem extends StatelessWidget {
                     SizedBox(width: 5.w),
                     Text(resturant.cuisine!,
                         style: TextStyle(
-                          color: Colors.black54,
+
                           fontSize: 12.sp,
                           fontFamily: "FrutigerLTArabic",
                         )),
@@ -207,7 +207,7 @@ class FavoriteItem extends StatelessWidget {
                   Row(children: [
                     Text("Open".tr(),
                         style: TextStyle(
-                          color: Colors.black54,
+
                           fontSize: 12.sp,
                           fontFamily: "FrutigerLTArabic",
                         )),
