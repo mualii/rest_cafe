@@ -371,6 +371,10 @@ class CardScreen2 extends StatelessWidget {
                           children: [
                             InkWell(
                                 onTap: () {
+                                  if(isChecked1 == false &&
+                                      DeliveryCubit.get(context).cars.isNotEmpty){
+                                   DeliveryCubit.get(context).setorder.vehicle_id=DeliveryCubit.get(context).cars[carIndex].id;
+                                  }
                                   if (isChecked3 && isChecked2 && isChecked1)
                                     Fluttertoast.showToast(
                                         msg: "Please select first".tr());
@@ -946,7 +950,10 @@ class DeliveryScreenState extends State<DeliveryScreen> {
                                   .firstWhere(
                                       (element) => element.name != color)
                                   .id
-                                  .toString());
+                                  .toString()).then((v) {
+
+                          }
+                              );
                           Navigator.of(context, rootNavigator: true).pop();
 
                           showDialog(

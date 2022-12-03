@@ -181,7 +181,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     ignoreBlank: false,
                     autoValidateMode: AutovalidateMode.disabled,
-                    selectorTextStyle: TextStyle(color: Colors.black),
+
                     initialValue: number,
                     textFieldController: _userPhoneController,
                     formatInput: false,

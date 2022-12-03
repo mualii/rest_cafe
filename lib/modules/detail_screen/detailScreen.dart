@@ -160,27 +160,32 @@ class DetailScreen extends StatelessWidget {
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                          border: Border.all(
-                                             ),
+                                          border: Border.all(),
                                           borderRadius:
                                               BorderRadius.circular(20.sp)),
                                       child: Image.network(
-                                          state.details!.logo.toString(),height: 100.h,),
+                                        state.details!.logo.toString(),
+                                        height: 100.h,
+                                      ),
                                     ),
                                     myTitle(
-                                        title: state.details!.name,
-                                        font: 16.sp,
-                                        ),
+                                      title: state.details!.name,
+                                      font: 16.sp,
+                                    ),
                                     Row(children: [
                                       Container(
                                           height: 20.h,
-                                          child:    HomeCubit.get(context)
-                                              .currentIndex==0? Container():Image.network(
-                                              HomeCubit.get(context)
-                                                  .types[HomeCubit.get(context)
-                                                      .currentIndex]
-                                                  .icon
-                                                  .toString())),
+                                          child: HomeCubit.get(context)
+                                                      .currentIndex ==
+                                                  0
+                                              ? Container()
+                                              : Image.network(
+                                                  HomeCubit.get(context)
+                                                      .types[
+                                                          HomeCubit.get(context)
+                                                              .currentIndex]
+                                                      .icon
+                                                      .toString())),
                                       Text(state.details!.cuisine.toString(),
                                           style: TextStyle(
                                               fontFamily: "FrutigerLTArabic",
@@ -205,7 +210,6 @@ class DetailScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
                             child: Divider(
                               height: 2,
-
                             ),
                           ),
                           Spacer(),
@@ -410,7 +414,9 @@ class DetailScreen extends StatelessWidget {
 
 class LabolOfSecondListView extends StatelessWidget {
   Item item;
+
   LabolOfSecondListView(this.item);
+
   @override
   Widget build(BuildContext context) {
     bool isFav = item.IsFavourite!;
