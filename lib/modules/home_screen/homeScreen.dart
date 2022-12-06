@@ -205,7 +205,7 @@ class HomeScreen extends StatelessWidget {
                                           index: index,
                                         )),
                                     separatorBuilder: (context, index) =>
-                                        SizedBox(height: 10.h),
+                                          SizedBox(height: 10.h),
                                     itemCount: resturants.length),
                               ),
                             ],
@@ -261,7 +261,7 @@ class LabolOfSecondListView extends StatelessWidget {
                           )),
                       Spacer(),
                       Container(
-                        height: 30,
+                        height: 30.h,
                         child: Row(children: [
                           Text(
                               data[index!].isOpen!
@@ -288,7 +288,7 @@ class LabolOfSecondListView extends StatelessWidget {
                             height: 20.h,
                             child: Image.network(
                               HomeCubit.get(context)
-                                  .types[HomeCubit.get(context).currentIndex]
+                                    .types[HomeCubit.get(context).currentIndex]
                                   .icon
                                   .toString(),
                             )),

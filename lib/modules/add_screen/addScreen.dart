@@ -141,6 +141,7 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                   Align(child:  Container(
                     height: 50.h,
                     child: Row(
+
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
@@ -333,8 +334,8 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                             count = AddCubit.get(context).addOneItemFromCard(count);
                           },
                           child: Container(
-                            height: 50,
-                            width: 50,
+                            height: 50.h,
+                            width: 50.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.sp),
                               color: Color(0xff494861),
@@ -346,8 +347,8 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                           ),
                         ),
                         Container(
-                            height: 50,
-                            width: 50,
+                            height: 50.h,
+                            width: 50.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.sp),
                             ),
@@ -361,8 +362,8 @@ DetailCubit.get(context).getDetails(context, DetailCubit.get(context).details!.i
                                 AddCubit.get(context).MinusOneItemFromCard(count);
                           },
                           child: Container(
-                            height: 50,
-                            width: 50,
+                            height: 50.h,
+                            width: 50.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.sp),
                               color: Color(0xffE7E7E7),
