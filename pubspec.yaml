@@ -44,7 +44,7 @@ dependencies:
   sliding_sheet: ^0.5.0
   badges: ^2.0.1
   flutter_animate: ^1.0.0
-  geolocator: ^8.0.1
+  geolocator: ^9.0.2
   string_similarity: ^2.0.0
   webview_flutter: ^2.1.1
   searchable_dropdown:
@@ -54,7 +54,8 @@ dependencies:
   scrollable_positioned_list: ^0.2.3
   maps_launcher: ^2.0.1
   share: ^2.0.4
-  firebase_messaging: ^11.2.5
+
+  firebase_messaging: ^14.2.1
   flutter_local_notifications: ^9.2.0
   apple_sign_in:
     git: https://github.com/saisantosh2095/flutter_apple_sign_in
@@ -70,8 +71,8 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   google_maps_flutter: ^2.1.1
   flutter_phoenix: ^1.1.0
-  #  firebase_core: ^1.11.0
-  firebase_auth: ^3.3.5
+  firebase_core: ^2.4.1
+  firebase_auth: ^4.4.2
 
 
 

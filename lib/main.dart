@@ -287,7 +287,7 @@ routeToGo="/second";
     //     systemNavigationBarDividerColor: Colors.black));
     return ScreenUtilInit(
       designSize: Size(392.72727272727275, 781.0909090909091),
-      builder: () => MultiBlocProvider(
+      builder: (_,widget) => MultiBlocProvider(
         providers: [
           BlocProvider<CartCubit>(
             create: (context) => CartCubit()..getCart(context),

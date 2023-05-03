@@ -73,7 +73,7 @@ String lang= LocalStorage.getData(key: "lang")=="en"?"العربية":"English";
                               fontFamily: "FrutigerLTArabic", fontSize: 20.sp),
                         ),
                         Text(
-                         HomeCubit.get(context).user!.name?? "UserName".tr(),
+                         HomeCubit.get(context).user==null?"UserName".tr(): HomeCubit.get(context).user!.name!,
                           style: TextStyle(
                               fontFamily: "FrutigerLTArabic",
                               fontSize: 18.sp,

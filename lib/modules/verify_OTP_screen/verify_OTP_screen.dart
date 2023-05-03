@@ -155,7 +155,7 @@ class _PinCodePhoneScreenState extends State<PinCodePhoneScreen> {
                     width: .87.sw,
                     height: 50.h,
                     margin: EdgeInsets.only(top: 10),
-                    child: RaisedButton(
+                    child: MaterialButton(
                       onPressed: () async {
                         var response = await DioHelper.postData(
                             endpoint: "/api/v1/auth/verify-otp",

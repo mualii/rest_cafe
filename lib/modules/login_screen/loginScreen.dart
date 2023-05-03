@@ -225,8 +225,8 @@ class LoginScreenState extends State<LoginScreen> {
                           InkWell(
                             child: Image.asset("assets/images/Apple.png"),
                             onTap: () async {
-                              await AppleLogin()
-                                  .signInWithApple(context: context);
+                              // await AppleLogin()
+                              //     .signInWithApple(context: context);
                             },
                           ),
                           SizedBox(width: 40.w),

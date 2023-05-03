@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       Duration(seconds: 2),
       () {
-        navigateAndFinish(context,LocalStorage.getData(key: "access_token")!=null?LocalStorage.getData(key: "Location")==null? SaveLocationScreen(): LayoutScreen(selectedPageIndex: 0): LoginScreen());
+        navigateAndFinish(context,LocalStorage.getData(key: "access_token")!=null?LocalStorage.getData(key: "Location")==null? SaveLocationScreen(): LayoutScreen(selectedPageIndex: 0):  SaveLocationScreen());
       },
     );
   }
